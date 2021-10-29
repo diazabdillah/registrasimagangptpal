@@ -48,11 +48,10 @@
                                 <tbody>
 
                                     @foreach ($users as $rekap)
-                                    @if ($rekap->role_id == 6 or $rekap->role_id==)
                                     @if ($rekap->role_id != 1)
                                     <tr>
                                         <td>{{++$i}}</td>
-                                        <td>{{$rekap->name}}</td>
+                                        <td>{{$rekap->nama}}</td>
                                         <td>{{$rekap->univ}}</td>
                                         <td>{{$rekap->strata}}</td>
                                         <td>{{$rekap->divisi}}</td>

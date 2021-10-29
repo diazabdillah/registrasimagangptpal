@@ -34,8 +34,9 @@ class AdminController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
                 ->select('users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
-
+                ->where('users.status_user', '=', 'individu')
                 ->get();
+
             return view('admin.Rekap', [
                 'ti' => $ti,
                 'users' => $users
@@ -52,8 +53,8 @@ class AdminController extends Controller
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('users.name', 'users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
-
+                ->select('users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
+                ->where('users.status_user', '=', 'kelompok')
                 ->get();
             return view('admin.Rekapkelompok', [
                 'ti' => $ti,
