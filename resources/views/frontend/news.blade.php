@@ -62,6 +62,7 @@
                 <h3>Latest News</h3>
             </div>
         </div>
+
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="card">
@@ -70,7 +71,7 @@
                     </div>
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
-                            <p style="font-size: 20px;">MARCO KULIS</p>
+                            <p style="font-size: 20px;">$news[0]</p>
                             <a>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat excepturi voluptas eos harum incidunt, voluptates quis nam dignissimos quos voluptatum vel dolor non. Suscipit omnis ullam soluta aut deserunt laboriosam.</a>
                             <footer class="blockquote-footer">Sunday, 29 August 2021</footer>
                         </blockquote>
@@ -79,6 +80,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -86,20 +88,21 @@
 <div class="section padding-top-bottom-small background-white over-hide">
     <div class="container">
         <div class="row">
+            @foreach ($news as $n)
             <div class="col-sm-4">
                 <div class="item">
                     <div class="team-box-1 all-padding background-white drop-shadow text-center mt-5">
                         <a style="text-decoration:none; color: black" href="">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            <h6 class="mb-4">Marco Kulis</h6>
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
+                            <img class="mb-4" src="{{ asset('/berita/' . $n->foto) }}" alt="" />
+                            <h6 class="mb-4">{{ $n->judul }}</h6>
+                            {{ $n->konten }}
                         </a>
-                        <p>Sunday, 29 August 2021</p>
+                        <p>{{ date('D, d F Y', strtotime($n->updated_at)) }}</p>
                         <button style="color: white" style="color: white" type="button" class="btn btn-outline-info">Read</button>
                     </div>
                 </div>
             </div>
+            @endforeach
             <div class="col-sm-4">
                 <div class="item">
                     <div class="team-box-1 all-padding background-white drop-shadow text-center mt-5">

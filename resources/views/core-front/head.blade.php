@@ -94,6 +94,11 @@
 										Internship
 									</a>
 								</li>
+								<li class="nav-item dropdown {{ Request::is('services')? "active":"" }}">
+									<a class="nav-link" href="{{('services')}}">
+										Services
+									</a>
+								</li>
 								<li class="nav-item dropdown {{ Request::is('contact')? "active":"" }}">
 									<a class="nav-link" href="{{URL('contact')}}">
 										Contact Us

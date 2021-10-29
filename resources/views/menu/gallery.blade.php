@@ -15,13 +15,13 @@
 
 
         <!-- Tombol Tambah -->
-        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addModal">Add Submenu</a>
+        <a href="/input-galeri" class="btn btn-primary mb-3" >Tambah Galeri Baru</a>
 
         <!-- DataTales E#le -->
         <div class="card Menu mb-4">
             <div class="card shadow">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Atur Akses Submenu</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Atur Akses Menu</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -35,27 +35,22 @@
                                     </th>
                                     <th>
                                         <div class="d-flex justify-content-center">
-                                            Title
+                                            Judul
                                         </div>
                                     </th>
                                     <th>
                                         <div class="d-flex justify-content-center">
-                                            Menu
+                                            Gambar
                                         </div>
                                     </th>
                                     <th>
                                         <div class="d-flex justify-content-center">
-                                            Url
+                                            Tanggal Upload
                                         </div>
                                     </th>
                                     <th>
                                         <div class="d-flex justify-content-center">
-                                            Icon
-                                        </div>
-                                    </th>
-                                    <th>
-                                        <div class="d-flex justify-content-center">
-                                            Active
+                                            Tanggal Update
                                         </div>
                                     </th>
                                     <th>
@@ -66,27 +61,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr>
+                            @foreach ($data as $d)
+                                <tr class="text-center">
+                                    <td>{{ ++$i }}.</td>
+                                    <td>{{ $d->judul }}</td>
+                                    <td>{{ $d->foto }}</td>
+                                    <td>{{ $d->created_at }}</td>
+                                    <td>{{ $d->updated_at }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
-                                            1
-                                        </div>
-                                    </td>
-                                    <td>Title</td>
-                                    <td>Nama Menu</td>
-                                    <td>Url</td>
-                                    <td>Icon</td>
-                                    <td>Active</td>
-                                    <td>
-                                        <div class="d-flex justify-content-center">
-                                            <a class="btn btn-success mr-2" href="">Edit</a>
-                                            <a class="btn btn-secondary" href="" data-toggle="modal"
-                                                data-target="#deleteModal">Delete</a>
-                                        </div>
+                                        <a class="btn btn-warning p-1"
+                                            href="{{ url('edit-galeri/' . $d->id) }}"  onclick="return confirm('yakin Edit?');">Edit</a>
+                                        <a class="btn btn-danger p-1"
+                                            href="{{ url('delete-galeri/' . $d->id) }}"  onclick="return confirm('yakin Hapus?');">Hapus</a>
                                     </td>
                                 </tr>
-
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -108,7 +97,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="POST">
+                <form>
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control" id="menu" name="menu" placeholder="Input Nama Menu">

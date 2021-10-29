@@ -94,6 +94,16 @@
                     <i class="fas fa-fw fa-folder-open"></i>
                     <span>Submenu</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Berita Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-berita">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Berita</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Galeri Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/galeri">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Galeri</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1)

@@ -17,9 +17,9 @@ Route::get('/', [WebController::class, 'index']);
 Route::get('/profile', function () {
     return view('frontend.profile');
 });
-Route::get('/news', function () {
-    return view('frontend.news');
-});
+
+Route::get('/news', [WebController::class, 'showNews']);
+
 Route::get('/gallery', function () {
     return view('frontend.gallery');
 });
@@ -28,6 +28,9 @@ Route::get('/internship', function () {
 });
 Route::get('/contact', function () {
     return view('frontend.contact');
+});
+Route::get('/service', function () {
+    return view('frontend.service');
 });
 // Welcome HCM
 // Route::get('/hcm-welcome', [WelcomeController::class, 'index']);
@@ -63,6 +66,24 @@ Route::get('/sub-menu', [MenuController::class, 'Submenu']);
 // Route::get('/webBack', [MenuController::class, 'menuM']);
 // Route::get('/webBack', [MenuController::class, 'dataSubmenu']);
 // Menu ===============================
+
+// Bagian Berita ================================
+Route::get('/show-berita', [MenuController::class, 'News']);
+Route::get('/input-berita', [MenuController::class, 'inputBerita']);
+Route::post('/input-berita', [MenuController::class, 'prosesInputBerita'])->name('uploadBerita');
+Route::get('/edit-berita/{id}', [MenuController::class, 'editBerita']);
+Route::put('/edit-berita/{id}', [MenuController::class, 'updateBerita']);
+Route::get('delete-berita/{user_id}', [MenuController::class, 'deleteBerita']);
+// Bagian Berita ================================
+
+// Bagian Galeri ================================
+Route::get('/galeri', [MenuController::class, 'Gallery']);
+Route::get('/input-galeri', [MenuController::class, 'inputGaleri']);
+Route::post('/input-galeri', [MenuController::class, 'prosesInputGaleri'])->name('uploadGaleri');
+Route::get('/edit-galeri/{id}', [MenuController::class, 'editGaleri']);
+Route::put('/edit-galeri/{id}', [MenuController::class, 'updateGaleri']);
+Route::get('delete-galeri/{user_id}', [MenuController::class, 'deleteGaleri']);
+// Bagian Galeri ================================
 
 // Halaman administrasi ========================
 Route::get('/admin_dash', [AdminController::class, 'index']);
