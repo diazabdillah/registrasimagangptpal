@@ -66,20 +66,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($users as $absen)
-                                            @if ($absen->role_id != 1) --}}
+                                    @foreach ($users as $absen)
+
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$absen->nama}}</td>
+                                        <td>{{$absen->nim}}</td>
+                                        <td>{{$absen->univ}}</td>
+                                        <td>{{$absen->divisi}}</td>
+                                        <td>{{$absen->departemen}}</td>
                                         <td>
-                                            <a class="btn btn-primary p-1" href="" role="button">Buka Form Upload</a>
+                                            <a class="btn btn-primary p-1" href="{{ url('/magang.Dokumen_mhs_upload/' . $absen->id) }}" role="button">Buka Form Upload</a>
                                         </td>
                                     </tr>
-                                    {{-- @endif
-                                        @endforeach --}}
+
+                                    @endforeach
                                 </tbody>
                             </table>
                             {{-- <div class="card-body d-flex flex-wrap">
