@@ -10,6 +10,7 @@ class WelcomeController extends Controller
     {
         $this->middleware('auth');
     }
+    
     public function index()
     {
         $ti = 'Welcome';

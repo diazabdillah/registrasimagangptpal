@@ -35,7 +35,7 @@
                                 @endif
 
                                 <!-- form input login -->
-                                <form method="POST" action="{{ route('login') }}">
+                                <form method="POST" action="{{ route('loginpost') }}">
                                     @csrf
 
                                     <!--- Email --->

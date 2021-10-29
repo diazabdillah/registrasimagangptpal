@@ -32,9 +32,10 @@ Route::get('/contact', function () {
 Route::get('/service', function () {
     return view('frontend.service');
 });
+
 // Welcome HCM
 // Route::get('/hcm-welcome', [WelcomeController::class, 'index']);
-// Route::get('/home', [WelcomeController::class, 'home']);
+Route::get('/home', [WelcomeController::class, 'home']);
 
 
 Route::middleware('auth')->group(function () {
@@ -42,8 +43,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // Bagian auth registrasi sampai login  ===============
-Route::get('/login', [AuthhController::class, 'index']);
-Route::post('/login', [AuthhController::class, 'postLogin'])->name('login'); // Post Form Login
+Route::get('/login', [AuthhController::class, 'index'])->name('login');
+Route::post('/loginpost', [AuthhController::class, 'postLogin'])->name('loginpost'); // Post Form Login
 Route::get('/auth', [AuthhController::class, 'auth']);
 Route::get('/auth_mhs', [AuthhController::class, 'auth_mhs']);
 Route::get('/auth_mhs_kel', [AuthhController::class, 'auth_mhs_kel']);
