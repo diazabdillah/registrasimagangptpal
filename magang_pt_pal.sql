@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Okt 2021 pada 09.16
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.4.7
+-- Generation Time: Oct 29, 2021 at 04:42 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `absenmhs`
+-- Table structure for table `absenmhs`
 --
 
 CREATE TABLE `absenmhs` (
@@ -36,28 +36,14 @@ CREATE TABLE `absenmhs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `absenmhs`
---
-
-INSERT INTO `absenmhs` (`id`, `user_id`, `waktu_awal`, `waktu_akhir`, `created_at`, `updated_at`) VALUES
-(1, 2, '2021-10-27 08:17:00', '2021-10-31 20:17:00', '2021-10-27 05:16:11', '2021-10-27 05:16:11'),
-(2, 2, '2021-10-28 09:08:00', '2021-10-31 21:08:00', '2021-10-27 06:07:17', '2021-10-27 06:07:17'),
-(3, 3, '2021-10-28 02:40:00', '2021-10-31 02:40:00', '2021-10-27 11:39:48', '2021-10-27 11:39:48'),
-(4, 3, '2021-10-29 02:47:00', '2021-10-29 14:47:00', '2021-10-27 11:46:54', '2021-10-27 11:46:54'),
-(5, 3, '2022-11-29 09:26:00', '2022-11-29 21:26:00', '2021-10-27 18:25:43', '2021-10-27 18:25:43'),
-(6, 3, '2022-11-29 09:26:00', '2022-11-29 21:26:00', '2021-10-27 18:26:50', '2021-10-27 18:26:50'),
-(7, 3, '2022-11-29 09:26:00', '2022-11-29 21:26:00', '2021-10-27 18:26:56', '2021-10-27 18:26:56'),
-(8, 3, '2022-11-29 09:26:00', '2022-11-29 21:26:00', '2021-10-27 18:27:27', '2021-10-27 18:27:27'),
-(9, 3, '2022-11-29 09:26:00', '2022-11-29 21:26:00', '2021-10-27 18:30:15', '2021-10-27 18:30:15');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `absen_indivs_tabel`
+-- Table structure for table `absen_indivs_tabel`
 --
 
 CREATE TABLE `absen_indivs_tabel` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `id_absen` int(11) NOT NULL,
   `id_individu` int(11) NOT NULL,
   `waktu_absen` datetime NOT NULL,
@@ -66,26 +52,10 @@ CREATE TABLE `absen_indivs_tabel` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `absen_indivs_tabel`
---
-
-INSERT INTO `absen_indivs_tabel` (`id_absen`, `id_individu`, `waktu_absen`, `status_absen`, `created_at`, `updated_at`) VALUES
-(1, 1, '2021-10-27 13:04:55', 'Sudah Absensi', '2021-10-27 06:04:55', '2021-10-27 06:04:55'),
-(1, 2, '2021-10-27 13:05:44', 'Sudah Absensi', '2021-10-27 06:05:44', '2021-10-27 06:05:44'),
-(1, 1, '2021-10-27 18:24:01', 'Sudah Absensi', '2021-10-27 11:24:01', '2021-10-27 11:24:01'),
-(1, 1, '2021-10-27 18:24:04', 'Sudah Absensi', '2021-10-27 11:24:04', '2021-10-27 11:24:04'),
-(1, 2, '2021-10-27 18:24:06', 'Sudah Absensi', '2021-10-27 11:24:06', '2021-10-27 11:24:06'),
-(1, 2, '2021-10-27 18:24:08', 'Sudah Absensi', '2021-10-27 11:24:08', '2021-10-27 11:24:08'),
-(1, 1, '2021-10-27 18:24:11', 'Sudah Absensi', '2021-10-27 11:24:11', '2021-10-27 11:24:11'),
-(1, 1, '2021-10-27 18:24:13', 'Sudah Absensi', '2021-10-27 11:24:13', '2021-10-27 11:24:13'),
-(1, 1, '2021-10-27 18:24:13', 'Sudah Absensi', '2021-10-27 11:24:13', '2021-10-27 11:24:13'),
-(1, 3, '2021-10-27 18:42:44', 'Sudah Absensi', '2021-10-27 11:42:44', '2021-10-27 11:42:44');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_mhs_indivs`
+-- Table structure for table `data_mhs_indivs`
 --
 
 CREATE TABLE `data_mhs_indivs` (
@@ -104,19 +74,10 @@ CREATE TABLE `data_mhs_indivs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `data_mhs_indivs`
---
-
-INSERT INTO `data_mhs_indivs` (`id`, `user_id`, `nama`, `univ`, `strata`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nim`, `status_idcard`, `created_at`, `updated_at`) VALUES
-(1, 2, 'mario', 'pens', 'Teknik Informatika D4', 'manyar its', '081331913558', 'Divisi 1', 'Departement 1', 2110191013, NULL, '2021-10-27 04:43:34', '2021-10-27 04:43:34'),
-(2, 2, 'Fabyan Kindarya', 'PENS', 'Teknik Informatika D4', 'Jalan Jawa', '0857384758932', 'Divisi 1', 'Departement 1', 2110191015, NULL, '2021-10-27 04:44:04', '2021-10-27 04:44:04'),
-(3, 3, 'jay', 'PENS', 'Teknik Informatika D4', 'manyar its', '0857384758932', 'Divisi 1', 'Departemen 1', 2110191015, NULL, '2021-10-27 11:38:59', '2021-10-27 11:38:59');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_mhs_kelompoks`
+-- Table structure for table `data_mhs_kelompoks`
 --
 
 CREATE TABLE `data_mhs_kelompoks` (
@@ -136,7 +97,7 @@ CREATE TABLE `data_mhs_kelompoks` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_smk_indivs`
+-- Table structure for table `data_smk_indivs`
 --
 
 CREATE TABLE `data_smk_indivs` (
@@ -156,7 +117,7 @@ CREATE TABLE `data_smk_indivs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `divisi`
+-- Table structure for table `divisi`
 --
 
 CREATE TABLE `divisi` (
@@ -169,7 +130,7 @@ CREATE TABLE `divisi` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -185,7 +146,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file_mhs_indivs`
+-- Table structure for table `file_mhs_indivs`
 --
 
 CREATE TABLE `file_mhs_indivs` (
@@ -200,7 +161,7 @@ CREATE TABLE `file_mhs_indivs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file_mhs_kels`
+-- Table structure for table `file_mhs_kels`
 --
 
 CREATE TABLE `file_mhs_kels` (
@@ -215,7 +176,7 @@ CREATE TABLE `file_mhs_kels` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file_smk_indivs`
+-- Table structure for table `file_smk_indivs`
 --
 
 CREATE TABLE `file_smk_indivs` (
@@ -230,7 +191,7 @@ CREATE TABLE `file_smk_indivs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `foto_i_d_mhs`
+-- Table structure for table `foto_i_d_mhs`
 --
 
 CREATE TABLE `foto_i_d_mhs` (
@@ -244,7 +205,7 @@ CREATE TABLE `foto_i_d_mhs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `foto_i_d_smks`
+-- Table structure for table `foto_i_d_smks`
 --
 
 CREATE TABLE `foto_i_d_smks` (
@@ -258,7 +219,7 @@ CREATE TABLE `foto_i_d_smks` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `foto_mhs_models`
+-- Table structure for table `foto_mhs_models`
 --
 
 CREATE TABLE `foto_mhs_models` (
@@ -272,7 +233,7 @@ CREATE TABLE `foto_mhs_models` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `foto_smk_models`
+-- Table structure for table `foto_smk_models`
 --
 
 CREATE TABLE `foto_smk_models` (
@@ -286,7 +247,21 @@ CREATE TABLE `foto_smk_models` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `huruf`
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `huruf`
 --
 
 CREATE TABLE `huruf` (
@@ -300,7 +275,7 @@ CREATE TABLE `huruf` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kuota`
+-- Table structure for table `kuota`
 --
 
 CREATE TABLE `kuota` (
@@ -319,7 +294,7 @@ CREATE TABLE `kuota` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporans`
+-- Table structure for table `laporans`
 --
 
 CREATE TABLE `laporans` (
@@ -338,7 +313,7 @@ CREATE TABLE `laporans` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -348,7 +323,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -374,12 +349,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2021_10_20_074607_create_laporan_tabel', 1),
 (21, '2021_10_22_005528_create_penilaian_tabel', 1),
 (22, '2021_10_23_164936_create_indexnilai_tabel', 1),
-(23, '2021_10_27_112732_create_absen_indivs_tabel', 1);
+(23, '2021_10_25_070220_create_news_table', 1),
+(24, '2021_10_27_081822_create_gallery_table', 1),
+(25, '2021_10_27_112732_create_absen_indivs_tabel', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mulai_dan_selesai_mhs`
+-- Table structure for table `mulai_dan_selesai_mhs`
 --
 
 CREATE TABLE `mulai_dan_selesai_mhs` (
@@ -394,7 +371,22 @@ CREATE TABLE `mulai_dan_selesai_mhs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `konten` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -406,7 +398,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penilaians`
+-- Table structure for table `penilaians`
 --
 
 CREATE TABLE `penilaians` (
@@ -433,7 +425,7 @@ CREATE TABLE `penilaians` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -451,7 +443,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -468,7 +460,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -479,7 +471,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -494,128 +486,146 @@ CREATE TABLE `user_role` (
 --
 
 --
--- Indeks untuk tabel `absenmhs`
+-- Indexes for table `absenmhs`
 --
 ALTER TABLE `absenmhs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_mhs_indivs`
+-- Indexes for table `absen_indivs_tabel`
+--
+ALTER TABLE `absen_indivs_tabel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data_mhs_indivs`
 --
 ALTER TABLE `data_mhs_indivs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_mhs_kelompoks`
+-- Indexes for table `data_mhs_kelompoks`
 --
 ALTER TABLE `data_mhs_kelompoks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_smk_indivs`
+-- Indexes for table `data_smk_indivs`
 --
 ALTER TABLE `data_smk_indivs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `divisi`
+-- Indexes for table `divisi`
 --
 ALTER TABLE `divisi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `file_mhs_indivs`
+-- Indexes for table `file_mhs_indivs`
 --
 ALTER TABLE `file_mhs_indivs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `file_mhs_kels`
+-- Indexes for table `file_mhs_kels`
 --
 ALTER TABLE `file_mhs_kels`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `file_smk_indivs`
+-- Indexes for table `file_smk_indivs`
 --
 ALTER TABLE `file_smk_indivs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `foto_i_d_mhs`
+-- Indexes for table `foto_i_d_mhs`
 --
 ALTER TABLE `foto_i_d_mhs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `foto_i_d_smks`
+-- Indexes for table `foto_i_d_smks`
 --
 ALTER TABLE `foto_i_d_smks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `foto_mhs_models`
+-- Indexes for table `foto_mhs_models`
 --
 ALTER TABLE `foto_mhs_models`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `foto_smk_models`
+-- Indexes for table `foto_smk_models`
 --
 ALTER TABLE `foto_smk_models`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `huruf`
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `huruf`
 --
 ALTER TABLE `huruf`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kuota`
+-- Indexes for table `kuota`
 --
 ALTER TABLE `kuota`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `laporans`
+-- Indexes for table `laporans`
 --
 ALTER TABLE `laporans`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mulai_dan_selesai_mhs`
+-- Indexes for table `mulai_dan_selesai_mhs`
 --
 ALTER TABLE `mulai_dan_selesai_mhs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `penilaians`
+-- Indexes for table `penilaians`
 --
 ALTER TABLE `penilaians`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -623,150 +633,168 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `absenmhs`
+-- AUTO_INCREMENT for table `absenmhs`
 --
 ALTER TABLE `absenmhs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_mhs_indivs`
+-- AUTO_INCREMENT for table `absen_indivs_tabel`
+--
+ALTER TABLE `absen_indivs_tabel`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `data_mhs_indivs`
 --
 ALTER TABLE `data_mhs_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_mhs_kelompoks`
+-- AUTO_INCREMENT for table `data_mhs_kelompoks`
 --
 ALTER TABLE `data_mhs_kelompoks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_smk_indivs`
+-- AUTO_INCREMENT for table `data_smk_indivs`
 --
 ALTER TABLE `data_smk_indivs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `divisi`
+-- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `file_mhs_indivs`
+-- AUTO_INCREMENT for table `file_mhs_indivs`
 --
 ALTER TABLE `file_mhs_indivs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `file_mhs_kels`
+-- AUTO_INCREMENT for table `file_mhs_kels`
 --
 ALTER TABLE `file_mhs_kels`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `file_smk_indivs`
+-- AUTO_INCREMENT for table `file_smk_indivs`
 --
 ALTER TABLE `file_smk_indivs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `foto_i_d_mhs`
+-- AUTO_INCREMENT for table `foto_i_d_mhs`
 --
 ALTER TABLE `foto_i_d_mhs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `foto_i_d_smks`
+-- AUTO_INCREMENT for table `foto_i_d_smks`
 --
 ALTER TABLE `foto_i_d_smks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `foto_mhs_models`
+-- AUTO_INCREMENT for table `foto_mhs_models`
 --
 ALTER TABLE `foto_mhs_models`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `foto_smk_models`
+-- AUTO_INCREMENT for table `foto_smk_models`
 --
 ALTER TABLE `foto_smk_models`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `huruf`
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `huruf`
 --
 ALTER TABLE `huruf`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kuota`
+-- AUTO_INCREMENT for table `kuota`
 --
 ALTER TABLE `kuota`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `laporans`
+-- AUTO_INCREMENT for table `laporans`
 --
 ALTER TABLE `laporans`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT untuk tabel `mulai_dan_selesai_mhs`
+-- AUTO_INCREMENT for table `mulai_dan_selesai_mhs`
 --
 ALTER TABLE `mulai_dan_selesai_mhs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `penilaians`
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `penilaians`
 --
 ALTER TABLE `penilaians`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
