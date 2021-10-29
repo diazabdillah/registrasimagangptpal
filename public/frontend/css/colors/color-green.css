@@ -1,0 +1,282 @@
+
+
+
+.hero-text p,
+.typography-line span,
+.btn-link.btn-primary,
+.carousel-caption p span,
+.dropdown-menu.main-color:before,
+.progress-value,
+.modal.primary .modal-icon,
+.list-style.circle li:before,
+.list-style li i,
+.navbar .nav-item.icons-item-menu .nav-link:hover,
+.navbar .nav-item.icons-item-menu .nav-link:focus,
+.navbar .nav-item.icons-item-menu .nav-link:active,
+.navbar .nav-item.icons-item-menu .dropdown-menu p strong,
+.counter-wrap p,
+.dropcap.primary,
+.pricing-price,
+.pricing .ribbon i,
+.typed-cursor,
+.typed i,
+.scroll-to-top,
+.footer-1 .scd-foot p i,
+.footer-1 .scd-foot p a,
+.active-nav,
+.active-nav:hover,
+.dropdown-menu.dark .active-nav,
+.dropdown-menu.dark .active-nav:hover,
+.services-box-1 i,
+.main-subtitle-top,
+.services-box-2 i,
+.testimonials-box-1 p span,
+.blog-box-1 a h5:hover,
+.author-wrap p a:hover,
+.quote-box-1 i,
+.quote-box-1 p,
+.team-box-1 p,
+.hero-text-studio p,
+.services-box-3 i,
+.team-box-2 p,
+.testimonials-box-2 p,
+#hero-sync2 .item p span,
+.call-box-3 i,
+.nav-top-bar p a,
+.nav-top-bar i,
+.quote-box-2 p,
+.quote-box-2 i,
+.services-box-1 .icon-in-box i,
+.blog-box-2 .post-link-box h5:hover,
+.checkbox.line-icon a,
+ul.countdown li span,
+.blog-box-1 .blog-quote-wrap h5,
+.project-nav-wrap .left-nav .text-on-hover:before,
+.project-nav-wrap .right-nav .text-on-hover:after,
+.shop-box-1 h5:hover,
+.error-page h1,
+.onboarding-box i{
+	color: #03428b;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+	color: #03428b;
+	border-color: #03428b;
+}
+#royal_preloader.royal_preloader_progress .royal_preloader_meter,
+mark,
+.background-primary-color,
+.btn,
+.btn:hover,
+.input-group-addon,
+.dropdown .btn:focus,
+.dropdown-menu.main-color,
+.bg-tab-primary,
+.progress-bar,
+.accordion-style .card-header a:hover,
+.accordion-style .card-header a[aria-expanded="true"],
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary,
+.primary .page-item.active .page-link,
+.primary .page-link:hover,
+.modal.primary .modal-content,
+#cd-zoom-in, #cd-zoom-out,
+.dropcap.primary-bg,
+.anime-block,
+.scroll-to-top:hover,
+.footer-1 ul li a:before,
+.video-button,
+.filter li a:before,
+.next-blog,
+.prev-blog,
+.call-box-2 .btn-link:before,
+#owl-team.owl-theme .owl-controls .owl-page.active span,
+#owl-team.owl-theme .owl-controls .owl-page span:hover,
+#owl-work.owl-theme .owl-controls .owl-page.active span,
+#owl-work.owl-theme .owl-controls .owl-page span:hover,
+#owl-hero-1.owl-theme .owl-controls .owl-page.active span,
+#owl-hero-1.owl-theme .owl-controls .owl-page span:hover,
+#owl-team-1.owl-theme .owl-controls .owl-page.active span,
+#owl-team-1.owl-theme .owl-controls .owl-page span:hover,
+#owl-testimonials.owl-theme .owl-controls .owl-page.active span,
+#owl-testimonials.owl-theme .owl-controls .owl-page span:hover,
+.btn-primary.btn-simple.btn-prim,
+#hero-sync2 .item h5 span:before,
+.corporate-hero-text p:before,
+.quote-box-2 p:after,
+.filter-plus:hover,
+.blog-box-1 .blog-quote-wrap h5:before,
+.shop-box-1 .sale,
+.shop-box-1 .link-block a:hover,
+.services-box-1 .careers-bdg,
+.input-text,
+.next-hero-sync-2,
+.prev-hero-sync-2 {
+	background-color: #03428b;
+}
+.services-box-1 .icon-in-box {
+	box-shadow: 0px 5px 25px 0px rgba(109, 194, 52, .3);
+}
+.services-box-1:hover .icon-in-box {
+	box-shadow: 0px 20px 35px 0px rgba(109, 194, 52, .4);
+}
+.navbar-light .navbar-nav .nav-link.mPS2id-highlight{
+	background-color: rgba(109, 194, 52, 0.8) !important;
+}
+.progress{
+	background-color: rgba(109,194,52,.3);
+}
+.call-box-5{
+	border: 5px solid #03428b; 
+}
+.next-testimonials:hover,
+.prev-testimonials:hover{
+	background-color: rgba(109,194,52,.8);
+}
+.btn-primary.btn-simple {
+    color: #03428b;
+    border: 2px solid #03428b;
+}
+.colored-prim,
+.colored-prim:hover,
+.colored-prim:focus,
+.colored-prim:active{
+	background-color: #03428b !important;
+}
+.blockquote{
+	border-left: 0.4rem solid #03428b;
+}
+.blockquote-reverse{
+	border-right: 0.4rem solid #03428b;
+}  
+.fancybox-thumbs > ul > li:before {
+    border: 4px solid #03428b;
+}
+.modal.search-modal .modal-content input:active,
+.modal.search-modal .modal-content input:focus,
+.form-control:active,
+.form-control:focus,
+.separator-line.primary-color,
+.footer-1 .form-control:active,
+.footer-1 .form-control:focus,
+.subscribe-box-1.dark input:active,
+.subscribe-box-1.dark input:focus,
+.services-box-1.border-on-light.border-on-hover:hover,
+#hero-sync4 .item:hover,
+#hero-sync4 .synced .item{
+	border-color: #03428b;
+}
+.checkbox.primary label::before,
+.checkbox.primary label::after {
+    border: 1px solid #03428b;
+}
+.checkbox.primary label::after {
+    color: #03428b;
+}
+.checkbox.primary input[type="checkbox"]:disabled,
+.radio.primary input[type="radio"]:disabled {
+    color: #03428b;
+}
+.radio.primary label::before,
+.radio.primary label::after {
+    border: 1px solid #03428b;
+}
+.radio.primary input[type="radio"]:checked+label::after {
+    background-color: #03428b;
+    border-color: #03428b;
+}
+.radio.primary input[type="radio"]:disabled {
+    color: #03428b;
+}
+.radio.primary input[type="radio"]:disabled,
+.radio.primary input[type="radio"]:disabled {
+    color: #03428b;
+}
+.slider.slider-primary .noUi-connect,
+.slider.slider-primary.noUi-connect {
+    background-color: #03428b;
+}
+.slider.slider-primary.noUi-target {
+    background-color: rgba(109,194,52,.3);
+}
+.slider.slider-primary .noUi-handle {
+    background-color: #03428b;
+}
+figure.vimeo a:before, figure.youtube a:before {
+	border-left: 10px solid #03428b;
+}
+figure.vimeo:hover a:after, figure.youtube:hover a:after {
+	background:#03428b;
+}
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+	color: #03428b;
+  }
+}
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+	color: #03428b;
+  }
+}
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+	color: #03428b;
+  }
+}
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+	color: #03428b;
+  }
+}
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+	color: #03428b;
+  }
+}
+
+::selection {
+	background-color: #03428b;
+}
+::-moz-selection {
+	background-color: #03428b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

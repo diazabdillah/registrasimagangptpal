@@ -1,0 +1,685 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\AbsenIndivsTabel;
+use Illuminate\Http\Request;
+use App\Models\MulaiDanSelesaiMhs;
+use App\Models\DataMhsIndiv;
+use App\Models\Absenmhs;
+use App\Models\Kuota;
+use App\Models\Penilaian;
+use App\Models\User;
+use App\Models\FileMhsIndiv;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
+class DivisiController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index(Request $request)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $pagination = 5;
+
+            $users = DB::table('users')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id')
+                ->where('users.role_id', '=', 8)
+                ->orWhere('users.role_id', '=', 6)
+                ->get();
+
+            $data = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.user_id')
+                ->where('users.role_id', '=', 8)
+                ->orWhere('users.role_id', '=', 6)
+                ->get();
+
+            $dataSmk = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->select('users.id', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
+                ->where('users.role_id', '=', 9)
+                ->get();
+
+            return view('divisi.Penerimaan', [
+                'ti' => $ti,
+                'data' => $data,
+                'dataSmk' => $dataSmk,
+                'users' => $users
+
+            ])->with('i', ($request->input('page', 1) - 1) * $pagination);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function showMagangAktif(Request $request)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Magang Aktif';
+            $pagination = 5;
+            $users = DB::table('users')
+                ->select('users.id', 'users.name', 'users.email')
+                ->where('users.role_id', '=', 3)
+                ->get();
+            $data = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'users.name', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.user_id')
+                ->where('users.role_id', '=', 3)
+                ->orderBy('users.created_at', 'asc')
+                ->get();
+
+            $dataSmk = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->select('users.id', 'users.name', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
+                ->where('users.role_id', '=', 4)
+                ->orderBy('users.created_at', 'asc')
+                ->get();
+
+            return view('divisi.magang-aktif', [
+                'ti' => $ti,
+                'data' => $data,
+                'dataSmk' => $dataSmk,
+                'users' => $users
+
+            ])->with('i', ($request->input('page', 1) - 1) * $pagination);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_penerimaan($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.proses_penerimaan', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepdf' => $filepdf
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_penerimaan_mhskel($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $filepdf = DB::table('file_mhs_kels')->where('file_mhs_kels.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.proses_penerimaan_mhskel', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepdf' => $filepdf
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_penerimaan_smk($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $filepdf = DB::table('file_smk_indivs')->where('file_smk_indivs.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.name', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.proses-penerimaan-smk', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepdf' => $filepdf
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+    public function updatePenerimaan(Request $request, $id)
+    {
+
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Setatus penerimaan berhasil di proses');
+        return redirect('/Penerimaan');
+    }
+    public function updatePenerimaanmhskel(Request $request, $id)
+    {
+
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Setatus penerimaan berhasil di proses');
+        return redirect('/Penerimaan');
+    }
+
+    public function upPenerimaanSmk(Request $request, $id)
+    {
+
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Setatus penerimaan berhasil di proses');
+        return redirect('/Penerimaan');
+    }
+
+    public function updateDiterima(Request $request, $id)
+    {
+
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Setatus berhasil di proses');
+        return redirect('/diterima');
+    }
+
+    public function mulaiSelesai(Request $request, $id)
+    {
+        MulaiDanSelesaiMhs::create([
+            'user_id' => $id,
+            'mulai' => $request->mulai,
+            'selesai' => $request->selesai
+        ]);
+
+        session()->flash('succes', 'Setatus berhasil di proses');
+        return redirect('/magang-aktif');
+    }
+
+    public function showPdfMhs($id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $users = DB::table('users')->where('id', '=', $id)->get();
+            $files = FileMhsIndiv::find($id);
+
+            return view('divisi.pdf-mhs', [
+                'ti' => $ti,
+                'files' => $files,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function showPdfSmk($id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $users = DB::table('users')->where('id', '=', $id)->get();
+            $files = DB::table('file_smk_indivs')->where('user_id', '=', $id)->get();
+
+            return view('divisi.pdf-smk', [
+                'ti' => $ti,
+                'files' => $files,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+    public function showDiterima(Request $request)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Diterima';
+            $users = DB::table('users')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'users.name', 'user_role.role')
+                ->where('users.role_id', '=', 11)
+                ->get();
+            $datas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.user_id', 'data_mhs_indivs.strata')
+                ->where('users.role_id', '=', 11)
+                ->get();
+
+            $dataSmk = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->select('users.id', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
+                ->where('users.role_id', '=', 12)
+                ->get();
+
+
+            return view('divisi.diterima', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'dataSmk' => $dataSmk,
+                'users' => $users,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function finalMhs($user_id)
+    {
+
+
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Diterima';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $fileFoto = DB::table('foto_mhs_models')->where('foto_mhs_models.user_id', '=', $user_id)->get();
+            $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.final-penerimaan-mhs', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepdf' => $filepdf,
+                'fileFoto' => $fileFoto
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function finalSmk($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Diterima';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $fileFoto = DB::table('foto_smk_models')->where('foto_smk_models.user_id', '=', $user_id)->get();
+            $filepdf = DB::table('file_smk_indivs')->where('file_smk_indivs.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.name', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.final-penerimaan-smk', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepdf' => $filepdf,
+                'fileFoto' => $fileFoto
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function magangAktMhs($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Magang Aktif';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $fileFoto = DB::table('foto_mhs_models')->where('foto_mhs_models.user_id', '=', $user_id)->get();
+            $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
+            $tgl = DB::table('mulai_dan_selesai_mhs')->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->leftJoin('foto_i_d_mhs', 'users.id', '=', 'foto_i_d_mhs.user_id')
+                ->select('users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.proses-magang-aktmhs', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'tgl' => $tgl,
+                'filepdf' => $filepdf,
+                'fileFoto' => $fileFoto
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function magangAktSmk($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Magang Aktif';
+            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $fileFoto = DB::table('foto_smk_models')->where('foto_smk_models.user_id', '=', $user_id)->get();
+            $filepdf = DB::table('file_smk_indivs')->where('file_smk_indivs.user_id', '=', $user_id)->get();
+            $tgl = DB::table('mulai_dan_selesai_mhs')->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->leftJoin('foto_i_d_smks', 'users.id', '=', 'foto_i_d_smks.user_id')
+                ->select('users.name', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'foto_i_d_smks.fotoID')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.proses-magang-aktsmk', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'tgl' => $tgl,
+                'filepdf' => $filepdf,
+                'fileFoto' => $fileFoto
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function hapusfileMhs($id, $foto)
+    {
+        if (Storage::exists('public/fotoMhs/' . $foto)) {
+            Storage::delete('public/fotoMhs/' . $foto);
+        }
+        DB::table('foto_mhs_models')->where('id', $id)->delete();
+
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function hapusfileSmk($id, $foto)
+    {
+        if (Storage::exists('public/fotosmk/' . $foto)) {
+            Storage::delete('public/fotosmk/' . $foto);
+        }
+        DB::table('foto_smk_models')->where('id', $id)->delete();
+
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function Kuota()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+
+            $ti = 'Kuota';
+            $users = DB::table('kuota')->get();
+            return view('divisi.Kuota', [
+                'ti' => $ti,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function data_id_card()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Data ID Card';
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('data_mhs_indivs.status_idcard', 'data_mhs_indivs.departemen', 'mulai_dan_selesai_mhs.mulai', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
+                ->get();
+            return view('divisi.data_id_card', [
+                'ti' => $ti,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_idcard($id)
+    {
+        $ti = 'Data ID Card';
+        $data = DataMhsindiv::find($id);
+
+        $data->status_idcard = 'diterima';
+        $data->save();
+        return redirect()->back();
+    }
+    public function tambah_kuota()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Kuota';
+            return view('divisi.tambah_kuota', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_kuota(Request $request)
+    {
+
+        $request->validate([
+            'bagian' => 'required',
+            'kuota' => 'required',
+            'status_kuota' => 'required',
+        ]);
+
+        Kuota::create([
+            'bagian' => $request->bagian,
+            'tanggal_buka' => $request->tanggal_buka,
+            'tanggal_tutup' => $request->tanggal_tutup,
+            'kuota' => $request->kuota,
+            'divisi' => $request->divisi,
+            'departemen' => $request->departemen,
+            'status_kuota' => 'Dibuka'
+
+        ]);
+        return redirect('/Kuota');
+    }
+    public function edit_kuota()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $data = DB::table('kuota')->get();
+            $ti = 'Kuota';
+            return view('divisi.edit_kuota', ['ti' => $ti, 'data' => $data]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function rekam_jejak_magang()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Rekam Jejak Magang';
+            return view('divisi.rekam-jejak-magang', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function rekam_jejak()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Rekam Jejak Magang';
+            return view('divisi.rekam-jejak', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function laporan()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $user = DB::table('laporans')->get();
+            $id = 1;
+            $ti = 'Laporan Akhir';
+            return view('divisi.laporan', [
+                'ti' => $ti,
+                'id' => $id,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function penilaian()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $id = Auth::user()->id;
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
+                ->select('penilaians.status_penilaian', 'penilaians.pembimbing', 'data_mhs_indivs.id', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen')
+
+                ->get();
+
+            $id = 1;
+            $ti = 'Penilaian';
+            return view('divisi.penilaian', [
+                'ti' => $ti,
+                'id' => $id,
+                'users' => $users,
+
+
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function isi_penilaian($id)
+    {
+        $user = User::find($id);
+
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Form Penilaian';
+            return view('divisi.penilaian_mhs', ['ti' => $ti, 'user' => $user]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_penilaian($user_id, Request $request)
+    {
+
+        $user = DataMhsIndiv::find($user_id);
+
+        $avgStar = 0;
+        $nilaihuruf = "";
+
+        $penilaians = new Penilaian;
+        $penilaians->user_id = $user->user_id;
+        $penilaians->pembimbing = Auth::user()->name;
+        $penilaians->Kerjasama = $request->Kerjasama;
+        $penilaians->Motivasi = $request->Motivasi;
+        $penilaians->InisiatifKerja = $request->InisiatifKerja;
+        $penilaians->Loyalitas = $request->Loyalitas;
+        $penilaians->etika = $request->etika;
+        $penilaians->Disiplin = $request->Disiplin;
+        $penilaians->PercayaDiri = $request->PercayaDiri;
+        $penilaians->TanggungJawab = $request->TanggungJawab;
+        $penilaians->PemahamanKemampuan = $request->PemahamanKemampuan;
+        $penilaians->KesehatanKeselamatanKerja = $request->KesehatanKeselamatanKerja;
+
+        $avgStar = ($penilaians->Kerjasama +  $penilaians->Motivasi + $penilaians->InisiatifKerja + $penilaians->Loyalitas + $penilaians->etika + $penilaians->Disiplin + $penilaians->PercayaDiri + $penilaians->TanggungJawab + $penilaians->PemahamanKemampuan + $penilaians->KesehatanKeselamatanKerja) / 10;
+        if ($avgStar >= 81 && $avgStar <= 100) {
+            $nilaihuruf = "A";
+        } else if ($avgStar >= 71  && $avgStar <= 80) {
+            $nilaihuruf = "AB";
+        } else if ($avgStar >= 67  && $avgStar <= 70) {
+            $nilaihuruf = "B";
+        } else if ($avgStar >= 61  && $avgStar <= 66) {
+            $nilaihuruf = "BC";
+        } else if ($avgStar >= 56  && $avgStar <= 60) {
+            $nilaihuruf = "C";
+        } else if ($avgStar >= 41  && $avgStar <= 55) {
+            $nilaihuruf = "D";
+        } else if ($avgStar >= 0  && $avgStar <= 55) {
+            $nilaihuruf = "E";
+        }
+        $penilaians->average = $avgStar;
+        $penilaians->nilai_huruf = $nilaihuruf;
+        $penilaians->status_penilaian = 'Sudah di nilai';
+        $penilaians->save();
+
+        return redirect('/penilaian');
+    }
+    public function Absen_mhs()
+    {
+        $id = Auth::user()->id;
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+
+            $users = DB::table('users')
+                ->get();
+
+            // dd($users);
+
+            $id = 1;
+            $ti = 'Absensi';
+            return view('divisi.absenmhs', [
+                'ti' => $ti,
+                'id' => $id,
+                'users' => $users,
+
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function tambah_absenmhs($id)
+    {
+        $user = User::find($id);
+        $ti = 'Tambah Absensi';
+        return view('divisi.tambah_absenmhs', [
+            'ti' => $ti,
+            'user' => $user,
+        ]);
+    }
+    public function proses_absenmhs($id, Request $request)
+    {
+        $user = DataMhsIndiv::where('user_id', '=', $id)->get();
+
+        $absen = new Absenmhs;
+        $absen->user_id = $id;
+        $absen->waktu_awal = $request->waktu_awal;
+        $absen->waktu_akhir = $request->waktu_akhir;
+        $absen->save();
+
+        foreach ($user as $u) {
+            $absen_indiv = new AbsenIndivsTabel;
+            $absen_indiv->id_absen = $absen->id;
+            $absen_indiv->id_individu = $u->id;
+            $absen_indiv->status_absen = "Belum Absen";
+            $absen_indiv->save();
+        }
+
+        return redirect('/absen');
+    }
+}
