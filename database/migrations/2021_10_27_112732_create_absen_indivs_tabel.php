@@ -17,7 +17,7 @@ class CreateAbsenIndivsTabel extends Migration
             $table->id();
             $table->integer('id_absen');
             $table->integer('id_individu');
-            $table->datetime('waktu_absen');
+            $table->datetime('waktu_absen')->nullable();
             $table->string('status_absen');
             $table->timestamps();
         });
