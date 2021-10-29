@@ -553,20 +553,28 @@ class MagangController extends Controller
     {
         $id = Auth::user()->id;
 
-        $absenmhs = DB::table('absenmhs')
-            ->LeftJoin('data_mhs_indivs', 'absenmhs.user_id', '=', 'data_mhs_indivs.user_id')
-            ->LeftJoin('absen_indivs_tabel', 'data_mhs_indivs.id', '=', 'absen_indivs_tabel.id_individu')
-            ->where('absenmhs.user_id', '=', $id)
-            ->select('absen_indivs_tabel.status_absen', 'absenmhs.id AS absenID', 'absenmhs.waktu_awal', 'absenmhs.waktu_akhir', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
-            ->get();
+        $absenmhss = DB::table('absen_indivs_tabel')
+        ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'absen_indivs_tabel.id_individu')
+        ->leftJoin('absenmhs', 'absenmhs.id', '=', 'absen_indivs_tabel.id_absen')
+        ->where('data_mhs_indivs.user_id', '=', $id)
+        ->select('absen_indivs_tabel.status_absen', 'absen_indivs_tabel.id_absen', 'absenmhs.waktu_awal', 'absenmhs.waktu_akhir', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
+        ->get();
 
-        // dd($absenmhs);
+        // $absenmhs = DB::table('absenmhs')
+        //     ->LeftJoin('data_mhs_indivs', 'absenmhs.user_id', '=', 'data_mhs_indivs.user_id')
+        //     ->LeftJoin('absen_indivs_tabel', 'data_mhs_indivs.id', '=', 'absen_indivs_tabel.id_individu')
+        //     ->where('absenmhs.user_id', '=', $id)
+        //     ->where('data_mhs_indivs.user_id', '=', $id)
+        //     ->select('absen_indivs_tabel.status_absen', 'absenmhs.id AS absenID', 'absenmhs.waktu_awal', 'absenmhs.waktu_akhir', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
+        //     ->get();
+
+        // dd($absenmhss);
 
         $ti = 'Absensi';
 
         return view('magang.tableabsen_mhs', [
             'ti' => $ti,
-            'absenmhs' => $absenmhs,
+            'absenmhs' => $absenmhss,
         ]);
     }
 
