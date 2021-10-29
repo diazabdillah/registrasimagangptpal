@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2021 at 04:42 AM
+-- Generation Time: Oct 29, 2021 at 11:27 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -36,6 +36,13 @@ CREATE TABLE `absenmhs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `absenmhs`
+--
+
+INSERT INTO `absenmhs` (`id`, `user_id`, `waktu_awal`, `waktu_akhir`, `created_at`, `updated_at`) VALUES
+(1, 2, '2021-10-29 16:26:00', '2021-10-30 16:26:00', '2021-10-29 02:26:33', '2021-10-29 02:26:33');
+
 -- --------------------------------------------------------
 
 --
@@ -46,7 +53,7 @@ CREATE TABLE `absen_indivs_tabel` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_absen` int(11) NOT NULL,
   `id_individu` int(11) NOT NULL,
-  `waktu_absen` datetime NOT NULL,
+  `waktu_absen` datetime DEFAULT NULL,
   `status_absen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -73,6 +80,13 @@ CREATE TABLE `data_mhs_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `data_mhs_indivs`
+--
+
+INSERT INTO `data_mhs_indivs` (`id`, `user_id`, `nama`, `univ`, `strata`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nim`, `status_idcard`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Jay Abdillah', 'UNAIR', 'Teknik Elektro S1', 'Keputih', '08xxx', 'Divisi 1', 'Departemen 1', 2110191013, NULL, '2021-10-29 01:15:58', '2021-10-29 01:15:58');
 
 -- --------------------------------------------------------
 
@@ -464,9 +478,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$.LOGtRGsQy2UtlnQfoHnbe9PECnF.HskoKBPBxkjpYO6MOSk2NlXi', 1, 'kelompok', NULL, '2021-10-27 04:41:36', '2021-10-27 04:41:36'),
-(2, 'kelompok1', 'kelompok1@gmail.com', NULL, '$2y$10$6wlRaLLHmRTwaaenELh3uOZEusrRCZd4XzO2CY1ytcW8kjIOGLDUS', 3, 'kelompok', NULL, '2021-10-27 04:42:55', '2021-10-27 04:42:55'),
-(3, 'jay', 'jay@gmail.com', NULL, '$2y$10$7ITFOngvsCKtyBaELr/mv.1UcaF2UGy5F/6GvA0BTo7Uo0V2jPCny', 11, 'individu', NULL, '2021-10-27 11:38:17', '2021-10-27 11:38:17');
+(1, 'Admin HCM', 'admin@gmail.com', NULL, '$2y$10$eZO9nwnUiXwJXI2hnclUiejuVB9aXPpJBfR071XcJ34zyBz/4caA6', 1, 'individu', NULL, '2021-10-29 00:45:43', '2021-10-29 00:45:43'),
+(2, 'Jay Abdillah', 'jay@gmail.com', NULL, '$2y$10$0EZ4MUeKYMzJGmdVOOQEku95AGT3FF87CFnBfLbUzT2.5q8wTJ4Vi', 8, 'individu', NULL, '2021-10-29 01:07:14', '2021-10-29 01:07:14');
 
 -- --------------------------------------------------------
 
@@ -653,7 +666,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `absenmhs`
 --
 ALTER TABLE `absenmhs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `absen_indivs_tabel`
@@ -665,7 +678,7 @@ ALTER TABLE `absen_indivs_tabel`
 -- AUTO_INCREMENT for table `data_mhs_indivs`
 --
 ALTER TABLE `data_mhs_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `data_mhs_kelompoks`
@@ -791,7 +804,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_role`
