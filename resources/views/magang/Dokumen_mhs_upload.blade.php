@@ -25,7 +25,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <form method="POST" action="{{ route('uploadFotoMhs') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('uploadFotoMhs', [$user->id]) }}" enctype="multipart/form-data">
                                         @csrf
 
                                         @foreach ($showImage as $img)
@@ -62,7 +62,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <form method="POST" action="{{ route('upFotoMhs') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('upFotoMhs', [$user->id]) }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="alert alert-info" role="alert">
                                             <p>Kirim Foto 3x4 dengan background merah/biru max 1MB</p>

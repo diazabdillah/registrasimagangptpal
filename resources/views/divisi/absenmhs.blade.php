@@ -33,7 +33,7 @@
                                     <td>{{ $absen->name }}</td>
 
                                     <td>
-                                        <a class="btn btn-primary p-1" href="{{ url('/tambah_absenmhs/' . $absen->id) }}" role="button">Bikin Absen</a>
+                                        <a class="btn btn-primary p-1" href="{{ url('/tambah_absenmhs/' . $absen->id) }}" role="button">Buat Absen</a>
                                     </td>
                                 </tr>
                                 @endif

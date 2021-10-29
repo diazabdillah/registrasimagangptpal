@@ -11,8 +11,6 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
 
-
-
             <div class="row">
                 @foreach ($data as $profile)
                 <div class="col-sm-6">
@@ -21,9 +19,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    @foreach ($fotos as $img)
-                                    <img class="gambar1" style="width: 150px; height:180px; border-radius: 5px;" src="{{ asset('/file/' .  $img->fotoID) }}">
-                                    @endforeach
+
+                                    <img class="gambar1" style="width: 150px; height:180px; border-radius: 5px;" src="{{ asset('/file/' .  $profile->fotoID) }}">
+
                                 </div>
 
                                 <div class="form-group">
@@ -31,8 +29,20 @@
                                     <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->nama}}" disabled>
                                 </div>
                                 <div class="form-group">
+                                    <small class="ml-2">Nim</small>
+                                    <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->nim}}" disabled>
+                                </div>
+                                <div class="form-group">
                                     <small class="ml-2">Univ</small>
                                     <input type="text" class="form-control" id="email" name="univ" value="{{$profile->univ}}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <small class="ml-2">Strata</small>
+                                    <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->strata}}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <small class="ml-2">Alamat Rumah</small>
+                                    <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->alamat_rumah}}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">No.HP</small>
@@ -44,7 +54,7 @@
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">Status</small>
-                                    <input type="text" class="form-control" id="status" name="status" value="{{$profile->role_id}}" disabled>
+                                    <input type="text" class="form-control" id="status" name="status" value="" disabled>
                                 </div>
                             </div>
                         </div>

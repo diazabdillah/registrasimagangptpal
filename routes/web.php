@@ -141,9 +141,9 @@ Route::post('/berkas-mhs-indiv', [MagangController::class, 'proses_file_mhs'])->
 Route::get('/Dokumen_mhs', [MagangController::class, 'Dokumen_mhs']);
 Route::get('/Dokumen_mhs/{id}/{foto}', [MagangController::class, 'hapus_dok_mhs']);
 Route::get('/Dokumen_mhs_upload/{id}/{fotoID}', [MagangController::class, 'hapusFotoMhs']);
-Route::get('magang.Dokumen_mhs_upload', [MagangController::class, 'showUploadMhs']);
-Route::post('magang.Dokumen_mhs_upload', [MagangController::class, 'uploadDocFotoMhs'])->name('uploadFotoMhs');
-Route::post('magang.Dokumen_mhs', [MagangController::class, 'upFotoMhs'])->name('upFotoMhs');
+Route::get('magang.Dokumen_mhs_upload/{id}', [MagangController::class, 'showUploadMhs']);
+Route::post('magang.Dokumen_mhs_upload/{id}', [MagangController::class, 'uploadDocFotoMhs'])->name('uploadFotoMhs');
+Route::post('magang.Dokumen_mhs/{id}', [MagangController::class, 'upFotoMhs'])->name('upFotoMhs');
 Route::get('/tableabsen_mhs', [MagangController::class, 'tableabsen_mhs']);
 Route::get('/absen_mhs', [MagangController::class, 'absen_mhs']);
 Route::get('/proses_absenmhs/{absenid}/{individ}', [MagangController::class, 'proses_absenmhs']);
