@@ -67,7 +67,7 @@ Route::get('/sub-menu', [MenuController::class, 'Submenu']);
 // Halaman administrasi ========================
 Route::get('/admin_dash', [AdminController::class, 'index']);
 Route::get('/Rekap', [AdminController::class, 'Rekap']);
-Route::get('/RekapKelompok',[AdminController::class, 'Rekapkelompok']);
+Route::get('/RekapKelompok', [AdminController::class, 'Rekapkelompok']);
 // End Halaman administrasi ========================
 
 
@@ -75,7 +75,7 @@ Route::get('/RekapKelompok',[AdminController::class, 'Rekapkelompok']);
 Route::get('/Penerimaan', [DivisiController::class, 'index']);
 Route::get('/absen', [DivisiController::class, 'Absen_mhs']);
 Route::get('/tambah_absenmhs/{id}', [DivisiController::class, 'tambah_absenmhs']);
-Route::post('/proses_absenmhs/{id}',[DivisiController::class,'proses_absenmhs'])->name('tambahabsen');
+Route::post('/proses_absenmhs/{id}', [DivisiController::class, 'proses_absenmhs'])->name('tambahabsen');
 
 Route::get('/magang-aktif', [DivisiController::class, 'showMagangAktif']);
 Route::get('/kuota', [DivisiController::class, 'Kuota']);
@@ -106,8 +106,8 @@ Route::get('/rekam-jejak-magang', [DivisiController::class, 'rekam_jejak_magang'
 Route::get('/rekam-jejak', [DivisiController::class, 'rekam_jejak']);
 Route::get('/laporan', [DivisiController::class, 'laporan']);
 Route::get('/penilaian', [DivisiController::class, 'penilaian']);
-Route::get('/isi_penilaian/{id}',[DivisiController::class,'isi_penilaian']);
-Route::post('/proses_penilaian/{id}',[DivisiController::class,'proses_penilaian'])->name('tambahnilai');
+Route::get('/isi_penilaian/{id}', [DivisiController::class, 'isi_penilaian']);
+Route::post('/proses_penilaian/{id}', [DivisiController::class, 'proses_penilaian'])->name('tambahnilai');
 
 // End Halaman Divisi ========================
 
@@ -149,11 +149,11 @@ Route::get('/absen_mhs', [MagangController::class, 'absen_mhs']);
 Route::get('/proses_absenmhs/{absenid}/{individ}', [MagangController::class, 'proses_absenmhs']);
 Route::get('/id_card_mhs', [MagangController::class, 'id_card_mhs']);
 Route::get('/Kuota', [MagangController::class, 'kuota']);
-Route::get('penilaian_mhs',[MagangController::class, 'penilaian_mhs']);
+Route::get('penilaian_mhs', [MagangController::class, 'penilaian_mhs']);
 // Export PDF ID Card
 Route::get('/idcard-mhs-pdf', [MagangController::class, 'idCardMhsPdf'])->name('expdfidcard');
 Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
-Route::get('/sertif-mhs-pdf',[MagangController::class,'sertifikatmhspdf']);
+Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);
 // data mahasiswa kelompok
 Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
 Route::get('/input-mhs-kelompok', [MagangController::class, 'inputDataMhsKel']);
@@ -162,7 +162,7 @@ Route::get('/berkas-mhs-kel', [MagangController::class, 'file_mhs_kelompok']);
 Route::post('/berkas-mhs-kel', [MagangController::class, 'proses_file_mhs_kelompok'])->name('filekel');
 Route::get('/input-mhs-tambahkelompok', [MagangController::class, 'inputDatatambahMhsKel']);
 Route::post('/input-mhs-tambahkelompok', [MagangController::class, 'proses_data_tambahmhsKelompok'])->name('uploadtambahkel');
-Route::get('/edit-data-mhskel/{id}',[MagangController::class,'editDataMhskel']);
+Route::get('/edit-data-mhskel/{id}', [MagangController::class, 'editDataMhskel']);
 Route::put('/edit-data-mhskel/{id}', [MagangController::class, 'updateDataMhskel']);
 Route::get('delete-data-mhskel/{user_id}', [MagangController::class, 'proses_hapus_mhskelompok']);
 // End Halaman Magang Mahasiswa ==================

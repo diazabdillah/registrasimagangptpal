@@ -6,12 +6,12 @@
 <div id="content">
 
     <!-- Begin Page Content -->
-    <div  class="container-fluid">
+    <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"><b>{{ $ti }}</b></h1>
-             <!-- Card -->
+            <!-- Card -->
 
         </div>
 
@@ -20,7 +20,7 @@
 
 
             <!-- Area Chart -->
-            <div  class="col col-lg">
+            <div class="col col-lg">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -45,22 +45,26 @@
                                 <img src="{{ asset('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;">
                             </div>
                             <div class="text-center">
-                           <h4 style="font-family:Lucida Sans;">SURAT - KETERANGAN </h4>
-                           <hr style="width:260px;weight:200px;margin-top: 5px;margin-bottom: 5px;border:1px solid;">
-                           <p>Nomor :</p>
-                        </div>
-                        <div class="text-center" style="margin-top: 50px">
-                           <span> Dengan ini menerangkan bahwa:</span>
-                          <b><h1 style="margin-top:5px;margin-bottom:30px;font-family:Comic Sans MS;font-weight: bold;font-size: 50px;">{{strtoupper($sertif->nama)}} <hr style="border:1px solid;width:350px;margin-top: 5px;"></h1></b>
-                          <p style="margin-top: -25px">Nim : <b>{{$sertif->nim}}</b> </p>
-                          <div class="text-center" style="margin-top: 20px">
-                            <h5 style="font-family:Comic Sans MS;font-weight: bold;">{{strtoupper($sertif->strata)}}</h5>
-                            <h5 style="font-family:Georgia;font-weight: bold;">{{strtoupper($sertif->univ)}}</h5>
-                        </div>
-                        <div class="text-center" style="margin-top: 20px">
-                            <p>Telah Melaksanakan Kerja Praktek di <b>PT PAL INDONESIA (PERSERO)</b> <br> Pada Tanggal <b>{{date('d-m-Y', strtotime($sertif->mulai))}}</b> s/d <b>{{date('d-m-Y', strtotime($sertif->selesai))}}</b> dengan hasil predikat <b>{{$sertif->nilai_huruf}}</b> <b>(Baik)</b></p>
-                        </div>
-                                <div  style="float: right;margin-right:60px;margin-top:40px;">
+                                <h4 style="font-family:Lucida Sans;">SURAT - KETERANGAN </h4>
+                                <hr style="width:260px;weight:200px;margin-top: 5px;margin-bottom: 5px;border:1px solid;">
+                                <p>Nomor :</p>
+                            </div>
+                            <div class="text-center" style="margin-top: 50px">
+                                <span> Dengan ini menerangkan bahwa:</span>
+                                <b>
+                                    <h1 style="margin-top:5px;margin-bottom:30px;font-family:Comic Sans MS;font-weight: bold;font-size: 50px;">{{strtoupper($sertif->nama)}}
+                                        <hr style="border:1px solid;width:350px;margin-top: 5px;">
+                                    </h1>
+                                </b>
+                                <p style="margin-top: -25px">Nim : <b>{{$sertif->nim}}</b> </p>
+                                <div class="text-center" style="margin-top: 20px">
+                                    <h5 style="font-family:Comic Sans MS;font-weight: bold;">{{strtoupper($sertif->strata)}}</h5>
+                                    <h5 style="font-family:Georgia;font-weight: bold;">{{strtoupper($sertif->univ)}}</h5>
+                                </div>
+                                <div class="text-center" style="margin-top: 20px">
+                                    <p>Telah Melaksanakan Kerja Praktek di <b>PT PAL INDONESIA (PERSERO)</b> <br> Pada Tanggal <b>{{date('d-m-Y', strtotime($sertif->mulai))}}</b> s/d <b>{{date('d-m-Y', strtotime($sertif->selesai))}}</b> dengan hasil predikat <b>{{$sertif->nilai_huruf}}</b> <b>(Baik)</b></p>
+                                </div>
+                                <div style="float: right;margin-right:60px;margin-top:40px;">
                                     <div>
                                         <p class="text-center">Surabaya, {{date('d-F-Y', strtotime($sertif->created_at))}} </p>
                                     </div>
@@ -74,13 +78,13 @@
                                         <hr style="width:280px;weight:200px;margin-top: 140px;margin-bottom: 5px;border:1px solid;">
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection

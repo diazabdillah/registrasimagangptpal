@@ -59,30 +59,24 @@
         <div class="col">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#prosedure" role="tab"
-                        aria-controls="home" aria-selected="true">Prosedure</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#prosedure" role="tab" aria-controls="home" aria-selected="true">Prosedure</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#laporan" role="tab"
-                        aria-controls="profile" aria-selected="false">Format Laporan</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#laporan" role="tab" aria-controls="profile" aria-selected="false">Format Laporan</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#kuota" role="tab"
-                        aria-controls="contact" aria-selected="false">Kuota</a>
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#kuota" role="tab" aria-controls="contact" aria-selected="false">Kuota</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#materi" role="tab"
-                        aria-controls="contact" aria-selected="false">Materi</a>
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#materi" role="tab" aria-controls="contact" aria-selected="false">Materi</a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
-            <img src="{{URL::asset('frontend')}}/img/Page_111.jpg" class="rounded float-left mb-2" alt="..."
-                style="width: 100%; display:inline-block">
-            <img src="{{URL::asset('frontend')}}/img/Page_22.jpg" class="rounded float-right mb-2" alt="..."
-                style="width: 100%; display:inline-block">
+            <img src="{{URL::asset('frontend')}}/img/Page_111.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
+            <img src="{{URL::asset('frontend')}}/img/Page_22.jpg" class="rounded float-right mb-2" alt="..." style="width: 100%; display:inline-block">
         </div>
         <div class="tab-pane fade" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
             <h4>Format Laporan Hasil Pemagangan</h4>
@@ -115,16 +109,14 @@
                 <div class="row justify-content-around">
                     <a href="#" class="btn-link btn-primary">
                         <div class="services-box-1 border-on-light text-center">
-                            <div class="icon-in-box rounded-circle mg-auto"><i
-                                    class="funky-ui-icon icon-Monitor-phone"></i></div>
+                            <div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Monitor-phone"></i></div>
                             <h5 class="mt-4">Kuota Peserta Mahasiswa</h5>
                             {{-- <p class="mt-3 mb-4">Above all good design must primarily serve people.</p>	 --}}
                         </div>
                     </a>
                     <a href="#" class="btn-link btn-primary">
                         <div class="services-box-1 border-on-light text-center">
-                            <div class="icon-in-box rounded-circle mg-auto"><i
-                                    class="funky-ui-icon icon-Monitor-phone"></i></div>
+                            <div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Monitor-phone"></i></div>
                             <h5 class="mt-4">Kuota Peserta Siswa SMA/SMK</h5>
                             {{-- <p class="mt-3 mb-4">Above all good design must primarily serve people.</p>	 --}}
                         </div>
@@ -148,9 +140,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -166,9 +156,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -184,9 +172,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -202,9 +188,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -220,9 +204,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -238,9 +220,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -256,9 +236,7 @@
                     <div class="card-footer bg-transparent border">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf"
-                                    class="btn btn-primary pull-right" style="padding: 2px 10px;"><i
-                                        class="fa fa-download"></i></a>
+                                <a href="https://hcm.pal.co.id/upload/filemagang/Form_Penilaian_Magang.pdf" class="btn btn-primary pull-right" style="padding: 2px 10px;"><i class="fa fa-download"></i></a>
                             </li>
                             <li style="font-size: 12px" class="list-inline-item">Sunday, 29 August 2021</li>
                         </ul>
@@ -286,10 +264,9 @@
     </div>
 </div>
 <script>
-    $('#myTab a').on('click', function (event) {
+    $('#myTab a').on('click', function(event) {
         event.preventDefault()
         $(this).tab('show')
     })
-
 </script>
 @endsection

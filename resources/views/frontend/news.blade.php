@@ -66,8 +66,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <img style="display: block; margin-left: auto; margin-right: auto; width:100%;"
-                            src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" class="card-img-top " alt="...">
+                        <img style="display: block; margin-left: auto; margin-right: auto; width:100%;" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" class="card-img-top " alt="...">
                     </div>
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
@@ -97,8 +96,7 @@
                             primarily serve people.
                         </a>
                         <p>Sunday, 29 August 2021</p>
-                        <button style="color: white" style="color: white" type="button"
-                            class="btn btn-outline-info">Read</button>
+                        <button style="color: white" style="color: white" type="button" class="btn btn-outline-info">Read</button>
                     </div>
                 </div>
             </div>
@@ -173,8 +171,7 @@
                 </div>
             </div>
         </div>
-        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar"
-            aria-label="Toolbar with button groups">
+        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled">

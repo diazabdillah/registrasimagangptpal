@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\DataMhsIndiv;
 use Illuminate\Http\Request;
@@ -30,14 +31,14 @@ class AdminController extends Controller
             $ti = 'Rekap Individu';
             $id = Auth::user()->id;
             $users = DB::table('users')
-            ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('users.created_at','users.role_id','data_mhs_indivs.strata','data_mhs_indivs.no_hp','mulai_dan_selesai_mhs.mulai','data_mhs_indivs.divisi','data_mhs_indivs.departemen','data_mhs_indivs.nama', 'data_mhs_indivs.univ','mulai_dan_selesai_mhs.selesai')
-      
-            ->get();
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
+
+                ->get();
             return view('admin.Rekap', [
                 'ti' => $ti,
-                'users'=>$users
+                'users' => $users
             ])->with('i');
         } else {
             return redirect()->back();
@@ -49,14 +50,14 @@ class AdminController extends Controller
             $ti = 'Rekap Kelompok';
             $id = Auth::user()->id;
             $users = DB::table('users')
-            ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('users.name','users.created_at','users.role_id','data_mhs_indivs.strata','data_mhs_indivs.no_hp','mulai_dan_selesai_mhs.mulai','data_mhs_indivs.divisi','data_mhs_indivs.departemen','data_mhs_indivs.nama', 'data_mhs_indivs.univ','mulai_dan_selesai_mhs.selesai')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('users.name', 'users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
 
-            ->get();
+                ->get();
             return view('admin.Rekapkelompok', [
                 'ti' => $ti,
-                'users'=>$users
+                'users' => $users
             ])->with('i');
         } else {
             return redirect()->back();

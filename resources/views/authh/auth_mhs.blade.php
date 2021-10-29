@@ -1,5 +1,5 @@
 {{-- Mengambil layout dari portal.blade.php --}}
-@extends('layouts.portal') 
+@extends('layouts.portal')
 
 @section('kontenAuth')
 

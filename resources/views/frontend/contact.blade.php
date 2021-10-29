@@ -56,99 +56,99 @@
 <div class="section padding-top-bottom-small background-white over-hide">
     <div class="container">
         <!--Section: Contact v.2-->
-<section class="mb-4">
+        <section class="mb-4">
 
-    <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
-    <!--Section description-->
+            <!--Section heading-->
+            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+            <!--Section description-->
 
-    <div class="row">
+            <div class="row">
 
-        <!--Grid column-->
-        <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" action="" method="POST">
+                <!--Grid column-->
+                <div class="col-md-9 mb-md-0 mb-5">
+                    <form id="contact-form" name="contact-form" action="" method="POST">
 
-                <!--Grid row-->
-                <div class="row">
+                        <!--Grid row-->
+                        <div class="row">
 
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="name" name="name" class="form-control">
-                            <label for="name" class="">Your name</label>
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input type="text" id="name" name="name" class="form-control">
+                                    <label for="name" class="">Your name</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input type="text" id="email" name="email" class="form-control">
+                                    <label for="email" class="">Your email</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
                         </div>
-                    </div>
-                    <!--Grid column-->
+                        <!--Grid row-->
 
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="email" name="email" class="form-control">
-                            <label for="email" class="">Your email</label>
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" id="subject" name="subject" class="form-control">
+                                    <label for="subject" class="">Subject</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!--Grid column-->
+                        <!--Grid row-->
 
-                </div>
-                <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
 
-                <!--Grid row-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <input type="text" id="subject" name="subject" class="form-control">
-                            <label for="subject" class="">Subject</label>
+                            <!--Grid column-->
+                            <div class="col-md-12">
+
+                                <div class="md-form">
+                                    <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                                    <label for="message">Your message</label>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!--Grid row-->
+                        <!--Grid row-->
 
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-12">
-
-                        <div class="md-form">
-                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-                            <label for="message">Your message</label>
+                        <div class="text-center text-md-left">
+                            <a style="color: white" class="btn btn-primary">Send</a>
                         </div>
+                    </form>
 
-                    </div>
+                    <div class="status"></div>
                 </div>
-                <!--Grid row-->
+                <!--Grid column-->
 
-                <div class="text-center text-md-left">
-                    <a style="color: white" class="btn btn-primary">Send</a>
+                <!--Grid column-->
+                <div class="col-md-3 text-center">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fa fa-map-marker fa-2x"></i>
+                            <p>PT PAL Indonesia (persero) <br> Jl. Ujung Surabaya <br> Surabaya 60155 Indonesia</p>
+                        </li>
+
+                        <li><i class="fa fa-phone mt-4 fa-2x"></i>
+                            <p>Phone: 031-3292275 <br> ext. 2243 (Iwan Miharja.ST) <br> ext. 2242 (Siswanto)</p>
+                        </li>
+
+                        <li><i class="fa fa-envelope mt-4 fa-2x"></i>
+                            <p>hcm@pal.co.id</p>
+                        </li>
+                    </ul>
                 </div>
-            </form>
+                <!--Grid column-->
 
-            <div class="status"></div>
-        </div>
-        <!--Grid column-->
+            </div>
 
-        <!--Grid column-->
-        <div class="col-md-3 text-center">
-            <ul class="list-unstyled mb-0">
-                <li><i class="fa fa-map-marker fa-2x"></i>
-                    <p>PT PAL Indonesia (persero) <br> Jl. Ujung Surabaya <br> Surabaya 60155 Indonesia</p>
-                </li>
-
-                <li><i class="fa fa-phone mt-4 fa-2x"></i>
-                    <p>Phone: 031-3292275 <br> ext. 2243 (Iwan Miharja.ST) <br> ext. 2242 (Siswanto)</p>
-                </li>
-
-                <li><i class="fa fa-envelope mt-4 fa-2x"></i>
-                    <p>hcm@pal.co.id</p>
-                </li>
-            </ul>
-        </div>
-        <!--Grid column-->
-
-    </div>
-
-</section>
-<!--Section: Contact v.2-->
+        </section>
+        <!--Section: Contact v.2-->
     </div>
 </div>
 <!-- Separator Line
@@ -170,8 +170,7 @@
 
 
 <!-- Modal -->
-<div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-xl">
             <div class="modal-header">
@@ -190,9 +189,8 @@
 <!-- Pricing Block
 	================================================== -->
 <script>
-    $('#myModal').on('shown.bs.modal', function () {
+    $('#myModal').on('shown.bs.modal', function() {
         $('#myInput').trigger('focus')
     })
-
 </script>
 @endsection

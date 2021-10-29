@@ -20,30 +20,30 @@
                     <div class="card-body">
                         @foreach ($data as $kuota)
                         <form action="">
-                        <div class="form-group">
-                            <small class="ml-2">Bagian</small>
-                            <input type="text" class="form-control" id="bagian" name="bagian" value={{$kuota->bagian}}>
-                        </div>
-                        <div class="form-group">
-                            <small class="ml-2">Tanggal</small>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" value={{$kuota->tanggal}}>
-                        </div>
-                        <div class="form-group">
-                            <small class="ml-2">Jumlah Kuota</small>
-                            <input type="text" class="form-control" id="kuota" name="kuota" value={{$kuota->kuota}}>
-                        </div>
-
-                        <div class="form-group">
-                            <small class="ml-2">Pilih Status</small>
-                            <div class="input-group mb-3">
-                                <select class="custom-select" name="divisi">
-                                    <option value="">Dibuka!</option>
-                                    <option value="">Full</option>
-                                </select>
+                            <div class="form-group">
+                                <small class="ml-2">Bagian</small>
+                                <input type="text" class="form-control" id="bagian" name="bagian" value={{$kuota->bagian}}>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <small class="ml-2">Tanggal</small>
+                                <input type="date" class="form-control" id="tanggal" name="tanggal" value={{$kuota->tanggal}}>
+                            </div>
+                            <div class="form-group">
+                                <small class="ml-2">Jumlah Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="kuota" value={{$kuota->kuota}}>
+                            </div>
 
-                        <button type="button" class="btn btn-primary mt-4">Save</button>
+                            <div class="form-group">
+                                <small class="ml-2">Pilih Status</small>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" name="divisi">
+                                        <option value="">Dibuka!</option>
+                                        <option value="">Full</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary mt-4">Save</button>
                         </form>
                         @endforeach
                     </div>

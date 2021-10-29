@@ -55,89 +55,89 @@
 {{-- list news --}}
 <div class="section padding-top-bottom-small background-white over-hide">
     <div class="container">
-            <div class="row">
-                <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                    <div class="item">
-                        <div class="team-box-1 background-white drop-shadow text-center">
-                            <a style="text-decoration:none; color: black">
-                                <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                                Design must reflect the practical in business but above all... good design must
-                                primarily serve people.
-                            </a>
-                        </div>
-                    </div>
-                </div >
-                <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                    <div class="item">
-                        <div class="team-box-1 background-white drop-shadow text-center">
-                            <a style="text-decoration:none; color: black">
-                                <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                                Design must reflect the practical in business but above all... good design must
-                                primarily serve people.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                    <div class="item">
-                        <div class="team-box-1 background-white drop-shadow text-center">
-                            <a style="text-decoration:none; color: black">
-                                <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                                Design must reflect the practical in business but above all... good design must
-                                primarily serve people.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                    <div class="item">
-                        <div class="team-box-1 background-white drop-shadow text-center">
-                            <a style="text-decoration:none; color: black">
-                                <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                                Design must reflect the practical in business but above all... good design must
-                                primarily serve people.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                    <div class="item">
-                        <div class="team-box-1 background-white drop-shadow text-center">
-                            <a style="text-decoration:none; color: black">
-                                <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                                Design must reflect the practical in business but above all... good design must
-                                primarily serve people.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                    <div class="item">
-                        <div class="team-box-1 background-white drop-shadow text-center">
-                            <a style="text-decoration:none; color: black">
-                                <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                                Design must reflect the practical in business but above all... good design must
-                                primarily serve people.
-                            </a>
-                        </div>
+        <div class="row">
+            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
+                <div class="item">
+                    <div class="team-box-1 background-white drop-shadow text-center">
+                        <a style="text-decoration:none; color: black">
+                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                            Design must reflect the practical in business but above all... good design must
+                            primarily serve people.
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
+                <div class="item">
+                    <div class="team-box-1 background-white drop-shadow text-center">
+                        <a style="text-decoration:none; color: black">
+                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                            Design must reflect the practical in business but above all... good design must
+                            primarily serve people.
+                        </a>
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
+                <div class="item">
+                    <div class="team-box-1 background-white drop-shadow text-center">
+                        <a style="text-decoration:none; color: black">
+                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                            Design must reflect the practical in business but above all... good design must
+                            primarily serve people.
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
+                <div class="item">
+                    <div class="team-box-1 background-white drop-shadow text-center">
+                        <a style="text-decoration:none; color: black">
+                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                            Design must reflect the practical in business but above all... good design must
+                            primarily serve people.
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
+                <div class="item">
+                    <div class="team-box-1 background-white drop-shadow text-center">
+                        <a style="text-decoration:none; color: black">
+                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                            Design must reflect the practical in business but above all... good design must
+                            primarily serve people.
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
+                <div class="item">
+                    <div class="team-box-1 background-white drop-shadow text-center">
+                        <a style="text-decoration:none; color: black">
+                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                            Design must reflect the practical in business but above all... good design must
+                            primarily serve people.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 <!-- Separator Line
@@ -160,25 +160,25 @@
 
 <!-- Modal -->
 <div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-    <div  class="modal-xl">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"></h5>
-        <button type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="false">x</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img style="width: 100%" class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-      </div>
+    <div class="modal-dialog ">
+        <div class="modal-xl">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img style="width: 100%" class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Pricing Block
 	================================================== -->
 <script>
-    $('#myModal').on('shown.bs.modal', function () {
+    $('#myModal').on('shown.bs.modal', function() {
         $('#myInput').trigger('focus')
     })
 </script>

@@ -1,4 +1,4 @@
-@extends('layouts.webBack') 
+@extends('layouts.webBack')
 
 @section('kontenWebBack')
 

@@ -19,40 +19,40 @@
                         <form action="">
 
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Absen</h5>
-                                <!-- Form Lengkapi Data -->
-                                <div class="form-group">
-                                    <small class="ml-2">Nama</small>
-                                    <input type="text" class="form-control" id="nama" name="nama" value={{$absen->nama}}>
-                                </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Absen</h5>
+                                    <!-- Form Lengkapi Data -->
+                                    <div class="form-group">
+                                        <small class="ml-2">Nama</small>
+                                        <input type="text" class="form-control" id="nama" name="nama" value={{$absen->nama}}>
+                                    </div>
 
-                                <div class="form-group">
-                                    <small class="ml-2">universitas</small>
-                                    <input type="text" class="form-control" id="univ" name="univ" value={{$absen->univ}}>
-                                </div>
+                                    <div class="form-group">
+                                        <small class="ml-2">universitas</small>
+                                        <input type="text" class="form-control" id="univ" name="univ" value={{$absen->univ}}>
+                                    </div>
 
-                                <div class="form-group">
-                                    <small class="ml-2">Divisi</small>
-                                    <input type="text" class="form-control" id="divisi" name="divisi" value={{$absen->divisi}}>
-                                </div>
-                                <div class="form-group">
-                                    <small class="ml-2">Tanggal Masuk</small>
-                                    <input type="date" class="form-control" id="date" name="tanggal_absen" value={{now()}}>
-                                </div>
-                                <div class="form-group">
-                                    <small class="ml-2">Your Location
-                                        <i class="fas fa-map-marker-alt"></i></small>
-                                    <input type="text" class="form-control" id="map" name="map">
-                                </div>
+                                    <div class="form-group">
+                                        <small class="ml-2">Divisi</small>
+                                        <input type="text" class="form-control" id="divisi" name="divisi" value={{$absen->divisi}}>
+                                    </div>
+                                    <div class="form-group">
+                                        <small class="ml-2">Tanggal Masuk</small>
+                                        <input type="date" class="form-control" id="date" name="tanggal_absen" value={{now()}}>
+                                    </div>
+                                    <div class="form-group">
+                                        <small class="ml-2">Your Location
+                                            <i class="fas fa-map-marker-alt"></i></small>
+                                        <input type="text" class="form-control" id="map" name="map">
+                                    </div>
 
-                                <a href="#" class="btn btn-primary float-right">Absen</a>
+                                    <a href="#" class="btn btn-primary float-right">Absen</a>
 
+                                </div>
                             </div>
-                        </div>
 
-                    </form>
+                        </form>
                     </div>
                 </div>
                 @endforeach

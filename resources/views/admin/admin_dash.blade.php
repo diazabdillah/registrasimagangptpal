@@ -1,5 +1,5 @@
 {{-- Mengambil layout dari webBack.blade.php --}}
-@extends('layouts.webBack') 
+@extends('layouts.webBack')
 
 @section('kontenWebBack')
 
