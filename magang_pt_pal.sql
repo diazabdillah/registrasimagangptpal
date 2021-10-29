@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2021 at 11:27 AM
+-- Generation Time: Oct 29, 2021 at 05:21 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -41,7 +41,9 @@ CREATE TABLE `absenmhs` (
 --
 
 INSERT INTO `absenmhs` (`id`, `user_id`, `waktu_awal`, `waktu_akhir`, `created_at`, `updated_at`) VALUES
-(1, 2, '2021-10-29 16:26:00', '2021-10-30 16:26:00', '2021-10-29 02:26:33', '2021-10-29 02:26:33');
+(1, 2, '2021-10-29 21:36:00', '2021-10-30 21:36:00', '2021-10-29 07:36:21', '2021-10-29 07:36:21'),
+(2, 2, '2021-10-30 21:37:00', '2021-10-31 21:37:00', '2021-10-29 07:37:57', '2021-10-29 07:37:57'),
+(3, 2, '2021-10-31 21:49:00', '2021-11-01 21:49:00', '2021-10-29 07:49:39', '2021-10-29 07:49:39');
 
 -- --------------------------------------------------------
 
@@ -50,7 +52,6 @@ INSERT INTO `absenmhs` (`id`, `user_id`, `waktu_awal`, `waktu_akhir`, `created_a
 --
 
 CREATE TABLE `absen_indivs_tabel` (
-  `id` bigint(20) UNSIGNED NOT NULL,
   `id_absen` int(11) NOT NULL,
   `id_individu` int(11) NOT NULL,
   `waktu_absen` datetime DEFAULT NULL,
@@ -58,6 +59,15 @@ CREATE TABLE `absen_indivs_tabel` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `absen_indivs_tabel`
+--
+
+INSERT INTO `absen_indivs_tabel` (`id_absen`, `id_individu`, `waktu_absen`, `status_absen`, `created_at`, `updated_at`) VALUES
+(1, 1, '2021-10-29 14:48:48', 'Sudah Absen', '2021-10-29 07:36:21', '2021-10-29 07:36:21'),
+(2, 1, '2021-10-29 14:49:06', 'Sudah Absen', '2021-10-29 07:37:57', '2021-10-29 07:37:57'),
+(3, 1, NULL, 'Belum Absen', '2021-10-29 07:49:39', '2021-10-29 07:49:39');
 
 -- --------------------------------------------------------
 
@@ -86,7 +96,10 @@ CREATE TABLE `data_mhs_indivs` (
 --
 
 INSERT INTO `data_mhs_indivs` (`id`, `user_id`, `nama`, `univ`, `strata`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nim`, `status_idcard`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Jay Abdillah', 'UNAIR', 'Teknik Elektro S1', 'Keputih', '08xxx', 'Divisi 1', 'Departemen 1', 2110191013, NULL, '2021-10-29 01:15:58', '2021-10-29 01:15:58');
+(1, 2, 'Jay Abdillah', 'UNAIR', 'Teknik Elektro S1', 'Keputih', '08xxx', 'Divisi 1', 'Departemen 1', 2110191013, NULL, '2021-10-29 01:15:58', '2021-10-29 01:15:58'),
+(2, 3, 'Fabyan Kindarya', 'PENS', 'Teknik Informatika D4', 'Juanda', '08xxx', 'Divisi 2', 'Departement 2', 2110191024, NULL, '2021-10-29 06:45:50', '2021-10-29 06:45:50'),
+(3, 3, 'Made Rahano', 'PENS', 'Teknik Informatika D4', 'Gubeng', '08xxx', 'Divisi 3', 'Departement 3', 2110191028, NULL, '2021-10-29 06:46:24', '2021-10-29 06:46:24'),
+(4, 3, 'Zaid Abdillah', 'PENS', 'Teknik Informatika D4', 'Keputih', '08xxx', 'Divisi 1', 'Departement 1', 2110191030, NULL, '2021-10-29 06:47:04', '2021-10-29 06:47:04');
 
 -- --------------------------------------------------------
 
@@ -479,7 +492,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin HCM', 'admin@gmail.com', NULL, '$2y$10$eZO9nwnUiXwJXI2hnclUiejuVB9aXPpJBfR071XcJ34zyBz/4caA6', 1, 'individu', NULL, '2021-10-29 00:45:43', '2021-10-29 00:45:43'),
-(2, 'Jay Abdillah', 'jay@gmail.com', NULL, '$2y$10$0EZ4MUeKYMzJGmdVOOQEku95AGT3FF87CFnBfLbUzT2.5q8wTJ4Vi', 8, 'individu', NULL, '2021-10-29 01:07:14', '2021-10-29 01:07:14');
+(2, 'Jay Abdillah', 'jay@gmail.com', NULL, '$2y$10$0EZ4MUeKYMzJGmdVOOQEku95AGT3FF87CFnBfLbUzT2.5q8wTJ4Vi', 3, 'individu', NULL, '2021-10-29 01:07:14', '2021-10-29 01:07:14'),
+(3, 'Kelompok PENS 1', 'kelompok1@gmail.com', NULL, '$2y$10$SPx04fOs37OMsbhZZla8g.60ZE72im7DKCR9B6A3yCgwPly7Nksd6', 3, 'kelompok', NULL, '2021-10-29 06:45:08', '2021-10-29 06:45:08');
 
 -- --------------------------------------------------------
 
@@ -502,12 +516,6 @@ CREATE TABLE `user_role` (
 -- Indexes for table `absenmhs`
 --
 ALTER TABLE `absenmhs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `absen_indivs_tabel`
---
-ALTER TABLE `absen_indivs_tabel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -666,19 +674,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `absenmhs`
 --
 ALTER TABLE `absenmhs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `absen_indivs_tabel`
---
-ALTER TABLE `absen_indivs_tabel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `data_mhs_indivs`
 --
 ALTER TABLE `data_mhs_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `data_mhs_kelompoks`
@@ -804,7 +806,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_role`
