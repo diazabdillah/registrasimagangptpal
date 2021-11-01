@@ -640,7 +640,9 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 3) {
             $ti = 'ID Card Mahasiswa';
             $id = Auth::user()->id;
-            $dates = DB::table('mulai_dan_selesai_mhs')->where('user_id', '=', $id)->get();
+            $dates = DB::table('mulai_dan_selesai_mhs')
+                ->where('user_id', '=', $id)
+                ->get();
             $datas = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')

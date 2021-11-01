@@ -17,14 +17,11 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Data Rekap Magang</h6>
                 </div>
-
-
-
-
+                
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapKelompok" target="_blank" role="button"><i class="fas fa-download"></i>
-                        Export Data</a>
+                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapKelompokPDF" target="_blank" role="button"><i class="fas fa-file-export"></i> Export PDF</a>
+                    <a class="btn btn-success btn-sm mb-3" href="/cetakRekapKelompokEXCEL" target="_blank" role="button"><i class="fas fa-file-export"></i> Export EXCEL</a>
 
                     <div class="table-responsive">
                         <div class="scroll">
@@ -35,7 +32,7 @@
                                         <th>Name</th>
                                         <th>Universitas</th>
                                         <th>Strata</th>
-
+                                        <th>No HP</th>
                                         <th>Divisi</th>
                                         <th>Departemen</th>
                                         <th>Status</th>
@@ -54,6 +51,7 @@
                                         <td>{{$rekap->nama}}</td>
                                         <td>{{$rekap->univ}}</td>
                                         <td>{{$rekap->strata}}</td>
+                                        <td>{{$rekap->no_hp}}</td>
                                         <td>{{$rekap->divisi}}</td>
                                         <td>{{$rekap->departemen}}</td>
                                         <td>

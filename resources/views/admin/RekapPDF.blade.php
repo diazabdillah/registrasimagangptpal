@@ -14,13 +14,6 @@
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Rekap Magang</h6>
-                </div>
-
-
-
-
                 <div class="card-body">
 
                     <div class="table-responsive">
@@ -32,7 +25,7 @@
                                         <th>Nama</th>
                                         <th>Universitas</th>
                                         <th>Strata</th>
-                                        <th>No_Hp</th>
+                                        <th>No Hp</th>
                                         <th>Divisi</th>
                                         <th>Departemen</th>
                                         <th>Status</th>

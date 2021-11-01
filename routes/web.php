@@ -89,8 +89,10 @@ Route::get('delete-galeri/{user_id}', [MenuController::class, 'deleteGaleri']);
 Route::get('/admin_dash', [AdminController::class, 'index']);
 Route::get('/Rekap', [AdminController::class, 'Rekap']);
 Route::get('/RekapKelompok', [AdminController::class, 'Rekapkelompok']);
-Route::get('/cetakRekap', [AdminController::class, 'cetak_rekappdf']);
-Route::get('/cetakRekapKelompok', [AdminController::class, 'cetak_rekap_kelompokpdf']);
+Route::get('/cetakRekapPDF', [AdminController::class, 'cetak_rekappdf']);
+Route::get('/cetakRekapEXCEL', [AdminController::class, 'cetak_rekapexcel']);
+Route::get('/cetakRekapKelompokPDF', [AdminController::class, 'cetak_rekap_kelompokpdf']);
+Route::get('/cetakRekapKelompokEXCEL', [AdminController::class, 'cetak_rekap_kelompokexcel']);
 // End Halaman administrasi ========================
 
 

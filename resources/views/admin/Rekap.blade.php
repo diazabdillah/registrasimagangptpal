@@ -18,13 +18,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Rekap Magang</h6>
                 </div>
 
-
-
-
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekap" target="_blank" role="button"><i class="fas fa-download"></i>
-                        Export Data</a>
+                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapPDF" target="_blank" role="button"><i class="fas fa-file-export"></i> Export PDF</a>
+                    <a class="btn btn-success btn-sm mb-3" href="/cetakRekapEXCEL" target="_blank" role="button"><i class="fas fa-file-export"></i> Export EXCEL</a>
 
                     <div class="table-responsive">
                         <div class="scroll">
