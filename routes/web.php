@@ -37,11 +37,6 @@ Route::get('/service', function () {
 // Route::get('/hcm-welcome', [WelcomeController::class, 'index']);
 Route::get('/home', [WelcomeController::class, 'home']);
 
-
-Route::middleware('auth')->group(function () {
-    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-});
-
 // Bagian auth registrasi sampai login  ===============
 Route::get('/login', [AuthhController::class, 'index'])->name('login');
 Route::post('/loginpost', [AuthhController::class, 'postLogin'])->name('loginpost'); // Post Form Login
@@ -59,6 +54,10 @@ Route::post('/auth_smk_individu', [AuthhController::class, 'postRegSmkIndiv'])->
 Route::get('/auth-penelitian', [AuthhController::class, 'authPenelitian']);
 Route::post('/auth-penelitian', [AuthhController::class, 'postRegPenelitian'])->name('RegPenelitian'); // Post Form Regis
 // End bagian auth registrasi sampai login ======
+
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+});
 
 // Menu ===============================
 Route::get('/menu', [MenuController::class, 'index']);
@@ -90,6 +89,7 @@ Route::get('delete-galeri/{user_id}', [MenuController::class, 'deleteGaleri']);
 Route::get('/admin_dash', [AdminController::class, 'index']);
 Route::get('/Rekap', [AdminController::class, 'Rekap']);
 Route::get('/RekapKelompok', [AdminController::class, 'Rekapkelompok']);
+Route::get('/cetakRekap', [AdminController::class, 'cetak_rekappdf']);
 // End Halaman administrasi ========================
 
 
@@ -163,8 +163,11 @@ Route::post('/berkas-mhs-indiv', [MagangController::class, 'proses_file_mhs'])->
 Route::get('/Dokumen_mhs', [MagangController::class, 'Dokumen_mhs']);
 Route::get('/Dokumen_mhs/{id}/{foto}', [MagangController::class, 'hapus_dok_mhs']);
 Route::get('/Dokumen_mhs_upload/{id}/{fotoID}', [MagangController::class, 'hapusFotoMhs']);
+// Route::get('/edit-data-foto3x4/{id}', [MagangController::class, 'edit_data_foto3x4']);
+// Route::put('/edit-data-foto3x4/{id}', [MagangController::class, 'proses_data_foto3x4']);
+
 Route::get('magang.Dokumen_mhs_upload/{id}', [MagangController::class, 'showUploadMhs']);
-Route::post('magang.Dokumen_mhs_upload/{id}', [MagangController::class, 'uploadDocFotoMhs'])->name('uploadFotoMhs');
+Route::get('magang.Dokumen_mhs_uploadfoto3x4/{id}', [MagangController::class, 'showUploadMhs3x4']);
 Route::post('magang.Dokumen_mhs/{id}', [MagangController::class, 'upFotoMhs'])->name('upFotoMhs');
 Route::get('/tableabsen_mhs', [MagangController::class, 'tableabsen_mhs']);
 Route::get('/absen_mhs', [MagangController::class, 'absen_mhs']);

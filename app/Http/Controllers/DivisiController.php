@@ -304,13 +304,19 @@ class DivisiController extends Controller
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
             $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $fileFoto = DB::table('foto_mhs_models')->where('foto_mhs_models.user_id', '=', $user_id)->get();
+            $fileFoto = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('foto_mhs_models', 'data_mhs_indivs.id', '=', 'foto_mhs_models.user_id')
+                ->select('foto_mhs_models.foto')
+                ->where('users.id', '=', $user_id)
+                ->get();
             $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
+                ->select('users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -358,14 +364,19 @@ class DivisiController extends Controller
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Magang Aktif';
             $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $fileFoto = DB::table('foto_mhs_models')->where('foto_mhs_models.user_id', '=', $user_id)->get();
+            $fileFoto = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('foto_mhs_models', 'data_mhs_indivs.id', '=', 'foto_mhs_models.user_id')
+                ->select('foto_mhs_models.foto')
+                ->where('users.id', '=', $user_id)
+                ->get();
             $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
             $tgl = DB::table('mulai_dan_selesai_mhs')->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->leftJoin('foto_i_d_mhs', 'users.id', '=', 'foto_i_d_mhs.user_id')
+                ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
                 ->select('users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
@@ -491,7 +502,10 @@ class DivisiController extends Controller
         $request->validate([
             'bagian' => 'required',
             'kuota' => 'required',
-            'status_kuota' => 'required',
+            'divisi' => 'required',
+            'departemen' => 'required',
+            'tanggal_buka' => 'required',
+            'tanggal_tutup' => 'required',
         ]);
 
         Kuota::create([
@@ -504,7 +518,7 @@ class DivisiController extends Controller
             'status_kuota' => 'Dibuka'
 
         ]);
-        return redirect('/Kuota');
+        return redirect('/kuota');
     }
     public function edit_kuota()
     {

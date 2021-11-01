@@ -43,7 +43,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 5) {
                 return redirect('/id-card')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 6) {
-                return redirect('/data-mhs-kelompok')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-mhs-kelompok')->with('success', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 7) {
                 return redirect('/data-smk-kelompok')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 8) {
@@ -53,7 +53,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 10) {
                 return redirect('/regis-step2')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 11) {
-                return redirect('/Dokumen_mhs')->with('success', 'You are now logged in');
+                return redirect('/Dokumen_mhs')->with('success', 'Selamat Anda Lolos seleksi pengisian data anda.Anda masuk ditahap dokumen ini mohon segera lengkapi data dokumen magang di bawah ini.Mohon Dibaca pentunjuk yang sudah di berikan.kami beri waktu 1 minggu untuk mengisi berkas dokumen ini');
             } elseif (auth()->user()->role_id == 12) {
                 return redirect('/Dokumen_smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 13) {

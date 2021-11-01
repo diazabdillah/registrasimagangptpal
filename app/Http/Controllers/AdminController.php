@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF;
+use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Models\DataMhsIndiv;
 use Illuminate\Http\Request;
@@ -45,6 +47,7 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
+
     public function Rekapkelompok()
     {
         if (auth()->user()->role_id == 1) {
@@ -63,5 +66,23 @@ class AdminController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function cetak_rekappdf()
+    {
+        $rekap = DataMhsIndiv::all();
+        $ti = 'Rekap Individu';
+        $id = Auth::user()->id;
+        $users = DB::table('users')
+            ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+            ->select('users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
+            ->where('users.status_user', '=', 'individu')
+            ->get();
+
+        $pdf = PDF::loadview('admin.Rekap',[
+            'ti'=>$ti,
+            'users'=>$users])->setPaper('A4','potrait');
+        return $pdf->stream();
     }
 }
