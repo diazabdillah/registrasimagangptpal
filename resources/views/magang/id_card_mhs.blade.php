@@ -14,7 +14,6 @@
 
             <div class="row mb-4">
 
-
                 @foreach ($datas as $data)
                 <div class="col-sm-6">
                     <div class="card" style="width: 19rem;">
