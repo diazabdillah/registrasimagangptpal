@@ -367,7 +367,7 @@ class DivisiController extends Controller
             $fileFoto = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_mhs_models', 'data_mhs_indivs.id', '=', 'foto_mhs_models.user_id')
-                ->select('foto_mhs_models.foto')
+                ->select('foto_mhs_models.id','foto_mhs_models.foto')
                 ->where('users.id', '=', $user_id)
                 ->get();
             $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
