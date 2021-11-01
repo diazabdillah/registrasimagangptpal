@@ -90,6 +90,7 @@ Route::get('/admin_dash', [AdminController::class, 'index']);
 Route::get('/Rekap', [AdminController::class, 'Rekap']);
 Route::get('/RekapKelompok', [AdminController::class, 'Rekapkelompok']);
 Route::get('/cetakRekap', [AdminController::class, 'cetak_rekappdf']);
+Route::get('/cetakRekapKelompok', [AdminController::class, 'cetak_rekap_kelompokpdf']);
 // End Halaman administrasi ========================
 
 

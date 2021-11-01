@@ -1,8 +1,8 @@
-{{-- Mengambil layout dari webBack.blade.php --}}
-@extends('layouts.webBack')
-
-@section('kontenWebBack')
-
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -22,9 +22,6 @@
 
 
                 <div class="card-body">
-
-                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekap" target="_blank" role="button"><i class="fas fa-download"></i>
-                        Export Data</a>
 
                     <div class="table-responsive">
                         <div class="scroll">
@@ -46,6 +43,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    <?php
+                                        $i = 0;
+                                    ?>
 
                                     @foreach ($users as $rekap)
                                     @if ($rekap->role_id != 1)
@@ -87,5 +88,3 @@
 
 </div>
 <!-- End of Main Content -->
-
-@endsection

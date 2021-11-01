@@ -23,7 +23,7 @@
 
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/" role="button"><i class="fas fa-download"></i>
+                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapKelompok" target="_blank" role="button"><i class="fas fa-download"></i>
                         Export Data</a>
 
                     <div class="table-responsive">
