@@ -104,7 +104,7 @@
 										Contact Us
 									</a>
 								<li class="nav-item dropdown">
-									<a class="nav-link colored-prim" href="{{URL('loginpost')}}">
+									<a class="nav-link colored-prim" href="{{URL('login')}}">
 										PORTAL
 									</a>
 								</li>
