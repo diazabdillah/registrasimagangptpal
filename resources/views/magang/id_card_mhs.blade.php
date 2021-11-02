@@ -20,7 +20,7 @@
                         <div class="headerIdCard bg-gradient-primary mb-5">
                             <div class="mt-4">
                                 <div class="d-flex justify-content-center">
-                                    @foreach ($fotos as $img)
+                                    @foreach ($datas as $img)
                                     <img src="{{ asset('/file/' . $img->fotoID) }}" alt="image" style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
                                     @endforeach
                                 </div>
