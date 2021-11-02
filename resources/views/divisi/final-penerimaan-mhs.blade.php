@@ -21,7 +21,11 @@
                             </div>
                             @foreach ($users as $user)
                             <div class="card-body">
-
+                                <div class="col-sm-3 mb-3">
+                                    <div class="card">
+                                        <img src="{{ asset('/file/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                    </div>
+                                </div>
                                 <h5 class="card-title"><b>Nama :</b> {{ $user->nama }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
@@ -59,7 +63,8 @@
                                 <div class="col-sm-3">
                                     <div class="card">
                                         <img src="{{ asset('/file/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('final-penerimaan-mhs/' . $img->id, $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                        {{-- <a class="btn btn-danger p-0 mt-2 float-right"
+                                                    href="{{ url('final-penerimaan-mhs/' . $img->id, $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a> --}}
                                     </div>
                                 </div>
                                 @endforeach
@@ -81,10 +86,9 @@
                                     <div class="input-group">
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
-
+                                            <option value="3">Magang Aktif (Resmi Diterima)</option>
                                             <option value="8">Pendaftar Magang Mahasiswa (Individu)</option>
                                             <option value="6">Pendaftar Magang Mahasiswa (Kelompok)</option>
-                                            <option value="3">Magang Aktif (Resmi Diterima)</option>
                                             <option value="0">Kuota Penuh</option>
                                         </select>
 
@@ -94,8 +98,7 @@
                                     </div>
                                 </form>
                                 <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
-                                    <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah
-                                    pendaftar tersebut resmi diterima atau tidak
+                                    <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah pendaftar tersebut resmi diterima atau tidak
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

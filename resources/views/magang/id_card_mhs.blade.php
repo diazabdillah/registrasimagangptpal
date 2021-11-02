@@ -20,9 +20,9 @@
                         <div class="headerIdCard bg-gradient-primary mb-5">
                             <div class="mt-4">
                                 <div class="d-flex justify-content-center">
-                                    @foreach ($datas as $img)
-                                    <img src="{{ asset('/file/' . $img->fotoID) }}" alt="image" style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
-                                    @endforeach
+
+                                    <img src="{{ asset('/file/' . $data->fotoID) }}" alt="image" style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
+
                                 </div>
                             </div>
                         </div>
@@ -35,6 +35,8 @@
                         <div class="card-body">
 
                             <h5 class="card-title text-dark mb-3"><b>{{ $data->nama }}</b></h5>
+                            <h6 class="card-title text-dark mb-3"><b>Nim : </b>{{ $data->nim }}</h6>
+
                             <table>
                                 <tr>
                                     <td><b>ID</b></td>
@@ -79,19 +81,24 @@
                         </div>
                         <div class="card-body">
 
-                            <p style="font-size: 10px">1.Kartu ini adalah milik PT.PAL INDONESIA dan berfungsi untuk sebagai IDCard pemegangnya</p>
-                            <p style="font-size: 10px">2.Pemegang kartu wajib memakai selama bertugas/berada di lingkungan keamanan dilingkungan/kawasan PT.PAL INDONESIA</p>
-                            <p style="font-size: 10px">3.Apabila hilang/rusak habis masa berlaku s/d segera melaporkan Divisi KEAMANAN & K3LH PT.PAL INDONESIA(Persero)Jl.Ujung Surabaya</p>
+                            <p style="font-size: 10px">1.Kartu ini adalah milik PT.PAL INDONESIA dan berfungsi untuk
+                                sebagai IDCard pemegangnya</p>
+                            <p style="font-size: 10px">2.Pemegang kartu wajib memakai selama bertugas/berada di
+                                lingkungan keamanan dilingkungan/kawasan PT.PAL INDONESIA</p>
+                            <p style="font-size: 10px">3.Apabila hilang/rusak habis masa berlaku s/d segera
+                                melaporkan Divisi KEAMANAN & K3LH PT.PAL INDONESIA(Persero)Jl.Ujung Surabaya</p>
                         </div>
                         <div class="text-center">
                             <div>
-                                <p style="font-size: 15px" class="text-center">Surabaya, {{date('d-F-Y', strtotime($data->created_at))}} </p>
+                                <p style="font-size: 15px" class="text-center">Surabaya,
+                                    {{ date('d-F-Y', strtotime($data->created_at)) }}
+                                </p>
                             </div>
                             <div>
                                 <p style="font-size: 15px"> PT PAL INDONESIA (PERSERO)</p>
                             </div>
                             <div>
-                                <p style="font-size: 15px">Kepala Dept.Keamanan</p>
+                                <p style="font-size: 15px">Kepala Human Capital Management</p>
                             </div>
                             <div>
                                 <hr style="width:250px;weight:150px;margin-top: 100px;margin-bottom: 5px;border:1px solid;">
@@ -103,16 +110,8 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
-
-
         </div>
     </div>
-
-
-
 </div>
-
-
 @endsection

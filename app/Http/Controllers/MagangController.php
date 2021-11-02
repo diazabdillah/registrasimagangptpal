@@ -282,6 +282,7 @@ class MagangController extends Controller
         $request->validate([
             'univ' => 'required',
             'strata' => 'required',
+            'jurusan' => 'required',
             'alamat_rumah' => 'required',
             'no_hp' => 'required|max:14',
             'divisi' => 'required',
@@ -299,6 +300,7 @@ class MagangController extends Controller
             'no_hp' => $request->no_hp,
             'nim' => $request->nim,
             'divisi' => $request->divisi,
+            'jurusan' => $request->jurusan,
             'departemen' => $request->departemen
         ]);
         session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
@@ -446,9 +448,8 @@ class MagangController extends Controller
             return view('magang.Dokumen_mhs', [
                 'ti' => $ti,
                 'showImage' => $showImage,
-                'fotoID' => $showImage1,
+                'showImage1' => $showImage1,
                 'users' => $users
-
             ]);
         } else {
             return redirect()->back();
@@ -485,12 +486,10 @@ class MagangController extends Controller
 
             $id = Auth::user()->id;
             $showImage = DB::table('foto_mhs_models')->where('user_id', '=', $id)->get();
-            $fotoID = DB::table('foto_i_d_mhs')->where('user_id', '=', $id)->get();
 
             return view('magang.Dokumen_mhs_upload', [
                 'ti' => $ti,
                 'showImage' => $showImage,
-                'fotoID' => $fotoID,
                 'user' => $user
             ]);
         } else {
@@ -640,9 +639,8 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 3) {
             $ti = 'ID Card Mahasiswa';
             $id = Auth::user()->id;
-            $dates = DB::table('mulai_dan_selesai_mhs')
-                ->where('user_id', '=', $id)
-                ->get();
+
+            $dates = DB::table('mulai_dan_selesai_mhs')->where('user_id', '=', $id)->get();
             $datas = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
@@ -655,6 +653,7 @@ class MagangController extends Controller
             return view('magang.id_card_mhs', [
                 'ti' => $ti,
                 'datas' => $datas,
+
                 'dates' => $dates
             ]);
         } else {

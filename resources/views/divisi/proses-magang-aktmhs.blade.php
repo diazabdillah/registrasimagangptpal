@@ -49,7 +49,7 @@
                                 </li>
                                 @endforeach
                                 @foreach ($tgl as $data)
-                                <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i>
                                     Tgl Mulai <span class="badge badge-success p-2"> {{ $data->mulai }}</span>
                                     Tgl Selesai <span class="badge badge-danger p-2"> {{ $data->selesai }}</span>
                                 </li>
@@ -74,9 +74,7 @@
                                     <div class="input-group">
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
-
-                                            <option value="8">Pendaftar Magang individu</option>
-                                            <option value="6">Pendaftar Magang kelompok</option>
+                                            <option value="11">Menu Dokumen MHS (Diterima)</option>
                                             <option value="14">Sertifikat MHS</option>
                                             <option value="0">Magang Selesai</option>
                                         </select>
@@ -87,8 +85,7 @@
                                     </div>
                                 </form>
                                 <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
-                                    <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah
-                                    pendaftar tersebut resmi diterima atau tidak
+                                    <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah pendaftar tersebut resmi diterima atau tidak
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -123,8 +120,7 @@
                                 <div class="col-sm-3">
                                     <div class="card">
                                         <img src="{{ asset('/file/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('proses-magang-aktmhs/' . $img->id, $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
-
+                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('proses-magang-aktmhs/' . $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
                                     </div>
                                 </div>
                                 @endforeach

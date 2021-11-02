@@ -32,19 +32,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($user as $laporan)
+                                @foreach ($user as $laporan)
 
                                 <tr>
-                                    <td>{{$id++}}</td>
-                                    <td>{{$laporan->nama}}</td>
-                                    <td>{{$laporan->judul}}</td>
-                                    <td>{{$laporan->sinopsis}}</td>
-                                    <td>{{$laporan->tanggal_kumpul}}</td>
-                                    <td>{{$laporan->path}}</td>
+                                    <td>{{ $id++ }}</td>
+                                    <td>{{ $laporan->nama }}</td>
+                                    <td>{{ $laporan->judul }}</td>
+                                    <td>{{ $laporan->sinopsis }}</td>
+                                    <td>{{ $laporan->tanggal_kumpul }}</td>
+                                    <td>{{ $laporan->path }}</td>
 
                                     <td>
                                         @if ($laporan->path != null)
                                         <a class="btn btn-warning" href="{{ asset('/file/' . $laporan->path) }}">Download</a>
+                                        @endif
+                                        @if ($laporan->path != null)
+                                        <a class="btn btn-warning" href="{{ asset('/editlaporan/' . $laporan->id) }}">Edit</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -57,7 +60,6 @@
 
         </div>
         <!-- /.container-fluid -->
-
 
     </div>
 </div>

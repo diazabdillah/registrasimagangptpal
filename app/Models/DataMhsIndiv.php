@@ -13,6 +13,7 @@ class DataMhsIndiv extends Model
         'nama',
         'univ',
         'strata',
+        'jurusan',
         'nim',
         'alamat_rumah',
         'no_hp',

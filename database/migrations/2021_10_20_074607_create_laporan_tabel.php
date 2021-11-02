@@ -20,6 +20,7 @@ class CreateLaporanTabel extends Migration
             $table->string('judul');
             $table->string('cover');
             $table->string('path');
+            $table->string('revisi')->nullable();
             $table->date('tanggal_kumpul');
             $table->string('divisi');
         $table->timestamps();

@@ -130,6 +130,8 @@ Route::get('/final-penerimaan-smk/{id}/{foto}', [DivisiController::class, 'hapus
 Route::get('/rekam-jejak-magang', [DivisiController::class, 'rekam_jejak_magang']);
 Route::get('/rekam-jejak', [DivisiController::class, 'rekam_jejak']);
 Route::get('/laporan', [DivisiController::class, 'laporan']);
+Route::get('/editlaporan/{id}', [DivisiController::class, 'editlaporan']);
+Route::put('/proseseditlaporan/{id}', [DivisiController::class, 'proseseditlaporan']);
 Route::get('/penilaian', [DivisiController::class, 'penilaian']);
 Route::get('/isi_penilaian/{id}', [DivisiController::class, 'isi_penilaian']);
 Route::post('/proses_penilaian/{id}', [DivisiController::class, 'proses_penilaian'])->name('tambahnilai');

@@ -18,6 +18,7 @@ class CreateDataMhsIndivsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('nama');
             $table->string('univ');
+            $table->string('jurusan');
             $table->string('strata');
             $table->string('alamat_rumah');
             $table->string('no_hp');

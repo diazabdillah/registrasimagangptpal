@@ -565,6 +565,26 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
+
+    public function editlaporan($id){
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $data = DB::table('laporans')->where('id', $id)->first();
+            $ti = 'Edit Laporan';
+            return view('divisi.editlaporan', ['ti' => $ti, 'data' => $data]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proseseditlaporan($id, Request $request ){
+        DB::table('laporans')->where('id', $id)
+            ->update([
+                'revisi'=>$request->revisi
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('/laporan');
+    }
+
     public function penilaian()
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {

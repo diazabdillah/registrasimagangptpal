@@ -16,6 +16,7 @@ class Laporan extends Model
         'tanggal_kumpul',
         'divisi',
         'cover',
+        'revisi',
         'path'
     ];
 }

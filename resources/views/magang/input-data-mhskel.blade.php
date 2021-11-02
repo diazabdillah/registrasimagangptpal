@@ -39,8 +39,12 @@
                                 </div>
                                 <!-- Input Strata (S1/d3) -->
                                 <div class="form-group">
-                                    <small class="ml-2">Jurusan dan Strata (D1 - S2)</small>
+                                    <small class="ml-2">Strata (D1 - S2)</small>
                                     <input type="text" class="form-control" id="strata" name="strata">
+                                </div>
+                                <div class="form-group">
+                                    <small class="ml-2">Jurusan (Informatika)</small>
+                                    <input type="text" class="form-control" id="strata" name="jurusan">
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">Nim</small>
