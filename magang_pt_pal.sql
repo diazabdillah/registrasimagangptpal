@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2021 at 03:20 AM
+-- Generation Time: Nov 05, 2021 at 05:40 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -66,8 +66,8 @@ CREATE TABLE `data_mhs_indivs` (
   `strata` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat_rumah` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_hp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `divisi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `departemen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `divisi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `departemen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nim` int(11) NOT NULL,
   `status_idcard` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -275,6 +275,31 @@ CREATE TABLE `huruf` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `interview_tabel`
+--
+
+CREATE TABLE `interview_tabel` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipe_kepribadian` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ekstrovet` int(11) NOT NULL,
+  `introvet` int(11) NOT NULL,
+  `visioner` int(11) NOT NULL,
+  `realistik` int(11) NOT NULL,
+  `emosional` int(11) NOT NULL,
+  `rasional` int(11) NOT NULL,
+  `perencanaan` int(11) NOT NULL,
+  `improvisasi` int(11) NOT NULL,
+  `tegas` int(11) NOT NULL,
+  `waspada` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kuota`
 --
 
@@ -352,7 +377,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2021_10_23_164936_create_indexnilai_tabel', 1),
 (23, '2021_10_25_070220_create_news_table', 1),
 (24, '2021_10_27_081822_create_gallery_table', 1),
-(25, '2021_10_27_112732_create_absen_indivs_tabel', 1);
+(25, '2021_10_27_112732_create_absen_indivs_tabel', 1),
+(26, '2021_11_05_035032_create_interview_tabel', 1);
 
 -- --------------------------------------------------------
 
@@ -416,6 +442,9 @@ CREATE TABLE `penilaians` (
   `TanggungJawab` int(11) NOT NULL,
   `PemahamanKemampuan` int(11) NOT NULL,
   `KesehatanKeselamatanKerja` int(11) NOT NULL,
+  `laporankerja` int(11) NOT NULL,
+  `kehadiran` int(11) NOT NULL,
+  `sopansantun` int(11) NOT NULL,
   `average` int(11) NOT NULL,
   `nilai_huruf` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penilaian` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -459,6 +488,15 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin Registrasi Magang', 'admin@gmail.com', NULL, '$2y$10$dMmxdy2gw8AhdAW1yltsJ.cyXKLHVHATZfmB1I72ap2hZXk5Ds9oW', 1, 'individu', NULL, '2021-11-01 19:26:53', '2021-11-01 19:26:53'),
+(2, 'Jay Abdillah', 'jay@gmail.com', NULL, '$2y$10$yarF684BBSGTHmXkseEfeeQH51PX2v7O1XYcivakzbYlPVSfpxtc2', 8, 'individu', NULL, '2021-11-01 19:27:30', '2021-11-01 19:27:30'),
+(3, 'Kelompok PENS 1', 'kelompok1@gmail.com', NULL, '$2y$10$frxc.H/YLZU.6ugNzjnZguzv0RBRgRwEzOZW8acpjubg0imQuOZCi', 6, 'kelompok', NULL, '2021-11-01 19:27:48', '2021-11-01 19:27:48');
 
 -- --------------------------------------------------------
 
@@ -566,6 +604,12 @@ ALTER TABLE `gallery`
 -- Indexes for table `huruf`
 --
 ALTER TABLE `huruf`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `interview_tabel`
+--
+ALTER TABLE `interview_tabel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -726,6 +770,12 @@ ALTER TABLE `huruf`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `interview_tabel`
+--
+ALTER TABLE `interview_tabel`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `kuota`
 --
 ALTER TABLE `kuota`
@@ -741,7 +791,7 @@ ALTER TABLE `laporans`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `mulai_dan_selesai_mhs`
@@ -771,7 +821,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_role`
