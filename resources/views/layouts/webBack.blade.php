@@ -172,12 +172,12 @@
             <li class="nav-item {{ $ti === 'Data Mahasiswa' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/Data_mhs">
                     <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Data</span></a>
+                    <span>Data Individu</span></a>
             </li>
             <li class="nav-item {{ $ti === 'Kuota' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/kuota">
+                <a class="nav-link pb-0" href="/Kuota">
                     <i class="fas fa-fw fa-file-alt"></i>
-                    <span>kuota</span></a>
+                    <span>Kuota Magang</span></a>
             </li>
             @endif
 
@@ -268,12 +268,12 @@
             <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/Data_smk">
                     <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Data</span></a>
+                    <span>Data Individu</span></a>
             </li>
-            <li class="nav-item {{ $ti === 'Data Mahasiswa' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/kuota">
+            <li class="nav-item {{ $ti === 'Kuota' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Kuota">
                     <i class="fas fa-fw fa-file-alt"></i>
-                    <span>kuota</span></a>
+                    <span>Kuota Magang</span></a>
             </li>
             @endif
 

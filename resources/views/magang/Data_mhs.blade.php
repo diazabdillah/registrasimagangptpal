@@ -48,6 +48,7 @@
                                         <th>Nama</th>
                                         <th>Universitas</th>
                                         <th>Strata</th>
+                                        <th>Jurusan</th>
                                         <th>Alamat Rumah</th>
                                         <th>No.HP</th>
                                         <th>Divisi</th>
@@ -61,6 +62,7 @@
                                         <td>{{ $d->nama }}</td>
                                         <td>{{ $d->univ }}</td>
                                         <td>{{ $d->strata }}</td>
+                                        <td>{{ $d->jurusan }}</td>
                                         <td>{{ $d->alamat_rumah }}</td>
                                         <td>{{ $d->no_hp }}</td>
                                         <td>{{ $d->divisi }}</td>

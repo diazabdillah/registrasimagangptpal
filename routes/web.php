@@ -210,6 +210,8 @@ Route::get('/Data_smk', [MagangController::class, 'Data_smk']);
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
 Route::get('/input-data-smkInd', [MagangController::class, 'inputDataSmk']);
 Route::post('/input-data-smkInd', [MagangController::class, 'proses_data_smk'])->name('dataSmk');
+Route::get('/edit-data-smkInd/{id}', [MagangController::class, 'editDataSmk']);
+Route::put('/edit-data-smkInd/{id}', [MagangController::class, 'updateDataSmk']);
 Route::get('/berkas-smk-indiv', [MagangController::class, 'file_smk']);
 Route::post('/berkas-smk-indiv', [MagangController::class, 'proses_file_smk'])->name('fileSmk');
 Route::get('/openpdf-smk', [MagangController::class, 'openpdf_smk']);

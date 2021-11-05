@@ -66,7 +66,7 @@
                                         <td>{{ $d->divisi }}</td>
                                         <td>{{ $d->departemen }}</td>
                                         <td>
-                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-mhsInd/' . $d->id) }}">Edit</a>
+                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-smkInd/' . $d->id) }}">Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -189,6 +189,7 @@ class MagangController extends Controller
             'user_id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'univ' => $request->univ,
+            'jurusan' => $request->jurusan,
             'strata' => $request->strata,
             'alamat_rumah' => $request->alamat_rumah,
             'no_hp' => $request->no_hp,
@@ -864,9 +865,8 @@ class MagangController extends Controller
     {
         $request->validate([
             'berkas' => 'required',
-            'berkas.*' => 'mimes:jpeg,jpg,pdf|max:1048'
+            'berkas.*' => 'mimes:png,jpeg,jpg,pdf|max:1048'
         ]);
-
 
         if ($request->hasFile('berkas')) {
 
@@ -875,9 +875,10 @@ class MagangController extends Controller
             foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $NamaFile = $file->getClientOriginalName();
-                // Upload ke public/fileMhs
-                $file->storeAs('public/file', $NamaFile);
+                // Upload ke public
+                $tujuan_upload = 'file';
                 $size = $file->getSize();
+                $file->move($tujuan_upload, $NamaFile, $size);
 
                 FileSmkIndivs::create([
                     'user_id' => Auth::user()->id,
@@ -892,27 +893,69 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    // public function proses_hapus_fileSmk($id, $path)
-    // {
-    //     // Hapus di file storage
-    //     if (Storage::exists('public/file/' . $path)) {
-    //         Storage::delete('public/files/' . $path);
-    //     }
-    //     // Hapus di database
-    //     DB::table('file_smk_indivs')->where('id', $id)->delete();
+    public function editDataSmk($id)
+    {
+        if (auth()->user()->role_id == 9) {
 
-    //     session()->flash('succes', 'File berhasil dihapus');
-    //     return redirect('/Data_smk');
-    // }
+            $ti = 'Data SMK';
+            $data = DB::table('data_smk_indivs')
+                ->where('id', $id)
+                ->first();
+
+            return view('magang.edit-data-smkInd', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function updateDataSmk(Request $request, $id)
+    {
+        DB::table('data_smk_indivs')
+            ->where('id', $id)
+            ->update([
+                'user_id' => Auth::user()->id,
+                'nama' => $request->nama,
+                'sekolah' => $request->sekolah,
+                'jurusan' => $request->jurusan,
+                'alamat_rumah' => $request->alamat_rumah,
+                'no_hp' => $request->no_hp,
+                'divisi' => $request->divisi,
+                'departemen' => $request->departemen
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('Data_smk');
+    }
+
+    public function proses_hapus_fileSmk($id, $path)
+    {
+        // Hapus di file storage
+        File::delete('file/' . $path);
+        // Hapus di database
+        DB::table('file_smk_indivs')
+        ->where('id', $id)
+        ->delete();
+
+        session()->flash('succes', 'File berhasil dihapus');
+        return redirect('/Data_smk');
+    }
 
     public function openpdf_smk()
     {
         if (auth()->user()->role_id == 9) {
             $ti = 'Data SMK';
             $id = Auth::user()->id;
-            $files = DB::table('file_smk_indivs')->where('user_id', '=', $id)->get();
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
 
-            return view('magang.openpdf-smk', ['ti' => $ti, 'files' => $files]);
+            return view('magang.openpdf-smk', [
+                'ti' => $ti, 
+                'files' => $files
+            ]);
         } else {
             return redirect()->back();
         }
@@ -1111,16 +1154,12 @@ class MagangController extends Controller
 
     public function Kuota()
     {
-        if (auth()->user()->role_id == 6) {
-            $ti = 'Kuota Magang';
-            $users = DB::table('kuota')->get();
-            return view('magang.Kuota', [
-                'ti' => $ti,
-                'users' => $users
-            ]);
-        } else {
-            return redirect()->back();
-        }
+        $ti = 'Kuota Magang';
+        $users = DB::table('kuota')->get();
+        return view('magang.Kuota', [
+            'ti' => $ti,
+            'users' => $users
+        ]);
     }
 
     public function proses_laporan(Request $request)

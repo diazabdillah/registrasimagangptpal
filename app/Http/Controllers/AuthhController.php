@@ -167,6 +167,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 7,
+            'status_user' => 'kelompok',
             'rememberToken' => str::random(60)
         ]);
 
@@ -203,6 +204,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 9,
+            'status_user' => 'individu',
             'rememberToken' => str::random(60)
         ]);
 
