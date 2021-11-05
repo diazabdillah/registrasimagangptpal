@@ -37,7 +37,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 2) {
                 return redirect('/Penerimaan')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 3) {
-                return redirect('/Profil_mhs')->with('success', 'You are now logged in');
+                return redirect('/Profil_mhs')->with('success', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
             } elseif (auth()->user()->role_id == 4) {
                 return redirect('/Profil_smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 5) {
@@ -47,19 +47,21 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 7) {
                 return redirect('/data-smk-kelompok')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 8) {
-                return redirect('/Data_mhs')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/Data_mhs')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 9) {
-                return redirect('/Data_smk')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/Data_smk')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 10) {
                 return redirect('/regis-step2')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 11) {
-                return redirect('/Dokumen_mhs')->with('success', 'Selamat Anda Lolos seleksi pengisian data anda.Anda masuk ditahap dokumen ini mohon segera lengkapi data dokumen magang di bawah ini.Mohon Dibaca pentunjuk yang sudah di berikan.kami beri waktu 1 minggu untuk mengisi berkas dokumen ini');
+                return redirect('/Dokumen_mhs')->with('success', 'Selamat Anda Lolos seleksi pengisian data anda. Anda masuk ditahap dokumen ini mohon segera lengkapi data dokumen magang di bawah ini. Mohon Dibaca pentunjuk yang sudah di berikan. Kami beri waktu 1 minggu untuk mengisi berkas dokumen ini');
             } elseif (auth()->user()->role_id == 12) {
                 return redirect('/Dokumen_smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 13) {
                 return redirect('/Dokumen_mhskel')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 14) {
-                return redirect('/sertifikat_mhs')->with('success', 'You are now logged in');
+                return redirect('/sertifikat_mhs')->with('success', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+            } elseif (auth()->user()->role_id == 16) {
+                return redirect('/testinterview')->with('success','you are now logged in');
             }
         }
 

@@ -169,10 +169,8 @@ class DivisiController extends Controller
         }
     }
 
-
     public function updatePenerimaan(Request $request, $id)
     {
-
         DB::table('users')->where('id', $id)
             ->update([
                 'role_id' => $request->role_id
@@ -183,7 +181,6 @@ class DivisiController extends Controller
     }
     public function updatePenerimaanmhskel(Request $request, $id)
     {
-
         DB::table('users')->where('id', $id)
             ->update([
                 'role_id' => $request->role_id
@@ -195,7 +192,6 @@ class DivisiController extends Controller
 
     public function upPenerimaanSmk(Request $request, $id)
     {
-
         DB::table('users')->where('id', $id)
             ->update([
                 'role_id' => $request->role_id
@@ -207,7 +203,6 @@ class DivisiController extends Controller
 
     public function updateDiterima(Request $request, $id)
     {
-
         DB::table('users')->where('id', $id)
             ->update([
                 'role_id' => $request->role_id
@@ -263,7 +258,6 @@ class DivisiController extends Controller
         }
     }
 
-
     public function showDiterima(Request $request)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -285,7 +279,6 @@ class DivisiController extends Controller
                 ->where('users.role_id', '=', 12)
                 ->get();
 
-
             return view('divisi.diterima', [
                 'ti' => $ti,
                 'datas' => $datas,
@@ -299,8 +292,6 @@ class DivisiController extends Controller
 
     public function finalMhs($user_id)
     {
-
-
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
             $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
@@ -310,7 +301,10 @@ class DivisiController extends Controller
                 ->select('foto_mhs_models.foto')
                 ->where('users.id', '=', $user_id)
                 ->get();
-            $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
+
+            $filepdf = DB::table('file_mhs_indivs')
+                ->where('file_mhs_indivs.user_id', '=', $user_id)
+                ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
@@ -367,7 +361,7 @@ class DivisiController extends Controller
             $fileFoto = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_mhs_models', 'data_mhs_indivs.id', '=', 'foto_mhs_models.user_id')
-                ->select('foto_mhs_models.id','foto_mhs_models.foto')
+                ->select('foto_mhs_models.id', 'foto_mhs_models.foto')
                 ->where('users.id', '=', $user_id)
                 ->get();
             $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
@@ -392,6 +386,18 @@ class DivisiController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function updatemagangdivisi($user_id, Request $request)
+    {
+        DB::table('data_mhs_indivs')->where('user_id', $user_id)
+            ->update([
+                'divisi' => $request->divisi,
+                'departemen' => $request->departemen
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('/diterima');
     }
 
     public function magangAktSmk($user_id)
@@ -424,27 +430,27 @@ class DivisiController extends Controller
         }
     }
 
-    public function hapusfileMhs($id, $foto)
-    {
-        if (Storage::exists('public/fotoMhs/' . $foto)) {
-            Storage::delete('public/fotoMhs/' . $foto);
-        }
-        DB::table('foto_mhs_models')->where('id', $id)->delete();
+    // public function hapusfileMhs($id, $foto)
+    // {
+    //     if (Storage::exists('public/fotoMhs/' . $foto)) {
+    //         Storage::delete('public/fotoMhs/' . $foto);
+    //     }
+    //     DB::table('foto_mhs_models')->where('id', $id)->delete();
 
-        session()->flash('success', 'File berhasil dihapus');
-        return redirect()->back();
-    }
+    //     session()->flash('success', 'File berhasil dihapus');
+    //     return redirect()->back();
+    // }
 
-    public function hapusfileSmk($id, $foto)
-    {
-        if (Storage::exists('public/fotosmk/' . $foto)) {
-            Storage::delete('public/fotosmk/' . $foto);
-        }
-        DB::table('foto_smk_models')->where('id', $id)->delete();
+    // public function hapusfileSmk($id, $foto)
+    // {
+    //     if (Storage::exists('public/fotosmk/' . $foto)) {
+    //         Storage::delete('public/fotosmk/' . $foto);
+    //     }
+    //     DB::table('foto_smk_models')->where('id', $id)->delete();
 
-        session()->flash('success', 'File berhasil dihapus');
-        return redirect()->back();
-    }
+    //     session()->flash('success', 'File berhasil dihapus');
+    //     return redirect()->back();
+    // }
 
     public function Kuota()
     {
@@ -478,6 +484,7 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
+
     public function proses_idcard($id)
     {
         $ti = 'Data ID Card';
@@ -487,6 +494,7 @@ class DivisiController extends Controller
         $data->save();
         return redirect()->back();
     }
+
     public function tambah_kuota()
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -496,6 +504,7 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
+
     public function proses_kuota(Request $request)
     {
 
@@ -520,6 +529,7 @@ class DivisiController extends Controller
         ]);
         return redirect('/kuota');
     }
+
     public function edit_kuota()
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -566,7 +576,8 @@ class DivisiController extends Controller
         }
     }
 
-    public function editlaporan($id){
+    public function editlaporan($id)
+    {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $data = DB::table('laporans')->where('id', $id)->first();
             $ti = 'Edit Laporan';
@@ -575,10 +586,12 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
-    public function proseseditlaporan($id, Request $request ){
+
+    public function proseseditlaporan($id, Request $request)
+    {
         DB::table('laporans')->where('id', $id)
             ->update([
-                'revisi'=>$request->revisi
+                'revisi' => $request->revisi
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
@@ -593,7 +606,6 @@ class DivisiController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
                 ->select('penilaians.status_penilaian', 'penilaians.pembimbing', 'data_mhs_indivs.id', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen')
-
                 ->get();
 
             $id = 1;
@@ -602,13 +614,12 @@ class DivisiController extends Controller
                 'ti' => $ti,
                 'id' => $id,
                 'users' => $users,
-
-
             ]);
         } else {
             return redirect()->back();
         }
     }
+
     public function isi_penilaian($id)
     {
         $user = User::find($id);
@@ -620,16 +631,16 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
-    public function proses_penilaian($user_id, Request $request)
-    {
 
-        $user = DataMhsIndiv::find($user_id);
+    public function proses_penilaian($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
 
         $avgStar = 0;
         $nilaihuruf = "";
 
         $penilaians = new Penilaian;
-        $penilaians->user_id = $user->user_id;
+        $penilaians->user_id = $user->id;
         $penilaians->pembimbing = Auth::user()->name;
         $penilaians->Kerjasama = $request->Kerjasama;
         $penilaians->Motivasi = $request->Motivasi;
@@ -641,8 +652,11 @@ class DivisiController extends Controller
         $penilaians->TanggungJawab = $request->TanggungJawab;
         $penilaians->PemahamanKemampuan = $request->PemahamanKemampuan;
         $penilaians->KesehatanKeselamatanKerja = $request->KesehatanKeselamatanKerja;
+        $penilaians->laporankerja = $request->laporankerja;
+        $penilaians->sopansantun = $request->sopansantun;
+        $penilaians->kehadiran = $request->kehadiran;
 
-        $avgStar = ($penilaians->Kerjasama +  $penilaians->Motivasi + $penilaians->InisiatifKerja + $penilaians->Loyalitas + $penilaians->etika + $penilaians->Disiplin + $penilaians->PercayaDiri + $penilaians->TanggungJawab + $penilaians->PemahamanKemampuan + $penilaians->KesehatanKeselamatanKerja) / 10;
+        $avgStar = ($penilaians->Kerjasama +  $penilaians->Motivasi + $penilaians->InisiatifKerja + $penilaians->Loyalitas + $penilaians->etika + $penilaians->Disiplin + $penilaians->PercayaDiri + $penilaians->TanggungJawab + $penilaians->PemahamanKemampuan + $penilaians->KesehatanKeselamatanKerja + $penilaians->laporankerja + $penilaians->sopansantun + $penilaians->kehadiran) / 13;
         if ($avgStar >= 81 && $avgStar <= 100) {
             $nilaihuruf = "A";
         } else if ($avgStar >= 71  && $avgStar <= 80) {
@@ -665,6 +679,7 @@ class DivisiController extends Controller
 
         return redirect('/penilaian');
     }
+
     public function Absen_mhs()
     {
         $id = Auth::user()->id;
@@ -687,6 +702,7 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
+
     public function tambah_absenmhs($id)
     {
         $user = User::find($id);
@@ -696,6 +712,7 @@ class DivisiController extends Controller
             'user' => $user,
         ]);
     }
+
     public function proses_absenmhs($id, Request $request)
     {
         $user = DataMhsIndiv::where('user_id', '=', $id)->get();
@@ -715,5 +732,33 @@ class DivisiController extends Controller
         }
 
         return redirect('/absen');
+    }
+
+    public function selesaiMhs()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Selesai';
+
+            $users = DB::table('users')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'users.name', 'user_role.role')
+                ->where('users.role_id', '=', 14)
+                ->get();
+
+            return view('divisi.selesai', [
+                'ti' => $ti,
+                'users' => $users,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function deleteselesaimhs($id)
+    {
+        DB::table('users')->where('id', $id)->delete();
+
+        session()->flash('success', 'Data berhasil dihapus');
+        return redirect()->back();
     }
 }

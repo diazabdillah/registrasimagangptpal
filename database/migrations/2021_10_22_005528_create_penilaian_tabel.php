@@ -27,6 +27,9 @@ class CreatePenilaianTabel extends Migration
             $table->integer('TanggungJawab');
             $table->integer('PemahamanKemampuan');
             $table->integer('KesehatanKeselamatanKerja');
+            $table->integer('laporankerja');
+            $table->integer('kehadiran');
+            $table->integer('sopansantun');
             $table->integer('average');
             $table->string('nilai_huruf');
             $table->string('status_penilaian');

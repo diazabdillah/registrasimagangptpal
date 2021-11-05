@@ -45,10 +45,8 @@
                                 <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                     {{ $user->departemen }}
                                 </li>
-                                @endforeach
-
-
                             </ul>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -98,20 +96,44 @@
                                     </div>
                                 </form>
                                 <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
-                                    <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah pendaftar tersebut resmi diterima atau tidak
+                                    <strong>Pilih Tindakan Final</strong> berfungsi untuk meneruskan proses apakah pendaftar tersebut resmi diterima atau tidak
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+                                <form method="POST" action="/update-magang-divisi/{{ $userid->id }}">
+                                    @method('put')
+                                    @csrf
+                                    <div class="form-group">
+                                        <small class="ml-2">Pilih Divisi</small>
+                                        <div class="input-group mb-3">
+                                            <select class="custom-select" name="divisi">
+                                                <option selected>Pilih Divisi</option>
+                                                <option value="Divisi 1">Divisi 1</option>
+                                                <option value="Divisi 2">Divisi 2</option>
+                                                <option value="Divisi 3">Divisi 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <small class="ml-2">Pilih Departement</small>
+                                        <div class="input-group mb-3">
+                                            <select class="custom-select" name="departemen">
+                                                <option selected>Pilih Departement</option>
+                                                <option value="Departement 1">Departement 1</option>
+                                                <option value="Departement 2">Departement 2</option>
+                                                <option value="Departement 3">Departement 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary mt-4" type="submit">Simpan</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
     </div>
 </div>
 <!-- /.container-fluid -->

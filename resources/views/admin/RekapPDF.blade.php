@@ -32,7 +32,6 @@
                                         <th>Tanggal Daftar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Selesai</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>

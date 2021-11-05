@@ -46,9 +46,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">PT.PAL</div>
             </a>
-            @if (auth()->user()->role_id == 14)
 
-            @endif
             @if (auth()->user()->role_id == 1)
             <!-- Divider -->
             <hr class="sidebar-divider mt-3">
@@ -131,16 +129,21 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Magang Aktif</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Magang Selesai' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/magang-selesai-mhs">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Magang Selesai</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'Kuota' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/kuota">
                     <i class="fas fa-fw fa-bullhorn"></i>
                     <span>Kuota</span></a>
             </li>
-            <li class="nav-item {{ $ti === 'Data ID Card' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/data_id_card">
-                    <i class="fas fa-fw fa-id-badge"></i>
-                    <span>Data ID Card</span></a>
-            </li>
+            {{-- <li class="nav-item {{ $ti === 'Data ID Card' ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/data_id_card">
+                <i class="fas fa-fw fa-id-badge"></i>
+                <span>Data ID Card</span></a>
+            </li> --}}
             <li class="nav-item {{ $ti === 'absen' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/absen">
                     <i class="fas fa-fw fa-thumbtack"></i>
@@ -246,11 +249,7 @@
                     <i class="fas fa-fw fa-id-badge"></i>
                     <span>Laporan akhir</span></a>
             </li>
-            <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/sertifikat_mhs">
-                    <i class="fas fa-fw fa-medal"></i>
-                    <span>Sertifikat</span></a>
-            </li>
+
             <li class="nav-item {{ $ti === 'Penilaian Mahasiswa' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/penilaian_mhs">
                     <i class="fas fa-fw fa-medal"></i>
@@ -366,6 +365,27 @@
                 <a class="nav-link pb-0" href="/kuota">
                     <i class="fas fa-fw fa-file-alt"></i>
                     <span>kuota</span></a>
+            </li>
+            @endif
+            @if (auth()->user()->role_id == 16)
+            <li class="nav-item {{ $ti === 'Test Interview Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/testinterview">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Interview</span></a>
+            </li>
+            @endif
+            @if (auth()->user()->role_id == 15)
+            <li class="nav-item {{ $ti === 'Selesai Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/selesai">
+                    <i class="fas fa-fw fa-medal"></i>
+                </a>
+            </li>
+            @endif
+            @if (auth()->user()->role_id == 14)
+            <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/sertifikat_mhs">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Sertifikat</span> </a>
             </li>
             @endif
 

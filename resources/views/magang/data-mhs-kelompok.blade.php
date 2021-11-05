@@ -10,9 +10,9 @@
 
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800 mb-3"><b>{{ $ti }}</b></h1>
-            @if (session()->has('succes'))
+            @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
-                {{ session()->get('succes') }}
+                {{ session()->get('success') }}
             </div>
             @endif
 
@@ -23,26 +23,19 @@
                         Data Pemagang
                     </div>
                     <div class="card-body">
-                        <a href="/input-mhs-kelompok" class="btn btn-primary mb-3 mr-2">Tambah Anggota Kelompok <i class="fas fa-pencil-alt"></i></a>
-                        <a href="/berkas-mhs-kel" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a>
+
 
 
                         <div class="alert alert-info" role="alert">
-                            <p class="card-text"><b>Klik Isi Data</b> untuk mengirimkan data-data anda. Jika sudah
-                                mengisi data pada form maka data anda akan tampil di tabel
+                            <h5>Langkah 1 :</h5>
+                            <p class="card-text"><b>Klik Tambah Anggota Kelompok Anda</b><br> Silahkan klik button
+                                tambah anggota kelompok untuk kirimkan data-data kelompok anda. Jika sudah
+                                mengisi data pada form data kelompok maka data kelompok anda akan tampil di tabel bawah.
                             </p>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <p class="card-text"><b>Klik Upload File</b>
-                            </p>
-                            <b>Kirim file berikut dalam bentuk PDF maksimal 1MB</b>
-                            <ol>
-                                <li>Proposal Magang</li>
-                                <li>Surat Pengajuan Magang</li>
-                                <li>Curriculum Vitae (jika ada)</li>
-                            </ol>
-                        </div>
+                            <a href="/input-mhs-kelompok" class="btn btn-primary mb-3 mr-2">Tambah Anggota Kelompok
+                                <i class="fas fa-user-plus"></i></a>
 
+                        </div>
                         <div class="table-responsive table-hover">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -66,13 +59,32 @@
                                         <td>{{ $d->no_hp }}</td>
 
                                         <td>
-                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-mhskel/' . $d->id) }}" onclick="return confirm('yakin Edit?');">Edit</a>
-                                            <a class="btn btn-danger p-1" href="{{ url('delete-data-mhskel/' . $d->id) }}" onclick="return confirm('yakin Hapus?');">Hapus</a>
+                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-mhskel/' . $d->id) }}" onclick="return confirm('yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
+                                            <a class="btn btn-danger p-1" href="{{ url('delete-data-mhskel/' . $d->id) }}" onclick="return confirm('yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="alert alert-primary" role="alert">
+                            <h5>Langkah 2 :</h5>
+                            <p class="card-text"><b>Klik Upload File Calon Magang</b>
+                            </p>
+                            <p> Silahkan klik button
+                                upload file calon magang untuk kirimkan data-data kelompok anda. Jika sudah
+                                mengirim file pada form maka file data kelompok anda akan tampil di tabel bawah.
+                            </p>
+                            <a href="/berkas-mhs-kel" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a> <br>
+                            <b>Kirim file berikut dalam bentuk PDF maksimal 1MB</b>
+                            <ol>
+                                <li>Proposal Magang</li>
+                                <li>Surat Pengantar Magang dari universitas</li>
+                                <li>Curriculum Vitae (jika ada)</li>
+                            </ol>
+                        </div>
+
+                        <div class="table-responsive table-hover">
                             <a class="btn btn-danger mt-3 mb-3" href="/openpdfkel"><i class="fas fa-fw fa-file-pdf mr-2"></i>Open all file</a>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -86,8 +98,8 @@
                                     <tr class="text-center">
                                         <td><i class="fas fa-fw fa-file-pdf mr-3"></i>{{ $file->path }}</td>
                                         <td>
-                                            <a class="btn btn-secondary p-1" href="{{ url('Data_mhs/' . $file->id, $file->path) }}" onclick="return confirm('yakin Hapus?');">Hapus</a>
-                                            <a class="btn btn-secondary p-1" href=" {{url('/Data_mhs_lihat/'.$file->id)}}">Lihat</a>
+                                            <a class="btn btn-primary p-1" href=" {{ url('/Data_mhs_lihat/' . $file->id) }}"><i class="far fa-eye"></i> Lihat</a>
+                                            <a class="btn btn-danger p-1" href="{{ url('Data_mhs/' . $file->id, $file->path) }}" onclick="return confirm('yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
 
                                         </td>
                                     </tr>

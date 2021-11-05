@@ -23,7 +23,7 @@ class CreateLaporanTabel extends Migration
             $table->string('revisi')->nullable();
             $table->date('tanggal_kumpul');
             $table->string('divisi');
-        $table->timestamps();
+            $table->timestamps();
         });
     }
 

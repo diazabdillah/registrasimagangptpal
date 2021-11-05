@@ -14,7 +14,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mt-2">Form Penilaian</h5>
-                    <p class="card-text"><small>Mohon diisi penilaian sesuai pengamatan anda terhadap calon magang</small>
+                    <p class="card-text"><small>Mohon diisi penilaian sesuai pengamatan anda terhadap calon
+                            magang</small>
                     </p>
 
 
@@ -62,6 +63,19 @@
                             <small class="ml-2">Kesehatan dan Keselamatan Kerja</small>
                             <input type="text" class="form-control" id="nilai" name="KesehatanKeselamatanKerja">
                         </div>
+                        <div class="form-group">
+                            <small class="ml-2">Laporan Kerja</small>
+                            <input type="text" class="form-control" id="nilai" name="laporankerja">
+                        </div>
+                        <div class="form-group">
+                            <small class="ml-2">Sopan Santun</small>
+                            <input type="text" class="form-control" id="nilai" name="sopansantun">
+                        </div>
+                        <div class="form-group">
+                            <small class="ml-2">Kehadiran</small>
+                            <input type="text" class="form-control" id="nilai" name="kehadiran">
+                        </div>
+
 
                         <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i class="fas fa-paper-plane"></i></button>
                     </form>
@@ -73,7 +87,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mt-2">Kriteria Penilaian</h5>
-                    <p class="card-text"><small>Mohon diisi penilaian yang di samping dengan mengikuti kriteria penilaian berikut ini</small>
+                    <p class="card-text"><small>Mohon diisi penilaian yang di samping dengan mengikuti kriteria
+                            penilaian berikut ini</small>
                     </p>
                 </div>
                 <div class="card-body">

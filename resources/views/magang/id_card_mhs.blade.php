@@ -11,8 +11,10 @@
 
             <!-- Card -->
             <a href="/idcard-mhs-pdf" class="btn btn-danger mb-3"><i class="fas fa-download"></i> Cetak</a>
+            <a href="/idcard-mhs-savepdf" class="btn btn-primary mb-3"><i class="fas fa-download"></i> pdf</a>
 
             <div class="row mb-4">
+
 
                 @foreach ($datas as $data)
                 <div class="col-sm-6">
@@ -110,8 +112,16 @@
                     </div>
                 </div>
                 @endforeach
+
             </div>
+
+
         </div>
     </div>
+
+
+
 </div>
+
+
 @endsection

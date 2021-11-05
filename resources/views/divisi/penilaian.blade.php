@@ -41,16 +41,16 @@
                                     <td>{{ $penilaian->univ }}</td>
                                     <td>{{ $penilaian->divisi }}</td>
                                     <td>{{ $penilaian->departemen }}</td>
-                                    @if ($penilaian->status_penilaian ==null)
+                                    @if ($penilaian->status_penilaian == null)
                                     <td>Belum Dinilai</td>
                                     @else
-                                    <td>{{$penilaian->status_penilaian}}</td>
+                                    <td>{{ $penilaian->status_penilaian }}</td>
                                     @endif
                                     <td>
-                                        @if ($penilaian->status_penilaian ==null)
+                                        {{-- @if ($penilaian->status_penilaian == null) --}}
                                         <a class="btn btn-warning p-1" href="{{ url('/isi_penilaian/' . $penilaian->id) }}" role="button">Isi
                                             Form Penilaian</a>
-                                        @endif
+                                        {{-- @endif --}}
 
                                     </td>
                                 </tr>

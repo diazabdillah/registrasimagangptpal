@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade as PDF;
 use \Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DataMhsIndiv;
@@ -23,12 +23,6 @@ use App\Models\DataMhsKelompoks;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-// use Barryvdh\DomPDF\PDF;
-// use Barryvdh\DomPDF\Facade as PDF;
-// use PDF;
-
-
-// use Illuminate\Validation\ValidationException;
 
 class MagangController extends Controller
 {
@@ -62,7 +56,6 @@ class MagangController extends Controller
 
     public function Data_mhs()
     {
-
         if (auth()->user()->role_id == 8) {
 
             $ti = 'Data Mahasiswa';
@@ -80,6 +73,7 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
     public function liat_file($id)
     {
         if (auth()->user()->role_id == 6) {
@@ -87,31 +81,46 @@ class MagangController extends Controller
 
             $files = FileMhsIndiv::find($id);
 
-            return view('magang.openpdfkel', ['ti' => $ti, 'files' => $files]);
+            return view('magang.openpdfkel', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
         } else {
             return redirect()->back();
         }
     }
+
     public function OpenPDF()
     {
         if (auth()->user()->role_id == 8) {
             $ti = 'Data Mahasiswa';
             $id = Auth::user()->id;
-            $files = DB::table('file_mhs_indivs')->where('user_id', '=', $id)->get();
+            $files = DB::table('file_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
 
-            return view('magang.openpdf', ['ti' => $ti, 'files' => $files]);
+            return view('magang.openpdf', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
         } else {
             return redirect()->back();
         }
     }
+
     public function OpenPDFkel()
     {
         if (auth()->user()->role_id == 6) {
             $ti = 'Data Mahasiswa';
             $id = Auth::user()->id;
-            $files = DB::table('file_mhs_indivs')->where('user_id', '=', $id)->get();
+            $files = DB::table('file_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
 
-            return view('magang.openpdf', ['ti' => $ti, 'files' => $files]);
+            return view('magang.openpdf', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
         } else {
             return redirect()->back();
         }
@@ -134,9 +143,14 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 8) {
 
             $ti = 'Data Mahasiswa';
-            $data = DB::table('data_mhs_indivs')->where('id', $id)->first();
+            $data = DB::table('data_mhs_indivs')
+                ->where('id', $id)
+                ->first();
 
-            return view('magang.edit-data-mhsInd', ['ti' => $ti, 'data' => $data]);
+            return view('magang.edit-data-mhsInd', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
         } else {
             return redirect()->back();
         }
@@ -151,7 +165,6 @@ class MagangController extends Controller
                 'univ' => $request->univ,
                 'strata' => $request->strata,
                 'alamat_rumah' => $request->alamat_rumah,
-
                 'no_hp' => $request->no_hp,
                 'divisi' => $request->divisi,
                 'departemen' => $request->departemen
@@ -160,7 +173,6 @@ class MagangController extends Controller
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('Data_mhs');
     }
-
 
     public function proses_data_mhs(Request $request)
     {
@@ -191,9 +203,7 @@ class MagangController extends Controller
 
     public function file_mhs()
     {
-
         if (auth()->user()->role_id == 8) {
-
             $ti = 'Data Mahasiswa';
 
             return view('magang.berkas-mhs-indiv', ['ti' => $ti]);
@@ -208,7 +218,6 @@ class MagangController extends Controller
             'berkas' => 'required',
             'berkas.*' => 'mimes:jpeg,jpg,pdf|max:1048'
         ]);
-
 
         if ($request->hasFile('berkas')) {
 
@@ -235,18 +244,18 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    public function proses_hapus_file($id, $path)
-    {
-        // Hapus di file storage
-        if (Storage::exists('public/file' . $path)) {
-            Storage::delete('public/file' . $path);
-        }
-        // Hapus di database
-        DB::table('file_mhs_indivs')->where('id', $id)->delete();
+    // public function proses_hapus_file($id, $path)
+    // {
+    //     // Hapus di file storage
+    //     if (Storage::exists('public/file' . $path)) {
+    //         Storage::delete('public/file' . $path);
+    //     }
+    //     // Hapus di database
+    //     DB::table('file_mhs_indivs')->where('id', $id)->delete();
 
-        session()->flash('succes', 'File berhasil dihapus');
-        return redirect('Data_mhs');
-    }
+    //     session()->flash('succes', 'File berhasil dihapus');
+    //     return redirect('Data_mhs');
+    // }
 
     //mhs kelompok
     public function data_mhs_kelompok()
@@ -255,8 +264,12 @@ class MagangController extends Controller
             $ti = 'Data Mahasiswa Kelompok';
 
             $id = Auth::user()->id;
-            $data = DB::table('data_mhs_indivs')->where('user_id', '=', $id)->get();
-            $files = DB::table('file_mhs_indivs')->where('user_id', '=', $id)->get();
+            $data = DB::table('data_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $files = DB::table('file_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
 
             return view('magang.data-mhs-kelompok', [
                 'ti' => $ti,
@@ -285,10 +298,7 @@ class MagangController extends Controller
             'jurusan' => 'required',
             'alamat_rumah' => 'required',
             'no_hp' => 'required|max:14',
-            'divisi' => 'required',
-            'departemen' => 'required',
             'nim' => 'required'
-
         ]);
 
         DataMhsIndiv::create([
@@ -299,9 +309,7 @@ class MagangController extends Controller
             'strata' => $request->strata,
             'no_hp' => $request->no_hp,
             'nim' => $request->nim,
-            'divisi' => $request->divisi,
             'jurusan' => $request->jurusan,
-            'departemen' => $request->departemen
         ]);
         session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
         return redirect('/data-mhs-kelompok');
@@ -325,7 +333,6 @@ class MagangController extends Controller
             'berkas' => 'required',
             'berkas.*' => 'mimes:jpeg,jpg,pdf|max:1048'
         ]);
-
 
         if ($request->hasFile('berkas')) {
 
@@ -351,6 +358,7 @@ class MagangController extends Controller
         }
         return redirect()->back();
     }
+
     public function inputDatatambahMhsKel()
     {
         if (auth()->user()->role_id == 6) {
@@ -362,6 +370,7 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
     public function proses_data_tambahmhsKelompok(Request $request)
     {
         $request->validate([
@@ -386,14 +395,20 @@ class MagangController extends Controller
         session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
         return redirect('/data-mhs-kelompok');
     }
+
     public function editDataMhskel($id)
     {
         if (auth()->user()->role_id == 6) {
 
             $ti = 'Data Mahasiswa';
-            $data = DB::table('data_mhs_indivs')->where('id', $id)->first();
+            $data = DB::table('data_mhs_indivs')
+                ->where('id', $id)
+                ->first();
 
-            return view('magang.edit-data-mhskel', ['ti' => $ti, 'data' => $data]);
+            return view('magang.edit-data-mhskel', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
         } else {
             return redirect()->back();
         }
@@ -401,7 +416,8 @@ class MagangController extends Controller
 
     public function updateDataMhskel(Request $request, $id)
     {
-        DB::table('data_mhs_indivs')->where('id', $id)
+        DB::table('data_mhs_indivs')
+            ->where('id', $id)
             ->update([
                 'user_id' => Auth::user()->id,
                 'nama' => $request->nama,
@@ -411,36 +427,41 @@ class MagangController extends Controller
                 'no_hp' => $request->no_hp,
                 'divisi' => $request->divisi,
                 'departemen' => $request->departemen
-
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/data-mhs-kelompok');
     }
+
     public function proses_hapus_mhskelompok($id)
     {
-        DB::table('data_mhs_indivs')->where('id', $id)->delete();
+        DB::table('data_mhs_indivs')
+            ->where('id', $id)
+            ->delete();
         return redirect('/data-mhs-kelompok')->with('succes', 'Data Mahasiswa Berhasil DiHapus');
     }
     //end mhs kelompok
+
     public function Dokumen_mhs()
     {
         if (auth()->user()->role_id == 11) {
             $ti = 'Dokumen Mahasiswa';
 
             $id = Auth::user()->id;
-            $users = DB::table('data_mhs_indivs')->where('user_id', '=', $id)->get();
+            $users = DB::table('data_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
             $showImage = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'foto_i_d_mhs.user_id', '=', 'data_mhs_indivs.id')
-
                 ->select('foto_i_d_mhs.fotoID', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
+
             $showImage1 = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_mhs_models', 'foto_mhs_models.user_id', '=', 'data_mhs_indivs.id')
-
                 ->select('foto_mhs_models.foto', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
@@ -469,7 +490,6 @@ class MagangController extends Controller
             return view('magang.Dokumen_mhs_uploadfoto', [
                 'ti' => $ti,
                 'showImage' => $showImage,
-
                 'user' => $user
             ]);
         } else {
@@ -521,23 +541,22 @@ class MagangController extends Controller
                     'foto' => $Namafoto,
                 ]);
             }
-
             session()->flash('success', 'Upload foto berhasil');
             return redirect('Dokumen_mhs');
         }
         return redirect()->back();
     }
 
-    public function hapus_dok_mhs($id, $foto)
-    {
-        if (Storage::exists('public/file' . $foto)) {
-            Storage::delete('public/file' . $foto);
-        }
-        DB::table('foto_mhs_models')->where('id', $id)->delete();
+    // public function hapus_dok_mhs($id, $foto)
+    // {
+    //     if (Storage::exists('public/file' . $foto)) {
+    //         Storage::delete('public/file' . $foto);
+    //     }
+    //     DB::table('foto_mhs_models')->where('id', $id)->delete();
 
-        session()->flash('success', 'File berhasil dihapus');
-        return redirect('Dokumen_mhs');
-    }
+    //     session()->flash('success', 'File berhasil dihapus');
+    //     return redirect('Dokumen_mhs');
+    // }
 
     public function upFotoMhs($id, Request $request)
     {
@@ -563,23 +582,22 @@ class MagangController extends Controller
                     'fotoID' => $Namafoto,
                 ]);
             }
-
             session()->flash('success', 'Upload foto berhasil');
             return redirect('Dokumen_mhs');
         }
         return redirect()->back();
     }
 
-    public function hapusFotoMhs($id, $fotoID)
-    {
-        if (Storage::exists('public/file' . $fotoID)) {
-            Storage::delete('public/file' . $fotoID);
-        }
-        DB::table('foto_i_d_mhs')->where('id', $id)->delete();
+    // public function hapusFotoMhs($id, $fotoID)
+    // {
+    //     if (Storage::exists('public/file' . $fotoID)) {
+    //         Storage::delete('public/file' . $fotoID);
+    //     }
+    //     DB::table('foto_i_d_mhs')->where('id', $id)->delete();
 
-        session()->flash('success', 'File berhasil dihapus');
-        return redirect('Dokumen_mhs');
-    }
+    //     session()->flash('success', 'File berhasil dihapus');
+    //     return redirect('Dokumen_mhs');
+    // }
 
     public function tableabsen_mhs()
     {
@@ -620,7 +638,8 @@ class MagangController extends Controller
         //     'status_absen' => 'Sudah Absensi'
         // ]);
 
-        DB::table('absen_indivs_tabel')->where('id_absen', '=', $absenid)
+        DB::table('absen_indivs_tabel')
+            ->where('id_absen', '=', $absenid)
             ->where('id_individu', '=', $individ)
             ->update([
                 'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
@@ -640,7 +659,9 @@ class MagangController extends Controller
             $ti = 'ID Card Mahasiswa';
             $id = Auth::user()->id;
 
-            $dates = DB::table('mulai_dan_selesai_mhs')->where('user_id', '=', $id)->get();
+            $dates = DB::table('mulai_dan_selesai_mhs')
+                ->where('user_id', '=', $id)
+                ->get();
             $datas = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
@@ -653,7 +674,6 @@ class MagangController extends Controller
             return view('magang.id_card_mhs', [
                 'ti' => $ti,
                 'datas' => $datas,
-
                 'dates' => $dates
             ]);
         } else {
@@ -684,6 +704,30 @@ class MagangController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function idCardMhsSavePdf()
+    {
+        $ti = 'ID Card Mahasiswa';
+        $id = Auth::user()->id;
+        $dates = DB::table('mulai_dan_selesai_mhs')
+            ->where('user_id', '=', $id)
+            ->get();
+        $datas = DB::table('users')
+            ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+            ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
+            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+            ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+            ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
+            ->where('users.id', '=', $id)
+            ->get();
+        // $pdf = PDF::make('dompdf');
+        $pdf = PDF::loadview('magang.idcard-mhs-savepdf', [
+            'ti' => $ti,
+            'datas' => $datas,
+            'dates' => $dates
+        ]);
+        return $pdf->stream();
     }
 
     public function sertifikatmhspdf()
@@ -729,9 +773,7 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
-
     // Menu Magang Mahasiswa =============
-
 
     // Menu Magang SMK ===================
     public function Profil_smk()
@@ -750,8 +792,12 @@ class MagangController extends Controller
             $ti = 'Data SMK';
 
             $id = Auth::user()->id;
-            $data = DB::table('data_smk_indivs')->where('user_id', '=', $id)->get();
-            $files = DB::table('file_smk_indivs')->where('user_id', '=', $id)->get();
+            $data = DB::table('data_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
 
             return view('magang.Data_smk', [
                 'ti' => $ti,
@@ -846,18 +892,18 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    public function proses_hapus_fileSmk($id, $path)
-    {
-        // Hapus di file storage
-        if (Storage::exists('public/file/' . $path)) {
-            Storage::delete('public/files/' . $path);
-        }
-        // Hapus di database
-        DB::table('file_smk_indivs')->where('id', $id)->delete();
+    // public function proses_hapus_fileSmk($id, $path)
+    // {
+    //     // Hapus di file storage
+    //     if (Storage::exists('public/file/' . $path)) {
+    //         Storage::delete('public/files/' . $path);
+    //     }
+    //     // Hapus di database
+    //     DB::table('file_smk_indivs')->where('id', $id)->delete();
 
-        session()->flash('succes', 'File berhasil dihapus');
-        return redirect('/Data_smk');
-    }
+    //     session()->flash('succes', 'File berhasil dihapus');
+    //     return redirect('/Data_smk');
+    // }
 
     public function openpdf_smk()
     {
@@ -900,16 +946,16 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    public function hapusFotoSmk($id, $fotoID)
-    {
-        if (Storage::exists('public/file' . $fotoID)) {
-            Storage::delete('public/file' . $fotoID);
-        }
-        DB::table('foto_i_d_smks')->where('id', $id)->delete();
+    // public function hapusFotoSmk($id, $fotoID)
+    // {
+    //     if (Storage::exists('public/file' . $fotoID)) {
+    //         Storage::delete('public/file' . $fotoID);
+    //     }
+    //     DB::table('foto_i_d_smks')->where('id', $id)->delete();
 
-        session()->flash('success', 'File berhasil dihapus');
-        return redirect('/Dokumen_smk_upload');
-    }
+    //     session()->flash('success', 'File berhasil dihapus');
+    //     return redirect('/Dokumen_smk_upload');
+    // }
 
     public function Data_smk_kelompok()
     {
@@ -927,7 +973,9 @@ class MagangController extends Controller
             $ti = 'Dokumen SMK';
 
             $id = Auth::user()->id;
-            $showImage = DB::table('foto_smk_models')->where('user_id', '=', $id)->get();
+            $showImage = DB::table('foto_smk_models')
+                ->where('user_id', '=', $id)
+                ->get();
 
             return view('magang.Dokumen_smk', [
                 'ti' => $ti,
@@ -944,8 +992,12 @@ class MagangController extends Controller
             $ti = 'Dokumen SMK';
 
             $id = Auth::user()->id;
-            $showImage = DB::table('foto_smk_models')->where('user_id', '=', $id)->get();
-            $fotoID = DB::table('foto_i_d_smks')->where('user_id', '=', $id)->get();
+            $showImage = DB::table('foto_smk_models')
+                ->where('user_id', '=', $id)
+                ->get();
+            $fotoID = DB::table('foto_i_d_smks')
+                ->where('user_id', '=', $id)
+                ->get();
 
             return view('magang.Dokumen_smk_upload', [
                 'ti' => $ti,
@@ -986,16 +1038,16 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    public function hapus_dok_smk($id, $foto)
-    {
-        if (Storage::exists('public/file' . $foto)) {
-            Storage::delete('public/file' . $foto);
-        }
-        DB::table('foto_smk_models')->where('id', $id)->delete();
+    // public function hapus_dok_smk($id, $foto)
+    // {
+    //     if (Storage::exists('public/file' . $foto)) {
+    //         Storage::delete('public/file' . $foto);
+    //     }
+    //     DB::table('foto_smk_models')->where('id', $id)->delete();
 
-        session()->flash('success', 'File berhasil dihapus');
-        return redirect('/Dokumen_smk');
-    }
+    //     session()->flash('success', 'File berhasil dihapus');
+    //     return redirect('/Dokumen_smk');
+    // }
 
     public function Absen_smk()
     {
@@ -1027,11 +1079,14 @@ class MagangController extends Controller
         }
     }
     // Menu Magang SMK ===================
+
     public function laporan()
     {
         if (auth()->user()->role_id == 3) {
             $id = Auth::user()->id;
-            $users = DB::table('laporans')->where('laporans.id', '=', $id)->get();
+            $users = DB::table('laporans')
+                ->where('laporans.id', '=', $id)
+                ->get();
             $user = DB::table('laporans')->get();
             $ti = 'Laporan Akhir';
             return view('magang.laporan_mhs', [
@@ -1043,6 +1098,7 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
     public function upload_laporan()
     {
         if (auth()->user()->role_id == 3) {
@@ -1052,6 +1108,7 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
     public function Kuota()
     {
         if (auth()->user()->role_id == 6) {
@@ -1065,13 +1122,12 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
     public function proses_laporan(Request $request)
     {
         $request->validate([
             'judul' => 'required',
             'tanggal_kumpul' => 'required',
-
-
         ]);
 
         $file = $request->file('cover');
@@ -1083,7 +1139,6 @@ class MagangController extends Controller
         $tujuan_upload = 'file';
         $file1->move($tujuan_upload, $namafile);
         Laporan::create([
-
             'nama' => Auth::user()->name,
             'sinopsis' => $request->sinopsis,
             'judul' => $request->judul,
@@ -1096,6 +1151,7 @@ class MagangController extends Controller
         session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
         return redirect('/laporan_mhs');
     }
+
     public function lihatlaporanmhs($id)
     {
         if (auth()->user()->role_id == 3) {
@@ -1109,6 +1165,39 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
+    public function editlaporanmhs($id)
+    {
+        $ti = 'Edit Laporan';
+        $data = DB::table('laporans')
+            ->where('id', $id)
+            ->first();
+
+        return view('magang.editlaporan', [
+            'ti' => $ti,
+            'data' => $data
+        ]);
+    }
+
+    public function proseseditlaporanmhs($id, Request $request)
+    {
+        $lama = Laporan::find($id);
+        File::delete('file/' . $lama->path);
+
+        $file = $request->file('path');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file';
+        $file->move($tujuan_upload, $nama_file);
+        DB::table('laporans')
+            ->where('id', $id)
+            ->update([
+                'path' => $nama_file
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('/laporan_mhs');
+    }
+
     public function penilaian_mhs()
     {
         if (auth()->user()->role_id == 3) {
@@ -1126,6 +1215,24 @@ class MagangController extends Controller
                 'ti' => $ti,
                 'users' => $users
 
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function testinterview()
+    {
+        if (auth()->user()->role_id == 16) {
+            $id = Auth::user()->id;
+            $users = DB::table('data_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $ti = 'Interview';
+
+            return view('magang.testinterview', [
+                'ti' => $ti,
+                'users' => $users
             ]);
         } else {
             return redirect()->back();

@@ -22,8 +22,8 @@ class CreateDataMhsIndivsTable extends Migration
             $table->string('strata');
             $table->string('alamat_rumah');
             $table->string('no_hp');
-            $table->string('divisi');
-            $table->string('departemen');
+            $table->string('divisi')->nullable();
+            $table->string('departemen')->nullable();
             $table->integer('nim');
             $table->string('status_idcard')->nullable();
             $table->timestamps();

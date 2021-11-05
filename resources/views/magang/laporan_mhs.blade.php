@@ -20,7 +20,7 @@
                 <div class="card-body">
 
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/upload_laporan" role="button"><i class="fas fa-plus"></i> Upload Laporan</a>
+                    <a class="btn btn-primary btn-sm mb-3" href="/upload_laporan" role="button"><i class="fas fa-plus"></i> upload laporan</a>
 
                     <div class="row mt-4">
                         @foreach ($users as $laporans)
@@ -45,7 +45,7 @@
                                                                         href="{{ asset('/file/' . $laporan->path) }}">Download</a> --}}
                                             <a class="btn btn-primary" href="{{ url('/lihat_laporan_mhs/' . $laporans->id) }}">lihat</a>
                                             @if ($laporans->revisi != null)
-                                            <a class="btn btn-warning" href="{{ url('/lihat_laporan_mhs/' . $laporans->id) }}">Edit</a>
+                                            <a class="btn btn-warning" href="{{ url('/edit_laporan_mhs/' . $laporans->id) }}">Edit</a>
 
                                             @endif
                                             @endif
@@ -56,6 +56,7 @@
                         </div>
 
                         @endforeach
+
 
                     </div>
                     <h3 class="text-center">Perpustakaan Laporan Akhir</h3>
@@ -88,6 +89,7 @@
                             </div>
                         </div>
                         @endforeach
+
 
                     </div>
                 </div>

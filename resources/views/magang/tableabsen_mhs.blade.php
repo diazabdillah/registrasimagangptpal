@@ -30,23 +30,34 @@
                             </thead>
                             <tbody>
                                 @foreach ($absenmhs as $am)
-
-                                <tr>
-                                    <td>{{ $am->nama }}
-                                    <td>{{ date('D, d F Y H:i:s', strtotime($am->waktu_awal)) }}</td>
-                                    <td>{{ date('D, d F Y H:i:s', strtotime($am->waktu_akhir)) }}</td>
-                                    @if ($am->status_absen == "Sudah Absen")
-                                    <td>
-                                        <input class="btn btn-secondary" type="button" value="presensi" disabled>
-                                    </td>
-                                    @elseif ($am->status_absen == "Belum Absen")
-                                    <td>
-                                        <a class="btn btn-primary p-1" href="{{ url('/proses_absenmhs/' . $am->id_absen . '/' . $am->id) }}" role="button">Presensi</a>
-                                    </td>
+                                @if (now() <= $am->waktu_akhir)
+                                    <tr>
+                                        <td>{{ $am->nama }}
+                                        <td>{{ date('D, d F Y H:i:s', strtotime($am->waktu_awal)) }}</td>
+                                        <td>{{ date('D, d F Y H:i:s', strtotime($am->waktu_akhir)) }}</td>
+                                        @if ($am->status_absen == 'Sudah Absen')
+                                        <td>
+                                            <input class="btn btn-secondary" type="button" value="presensi" disabled>
+                                        </td>
+                                        @elseif ($am->status_absen == "Belum Absen")
+                                        <td>
+                                            <a class="btn btn-primary p-1" href="{{ url('/proses_absenmhs/' . $am->id_absen . '/' . $am->id) }}" role="button">Presensi</a>
+                                        </td>
+                                        @endif
+                                    </tr>
+                                    @else
+                                    <tr>
+                                        <td>{{ $am->nama }}
+                                        <td>{{ date('D, d F Y H:i:s', strtotime($am->waktu_awal)) }}</td>
+                                        <td>{{ date('D, d F Y H:i:s', strtotime($am->waktu_akhir)) }}</td>
+                                        <td>
+                                            <input class="btn btn-secondary" type="button" value="presensi" disabled>
+                                        </td>
+                                    </tr>
                                     @endif
-                                </tr>
 
-                                @endforeach
+
+                                    @endforeach
                             </tbody>
                         </table>
 
