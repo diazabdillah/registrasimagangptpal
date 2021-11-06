@@ -11,7 +11,7 @@ use App\Models\Kuota;
 use App\Models\Penilaian;
 use App\Models\User;
 use App\Models\FileMhsIndiv;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -245,8 +245,12 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Penerimaan';
-            $users = DB::table('users')->where('id', '=', $id)->get();
-            $files = DB::table('file_smk_indivs')->where('user_id', '=', $id)->get();
+            $users = DB::table('users')
+                ->where('id', '=', $id)
+                ->get();
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
 
             return view('divisi.pdf-smk', [
                 'ti' => $ti,
@@ -330,9 +334,18 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
-            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $fileFoto = DB::table('foto_smk_models')->where('foto_smk_models.user_id', '=', $user_id)->get();
-            $filepdf = DB::table('file_smk_indivs')->where('file_smk_indivs.user_id', '=', $user_id)->get();
+            $userid = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->first();
+            $fileFoto = DB::table('foto_smk_models')
+                ->where('foto_smk_models.user_id', '=', $user_id)
+                ->get();
+            $filepdf = DB::table('file_smk_indivs')
+                ->where('file_smk_indivs.user_id', '=', $user_id)
+                ->get();
+            $file3x4 = DB::table('foto_i_d_smks')
+                ->where('foto_i_d_smks.user_id', '=', $user_id)
+                ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
@@ -346,7 +359,8 @@ class DivisiController extends Controller
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
-                'fileFoto' => $fileFoto
+                'fileFoto' => $fileFoto,
+                'file3x4' => $file3x4,
             ]);
         } else {
             return redirect()->back();
@@ -441,16 +455,31 @@ class DivisiController extends Controller
     //     return redirect()->back();
     // }
 
-    // public function hapusfileSmk($id, $foto)
-    // {
-    //     if (Storage::exists('public/fotosmk/' . $foto)) {
-    //         Storage::delete('public/fotosmk/' . $foto);
-    //     }
-    //     DB::table('foto_smk_models')->where('id', $id)->delete();
+    public function hapusfileSmk($id, $foto)
+    {
+        // Hapus di file storage
+        File::delete('file/' . $foto);
+        // Hapus di database
+        DB::table('foto_smk_models')
+            ->where('id', $id)
+            ->delete();
 
-    //     session()->flash('success', 'File berhasil dihapus');
-    //     return redirect()->back();
-    // }
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function hapusfotoSmk($id, $fotoID)
+    {
+        // Hapus di file storage
+        File::delete('file/' . $fotoID);
+        // Hapus di database
+        DB::table('foto_i_d_smks')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
 
     public function Kuota()
     {

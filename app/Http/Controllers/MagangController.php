@@ -936,8 +936,8 @@ class MagangController extends Controller
         File::delete('file/' . $path);
         // Hapus di database
         DB::table('file_smk_indivs')
-        ->where('id', $id)
-        ->delete();
+            ->where('id', $id)
+            ->delete();
 
         session()->flash('succes', 'File berhasil dihapus');
         return redirect('/Data_smk');
@@ -953,7 +953,7 @@ class MagangController extends Controller
                 ->get();
 
             return view('magang.openpdf-smk', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'files' => $files
             ]);
         } else {
@@ -975,7 +975,9 @@ class MagangController extends Controller
             foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
-                $file->storeAs('public/file', $Namafoto);
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file';
+                $file->move($tujuan_upload, $Namafoto);
 
                 FotoIDSmks::create([
                     'user_id' => Auth::user()->id,
@@ -989,16 +991,18 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    // public function hapusFotoSmk($id, $fotoID)
-    // {
-    //     if (Storage::exists('public/file' . $fotoID)) {
-    //         Storage::delete('public/file' . $fotoID);
-    //     }
-    //     DB::table('foto_i_d_smks')->where('id', $id)->delete();
+    public function hapusFotoSmk($id, $fotoID)
+    {
+        // Hapus di file storage
+        File::delete('file/' . $fotoID);
+        // Hapus di database
+        DB::table('foto_i_d_smks')
+            ->where('id', $id)
+            ->delete();
 
-    //     session()->flash('success', 'File berhasil dihapus');
-    //     return redirect('/Dokumen_smk_upload');
-    // }
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect('/Dokumen_smk_upload');
+    }
 
     public function Data_smk_kelompok()
     {
@@ -1067,30 +1071,32 @@ class MagangController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
-                $file->storeAs('public/file', $Namafoto);
+                $tujuan_upload = 'file';
+                $file->move($tujuan_upload, $Namafoto);
 
                 FotoSmkModels::create([
                     'user_id' => Auth::user()->id,
                     'foto' => $Namafoto,
                 ]);
             }
-
             session()->flash('success', 'Upload foto berhasil');
             return redirect('/Dokumen_smk_upload');
         }
         return redirect()->back();
     }
 
-    // public function hapus_dok_smk($id, $foto)
-    // {
-    //     if (Storage::exists('public/file' . $foto)) {
-    //         Storage::delete('public/file' . $foto);
-    //     }
-    //     DB::table('foto_smk_models')->where('id', $id)->delete();
+    public function hapus_dok_smk($id, $foto)
+    {
+        // Hapus di file storage
+        File::delete('file/' . $foto);
+        // Hapus di database
+        DB::table('file_smk_models')
+            ->where('id', $id)
+            ->delete();
 
-    //     session()->flash('success', 'File berhasil dihapus');
-    //     return redirect('/Dokumen_smk');
-    // }
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect('/Dokumen_smk');
+    }
 
     public function Absen_smk()
     {

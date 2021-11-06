@@ -30,7 +30,7 @@
 
                                         @foreach ($showImage as $img)
                                         <div class="form-group">
-                                            <img src="{{ asset('/storage/public/fotosmk/' . $img->foto) }}" alt="Foto" class="img-thumbnail mt-2" width="135">
+                                            <img src="{{ asset('file/' . $img->foto) }}" alt="Foto" class="img-thumbnail mt-2" width="135">
                                         </div>
                                         @endforeach
                                         <div class="form-group mt-4">
@@ -75,7 +75,7 @@
                                 @foreach ($fotoID as $imgid)
                                 <div class="col-sm-3 mb-3">
                                     <div class="card">
-                                        <img src="{{ asset('/storage/public/fotoIDSmk/' . $imgid->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <img src="{{ asset('file/' . $imgid->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
                                         <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('Dokumen_smk_upload/' . $imgid->id, $imgid->fotoID) }}"><i class="far fa-trash-alt p-1"></i></a>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         @foreach ($files as $file)
-                        <embed class="mt-3" type="application/pdf" src="{{ asset('/storage/public/filesmk/' . $file->path) }}" width="100%" height="400"></embed>
+                        <embed class="mt-3" type="application/pdf" src="{{ asset('file/' . $file->path) }}" width="100%" height="400"></embed>
                         @endforeach
                     </div>
                 </div>
