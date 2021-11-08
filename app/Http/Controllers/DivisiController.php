@@ -100,7 +100,7 @@ class DivisiController extends Controller
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.id', 'users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah')
+                ->select('users.id', 'users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.nim')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -113,7 +113,7 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
-    
+
     public function proses_penerimaan_smk($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -141,12 +141,13 @@ class DivisiController extends Controller
 
     public function updatePenerimaan(Request $request, $id)
     {
-        DB::table('users')->where('id', $id)
+        DB::table('users')
+            ->where('id', $id)
             ->update([
                 'role_id' => $request->role_id
             ]);
 
-        session()->flash('succes', 'Setatus penerimaan berhasil di proses');
+        session()->flash('succes', 'Status penerimaan berhasil diproses');
         return redirect('/Penerimaan');
     }
 
@@ -157,7 +158,7 @@ class DivisiController extends Controller
                 'role_id' => $request->role_id
             ]);
 
-        session()->flash('succes', 'Setatus penerimaan berhasil di proses');
+        session()->flash('succes', 'Status penerimaan berhasil di proses');
         return redirect('/Penerimaan');
     }
 
@@ -188,7 +189,9 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Penerimaan';
-            $users = DB::table('users')->where('id', '=', $id)->get();
+            $users = DB::table('users')
+                ->where('id', '=', $id)
+                ->get();
             $files = FileMhsIndiv::find($id);
 
             return view('divisi.pdf-mhs', [
@@ -226,7 +229,7 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
-            
+
             $users = DB::table('users')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
                 ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
@@ -772,5 +775,65 @@ class DivisiController extends Controller
 
         session()->flash('success', 'Data berhasil dihapus');
         return redirect()->back();
+    }
+
+    public function interview()
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Magang Interview';
+
+            $users = DB::table('users')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'users.name', 'users.status_user', 'user_role.role', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.user_id', 'data_mhs_indivs.strata')
+                ->where('users.role_id', '=', 16)
+                ->get();
+
+            $usersSmk = DB::table('users')
+            ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+            ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+            ->select('users.id', 'users.name', 'users.status_user', 'user_role.role', 'data_smk_indivs.nama', 'data_smk_indivs.user_id')
+            ->where('users.role_id', '=', 18)
+            ->get();
+
+            return view('divisi.magang_interview', [
+                'ti' => $ti,
+                'users' => $users,
+                'usersSmk' => $usersSmk,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function terimainterviewmhs($user_id)
+    {
+
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Hasil Interview';
+            $userid = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->first();
+            $filepengajuan = DB::table('file_mhs_indivs')
+                ->where('file_mhs_indivs.user_id', '=', $user_id)
+                ->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->leftJoin('interview', 'data_mhs_indivs.id', '=', 'interview.user_id')
+                ->select('interview.id', 'interview.fileinterview', 'users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.terima-interview-mhs', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepengajuan' => $filepengajuan
+            ]);
+        } else {
+            return redirect()->back();
+        }
     }
 }

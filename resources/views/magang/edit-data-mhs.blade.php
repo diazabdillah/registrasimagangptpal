@@ -23,9 +23,13 @@
                             <div class="card-body">
                                 <h5 class="card-title mt-2">Edit Data</h5>
 
-                                <form method="POST" action="/edit-data-mhsInd/{{ $data->id }}">
+                                <form method="POST" action="/edit-data-mhs/{{ $data->id }}">
                                     @method('put')
                                     @csrf
+                                    <div class="form-group">
+                                        <small class="ml-2">Nama Anda</small>
+                                        <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}">
+                                    </div>
                                     <!-- Input Univ -->
                                     <div class="form-group">
                                         <small class="ml-2">Universitas</small>
@@ -45,13 +49,15 @@
                                         <small class="ml-2">Alamat Rumah</small>
                                         <input type="text" class="form-control" id="alamat_rumah" name="alamat_rumah" value="{{ $data->alamat_rumah }}">
                                     </div>
-
                                     <!-- Input No HP -->
                                     <div class="form-group">
                                         <small class="ml-2">Nomer Hp</small>
                                         <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $data->no_hp }}">
                                     </div>
-
+                                    <div class="form-group">
+                                        <small class="ml-2">Nim</small>
+                                        <input type="text" class="form-control" id="nim" name="nim" value="{{ $data->nim }}">
+                                    </div>
                                     <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i class="fas fa-paper-plane"></i></button>
                                 </form>
                             </div>

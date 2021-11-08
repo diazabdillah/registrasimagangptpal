@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
-use \Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DataMhsIndiv;
 use App\Models\Laporan;
@@ -17,6 +16,7 @@ use App\Models\FileMhskel;
 use App\Models\FileSmkIndivs;
 use App\Models\FotoIDMhs;
 use App\Models\FotoIDSmks;
+use App\models\Interview;
 use App\Models\Absenmhs;
 use App\Models\AbsenIndivsTabel;
 use App\Models\DataMhsKelompoks;
@@ -75,7 +75,7 @@ class MagangController extends Controller
 
         DataMhsIndiv::create([
             'user_id' => Auth::user()->id,
-            'nama' => Auth::user()->name,
+            'nama' => $request->nama,
             'univ' => $request->univ,
             'strata' => $request->strata,
             'jurusan' => $request->jurusan,
@@ -84,7 +84,7 @@ class MagangController extends Controller
             'nim' => $request->nim,
         ]);
 
-        session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
+        session()->flash('succes', 'Terima kasih telah mengirimkan data Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi data magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
         return redirect('/data-mhs');
     }
 
@@ -111,14 +111,16 @@ class MagangController extends Controller
         DB::table('data_mhs_indivs')
             ->where('id', $id)
             ->update([
+                'nama' => $request->nama,
                 'univ' => $request->univ,
                 'strata' => $request->strata,
                 'jurusan' => $request->jurusan,
                 'alamat_rumah' => $request->alamat_rumah,
                 'no_hp' => $request->no_hp,
+                'nim' => $request->nim,
             ]);
 
-        session()->flash('succes', 'Data anda berhasil di update');
+        session()->flash('succes', 'Data Anda berhasil diperbarui');
         return redirect('data-mhs');
     }
 
@@ -158,7 +160,7 @@ class MagangController extends Controller
                 ]);
             }
 
-            session()->flash('succes', 'Terimakasih telah mengirimkan file anda selanjutnya akan kami proses');
+            session()->flash('succes', 'Terimakasih telah mengirimkan berkas magang Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi data magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
             return redirect('/data-mhs');
         }
         return redirect()->back();
@@ -193,6 +195,83 @@ class MagangController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function interview_mhs()
+    {
+        if (auth()->user()->role_id == 16) {
+            $id = Auth::user()->id;
+            $users = DB::table('data_mhs_indivs')
+                ->leftjoin('interview', 'data_mhs_indivs.id', '=', 'interview.user_id')
+                ->select('data_mhs_indivs.nama', 'data_mhs_indivs.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'interview.fileinterview')
+                ->where('data_mhs_indivs.user_id', '=', $id)
+                ->get();
+            $ti = 'Interview';
+            return view('magang.interview-mhs', [
+                'ti' => $ti,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function interview_mhs_upload($id)
+    {
+        if (auth()->user()->role_id == 16) {
+
+            $user = DataMhsIndiv::find($id);
+            $ti = 'Upload Hasil Interview';
+            return view('magang.interview-mhs-upload', [
+                'ti' => $ti,
+                'user'=> $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_interview_mhs_upload($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
+        $request->validate([
+            'tipe_kepribadian' => 'required',
+            'introvet' => 'required',
+            'ekstrovet' => 'required',
+            'visioner' => 'required',
+            'realistik' => 'required',
+            'emosional' => 'required',
+            'rasional' => 'required',
+            'perencanaan' => 'required',
+            'improvisasi' => 'required',
+            'tegas' => 'required',
+            'waspada' => 'required',
+            'fileinterview' => 'required',
+        ]);
+
+        $file = $request->file('file/interview-mhs/');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file';
+        $file->move($tujuan_upload, $nama_file);
+
+        Interview::create([
+            'user_id' => $user->id,
+            'tipe_kepribadian' => $request->tipe_kepribadian,
+            'ekstrovet' => $request->ekstrovet,
+            'introvet' => $request->introvet,
+            'visioner'=> $request->visioner,
+            'realistik' => $request->realistik,
+            'emosional' => $request->emosional,
+            'rasional' => $request->rasional,
+            'perencanaan' => $request->perencanaan,
+            'improvisasi' => $request->improvisasi,
+            'tegas' => $request->tegas,
+            'waspada' => $request->waspada,
+            'fileinterview' => $nama_file,
+        ]);
+
+        session()->flash('succes', 'Terimakasih telah mengirimkan hasil tes kepribadian anda selanjutnya akan kami proses');
+        return redirect('/interview-mhs');
     }
 
     public function Profil_mhs()

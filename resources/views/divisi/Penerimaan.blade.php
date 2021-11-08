@@ -43,8 +43,7 @@
                                                 <td class="text-center">{{ $u->name }}</td>
                                                 <td class="text-center"><span class="badge badge-primary p-2">{{ $u->status_user }}</span></td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses_penerimaan/' . $u->id) }}">Detail
-                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                    <a class="badge badge-success p-2" href="{{ url('proses_penerimaan/' . $u->id) }}">Detail <i class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -13,16 +13,8 @@
 
             <div class="card shadow mb-4">
                 <div class="card">
-                    <div class="card-header">
-                        @foreach ($users as $user)
-                        <a class="badge badge-success" href="{{url('proses_penerimaan/' . $user->id)}}"><i class="fas fa-eye ml-1"></i> Back</a> <br> <br>
-                        File <span class="badge badge-danger ml-2 p-2">{{ $user->name }}</span>
-                        @endforeach
-                    </div>
                     <div class="card-body">
-
-                        <embed class="mt-3" type="application/pdf" src="{{ asset('/file/'.$files->path) }}" width="100%" height="400"></embed>
-
+                        <embed class="mt-3" type="application/pdf" src="{{ asset('file/berkas-mahasiswa/'.$files->path) }}" width="100%" height="600"></embed>
                     </div>
                 </div>
             </div>

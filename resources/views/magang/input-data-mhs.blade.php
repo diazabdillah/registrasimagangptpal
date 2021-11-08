@@ -26,6 +26,10 @@
 
                                 <form method="POST" action="/input-data-mhs">
                                     @csrf
+                                    <div class="form-group">
+                                        <small class="ml-2">Nama Anda</small>
+                                        <input type="text" class="form-control" id="nama" name="nama">
+                                    </div>
                                     <!-- Input Univ -->
                                     <div class="form-group">
                                         <small class="ml-2">Universitas</small>

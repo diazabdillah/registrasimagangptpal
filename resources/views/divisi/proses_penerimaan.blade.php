@@ -23,8 +23,8 @@
                             </div>
                             @foreach ($users as $user)
                             <div class="card-body">
-
-                                <h5 class="card-title"><b>Nama :</b> {{ $user->nama }}</h5>
+                                <h3 class="card-title"><b>Nama :</b> {{ $user->nama }}</h3>
+                                <h5 class="card-title"> {{ $user->nim }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
@@ -39,16 +39,8 @@
                                 <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
                                     {{ $user->no_hp }}
                                 </li>
-                                <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
-                                    {{ $user->divisi }}
-                                </li>
-                                <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
-                                    {{ $user->departemen }}
-                                </li>
-                                @endforeach
-
-
                             </ul>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -58,7 +50,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">File Calon Magang</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Berkas Calon Magang</h6>
                             </div>
 
                             <ul class="list-group list-group-flush">
@@ -89,9 +81,7 @@
                                     <div class="input-group">
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
-
-                                            <option value="11">Menu Dokumen MHS (Diterima)</option>
-                                            <option value="3">Magang Aktif (Resmi Diterima)</option>
+                                            <option value="16">Magang Interview</option>
                                             <option value="0">Kuota Penuh</option>
                                         </select>
 
@@ -101,8 +91,7 @@
                                     </div>
                                 </form>
                                 <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
-                                    <strong>Pilih Tindakan Penerimaan</strong> berungsi untuk meneruskan proses apakah
-                                    pendaftar tersebut diterima atau tidak
+                                    <strong>Pilih Tindakan Penerimaan</strong> berungsi untuk meneruskan proses apakah pendaftar tersebut diterima atau tidak
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

@@ -13,10 +13,10 @@ class CreateInterviewTabel extends Migration
      */
     public function up()
     {
-        Schema::create('interview_tabel', function (Blueprint $table) {
+        Schema::create('interview', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('file');
+            $table->string('fileinterview');
             $table->string('tipe_kepribadian');
             $table->integer('ekstrovet');
             $table->integer('introvet');
