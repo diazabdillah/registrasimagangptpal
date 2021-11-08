@@ -9,76 +9,100 @@
         <div class="col-lg">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
-
-            @if (session()->has('succes'))
+            <h1 class="h3 mb-2 text-gray-800 mb-3"><b>{{ $ti }}</b></h1>
+            @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
-                {{ session()->get('succes') }}
+                {{ session()->get('success') }}
             </div>
             @endif
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card shadow mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title mt-2">Data</h5>
-                                <p class="card-text"><small>Setelah membuat akun mohon lengkapi data berikut dengan
-                                        benar untuk pemerosesan seleksi berkas</small></p>
-
-                                <form>
-                                    <!-- Input Alamat Rumah -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Alamat Sekolah</small>
-                                        <input type="text" class="form-control" id="alamat_rumah" name="alamat_rumah">
-                                    </div>
-                                    <!-- Input Univ -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Nama Sekolah</small>
-                                        <input type="text" class="form-control" id="univ" name="univ">
-                                    </div>
-
-                                    <!-- Input No HP -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Nomer Hp</small>
-                                        <input type="text" class="form-control" id="no_hp" name="no_hp">
-                                    </div>
-                                    <!-- Input Jurusan -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Jurusan</small>
-                                        <input type="text" class="form-control" id="strata" name="jurusan">
-                                    </div>
-
-
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i class="fas fa-paper-plane"></i></button>
-                            </div>
-                        </div>
+            {{-- Data yang sudah masuk --}}
+            <div class="card shadow mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        Data Pemagang
                     </div>
-                </div>
+                    <div class="card-body">
 
-                <div class="col-sm-6">
-                    <div class="card shadow mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title mt-2">File</h5>
-                                <p class="card-text"><small>Kirim file dalam bentuk PDF dengan maksimalukuran
-                                        2MB</small></p>
+                        <div class="alert alert-info" role="alert">
+                            <h5>Langkah 1 :</h5>
+                            <p class="card-text"><b>Klik Tambah Anggota Kelompok Anda</b><br> Silahkan klik button
+                                tambah anggota kelompok untuk mengisi data dari anggota kelompok Anda. Jika sudah
+                                mengisi data pada form data kelompok maka data kelompok Anda akan tampil pada table bawah.
+                            </p>
+                            <a href="/input-smk-kelompok" class="btn btn-primary mb-3 mr-2">Tambah Anggota Kelompok
+                                <i class="fas fa-user-plus"></i></a>
 
-                                <form>
-                                    <!-- Upload Proposal dan surat pengajuan -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Proposal</small>
-                                        <input type="file" class="form-control" name="berkas[]" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <small class="ml-2">Surat Pengajuan Magang</small>
-                                        <input type="file" class="form-control" name="berkas[]" required>
-                                    </div>
-                                    <!-- End upload Proposal dan surat pengajuan -->
-                                </form>
+                        </div>
+                        <div class="table-responsive table-hover">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr class="text-center text-white bg-primary">
+                                        <th>Nama</th>
+                                        <th>Sekolah Asal</th>
+                                        <th>Jurusan</th>
+                                        <th>Alamat Rumah</th>
+                                        <th>No.HP</th>  
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $d)
+                                    <tr class="text-center">
+                                        <td>{{ $d->nama }}</td>
+                                        <td>{{ $d->sekolah }}</td>
+                                        <td>{{ $d->jurusan }}</td>
+                                        <td>{{ $d->alamat_rumah }}</td>
+                                        <td>{{ $d->no_hp }}</td>
 
-                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i class="fas fa-paper-plane"></i></button>
-                            </div>
+                                        <td>
+                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-smkKel/' . $d->id) }}" onclick="return confirm('Yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
+                                            <a class="btn btn-danger p-1" href="{{ url('delete-data-smkKel/' . $d->id) }}" onclick="return confirm('Yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert alert-primary" role="alert">
+                            <h5>Langkah 2 :</h5>
+                            <p class="card-text"><b>Klik Upload File Calon Magang</b>
+                            </p>
+                            <p> Silahkan klik button
+                                upload file calon magang untuk kirimkan data-data kelompok anda. Jika sudah
+                                mengirim file pada form maka file data kelompok anda akan tampil di tabel bawah.
+                            </p>
+                            <a href="/berkas-smk-kel" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a> <br>
+                            <b>Kirim file berikut dalam bentuk PDF maksimal 1MB</b>
+                            <ol>
+                                <li>Proposal Magang</li>
+                                <li>Surat Pengantar Magang dari universitas</li>
+                                <li>Curriculum Vitae (jika ada)</li>
+                            </ol>
+                        </div>
+
+                        <div class="table-responsive table-hover">
+                            <a class="btn btn-danger mt-3 mb-3" href="/openpdfkel"><i class="fas fa-fw fa-file-pdf mr-2"></i>Open all file</a>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr class="text-center text-white bg-primary">
+                                        <th>File</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($files as $file)
+                                    <tr class="text-center">
+                                        <td><i class="fas fa-fw fa-file-pdf mr-3"></i>{{ $file->path }}</td>
+                                        <td>
+                                            <a class="btn btn-primary p-1" href=" {{ url('/Data_smk_lihat/' . $file->id) }}"><i class="far fa-eye"></i> Lihat</a>
+                                            <a class="btn btn-danger p-1" href="{{ url('Data_smk/' . $file->id, $file->path) }}" onclick="return confirm('yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
+
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

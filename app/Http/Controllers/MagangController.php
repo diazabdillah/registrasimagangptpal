@@ -281,11 +281,45 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
+    public function Data_smk_kelompok()
+    {
+        if (auth()->user()->role_id == 7) {
+            $ti = 'Data Pendaftaran Kelompok';
+            
+            $id = Auth::user()->id;
+            $data = DB::table('data_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.data-smk-kelompok', [
+                'ti' => $ti,
+                'data' => $data,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function inputDataMhsKel()
     {
         if (auth()->user()->role_id == 6) {
             $ti = 'Form Data Mahasiswa Kelompok';
             return view('magang.input-data-mhskel', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function inputDataSmkKel()
+    {
+        if (auth()->user()->role_id == 7) {
+            $ti = 'Form Data SMK Kelompok';
+            return view('magang.input-data-smkkel', ['ti' => $ti]);
         } else {
             return redirect()->back();
         }
@@ -314,6 +348,28 @@ class MagangController extends Controller
         ]);
         session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
         return redirect('/data-mhs-kelompok');
+    }
+
+    public function proses_data_smkKelompok(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'sekolah' => 'required',
+            'jurusan' => 'required',
+            'alamat_rumah' => 'required',
+            'no_hp' => 'required|max:14',
+        ]);
+
+        DataSmkIndivs::create([
+            'user_id' => Auth::user()->id,
+            'nama' => $request->nama,
+            'sekolah' => $request->sekolah,
+            'jurusan' => $request->jurusan,
+            'alamat_rumah' => $request->alamat_rumah,
+            'no_hp' => $request->no_hp,
+        ]);
+        session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
+        return redirect('/data-smk-kelompok');
     }
 
     public function file_mhs_kelompok()
@@ -415,6 +471,24 @@ class MagangController extends Controller
         }
     }
 
+    public function editDataSmkKel($id)
+    {
+        if (auth()->user()->role_id == 7) {
+
+            $ti = 'Data SMK';
+            $data = DB::table('data_smk_indivs')
+                ->where('id', $id)
+                ->first();
+
+            return view('magang.edit-data-smkkel', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function updateDataMhskel(Request $request, $id)
     {
         DB::table('data_mhs_indivs')
@@ -430,8 +504,25 @@ class MagangController extends Controller
                 'departemen' => $request->departemen
             ]);
 
-        session()->flash('succes', 'Data anda berhasil di update');
+        session()->flash('succes', 'Data Mahasiswa berhasil diperbarui');
         return redirect('/data-mhs-kelompok');
+    }
+
+    public function updateDataSmkKel(Request $request, $id)
+    {
+        DB::table('data_smk_indivs')
+            ->where('id', $id)
+            ->update([
+                'user_id' => Auth::user()->id,
+                'nama' => $request->nama,
+                'sekolah' => $request->sekolah,
+                'jurusan' => $request->jurusan,
+                'alamat_rumah' => $request->alamat_rumah,
+                'no_hp' => $request->no_hp,
+            ]);
+
+        session()->flash('succes', 'Data Siswa berhasil diperbarui');
+        return redirect('/data-smk-kelompok');
     }
 
     public function proses_hapus_mhskelompok($id)
@@ -440,6 +531,14 @@ class MagangController extends Controller
             ->where('id', $id)
             ->delete();
         return redirect('/data-mhs-kelompok')->with('succes', 'Data Mahasiswa Berhasil DiHapus');
+    }
+
+    public function proses_hapus_smkkelompok($id)
+    {
+        DB::table('data_smk_indivs')
+            ->where('id', $id)
+            ->delete();
+        return redirect('/data-smk-kelompok')->with('succes', 'Data Siswa Berhasil DiHapus');
     }
     //end mhs kelompok
 
@@ -1016,16 +1115,6 @@ class MagangController extends Controller
 
         session()->flash('success', 'File berhasil dihapus');
         return redirect('/Dokumen_smk');
-    }
-
-    public function Data_smk_kelompok()
-    {
-        if (auth()->user()->role_id == 7) {
-            $ti = 'Data Pendaftaran Kelompok';
-            return view('magang.data-smk-kelompok', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
     }
 
     public function Dokumen_smk()

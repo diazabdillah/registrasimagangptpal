@@ -33,7 +33,7 @@
                             </div>
                             <!-- Input Nama -->
                             <div class="form-group">
-                                <small class="ml-2">Nama Lengkap</small>
+                                <small class="ml-2">Nama Kelompok</small>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
 
                                 @error('name')

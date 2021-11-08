@@ -289,12 +289,12 @@
             <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/data-smk-kelompok">
                     <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Data</span></a>
+                    <span>Data Kelompok</span></a>
             </li>
             <li class="nav-item {{ $ti === 'Data Mahasiswa' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/kuota">
+                <a class="nav-link pb-0" href="/Kuota">
                     <i class="fas fa-fw fa-file-alt"></i>
-                    <span>kuota</span></a>
+                    <span>Kuota Magang</span></a>
             </li>
             @endif
 
