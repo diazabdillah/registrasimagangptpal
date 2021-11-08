@@ -55,10 +55,10 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="card shadow mb-3">
+                    <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header">
-                                Foto
+                                <h6 class="m-0 font-weight-bold text-primary">Foto</h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -76,7 +76,6 @@
                                 <div class="col-sm-3 mb-3">
                                     <div class="card">
                                         <img src="{{ asset('file/' . $imgid->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('Dokumen_smk_upload/' . $imgid->id, $imgid->fotoID) }}"><i class="far fa-trash-alt p-1"></i></a>
                                     </div>
                                 </div>
                                 @endforeach

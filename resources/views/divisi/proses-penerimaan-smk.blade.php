@@ -68,7 +68,6 @@
                                     <div class="input-group">
                                         @foreach ($users as $data)
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
-                                            <option value="9">{{ $data->role }}</option>
                                             <option value="12">Menu Dokumen SMK (Diterima)</option>
                                             <option value="4">Magang Aktif (Resmi Diterima)</option>
                                             <option value="0">Kuota Penuh</option>

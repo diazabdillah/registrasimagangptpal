@@ -56,8 +56,16 @@
                                 @foreach ($showImage as $img)
                                 <div class="col-sm-3">
                                     <div class="card">
-                                        <img src="{{ asset('/storage/public/fotosmk/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <img src="{{ asset('file/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                         <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('Dokumen_smk/' . $img->id, $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @foreach ($showFoto as $foto)
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <img src="{{ asset('file/' . $foto->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('Dokumen_smk_upload/' . $foto->id, $foto->fotoID) }}"><i class="far fa-trash-alt p-1"></i></a>
                                     </div>
                                 </div>
                                 @endforeach

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2021 at 05:40 AM
+-- Generation Time: Nov 06, 2021 at 04:57 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -114,6 +114,13 @@ CREATE TABLE `data_smk_indivs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `data_smk_indivs`
+--
+
+INSERT INTO `data_smk_indivs` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Feri Afrianto', 'SMK', 'Teknik Komputer dan Jaringan', 'Tulungagung', '08xxx', 'Divisi 1', 'Departemen 1', '2021-11-06 07:50:16', '2021-11-06 07:50:16');
+
 -- --------------------------------------------------------
 
 --
@@ -188,6 +195,13 @@ CREATE TABLE `file_smk_indivs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `file_smk_indivs`
+--
+
+INSERT INTO `file_smk_indivs` (`id`, `user_id`, `path`, `size`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Sertifikat.pdf', '409809', '2021-11-06 07:52:31', '2021-11-06 07:52:31');
+
 -- --------------------------------------------------------
 
 --
@@ -243,6 +257,13 @@ CREATE TABLE `foto_smk_models` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `foto_smk_models`
+--
+
+INSERT INTO `foto_smk_models` (`id`, `user_id`, `foto`, `created_at`, `updated_at`) VALUES
+(2, 4, 'KTM.JPG', '2021-11-06 08:52:52', '2021-11-06 08:52:52');
 
 -- --------------------------------------------------------
 
@@ -496,7 +517,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin Registrasi Magang', 'admin@gmail.com', NULL, '$2y$10$dMmxdy2gw8AhdAW1yltsJ.cyXKLHVHATZfmB1I72ap2hZXk5Ds9oW', 1, 'individu', NULL, '2021-11-01 19:26:53', '2021-11-01 19:26:53'),
 (2, 'Jay Abdillah', 'jay@gmail.com', NULL, '$2y$10$yarF684BBSGTHmXkseEfeeQH51PX2v7O1XYcivakzbYlPVSfpxtc2', 8, 'individu', NULL, '2021-11-01 19:27:30', '2021-11-01 19:27:30'),
-(3, 'Kelompok PENS 1', 'kelompok1@gmail.com', NULL, '$2y$10$frxc.H/YLZU.6ugNzjnZguzv0RBRgRwEzOZW8acpjubg0imQuOZCi', 6, 'kelompok', NULL, '2021-11-01 19:27:48', '2021-11-01 19:27:48');
+(3, 'Kelompok PENS 1', 'kelompok1@gmail.com', NULL, '$2y$10$frxc.H/YLZU.6ugNzjnZguzv0RBRgRwEzOZW8acpjubg0imQuOZCi', 6, 'kelompok', NULL, '2021-11-01 19:27:48', '2021-11-01 19:27:48'),
+(4, 'Feri Afrianto', 'feri@gmail.com', NULL, '$2y$10$RTKZHVGIY736AdNpNRhZKO5soxAlAOPsjBZxvLWJsKeaqtACOO/fG', 12, 'individu', NULL, '2021-11-06 07:48:58', '2021-11-06 07:48:58');
 
 -- --------------------------------------------------------
 
@@ -701,7 +723,7 @@ ALTER TABLE `data_mhs_kelompoks`
 -- AUTO_INCREMENT for table `data_smk_indivs`
 --
 ALTER TABLE `data_smk_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -731,7 +753,7 @@ ALTER TABLE `file_mhs_kels`
 -- AUTO_INCREMENT for table `file_smk_indivs`
 --
 ALTER TABLE `file_smk_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `foto_i_d_mhs`
@@ -755,7 +777,7 @@ ALTER TABLE `foto_mhs_models`
 -- AUTO_INCREMENT for table `foto_smk_models`
 --
 ALTER TABLE `foto_smk_models`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -821,7 +843,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_role`

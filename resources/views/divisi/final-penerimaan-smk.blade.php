@@ -61,14 +61,13 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Proses Penerimaan</h6>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="/final-penerimaan-smk/{{ $userid->id }}">
+                                <form method="post" action="/final-penerimaan-mhs/{{ $userid->id }}">
                                     @method('put')
                                     @csrf
                                     <label class="ml-2"><b>Pilih Tindakan Final</b></label>
                                     <div class="input-group">
                                         @foreach ($users as $data)
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
-                                            <option>{{ $data->role }}</option>
                                             <option value="9">Pendaftar Magang</option>
                                             <option value="4">Magang Aktif (Resmi Diterima)</option>
                                             <option value="0">Kuota Penuh</option>

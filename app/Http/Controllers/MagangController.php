@@ -781,7 +781,21 @@ class MagangController extends Controller
     {
         if (auth()->user()->role_id == 4 or auth()->user()->role_id == 9) {
             $ti = 'Profil SMK';
-            return view('magang.Profil_smk', ['ti' => $ti]);
+            $data = DB::table('data_smk_indivs')
+                ->where('user_id', '=', Auth::user()->id)
+                ->first();
+            $data2 = DB::table('users')
+                ->where('id', '=', Auth::user()->id)
+                ->first();
+            $fileFoto = DB::table('foto_smk_models')
+                ->where('foto_smk_models.user_id', '=', Auth::user()->id)
+                ->get();
+            return view('magang.Profil_smk', [
+                'ti' => $ti,
+                'data' => $data,
+                'data2' => $data2,
+                'foto' => $fileFoto,
+            ]);
         } else {
             return redirect()->back();
         }
@@ -986,7 +1000,7 @@ class MagangController extends Controller
             }
 
             session()->flash('success', 'Upload foto berhasil');
-            return redirect('/Dokumen_smk_upload');
+            return redirect('/Dokumen_smk');
         }
         return redirect()->back();
     }
@@ -1001,7 +1015,7 @@ class MagangController extends Controller
             ->delete();
 
         session()->flash('success', 'File berhasil dihapus');
-        return redirect('/Dokumen_smk_upload');
+        return redirect('/Dokumen_smk');
     }
 
     public function Data_smk_kelompok()
@@ -1023,10 +1037,14 @@ class MagangController extends Controller
             $showImage = DB::table('foto_smk_models')
                 ->where('user_id', '=', $id)
                 ->get();
+            $showFoto = DB::table('foto_i_d_smks')
+                ->where('user_id', '=', $id)
+                ->get();
 
             return view('magang.Dokumen_smk', [
                 'ti' => $ti,
-                'showImage' => $showImage
+                'showImage' => $showImage,
+                'showFoto' => $showFoto,
             ]);
         } else {
             return redirect()->back();
@@ -1080,7 +1098,7 @@ class MagangController extends Controller
                 ]);
             }
             session()->flash('success', 'Upload foto berhasil');
-            return redirect('/Dokumen_smk_upload');
+            return redirect('/Dokumen_smk');
         }
         return redirect()->back();
     }
@@ -1090,8 +1108,8 @@ class MagangController extends Controller
         // Hapus di file storage
         File::delete('file/' . $foto);
         // Hapus di database
-        DB::table('file_smk_models')
-            ->where('id', $id)
+        DB::table('foto_smk_models')
+            ->where('id', '=', $id)
             ->delete();
 
         session()->flash('success', 'File berhasil dihapus');

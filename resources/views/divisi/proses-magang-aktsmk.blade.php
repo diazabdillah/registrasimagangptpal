@@ -22,7 +22,7 @@
                                 @foreach ($users as $user)
                                 <div class="col-sm-3 mb-3">
                                     <div class="card">
-                                        <img src="{{ asset('/storage/public/fotoIDSmk/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <img src="{{ asset('file/' . $user->fotoID) }}" class="img-thumbnail" width="135">
                                     </div>
                                 </div>
                                 <h5 class="card-title"><b>Nama :</b> {{ $user->name }}</h5>
@@ -80,7 +80,6 @@
                                     <div class="input-group">
                                         @foreach ($users as $data)
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
-                                            <option>{{ $data->role }}</option>
                                             <option value="9">Pendaftar Magang SMK</option>
                                             <option value="15">Sertifikat SMK</option>
                                             <option value="0">Magang Selesai</option>
@@ -126,8 +125,7 @@
                                 @foreach ($fileFoto as $img)
                                 <div class="col-sm-3">
                                     <div class="card">
-                                        <img src="{{ asset('/storage/public/fotosmk/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('final-penerimaan-smk/' . $img->id, $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                        <img src="{{ asset('file/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                     </div>
                                 </div>
                                 @endforeach

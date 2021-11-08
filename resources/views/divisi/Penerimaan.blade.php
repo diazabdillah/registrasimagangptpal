@@ -32,7 +32,6 @@
                                             <tr class="text-center">
                                                 <th>No.</th>
                                                 <th>Nama</th>
-
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -78,10 +77,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @php $no = 1; @endphp --}}
+                                            <?php
+                                                $no = 0;
+                                            ?>
                                             @foreach ($dataSmk as $dsmk)
                                             <tr>
-                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ ++$no }}.</td>
                                                 <td>{{ $dsmk->nama }}</td>
                                                 <td>{{ $dsmk->sekolah }}</td>
                                                 <td>{{ $dsmk->jurusan }}</td>

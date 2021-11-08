@@ -60,7 +60,6 @@
                                         <small class="ml-2">Pilih Divisi</small>
                                         <div class="input-group mb-3">
                                             <select class="custom-select" name="divisi">
-                                                <option>{{ $data->divisi }}</option>
                                                 <option value="Divisi 1">Divisi 1</option>
                                                 <option value="Divisi 2">Divisi 2</option>
                                                 <option value="Divisi 3">Divisi 3</option>
@@ -73,7 +72,6 @@
                                         <small class="ml-2">Pilih Departemen</small>
                                         <div class="input-group mb-3">
                                             <select class="custom-select" name="departemen">
-                                                <option>{{ $data->departemen }}</option>
                                                 <option value="Departemen 1">Departemen 1</option>
                                                 <option value="Departemen 2">Departemen 2</option>
                                                 <option value="Departemen 3">Departemen 3</option>
