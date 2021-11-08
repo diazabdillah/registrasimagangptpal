@@ -6,6 +6,7 @@ use App\Models\AbsenIndivsTabel;
 use Illuminate\Http\Request;
 use App\Models\MulaiDanSelesaiMhs;
 use App\Models\DataMhsIndiv;
+use App\Models\DataSmkIndivs;
 use App\Models\Absenmhs;
 use App\Models\Kuota;
 use App\Models\Penilaian;
@@ -709,27 +710,23 @@ class DivisiController extends Controller
         return redirect('/penilaian');
     }
 
-    public function Absen_mhs()
+    public function Absen()
     {
-        $id = Auth::user()->id;
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        $mahasiswa = DB::table('users')
+            ->where('role_id', '=', 3)
+            ->get();
+        
+        $smk = DB::table('users')
+            ->where('role_id', '=', 4)
+            ->get();
 
-            $users = DB::table('users')
-                ->get();
+        $ti = 'Absensi';
+        return view('divisi.absen', [
+            'ti' => $ti,
+            'mahasiswa' => $mahasiswa,
+            'smk' => $smk,
 
-            // dd($users);
-
-            $id = 1;
-            $ti = 'Absensi';
-            return view('divisi.absenmhs', [
-                'ti' => $ti,
-                'id' => $id,
-                'users' => $users,
-
-            ]);
-        } else {
-            return redirect()->back();
-        }
+        ]);
     }
 
     public function tambah_absenmhs($id)
@@ -742,9 +739,40 @@ class DivisiController extends Controller
         ]);
     }
 
+    public function tambah_absensmk($id)
+    {
+        $user = User::find($id);
+        $ti = 'Tambah Absensi';
+        return view('divisi.tambah_absensmk', [
+            'ti' => $ti,
+            'user' => $user,
+        ]);
+    }
+
     public function proses_absenmhs($id, Request $request)
     {
         $user = DataMhsIndiv::where('user_id', '=', $id)->get();
+
+        $absen = new Absenmhs;
+        $absen->user_id = $id;
+        $absen->waktu_awal = $request->waktu_awal;
+        $absen->waktu_akhir = $request->waktu_akhir;
+        $absen->save();
+
+        foreach ($user as $u) {
+            $absen_indiv = new AbsenIndivsTabel;
+            $absen_indiv->id_absen = $absen->id;
+            $absen_indiv->id_individu = $u->id;
+            $absen_indiv->status_absen = "Belum Absen";
+            $absen_indiv->save();
+        }
+
+        return redirect('/absen');
+    }
+
+    public function proses_absensmk($id, Request $request)
+    {
+        $user = DataSmkIndivs::where('user_id', '=', $id)->get();
 
         $absen = new Absenmhs;
         $absen->user_id = $id;

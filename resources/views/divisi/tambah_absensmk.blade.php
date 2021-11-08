@@ -12,7 +12,7 @@
                 <p class="card-text"><small>Mohon diisi waktu awal dan waktu akhir untuk calon magang</small>
                 </p>
 
-                <form method="POST" action="{{ route('tambahabsenmhs', [$user->id]) }}">
+                <form method="POST" action="{{ route('tambahabsensmk', [$user->id]) }}">
                     @csrf
                     <!-- Input Univ -->
                     <div class="form-group">

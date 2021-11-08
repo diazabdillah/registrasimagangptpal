@@ -97,10 +97,11 @@ Route::get('/cetakRekapKelompokEXCEL', [AdminController::class, 'cetak_rekap_kel
 
 // Halaman Divisi ========================
 Route::get('/Penerimaan', [DivisiController::class, 'index']);
-Route::get('/absen', [DivisiController::class, 'Absen_mhs']);
+Route::get('/absen', [DivisiController::class, 'Absen']);
 Route::get('/tambah_absenmhs/{id}', [DivisiController::class, 'tambah_absenmhs']);
-Route::post('/proses_absenmhs/{id}', [DivisiController::class, 'proses_absenmhs'])->name('tambahabsen');
-
+Route::get('/tambah_absensmk/{id}', [DivisiController::class, 'tambah_absensmk']);
+Route::post('/proses_absenmhs/{id}', [DivisiController::class, 'proses_absenmhs'])->name('tambahabsenmhs');
+Route::post('/proses_absensmk/{id}', [DivisiController::class, 'proses_absensmk'])->name('tambahabsensmk');
 Route::get('/magang-aktif', [DivisiController::class, 'showMagangAktif']);
 Route::get('/kuota', [DivisiController::class, 'Kuota']);
 Route::get('/tambah_kuota', [DivisiController::class, 'tambah_kuota']);
@@ -224,6 +225,7 @@ Route::post('/Dokumen_smk_upload', [MagangController::class, 'uploadDocFotoSmk']
 Route::post('/Dokumen_smk', [MagangController::class, 'upFotoSmk'])->name('upFotoSmk');
 Route::get('/Profil_smk', [MagangController::class, 'Profil_smk']);
 Route::get('/Absen_smk', [MagangController::class, 'Absen_smk']);
+Route::get('/proses_absensmk/{absenid}/{individ}', [MagangController::class, 'proses_absensmk']);
 Route::get('/id_card_smk', [MagangController::class, 'id_card_smk']);
 Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);
 Route::get('/data-smk-kelompok', [MagangController::class, 'Data_smk_kelompok']);
