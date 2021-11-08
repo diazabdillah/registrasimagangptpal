@@ -32,29 +32,22 @@ class DivisiController extends Controller
 
             $users = DB::table('users')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id')
-                ->where('users.role_id', '=', 8)
-                ->orWhere('users.role_id', '=', 6)
+                ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->where('users.role_id', '=', 6)
+                ->orWhere('users.role_id', '=', 8)
                 ->get();
 
-            $data = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->select('users.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.user_id')
-                ->where('users.role_id', '=', 8)
-                ->orWhere('users.role_id', '=', 6)
-                ->get();
-
-            $dataSmk = DB::table('users')
-                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->select('users.id', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
-                ->where('users.role_id', '=', 9)
+            $usersSmk = DB::table('users')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->where('users.role_id', '=', 7)
+                ->orWhere('users.role_id', '=', 9)
                 ->get();
 
             return view('divisi.Penerimaan', [
                 'ti' => $ti,
-                'data' => $data,
-                'dataSmk' => $dataSmk,
-                'users' => $users
+                'users' => $users,
+                'usersSmk' => $usersSmk,
 
             ])->with('i', ($request->input('page', 1) - 1) * $pagination);
         } else {
@@ -101,68 +94,45 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Penerimaan';
-            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
+            $filepdf = DB::table('file_mhs_indivs')
+                ->where('file_mhs_indivs.user_id', '=', $user_id)
+                ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
             return view('divisi.proses_penerimaan', [
                 'ti' => $ti,
                 'users' => $users,
-                'userid' => $userid,
                 'filepdf' => $filepdf
             ]);
         } else {
             return redirect()->back();
         }
     }
-    public function proses_penerimaan_mhskel($user_id)
-    {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Penerimaan';
-            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $filepdf = DB::table('file_mhs_kels')->where('file_mhs_kels.user_id', '=', $user_id)->get();
-
-            $users = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
-                ->where('users.id', '=', $user_id)
-                ->get();
-
-            return view('divisi.proses_penerimaan_mhskel', [
-                'ti' => $ti,
-                'users' => $users,
-                'userid' => $userid,
-                'filepdf' => $filepdf
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
     public function proses_penerimaan_smk($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Penerimaan';
-            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $filepdf = DB::table('file_smk_indivs')->where('file_smk_indivs.user_id', '=', $user_id)->get();
+            $filepdf = DB::table('file_smk_indivs')
+                ->where('file_smk_indivs.user_id', '=', $user_id)
+                ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.name', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id')
+                ->select('users.id', 'user_role.role', 'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
             return view('divisi.proses-penerimaan-smk', [
                 'ti' => $ti,
                 'users' => $users,
-                'userid' => $userid,
                 'filepdf' => $filepdf
             ]);
         } else {
@@ -171,16 +141,6 @@ class DivisiController extends Controller
     }
 
     public function updatePenerimaan(Request $request, $id)
-    {
-        DB::table('users')->where('id', $id)
-            ->update([
-                'role_id' => $request->role_id
-            ]);
-
-        session()->flash('succes', 'Setatus penerimaan berhasil di proses');
-        return redirect('/Penerimaan');
-    }
-    public function updatePenerimaanmhskel(Request $request, $id)
     {
         DB::table('users')->where('id', $id)
             ->update([
@@ -250,7 +210,7 @@ class DivisiController extends Controller
                 ->where('id', '=', $id)
                 ->get();
             $files = DB::table('file_smk_indivs')
-                ->where('user_id', '=', $id)
+                ->where('id', '=', $id)
                 ->get();
 
             return view('divisi.pdf-smk', [
@@ -263,31 +223,27 @@ class DivisiController extends Controller
         }
     }
 
-    public function showDiterima(Request $request)
+    public function showDiterima()
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
+            
             $users = DB::table('users')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.id', 'users.name', 'user_role.role')
-                ->where('users.role_id', '=', 11)
-                ->get();
-            $datas = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->select('users.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.user_id', 'data_mhs_indivs.strata')
+                ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 11)
                 ->get();
 
-            $dataSmk = DB::table('users')
-                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->select('users.id', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
+            $usersSmk = DB::table('users')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'user_role.role', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 12)
                 ->get();
 
             return view('divisi.diterima', [
                 'ti' => $ti,
-                'datas' => $datas,
-                'dataSmk' => $dataSmk,
+                'users' => $users,
+                'usersSmk' => $usersSmk,
                 'users' => $users,
             ]);
         } else {
@@ -715,7 +671,7 @@ class DivisiController extends Controller
         $mahasiswa = DB::table('users')
             ->where('role_id', '=', 3)
             ->get();
-        
+
         $smk = DB::table('users')
             ->where('role_id', '=', 4)
             ->get();

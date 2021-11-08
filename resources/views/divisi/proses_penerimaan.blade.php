@@ -27,14 +27,17 @@
                                 <h5 class="card-title"><b>Nama :</b> {{ $user->nama }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
-                                    {{ $user->no_hp }}
-                                </li>
                                 <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
                                     {{ $user->univ }}
                                 </li>
                                 <li class="list-group-item"><i class="fas fa-fw fa-graduation-cap mr-3"></i>
-                                    {{ $user->strata }}
+                                    {{ $user->strata }} {{ $user->jurusan }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-home mr-3"></i>
+                                    {{ $user->alamat_rumah }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
+                                    {{ $user->no_hp }}
                                 </li>
                                 <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                     {{ $user->divisi }}
@@ -72,7 +75,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-sm-12">
                     <div class="card shadow mb-4">
                         <div class="card">
@@ -80,7 +82,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Proses Penerimaan</h6>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="/proses_penerimaan/{{ $userid->id }}">
+                                <form method="POST" action="/proses_penerimaan/{{ $user->id }}">
                                     @method('put')
                                     @csrf
                                     <label class="ml-2"><b>Pilih Tindakan Penerimaan</b></label>

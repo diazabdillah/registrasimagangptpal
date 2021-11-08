@@ -61,7 +61,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 14) {
                 return redirect('/sertifikat_mhs')->with('success', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
             } elseif (auth()->user()->role_id == 16) {
-                return redirect('/testinterview')->with('success','you are now logged in');
+                return redirect('/testinterview')->with('success', 'you are now logged in');
             }
         }
 
