@@ -148,6 +148,21 @@ Route::get('/id-card', [PenelitianController::class, 'idCard']);
 // Penelitian ================================
 
 // Halaman Magang Mahasiswa ==================
+Route::get('/data-mhs', [MagangController::class, 'data_mhs']);
+Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
+
+Route::get('/input-data-mhs', [MagangController::class, 'input_data_mhs']);
+Route::post('/input-data-mhs', [MagangController::class, 'proses_data_mhs']);
+
+Route::get('/edit-data-mhs/{id}', [MagangController::class, 'edit_data_mhs']);
+Route::put('/edit-data-mhs/{id}', [MagangController::class, 'update_data_mhs']);
+
+Route::get('/berkas-mhs', [MagangController::class, 'berkas_mhs']);
+Route::post('/berkas-mhs', [MagangController::class, 'proses_berkas_mhs']);
+Route::get('/berkas-mhs/{id}/{path}', [MagangController::class, 'proses_hapus_berkas']);
+
+Route::get('/berkas-mhs-semua', [MagangController::class, 'berkas_mhs_semua']);
+
 Route::get('/laporan_mhs', [MagangController::class, 'laporan']);
 Route::get('/upload_laporan', [MagangController::class, 'upload_laporan']);
 Route::post('/proses_laporan', [MagangController::class, 'proses_laporan'])->name('proseslaporan');
@@ -157,18 +172,13 @@ Route::put('/proseseditfilelaporan/{id}', [MagangController::class, 'proseseditl
 
 Route::get('/Profil_mhs', [MagangController::class, 'Profil_mhs']);
 
-Route::get('/Data_mhs', [MagangController::class, 'Data_mhs']);
-Route::get('/Data_mhs/{id}/{path}', [MagangController::class, 'proses_hapus_file']);
+
 Route::get('/Data_mhs_lihat/{id}', [MagangController::class, 'liat_file']);
-Route::get('/openpdf', [MagangController::class, 'OpenPDF']);
+
 Route::get('/openpdfkel', [MagangController::class, 'OpenPDFkel']);
 
-Route::get('/input-data-mhsInd', [MagangController::class, 'inputDataMhs']);
-Route::post('/input-data-mhsInd', [MagangController::class, 'proses_data_mhs'])->name('upload');
-Route::get('/edit-data-mhsInd/{id}', [MagangController::class, 'editDataMhs']);
-Route::put('/edit-data-mhsInd/{id}', [MagangController::class, 'updateDataMhs']);
-Route::get('/berkas-mhs-indiv', [MagangController::class, 'file_mhs']);
-Route::post('/berkas-mhs-indiv', [MagangController::class, 'proses_file_mhs'])->name('file');
+
+
 
 Route::get('/Dokumen_mhs', [MagangController::class, 'Dokumen_mhs']);
 Route::get('/Dokumen_mhs/{id}/{foto}', [MagangController::class, 'hapus_dok_mhs']);
@@ -191,7 +201,7 @@ Route::get('/idcard-mhs-savepdf', [MagangController::class, 'idCardMhsSavePdf'])
 Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
 Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);
 // data mahasiswa kelompok
-Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
+
 Route::get('/input-mhs-kelompok', [MagangController::class, 'inputDataMhsKel']);
 Route::post('/input-mhs-kelompok', [MagangController::class, 'proses_data_mhsKelompok'])->name('uploadkel');
 Route::get('/berkas-mhs-kel', [MagangController::class, 'file_mhs_kelompok']);

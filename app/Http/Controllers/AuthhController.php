@@ -45,11 +45,11 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 6) {
                 return redirect('/data-mhs-kelompok')->with('success', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 7) {
-                return redirect('/data-smk-kelompok')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-smk-kelompok')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah dilengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 8) {
-                return redirect('/Data_mhs')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-mhs')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah dilengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 9) {
-                return redirect('/Data_smk')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/Data_smk')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah dilengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 10) {
                 return redirect('/regis-step2')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 11) {
@@ -62,6 +62,8 @@ class AuthhController extends Controller
                 return redirect('/sertifikat_mhs')->with('success', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
             } elseif (auth()->user()->role_id == 16) {
                 return redirect('/testinterview')->with('success', 'you are now logged in');
+            } elseif (auth()->user()->role_id == 17) {
+                return redirect('/admindivisi')->with('success','you are now logged in');
             }
         }
 
@@ -107,7 +109,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 6,
-            'status_user' => 'kelompok',
+            'status_user' => 'Kelompok',
             'rememberToken' => str::random(60)
         ]);
 
@@ -137,7 +139,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 8,
-            'status_user' => 'individu',
+            'status_user' => 'Individu',
             'rememberToken' => str::random(60)
         ]);
 
@@ -167,7 +169,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 7,
-            'status_user' => 'kelompok',
+            'status_user' => 'Kelompok SMK',
             'rememberToken' => str::random(60)
         ]);
 
@@ -204,7 +206,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 9,
-            'status_user' => 'individu',
+            'status_user' => 'Individu SMK',
             'rememberToken' => str::random(60)
         ]);
 

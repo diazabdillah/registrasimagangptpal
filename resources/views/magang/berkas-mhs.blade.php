@@ -22,10 +22,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title mt-2">File</h5>
-                                <p class="card-text">Kirim file dalam bentuk PDF dengan maksimal ukuran
-                                    1MB</p>
+                                <p class="card-text">Kirim file dalam bentuk PDF dengan maksimal ukuran 2MB</p>
 
-                                <form method="POST" action="{{ route('file') }}" enctype="multipart/form-data">
+                                <form method="POST" action="/berkas-mhs" enctype="multipart/form-data">
                                     @csrf
                                     <!-- Upload Proposal dan surat pengajuan -->
                                     <div class="form-group">
@@ -49,7 +48,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <small class="ml-2">Lainnya</small>
+                                        <small class="ml-2">Curriculum Vitae (opsional)</small>
                                         <input type="file" name="berkas[]" class="form-control @error('berkas') is-invalid @enderror">
 
                                         @error('berkas')

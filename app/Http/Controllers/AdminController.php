@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Excel;
-use PDF;
-use App\Models\DataMhsIndiv;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Exports\RekapExport;
 use App\Exports\RekapKelompokExport;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -81,7 +78,7 @@ class AdminController extends Controller
         $pdf = PDF::loadview('admin.RekapPDF', [
             'ti' => $ti,
             'users' => $users
-        ]);
+        ])->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream();
     }
 
@@ -93,12 +90,12 @@ class AdminController extends Controller
     public function cetak_rekap_kelompokpdf()
     {
         $ti = 'Rekap Kelompok';
-            $users = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
-                ->where('users.status_user', '=', 'kelompok')
-                ->get();
+        $users = DB::table('users')
+            ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+            ->select('users.created_at', 'users.role_id', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
+            ->where('users.status_user', '=', 'kelompok')
+            ->get();
 
         $pdf = PDF::loadview('admin.RekapKelompokPDF', [
             'ti' => $ti,

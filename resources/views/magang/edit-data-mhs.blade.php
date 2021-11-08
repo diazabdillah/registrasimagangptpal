@@ -16,14 +16,12 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800 mb-3"><b>{{ $ti }}</b></h1>
 
-
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title mt-2">Edit Data</h5>
-
 
                                 <form method="POST" action="/edit-data-mhsInd/{{ $data->id }}">
                                     @method('put')
@@ -39,8 +37,8 @@
                                         <input type="text" class="form-control" id="strata" name="strata" value="{{ $data->strata }}">
                                     </div>
                                     <div class="form-group">
-                                        <small class="ml-2">Jurusan (Informatika)</small>
-                                        <input type="text" class="form-control" id="strata" name="jurusan" value="{{ $data->jurusan }}">
+                                        <small class="ml-2">Jurusan (Teknik Informatika)</small>
+                                        <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $data->jurusan }}">
                                     </div>
                                     <!-- Input Alamat Rumah -->
                                     <div class="form-group">
@@ -52,32 +50,6 @@
                                     <div class="form-group">
                                         <small class="ml-2">Nomer Hp</small>
                                         <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $data->no_hp }}">
-                                    </div>
-
-                                    <!-- Divisi -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Pilih Divisi</small>
-                                        <div class="input-group mb-3">
-                                            <select class="custom-select" name="divisi">
-                                                <option>{{ $data->divisi }}</option>
-                                                <option value="Divisi 1">Divisi 1</option>
-                                                <option value="Divisi 2">Divisi 2</option>
-                                                <option value="Divisi 3">Divisi 3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Departemen -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Pilih Departemen</small>
-                                        <div class="input-group mb-3">
-                                            <select class="custom-select" name="departemen">
-                                                <option>{{ $data->departemen }}</option>
-                                                <option value="Departemen 1">Departemen 1</option>
-                                                <option value="Departemen 2">Departemen 2</option>
-                                                <option value="Departemen 3">Departemen 3</option>
-                                            </select>
-                                        </div>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i class="fas fa-paper-plane"></i></button>
