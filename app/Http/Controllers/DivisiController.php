@@ -54,6 +54,43 @@ class DivisiController extends Controller
         }
     }
 
+    public function proses_penerimaan($user_id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $filepdf = DB::table('file_mhs_indivs')
+                ->where('file_mhs_indivs.user_id', '=', $user_id)
+                ->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'users.name', 'user_role.role', 'users.email', 'users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.nim')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.proses_penerimaan', [
+                'ti' => $ti,
+                'users' => $users,
+                'filepdf' => $filepdf
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function updatePenerimaan(Request $request, $id)
+    {
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Status penerimaan berhasil diproses');
+        return redirect('/magang-interview');
+    }
+
     public function showMagangAktif(Request $request)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -89,30 +126,7 @@ class DivisiController extends Controller
         }
     }
 
-    public function proses_penerimaan($user_id)
-    {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Penerimaan';
-            $filepdf = DB::table('file_mhs_indivs')
-                ->where('file_mhs_indivs.user_id', '=', $user_id)
-                ->get();
 
-            $users = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.id', 'users.name', 'user_role.role', 'users.email', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.nim')
-                ->where('users.id', '=', $user_id)
-                ->get();
-
-            return view('divisi.proses_penerimaan', [
-                'ti' => $ti,
-                'users' => $users,
-                'filepdf' => $filepdf
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
 
     public function proses_penerimaan_smk($user_id)
     {
@@ -139,17 +153,7 @@ class DivisiController extends Controller
         }
     }
 
-    public function updatePenerimaan(Request $request, $id)
-    {
-        DB::table('users')
-            ->where('id', $id)
-            ->update([
-                'role_id' => $request->role_id
-            ]);
 
-        session()->flash('succes', 'Status penerimaan berhasil diproses');
-        return redirect('/magang-interview');
-    }
 
     public function upPenerimaanSmk(Request $request, $id)
     {
@@ -195,6 +199,25 @@ class DivisiController extends Controller
             $files = FileMhsIndiv::find($id);
 
             return view('divisi.pdf-mhs', [
+                'ti' => $ti,
+                'files' => $files,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function showPdfMhsKel($id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $users = DB::table('users')
+                ->where('id', '=', $id)
+                ->get();
+            $files = FileMhsIndiv::find($id);
+
+            return view('divisi.pdf-mhs-kel', [
                 'ti' => $ti,
                 'files' => $files,
                 'users' => $users
@@ -262,7 +285,7 @@ class DivisiController extends Controller
             $fileFoto = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_mhs_models', 'data_mhs_indivs.id', '=', 'foto_mhs_models.user_id')
-                ->select('foto_mhs_models.id','foto_mhs_models.foto')
+                ->select('foto_mhs_models.id', 'foto_mhs_models.foto')
                 ->where('users.id', '=', $user_id)
                 ->get();
             $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
@@ -272,7 +295,7 @@ class DivisiController extends Controller
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
                 ->leftJoin('interview', 'data_mhs_indivs.id', '=', 'interview.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
-                ->select('interview.fileinterview','interview.id','users.name', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'user_role.role', 'users.email', 'data_mhs_indivs.univ','data_mhs_indivs.nim','data_mhs_indivs.jurusan', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
+                ->select('interview.fileinterview', 'interview.id', 'users.name', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -770,17 +793,15 @@ class DivisiController extends Controller
 
             $users = DB::table('users')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->select('users.id', 'users.name', 'users.status_user', 'user_role.role', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.user_id', 'data_mhs_indivs.strata')
+                ->select('users.id', 'users.name', 'users.status_user', 'user_role.role')
                 ->where('users.role_id', '=', 16)
                 ->get();
 
             $usersSmk = DB::table('users')
-            ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-            ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-            ->select('users.id', 'users.name', 'users.status_user', 'user_role.role', 'data_smk_indivs.nama', 'data_smk_indivs.user_id')
-            ->where('users.role_id', '=', 18)
-            ->get();
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('users.id', 'users.name', 'users.status_user', 'user_role.role')
+                ->where('users.role_id', '=', 18)
+                ->get();
 
             return view('divisi.magang_interview', [
                 'ti' => $ti,

@@ -112,6 +112,7 @@ Route::get('/proses-penerimaan-smk/{user_id}', [DivisiController::class, 'proses
 Route::put('/proses_penerimaan/{id}', [DivisiController::class, 'updatePenerimaan']);
 Route::put('/proses-penerimaan-smk/{id}', [DivisiController::class, 'upPenerimaanSmk']);
 Route::get('/pdf-mhs/{id}', [DivisiController::class, 'showPdfMhs']);
+Route::get('/pdf-mhs-kel/{id}', [DivisiController::class, 'showPdfMhsKel']);
 Route::get('/pdf-smk/{id}', [DivisiController::class, 'showPdfSmk']);
 Route::get('/diterima', [DivisiController::class, 'showDiterima']);
 Route::get('/final-penerimaan-mhs/{user_id}', [DivisiController::class, 'finalMhs']);

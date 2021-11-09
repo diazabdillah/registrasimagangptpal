@@ -54,6 +54,7 @@
                             </div>
 
                             <ul class="list-group list-group-flush">
+                                @if ($users[0]->status_user == "Individu")
 
                                 @foreach ($filepdf as $file)
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
@@ -62,6 +63,16 @@
                                 </li>
                                 @endforeach
 
+                                @else
+
+                                @foreach ($filepdf as $file)
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $file->path }}
+                                    <a href="{{ url('pdf-mhs-kel/' . $file->id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
+                                </li>
+                                @endforeach
+
+                                @endif
                             </ul>
                         </div>
                     </div>
