@@ -451,6 +451,19 @@ class DivisiController extends Controller
         return redirect()->back();
     }
 
+    public function hapus_interview_mhs_kel($id, $foto)
+    {
+        // Hapus di file storage
+        File::delete('file/interview-mhs-kel/' . $foto);
+        // Hapus di database
+        DB::table('interview')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
+
     public function hapusfileSmk($id, $foto)
     {
         // Hapus di file storage
@@ -829,7 +842,7 @@ class DivisiController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
                 ->leftJoin('interview', 'data_mhs_indivs.id', '=', 'interview.user_id')
-                ->select('interview.id', 'interview.fileinterview', 'users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
+                ->select('interview.id', 'interview.fileinterview', 'users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'users.status_user', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id')
                 ->where('users.id', '=', $user_id)
                 ->get();
 

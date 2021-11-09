@@ -54,12 +54,28 @@
                                                         <td>{{ $interview->nama }}</td>
                                                         <td>{{ $interview->nim }}</td>
                                                         <td>{{ $interview->univ }}</td>
+                                                        
+                                                        @if ($users[0]->status_user == "Individu")
+
                                                         <td>
+
                                                             @if ($interview->fileinterview == null)
                                                                 <a class="btn btn-warning" href="{{ url('/interview-mhs/' . $interview->id) }}" role="button">Upload Hasil Interview</a>
                                                             @endif
 
                                                         </td>
+
+                                                        @else
+
+                                                        <td>
+
+                                                            @if ($interview->fileinterview == null)
+                                                                <a class="btn btn-warning" href="{{ url('/interview-mhs-kel/' . $interview->id) }}" role="button">Upload Hasil Interview</a>
+                                                            @endif
+
+                                                        </td>
+
+                                                        @endif
 
                                                     </tr>
 

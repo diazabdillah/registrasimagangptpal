@@ -120,6 +120,7 @@ Route::get('/magang-selesai-mhs', [DivisiController::class, 'selesaiMhs']);
 Route::put('/update-magang-divisi/{user_id}', [DivisiController::class, 'updatemagangdivisi']);
 Route::get('delete-selesai-mhs/{id}',[DivisiController::class,'deleteselesaimhs']);
 Route::get('/hapus-interview-mhs/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs']);
+Route::get('/hapus-interview-mhs-kel/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs_kel']);
 Route::get('/proses-magang-aktmhs/{id}', [DivisiController::class, 'magangAktMhs']);
 Route::get('/proses-magang-aktsmk/{user_id}', [DivisiController::class, 'magangAktSmk']);
 Route::get('/final-penerimaan-mhs/{id}/{foto}', [DivisiController::class, 'hapusfileMhs']);
@@ -210,6 +211,8 @@ Route::get('/berkas-mhs-kelompok-semua', [MagangController::class, 'berkas_mhs_k
 Route::get('/berkas-mhs-kelompok/{id}', [MagangController::class, 'berkas_mhs_kelompok_lihat']);
 Route::get('/berkas-mhs-kelompok/{id}/{path}', [MagangController::class, 'proses_hapus_berkas_kelompok']);
 
+Route::get('/interview-mhs-kel/{id}',[MagangController::class,'interview_mhs_kel_upload']);
+Route::post('/interview-mhs-kel/{id}',[MagangController::class,'proses_interview_mhs_kel_upload']);
 
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
 

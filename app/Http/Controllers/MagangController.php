@@ -204,7 +204,8 @@ class MagangController extends Controller
             $id = Auth::user()->id;
             $users = DB::table('data_mhs_indivs')
                 ->leftjoin('interview', 'data_mhs_indivs.id', '=', 'interview.user_id')
-                ->select('data_mhs_indivs.nama', 'data_mhs_indivs.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'interview.fileinterview')
+                ->leftJoin('users', 'data_mhs_indivs.user_id', '=', 'users.id')
+                ->select('users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'interview.fileinterview')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             $ti = 'Interview';
@@ -915,6 +916,64 @@ class MagangController extends Controller
 
         session()->flash('succes', 'Berkas berhasil dihapus');
         return redirect('/data-mhs-kelompok');
+    }
+
+    public function interview_mhs_kel_upload($id)
+    {
+        if (auth()->user()->role_id == 16) {
+
+            $user = DataMhsIndiv::find($id);
+            $ti = 'Upload Hasil Interview';
+            return view('magang.interview-mhs-kel-upload', [
+                'ti' => $ti,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_interview_mhs_kel_upload($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
+        $request->validate([
+            'tipe_kepribadian' => 'required',
+            'introvet' => 'required',
+            'ekstrovet' => 'required',
+            'visioner' => 'required',
+            'realistik' => 'required',
+            'emosional' => 'required',
+            'rasional' => 'required',
+            'perencanaan' => 'required',
+            'improvisasi' => 'required',
+            'tegas' => 'required',
+            'waspada' => 'required',
+            'fileinterview' => 'required',
+        ]);
+
+        $file = $request->file('fileinterview');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/interview-mhs-kel/';
+        $file->move($tujuan_upload, $nama_file);
+
+        Interview::create([
+            'user_id' => $user->id,
+            'tipe_kepribadian' => $request->tipe_kepribadian,
+            'ekstrovet' => $request->ekstrovet,
+            'introvet' => $request->introvet,
+            'visioner' => $request->visioner,
+            'realistik' => $request->realistik,
+            'emosional' => $request->emosional,
+            'rasional' => $request->rasional,
+            'perencanaan' => $request->perencanaan,
+            'improvisasi' => $request->improvisasi,
+            'tegas' => $request->tegas,
+            'waspada' => $request->waspada,
+            'fileinterview' => $nama_file,
+        ]);
+
+        session()->flash('succes', 'Terimakasih telah mengirimkan hasil tes kepribadian anda selanjutnya akan kami proses');
+        return redirect('/interview-mhs');
     }
     // Kelompok Mahasiswa
 

@@ -51,12 +51,25 @@
                             </div>
                             <ul class="list-group list-group-flush">
 
+                                @if ($users[0]->status_user == "Individu")
+
                                 @foreach ($filepengajuan as $file)
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                     {{ $file->path }}
                                     <a href="{{ url('pdf-mhs/' . $file->id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
                                 </li>
                                 @endforeach
+
+                                @else
+
+                                @foreach ($filepengajuan as $file)
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $file->path }}
+                                    <a href="{{ url('pdf-mhs-kel/' . $file->id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
+                                </li>
+                                @endforeach
+
+                                @endif
 
                             </ul>
                         </div>
@@ -71,6 +84,8 @@
                             </div>
                             <ul class="list-group list-group-flush">
 
+                                @if ($users[0]->status_user == "Individu")
+
                                 @foreach ($users as $img)
                                 @if ($img->fileinterview != null)
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
@@ -80,6 +95,20 @@
                                 </li>
                                 @endif
                                 @endforeach
+
+                                @else
+
+                                @foreach ($users as $img)
+                                @if ($img->fileinterview != null)
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $img->fileinterview }}
+                                    <a class="btn btn-danger p-1 float-right" href="{{ url('hapus-interview-mhs-kel/' . $img->id, $img->fileinterview) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                    <a class="btn btn-primary p-1 float-right" href="{{ asset('file/interview-mhs-kel/' . $img->fileinterview) }}"><i class="fa fa-download p-1"></i></a>
+                                </li>
+                                @endif
+                                @endforeach
+
+                                @endif                                
 
                             </ul>
                         </div>
