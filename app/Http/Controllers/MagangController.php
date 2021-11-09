@@ -844,6 +844,26 @@ class MagangController extends Controller
         }
         return redirect()->back();
     }
+
+    public function berkas_mhs_kelompok_semua()
+    {
+        if (auth()->user()->role_id == 6) {
+            $ti = 'Data Mahasiswa';
+            $id = Auth::user()->id;
+            $files = DB::table('file_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.berkas-mhs-kelompok-semua', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    
     // Kelompok Mahasiswa
 
 
@@ -907,23 +927,7 @@ class MagangController extends Controller
         }
     }
 
-    public function OpenPDFkel()
-    {
-        if (auth()->user()->role_id == 6) {
-            $ti = 'Data Mahasiswa';
-            $id = Auth::user()->id;
-            $files = DB::table('file_mhs_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-
-            return view('magang.openpdf', [
-                'ti' => $ti,
-                'files' => $files
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function OpenPDFSMKKel()
     {

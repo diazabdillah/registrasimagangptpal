@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="table-responsive table-hover">
-                            <a class="btn btn-danger mt-3 mb-3" href="/openpdfkel"><i class="fas fa-fw fa-file-pdf mr-2"></i>Open all file</a>
+                            <a class="btn btn-danger mt-3 mb-3" href="/berkas-mhs-kelompok-semua"><i class="fas fa-fw fa-file-pdf mr-2"></i>Buka Semua Berkas</a>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="text-center text-white bg-primary">
