@@ -20,7 +20,7 @@
                 <div class="card-body">
 
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/upload_laporan" role="button"><i class="fas fa-plus"></i> upload laporan</a>
+                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan" role="button"><i class="fas fa-plus"></i> upload laporan</a>
 
                     <div class="row mt-4">
                         @foreach ($users as $laporans)
@@ -29,7 +29,7 @@
                             <div class="card" style="border-weight:10px;border:1px solid;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4 mb-3 mt-3 ">
-                                        <img width="115px" height="240px" style="margin-left:5px;border-radius: 15px;border:1px solid;margin-top:10px;" src="{{ asset('/file/' . $laporans->cover) }}" class="gambar1" alt="pt pal">
+                                        <img width="115px" height="240px" style="margin-left:5px;border-radius: 15px;border:1px solid;margin-top:10px;" src="{{ asset('file/laporan-mhs/cover/' . $laporans->cover) }}" class="gambar1" alt="pt pal">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -42,10 +42,10 @@
                                             </p>
                                             @if ($laporans->path != null)
                                             {{-- <a class="btn btn-primary"
-                                                                        href="{{ asset('/file/' . $laporan->path) }}">Download</a> --}}
-                                            <a class="btn btn-primary" href="{{ url('/lihat_laporan_mhs/' . $laporans->id) }}">lihat</a>
+                                                                        href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
+                                            <a class="btn btn-primary" href="/lihat-laporan-mhs/{{$laporans->id}}">lihat</a>
                                             @if ($laporans->revisi != null)
-                                            <a class="btn btn-warning" href="{{ url('/edit_laporan_mhs/' . $laporans->id) }}">Edit</a>
+                                            <a class="btn btn-warning" href="/edit-laporan-mhs/{{$laporans->id}}">Edit</a>
 
                                             @endif
                                             @endif
@@ -67,7 +67,7 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-4 mb-3 mt-3 ">
-                                        <img width="115px" height="220px" style="margin-left:5px;border-radius: 15px;border:1px solid;" src="{{ asset('/file/' . $laporan->cover) }}" class="gambar1" alt="pt pal">
+                                        <img width="115px" height="220px" style="margin-left:5px;border-radius: 15px;border:1px solid;" src="{{ asset('file/laporan-mhs/cover/' . $laporan->cover) }}" class="gambar1" alt="pt pal">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -79,8 +79,8 @@
                                             </p>
                                             @if ($laporan->path != null)
                                             {{-- <a class="btn btn-primary"
-                                                            href="{{ asset('/file/' . $laporan->path) }}">Download</a> --}}
-                                            <a class="btn btn-primary" href="{{ url('/lihat_laporan_mhs/' . $laporan->id) }}">lihat</a>
+                                                            href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
+                                            <a class="btn btn-primary" href="/lihat-laporan-mhs/{{$laporan->id}}">lihat</a>
 
                                             @endif
                                         </div>

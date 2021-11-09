@@ -23,7 +23,7 @@
 
                                 <div class="col-sm-3 mb-3">
                                     <div class="card">
-                                        <img src="{{ asset('/file/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <img src="{{ asset('file/foto-mhs/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
                                     </div>
                                 </div>
                                 <h5 class="card-title"><b>Nama :</b> {{ $user->nama }}</h5>
@@ -75,8 +75,7 @@
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
                                             <option value="14">Sertifikat MHS</option>
-                                            <option value="11">Menu Dokumen MHS (Diterima)</option>
-
+                                            <option value="11">Dokumen Magang Aktif</option>
                                         </select>
 
                                         <div class="input-group-append">
@@ -120,8 +119,7 @@
                                 @foreach ($fileFoto as $img)
                                 <div class="col-sm-3">
                                     <div class="card">
-                                        <img src="{{ asset('/file/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('proses-magang-aktmhs/' . $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                        <img src="{{ asset('file/dokumen-mhs/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
 
                                     </div>
                                 </div>

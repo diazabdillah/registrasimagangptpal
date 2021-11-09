@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="mb-3">
 
-                                    <img class="gambar1" style="width: 150px; height:180px; border-radius: 5px;" src="{{ asset('/file/' .  $profile->fotoID) }}">
+                                    <img class="gambar1" style="width: 150px; height:180px; border-radius: 5px;" src="{{ asset('file/foto-mhs/' .  $profile->fotoID) }}">
 
                                 </div>
 
@@ -37,12 +37,12 @@
                                     <input type="text" class="form-control" id="email" name="univ" value="{{$profile->univ}}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <small class="ml-2">Strata</small>
-                                    <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->strata}}" disabled>
+                                    <small class="ml-2">Strata dan Jurusan</small>
+                                    <input type="text" class="form-control" id="nama" name="nama" value="{{$profile->strata}} {{$profile->jurusan}}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">Alamat Rumah</small>
-                                    <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->alamat_rumah}}" disabled>
+                                    <input type="text" class="form-control" id="nama" name="nama" value="{{$profile->alamat_rumah}}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">No.HP</small>
@@ -53,8 +53,8 @@
                                     <input type="text" class="form-control" id="divisi" name="divisi" value="{{$profile->divisi}}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <small class="ml-2">Status</small>
-                                    <input type="text" class="form-control" id="status" name="status" value="" disabled>
+                                    <small class="ml-2">Departemen</small>
+                                    <input type="text" class="form-control" id="status" name="status" value="{{$profile->departemen}}" disabled>
                                 </div>
                             </div>
                         </div>

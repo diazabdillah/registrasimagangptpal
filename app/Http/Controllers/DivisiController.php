@@ -148,7 +148,7 @@ class DivisiController extends Controller
             ]);
 
         session()->flash('succes', 'Status penerimaan berhasil diproses');
-        return redirect('/Penerimaan');
+        return redirect('/magang-interview');
     }
 
     public function upPenerimaanSmk(Request $request, $id)
@@ -467,34 +467,6 @@ class DivisiController extends Controller
         } else {
             return redirect()->back();
         }
-    }
-
-    public function data_id_card()
-    {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Data ID Card';
-            $users = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('data_mhs_indivs.status_idcard', 'data_mhs_indivs.departemen', 'mulai_dan_selesai_mhs.mulai', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'mulai_dan_selesai_mhs.selesai')
-                ->get();
-            return view('divisi.data_id_card', [
-                'ti' => $ti,
-                'users' => $users
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function proses_idcard($id)
-    {
-        $ti = 'Data ID Card';
-        $data = DataMhsindiv::find($id);
-
-        $data->status_idcard = 'diterima';
-        $data->save();
-        return redirect()->back();
     }
 
     public function tambah_kuota()

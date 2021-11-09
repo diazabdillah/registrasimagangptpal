@@ -18,8 +18,7 @@
                             Edit Laporan
                         </div>
                         <div class="card-body">
-                            <form action="/proseseditfilelaporan/{{ $data->id }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="/proses-edit-laporan-mhs/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
 

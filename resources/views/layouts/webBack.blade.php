@@ -131,7 +131,7 @@
                 <li class="nav-item {{ $ti === 'Diterima' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/diterima">
                         <i class="fas fa-fw fa-user-check"></i>
-                        <span>Magang Diterima</span></a>
+                        <span>Dokumen Magang Aktif</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Magang Aktif' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/magang-aktif">
@@ -139,12 +139,6 @@
                         <span>Magang Aktif</span></a>
                 </li>
 
-
-                {{-- <li class="nav-item {{ $ti === 'Data ID Card' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/data_id_card">
-                        <i class="fas fa-fw fa-id-badge"></i>
-                        <span>Data ID Card</span></a>
-                </li> --}}
                 <li class="nav-item {{ $ti === 'absen' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/absen">
                         <i class="fas fa-fw fa-thumbtack"></i>
@@ -227,25 +221,31 @@
 
                 <!-- Nav Item -->
                 <li class="nav-item {{ $ti === 'Profil Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Profil_mhs">
+                    <a class="nav-link pb-0" href="/profil-mhs">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Profil</span></a>
                 </li>
 
                 <li class="nav-item {{ $ti === 'Absen Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/tableabsen_mhs">
+                    <a class="nav-link pb-0" href="/absen-mhs">
                         <i class="fas fa-fw fa-user-clock"></i>
                         <span>Absen</span></a>
                 </li>
 
+                <li class="nav-item {{ $ti === 'ID Card Mahasiswa' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/id-card-mhs">
+                        <i class="fas fa-fw fa-id-badge"></i>
+                        <span>ID Card</span></a>
+                </li>
+
                 <li class="nav-item {{ $ti === 'laporan akhir' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan_mhs">
+                    <a class="nav-link pb-0" href="/laporan-mhs">
                         <i class="fas fa-fw fa-id-badge"></i>
                         <span>Laporan akhir</span></a>
                 </li>
 
                 <li class="nav-item {{ $ti === 'Penilaian Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penilaian_mhs">
+                    <a class="nav-link pb-0" href="/penilaian-mhs">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Form Penilaian</span></a>
                 </li>

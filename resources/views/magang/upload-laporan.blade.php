@@ -18,7 +18,7 @@
                         Upload Laporan
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('proseslaporan') }}" method="POST" enctype="multipart/form-data">
+                        <form action="/proses-laporan" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <small class="ml-2">Judul</small>

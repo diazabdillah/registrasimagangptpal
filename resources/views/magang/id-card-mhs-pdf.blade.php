@@ -45,7 +45,7 @@
                                     <div class="mt-4">
                                         <div class="d-flex justify-content-center">
 
-                                            <img src="{{ asset('/file/' . $data->fotoID) }}" alt="image"
+                                            <img src="{{ asset('file/foto-mhs/' . $data->fotoID) }}" alt="image"
                                                 style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                         </div>

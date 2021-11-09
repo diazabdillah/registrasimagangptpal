@@ -99,7 +99,7 @@
                                     <div class="input-group">
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
-                                            <option value="11">Magang Diterima</option>
+                                            <option value="11">Dokumen Magang Aktif</option>
                                             <option value="8">Pendaftar Magang Mahasiswa (Individu)</option>
                                             <option value="6">Pendaftar Magang Mahasiswa (Kelompok)</option>
                                             <option value="0">Kuota Penuh</option>

@@ -37,7 +37,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 2) {
                 return redirect('/Penerimaan')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 3) {
-                return redirect('/Profil_mhs')->with('success', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
+                return redirect('/profil-mhs')->with('success', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
             } elseif (auth()->user()->role_id == 4) {
                 return redirect('/Profil_smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 5) {
@@ -53,7 +53,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 10) {
                 return redirect('/regis-step2')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 11) {
-                return redirect('/dokumen-mhs')->with('success', 'Selamat Anda masuk ditahap pelengkapan dokumen. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
+                return redirect('/dokumen-mhs')->with('success', 'Selamat Anda lolos pada tahap interview kepribadian online. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 12) {
                 return redirect('/Dokumen_smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 13) {

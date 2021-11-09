@@ -10,8 +10,8 @@
             <h1 class="h3 mb-4 text-gray-800"><b>{{ $ti }}</b></h1>
 
             <!-- Card -->
-            <a href="/idcard-mhs-pdf" class="btn btn-danger mb-3"><i class="fas fa-download"></i> Cetak</a>
-            <a href="/idcard-mhs-savepdf" class="btn btn-primary mb-3"><i class="fas fa-download"></i> pdf</a>
+            <a href="/id-card-mhs-pdf" class="btn btn-danger mb-3"><i class="fas fa-download"></i> Cetak</a>
+            <a href="/id-card-mhs-pdf-save" class="btn btn-primary mb-3"><i class="fas fa-download"></i> Pdf</a>
 
             <div class="row mb-4">
 
@@ -23,7 +23,7 @@
                             <div class="mt-4">
                                 <div class="d-flex justify-content-center">
 
-                                    <img src="{{ asset('/file/' . $data->fotoID) }}" alt="image" style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
+                                    <img src="{{ asset('file/foto-mhs/' . $data->fotoID) }}" alt="image" style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                 </div>
                             </div>
