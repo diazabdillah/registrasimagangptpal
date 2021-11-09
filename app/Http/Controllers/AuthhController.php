@@ -53,7 +53,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 10) {
                 return redirect('/regis-step2')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 11) {
-                return redirect('/Dokumen_mhs')->with('success', 'Selamat Anda Lolos seleksi pengisian data anda. Anda masuk ditahap dokumen ini mohon segera lengkapi data dokumen magang di bawah ini. Mohon Dibaca pentunjuk yang sudah di berikan. Kami beri waktu 1 minggu untuk mengisi berkas dokumen ini');
+                return redirect('/dokumen-mhs')->with('success', 'Selamat Anda masuk ditahap pelengkapan dokumen. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 12) {
                 return redirect('/Dokumen_smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 13) {

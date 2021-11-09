@@ -224,7 +224,7 @@ class MagangController extends Controller
             $ti = 'Upload Hasil Interview';
             return view('magang.interview-mhs-upload', [
                 'ti' => $ti,
-                'user'=> $user
+                'user' => $user
             ]);
         } else {
             return redirect()->back();
@@ -249,9 +249,9 @@ class MagangController extends Controller
             'fileinterview' => 'required',
         ]);
 
-        $file = $request->file('file/interview-mhs/');
+        $file = $request->file('fileinterview');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file';
+        $tujuan_upload = 'file/interview-mhs/';
         $file->move($tujuan_upload, $nama_file);
 
         Interview::create([
@@ -259,7 +259,7 @@ class MagangController extends Controller
             'tipe_kepribadian' => $request->tipe_kepribadian,
             'ekstrovet' => $request->ekstrovet,
             'introvet' => $request->introvet,
-            'visioner'=> $request->visioner,
+            'visioner' => $request->visioner,
             'realistik' => $request->realistik,
             'emosional' => $request->emosional,
             'rasional' => $request->rasional,
@@ -272,6 +272,171 @@ class MagangController extends Controller
 
         session()->flash('succes', 'Terimakasih telah mengirimkan hasil tes kepribadian anda selanjutnya akan kami proses');
         return redirect('/interview-mhs');
+    }
+
+    public function dokumen_mhs()
+    {
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $users = DB::table('data_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            $showImage = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('foto_i_d_mhs', 'foto_i_d_mhs.user_id', '=', 'data_mhs_indivs.id')
+                ->select('foto_i_d_mhs.fotoID', 'foto_i_d_mhs.id', 'data_mhs_indivs.nama')
+                ->where('data_mhs_indivs.user_id', '=', $id)
+                ->get();
+
+            $showImage1 = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('foto_mhs_models', 'foto_mhs_models.user_id', '=', 'data_mhs_indivs.id')
+                ->select('foto_mhs_models.foto', 'foto_mhs_models.id', 'data_mhs_indivs.nama')
+                ->where('data_mhs_indivs.user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'showImage1' => $showImage1,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show_mhs_foto($id)
+    {
+        $user = DataMhsIndiv::find($id);
+
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_mhs_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs-upload-foto', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show_mhs_dokumen($id)
+    {
+        $user = DataMhsIndiv::find($id);
+
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_mhs_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs-upload', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function upload_mhs_foto($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
+        $request->validate([
+            'fotoid' => 'required',
+            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('fotoid')) {
+
+            $files = $request->file('fotoid');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/foto-mhs/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoIDMhs::create([
+                    'user_id' => $user->id,
+                    'fotoID' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload foto berhasil');
+            return redirect('dokumen-mhs');
+        }
+        return redirect()->back();
+    }
+
+    public function hapus_mhs_foto($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/foto-mhs/' . $foto);
+        // Hapus di database
+        DB::table('foto_i_d_models')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Foto berhasil dihapus');
+        return redirect('dokumen-mhs');
+    }
+
+    public function upload_mhs($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
+        $request->validate([
+            'foto' => 'required',
+            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            $files = $request->file('foto');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/dokumen-mhs/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoMhsModels::create([
+                    'user_id' => $user->id,
+                    'foto' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload dokumen berhasil');
+            return redirect('dokumen-mhs');
+        }
+        return redirect()->back();
+    }
+
+    public function hapus_mhs_dokumen($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/dokumen-mhs/' . $foto);
+        // Hapus di database
+        DB::table('foto_mhs_models')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Dokumen berhasil dihapus');
+        return redirect('dokumen-mhs');
     }
 
     public function Profil_mhs()
@@ -731,80 +896,9 @@ class MagangController extends Controller
     }
     //end mhs kelompok
 
-    public function Dokumen_mhs()
-    {
-        if (auth()->user()->role_id == 11) {
-            $ti = 'Dokumen Mahasiswa';
 
-            $id = Auth::user()->id;
-            $users = DB::table('data_mhs_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
 
-            $showImage = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('foto_i_d_mhs', 'foto_i_d_mhs.user_id', '=', 'data_mhs_indivs.id')
-                ->select('foto_i_d_mhs.fotoID', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
-                ->where('data_mhs_indivs.user_id', '=', $id)
-                ->get();
 
-            $showImage1 = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('foto_mhs_models', 'foto_mhs_models.user_id', '=', 'data_mhs_indivs.id')
-                ->select('foto_mhs_models.foto', 'data_mhs_indivs.id', 'data_mhs_indivs.nama')
-                ->where('data_mhs_indivs.user_id', '=', $id)
-                ->get();
-
-            return view('magang.Dokumen_mhs', [
-                'ti' => $ti,
-                'showImage' => $showImage,
-                'showImage1' => $showImage1,
-                'users' => $users
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function showUploadMhs3x4($id)
-    {
-        $user = DataMhsIndiv::find($id);
-
-        if (auth()->user()->role_id == 11) {
-            $ti = 'Dokumen Mahasiswa';
-
-            $id = Auth::user()->id;
-            $showImage = DB::table('foto_mhs_models')->where('user_id', '=', $id)->get();
-
-            return view('magang.Dokumen_mhs_uploadfoto', [
-                'ti' => $ti,
-                'showImage' => $showImage,
-                'user' => $user
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function showUploadMhs($id)
-    {
-        $user = DataMhsIndiv::find($id);
-
-        if (auth()->user()->role_id == 11) {
-            $ti = 'Dokumen Mahasiswa';
-
-            $id = Auth::user()->id;
-            $showImage = DB::table('foto_mhs_models')->where('user_id', '=', $id)->get();
-
-            return view('magang.Dokumen_mhs_upload', [
-                'ti' => $ti,
-                'showImage' => $showImage,
-                'user' => $user
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
 
     public function uploadDocFotoMhs($id, Request $request)
     {
@@ -836,46 +930,9 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    // public function hapus_dok_mhs($id, $foto)
-    // {
-    //     if (Storage::exists('public/file' . $foto)) {
-    //         Storage::delete('public/file' . $foto);
-    //     }
-    //     DB::table('foto_mhs_models')->where('id', $id)->delete();
 
-    //     session()->flash('success', 'File berhasil dihapus');
-    //     return redirect('Dokumen_mhs');
-    // }
 
-    public function upFotoMhs($id, Request $request)
-    {
-        $user = DataMhsIndiv::find($id);
-        $request->validate([
-            'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:1048'
-        ]);
 
-        if ($request->hasFile('fotoid')) {
-
-            $files = $request->file('fotoid');
-
-            foreach ($files as $file) {
-                $extension = $file->getClientOriginalExtension();
-                $Namafoto = $file->getClientOriginalName();
-                // Upload ke public/fotoMhs
-                $tujuan_upload = 'file';
-                $size = $file->getSize();
-                $file->move($tujuan_upload, $Namafoto, $size);
-                FotoIDMhs::create([
-                    'user_id' => $user->id,
-                    'fotoID' => $Namafoto,
-                ]);
-            }
-            session()->flash('success', 'Upload foto berhasil');
-            return redirect('Dokumen_mhs');
-        }
-        return redirect()->back();
-    }
 
     // public function hapusFotoMhs($id, $fotoID)
     // {
@@ -1593,24 +1650,6 @@ class MagangController extends Controller
                 'ti' => $ti,
                 'users' => $users
 
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function testinterview()
-    {
-        if (auth()->user()->role_id == 16) {
-            $id = Auth::user()->id;
-            $users = DB::table('data_mhs_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-            $ti = 'Interview';
-
-            return view('magang.testinterview', [
-                'ti' => $ti,
-                'users' => $users
             ]);
         } else {
             return redirect()->back();

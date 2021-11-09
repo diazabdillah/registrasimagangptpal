@@ -210,7 +210,7 @@
                     Magang Mahasiswa
                 </div>
                 <li class="nav-item {{ $ti === 'Dokumen Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Dokumen_mhs">
+                    <a class="nav-link pb-0" href="/dokumen-mhs">
                         <i class="fas fa-fw fa-pencil-alt"></i>
                         <span>Dokumen Mahasiswa</span></a>
                 </li>

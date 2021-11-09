@@ -28,8 +28,7 @@
                                             sesuai dengan hasil tes kepribadian dimasing-masing peserta</small></p>
 
 
-                                    <form method="POST" action="/interview-mhs/{{ $user->id }}"
-                                        enctype="multipart/form-data">
+                                    <form method="POST" action="/interview-mhs/{{ $user->id }}" enctype="multipart/form-data">
                                         @csrf
                                         <!-- Input Univ -->
                                         <div class="form-group">
@@ -37,11 +36,11 @@
                                             <input type="text" class="form-control" id="" name="tipe_kepribadian">
                                         </div>
                                         <div class="form-group">
-                                            <small class="ml-2">Ekstrovet</small>
+                                            <small class="ml-2">Extrovert</small>
                                             <input type="text" class="form-control" id="" name="ekstrovet">
                                         </div>
                                         <div class="form-group">
-                                            <small class="ml-2">Introvet</small>
+                                            <small class="ml-2">Introvert</small>
                                             <input type="text" class="form-control" id="" name="introvet">
                                         </div>
 

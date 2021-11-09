@@ -29,8 +29,7 @@
                                         hasil tes kepribadian di tabel bawah sesuai kolom nama peserta magang dan berikan
                                         hasil tes kepribadian paling terbaru</small>
                                     <br>
-                                    <a class="btn btn-primary"
-                                        href="https://www.16personalities.com/free-personality-test">Test Interview</a>
+                                    <a class="btn btn-primary" href="https://www.16personalities.com/free-personality-test" target="_blank">Test Interview</a>
                                 </p>
 
                                 <div class="card shadow mb-3">
