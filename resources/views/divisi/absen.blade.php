@@ -39,7 +39,6 @@
                                             @if ($absen->role_id != 1)
                                             <tr>
                                                 <td>{{ $absen->name }}</td>
-
                                                 <td>
                                                     <a class="btn btn-primary p-1" href="{{ url('/tambah_absenmhs/' . $absen->id) }}" role="button">Buat Absen</a>
                                                 </td>
@@ -58,7 +57,7 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Form Absensi <span class="badge badge-warning text-dark ml-2 p-1">SMK</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Form Absensi <span class="badge badge-warning ml-2 p-1">SMK</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -75,7 +74,6 @@
                                             @if ($s->role_id != 1)
                                             <tr>
                                                 <td>{{ $s->name }}</td>
-
                                                 <td>
                                                     <a class="btn btn-primary p-1" href="{{ url('/tambah_absensmk/' . $s->id) }}" role="button">Buat Absen</a>
                                                 </td>
