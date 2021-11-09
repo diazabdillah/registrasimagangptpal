@@ -779,18 +779,25 @@ class MagangController extends Controller
         DB::table('data_mhs_indivs')
             ->where('id', $id)
             ->update([
-                'user_id' => Auth::user()->id,
                 'nama' => $request->nama,
                 'univ' => $request->univ,
                 'strata' => $request->strata,
                 'alamat_rumah' => $request->alamat_rumah,
                 'no_hp' => $request->no_hp,
-                'divisi' => $request->divisi,
-                'departemen' => $request->departemen
             ]);
 
         session()->flash('succes', 'Data Mahasiswa berhasil diperbarui');
         return redirect('/data-mhs-kelompok');
+    }
+
+    public function proses_hapus_mhs_kelompok($id)
+    {
+        DB::table('data_mhs_indivs')
+            ->where('id', $id)
+            ->delete();
+            
+        return redirect('/data-mhs-kelompok')
+            ->with('succes', 'Data Mahasiswa Berhasil Dihapus');
     }
     // Kelompok Mahasiswa
 
@@ -909,7 +916,7 @@ class MagangController extends Controller
     }
 
     //mhs kelompok
-    
+
 
     public function Data_smk_kelompok()
     {
@@ -934,7 +941,7 @@ class MagangController extends Controller
         }
     }
 
-    
+
 
     public function inputDataSmkKel()
     {
@@ -1120,7 +1127,7 @@ class MagangController extends Controller
     //     return redirect('/data-mhs-kelompok');
     // }
 
-    
+
 
     public function editDataSmkKel($id)
     {
@@ -1140,7 +1147,7 @@ class MagangController extends Controller
         }
     }
 
-    
+
 
     public function updateDataSmkKel(Request $request, $id)
     {
@@ -1159,13 +1166,7 @@ class MagangController extends Controller
         return redirect('/data-smk-kelompok');
     }
 
-    public function proses_hapus_mhskelompok($id)
-    {
-        DB::table('data_mhs_indivs')
-            ->where('id', $id)
-            ->delete();
-        return redirect('/data-mhs-kelompok')->with('succes', 'Data Mahasiswa Berhasil DiHapus');
-    }
+
 
     public function proses_hapus_smkkelompok($id)
     {
@@ -1225,11 +1226,11 @@ class MagangController extends Controller
     //     return redirect('Dokumen_mhs');
     // }
 
-    
 
-    
 
-    
+
+
+
 
     public function sertifikatmhspdf()
     {
@@ -1674,7 +1675,7 @@ class MagangController extends Controller
     }
     // Menu Magang SMK ===================
 
-    
 
-    
+
+
 }

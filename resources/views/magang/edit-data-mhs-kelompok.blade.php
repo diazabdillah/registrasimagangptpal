@@ -25,7 +25,7 @@
                                 <h5 class="card-title mt-2">Edit Data</h5>
 
 
-                                <form method="POST" action="/edit-data-mhskel/{{ $data->id }}">
+                                <form method="POST" action="/edit-data-mhs-kelompok/{{ $data->id }}">
                                     @method('put')
                                     @csrf
                                     <div class="form-group">
