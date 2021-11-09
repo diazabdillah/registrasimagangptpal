@@ -147,9 +147,9 @@ Route::get('/regis-step2', [PenelitianController::class, 'index']);
 Route::get('/id-card', [PenelitianController::class, 'idCard']);
 // Penelitian ================================
 
-// Halaman Magang Mahasiswa ==================
+
+// Halaman Magang Mahasiswa Individu ==================
 Route::get('/data-mhs', [MagangController::class, 'data_mhs']);
-Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
 
 Route::get('/input-data-mhs', [MagangController::class, 'input_data_mhs']);
 Route::post('/input-data-mhs', [MagangController::class, 'proses_data_mhs']);
@@ -192,6 +192,19 @@ Route::get('/edit-laporan-mhs/{id}', [MagangController::class, 'edit_laporan_mhs
 Route::put('/proses-edit-laporan-mhs/{id}', [MagangController::class, 'proses_edit_laporan_mhs']);
 
 Route::get('penilaian-mhs', [MagangController::class, 'penilaian_mhs']);
+// Halaman Magang Mahasiswa Individu ==================
+
+// Halaman Magang Mahasiswa Kelompok ==================
+Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
+
+Route::get('/input-mhs-kelompok', [MagangController::class, 'input_mhs_kelompok']);
+Route::post('/input-mhs-kelompok', [MagangController::class, 'proses_data_mhsKelompok']);
+Route::get('/edit-data-mhskel/{id}', [MagangController::class, 'editDataMhskel']);
+Route::put('/edit-data-mhskel/{id}', [MagangController::class, 'updateDataMhskel']);
+Route::get('delete-data-mhskel/{user_id}', [MagangController::class, 'proses_hapus_mhskelompok']);
+
+Route::get('/berkas-mhs-kel', [MagangController::class, 'file_mhs_kelompok']);
+Route::post('/berkas-mhs-kel', [MagangController::class, 'proses_file_mhs_kelompok'])->name('filekel');
 
 Route::get('/Data_mhs_lihat/{id}', [MagangController::class, 'liat_file']);
 
@@ -204,16 +217,11 @@ Route::get('/Kuota', [MagangController::class, 'Kuota']);
 Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
 Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);
 // data mahasiswa kelompok
-
-Route::get('/input-mhs-kelompok', [MagangController::class, 'inputDataMhsKel']);
-Route::post('/input-mhs-kelompok', [MagangController::class, 'proses_data_mhsKelompok'])->name('uploadkel');
 Route::get('/berkas-mhs-kel', [MagangController::class, 'file_mhs_kelompok']);
 Route::post('/berkas-mhs-kel', [MagangController::class, 'proses_file_mhs_kelompok'])->name('filekel');
 // Route::get('/input-mhs-tambahkelompok', [MagangController::class, 'inputDatatambahMhsKel']);
 // Route::post('/input-mhs-tambahkelompok', [MagangController::class, 'proses_data_tambahmhsKelompok'])->name('uploadtambahkel');
-Route::get('/edit-data-mhskel/{id}', [MagangController::class, 'editDataMhskel']);
-Route::put('/edit-data-mhskel/{id}', [MagangController::class, 'updateDataMhskel']);
-Route::get('delete-data-mhskel/{user_id}', [MagangController::class, 'proses_hapus_mhskelompok']);
+
 
 // End Halaman Magang Mahasiswa ==================
 

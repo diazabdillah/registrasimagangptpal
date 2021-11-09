@@ -31,7 +31,8 @@ class MagangController extends Controller
         $this->middleware('auth');
     }
 
-    // Menu Magang Mahasiswa =============
+
+    // Individu Mahasiswa
     public function data_mhs()
     {
         if (auth()->user()->role_id == 8) {
@@ -718,7 +719,47 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+    // Individu Mahasiswa
+
+
+    // Kelompok Mahasiswa
+    public function data_mhs_kelompok()
+    {
+        if (auth()->user()->role_id == 6) {
+            $ti = 'Data Mahasiswa Kelompok';
+
+            $id = Auth::user()->id;
+            $data = DB::table('data_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $files = DB::table('file_mhs_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.data-mhs-kelompok', [
+                'ti' => $ti,
+                'data' => $data,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function input_mhs_kelompok()
+    {
+        if (auth()->user()->role_id == 6) {
+            $ti = 'Form Data Mahasiswa Kelompok';
+            return view('magang.input-data-mhs-kelompok', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     
+    // Kelompok Mahasiswa
+
+
     public function Kuota()
     {
         $ti = 'Kuota Magang';
@@ -833,28 +874,7 @@ class MagangController extends Controller
     }
 
     //mhs kelompok
-    public function data_mhs_kelompok()
-    {
-        if (auth()->user()->role_id == 6) {
-            $ti = 'Data Mahasiswa Kelompok';
-
-            $id = Auth::user()->id;
-            $data = DB::table('data_mhs_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-            $files = DB::table('file_mhs_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-
-            return view('magang.data-mhs-kelompok', [
-                'ti' => $ti,
-                'data' => $data,
-                'files' => $files
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function Data_smk_kelompok()
     {
@@ -879,15 +899,7 @@ class MagangController extends Controller
         }
     }
 
-    public function inputDataMhsKel()
-    {
-        if (auth()->user()->role_id == 6) {
-            $ti = 'Form Data Mahasiswa Kelompok';
-            return view('magang.input-data-mhskel', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function inputDataSmkKel()
     {

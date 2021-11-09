@@ -26,7 +26,7 @@
                             <p class="card-text"><small>Setelah membuat akun mohon lengkapi data berikut dengan
                                     benar untuk pemerosesan seleksi berkas</small></p>
 
-                            <form method="POST" action="{{ route('uploadkel') }}">
+                            <form method="POST" action="/input-mhs-kelompok">
                                 @csrf
                                 <div class="form-group">
                                     <small class="ml-2">Nama Anggota</small>
