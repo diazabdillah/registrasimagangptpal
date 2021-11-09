@@ -17,9 +17,7 @@
                         File PDF
                     </div>
                     <div class="card-body">
-
                         <embed class="mt-3" type="application/pdf" src="{{ asset('file/berkas-mhs-kel/'.$files->path) }}" width="100%" height="600"></embed>
-
                     </div>
                 </div>
             </div>

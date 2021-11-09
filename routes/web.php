@@ -198,7 +198,7 @@ Route::get('penilaian-mhs', [MagangController::class, 'penilaian_mhs']);
 Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
 
 Route::get('/input-mhs-kelompok', [MagangController::class, 'input_mhs_kelompok']);
-Route::post('/input-mhs-kelompok', [MagangController::class, 'proses_data_mhsKelompok']);
+Route::post('/input-mhs-kelompok', [MagangController::class, 'proses_data_mhs_kelompok']);
 Route::get('/edit-data-mhs-kelompok/{id}', [MagangController::class, 'edit_data_mhs_kelompok']);
 Route::put('/edit-data-mhs-kelompok/{id}', [MagangController::class, 'update_data_mhs_kelompok']);
 Route::get('/delete-data-mhs-kelompok/{user_id}', [MagangController::class, 'proses_hapus_mhs_kelompok']);
@@ -207,6 +207,8 @@ Route::get('/berkas-mhs-kelompok', [MagangController::class, 'berkas_mhs_kelompo
 Route::post('/berkas-mhs-kelompok', [MagangController::class, 'proses_berkas_mhs_kelompok']);
 Route::get('/berkas-mhs-kelompok-semua', [MagangController::class, 'berkas_mhs_kelompok_semua']);
 Route::get('/berkas-mhs-kelompok/{id}', [MagangController::class, 'berkas_mhs_kelompok_lihat']);
+Route::get('/berkas-mhs-kelompok/{id}/{path}', [MagangController::class, 'proses_hapus_berkas_kelompok']);
+
 
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
 

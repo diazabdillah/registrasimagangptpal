@@ -167,7 +167,7 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    public function proses_hapus_file($id, $path)
+    public function proses_hapus_berkas($id, $path)
     {
         // Hapus di local storage
         File::delete('file/berkas-mahasiswa/' . $path);
@@ -176,7 +176,7 @@ class MagangController extends Controller
             ->where('id', $id)
             ->delete();
 
-        session()->flash('succes', 'File berhasil dihapus');
+        session()->flash('succes', 'Berkas berhasil dihapus');
         return redirect('data-mhs');
     }
 
@@ -756,6 +756,31 @@ class MagangController extends Controller
         }
     }
 
+    public function proses_data_mhs_kelompok(Request $request)
+    {
+        $request->validate([
+            'univ' => 'required',
+            'strata' => 'required',
+            'jurusan' => 'required',
+            'alamat_rumah' => 'required',
+            'no_hp' => 'required|max:14',
+            'nim' => 'required'
+        ]);
+
+        DataMhsIndiv::create([
+            'user_id' => Auth::user()->id,
+            'nama' => $request->nama,
+            'univ' => $request->univ,
+            'alamat_rumah' => $request->alamat_rumah,
+            'strata' => $request->strata,
+            'no_hp' => $request->no_hp,
+            'nim' => $request->nim,
+            'jurusan' => $request->jurusan,
+        ]);
+        session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
+        return redirect('/data-mhs-kelompok');
+    }
+
     public function edit_data_mhs_kelompok($id)
     {
         if (auth()->user()->role_id == 6) {
@@ -879,7 +904,18 @@ class MagangController extends Controller
         }
     }
 
-    
+    public function proses_hapus_berkas_kelompok($id, $path)
+    {
+        // Hapus di local storage
+        File::delete('file/berkas-mhs-kel/' . $path);
+        // Hapus di database
+        DB::table('file_mhs_indivs')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Berkas berhasil dihapus');
+        return redirect('/data-mhs-kelompok');
+    }
     // Kelompok Mahasiswa
 
 
@@ -1004,30 +1040,7 @@ class MagangController extends Controller
         }
     }
 
-    public function proses_data_mhsKelompok(Request $request)
-    {
-        $request->validate([
-            'univ' => 'required',
-            'strata' => 'required',
-            'jurusan' => 'required',
-            'alamat_rumah' => 'required',
-            'no_hp' => 'required|max:14',
-            'nim' => 'required'
-        ]);
-
-        DataMhsIndiv::create([
-            'user_id' => Auth::user()->id,
-            'nama' => $request->nama,
-            'univ' => $request->univ,
-            'alamat_rumah' => $request->alamat_rumah,
-            'strata' => $request->strata,
-            'no_hp' => $request->no_hp,
-            'nim' => $request->nim,
-            'jurusan' => $request->jurusan,
-        ]);
-        session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
-        return redirect('/data-mhs-kelompok');
-    }
+    
 
     public function proses_data_smkKelompok(Request $request)
     {
