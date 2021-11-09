@@ -863,6 +863,22 @@ class MagangController extends Controller
         }
     }
 
+    public function berkas_mhs_kelompok_lihat($id)
+    {
+        if (auth()->user()->role_id == 6) {
+            $ti = 'Data Mahasiswa';
+
+            $files = FileMhsIndiv::find($id);
+
+            return view('magang.berkas-mhs-kelompok-lihat', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     
     // Kelompok Mahasiswa
 
@@ -877,21 +893,7 @@ class MagangController extends Controller
         ]);
     }
 
-    public function liat_file($id)
-    {
-        if (auth()->user()->role_id == 6) {
-            $ti = 'Data Mahasiswa';
 
-            $files = FileMhsIndiv::find($id);
-
-            return view('magang.openpdfkel', [
-                'ti' => $ti,
-                'files' => $files
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
 
     public function liat_file_smk_kel($id)
     {

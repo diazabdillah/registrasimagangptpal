@@ -98,7 +98,7 @@
                                     <tr class="text-center">
                                         <td><i class="fas fa-fw fa-file-pdf mr-3"></i>{{ $file->path }}</td>
                                         <td>
-                                            <a class="btn btn-primary p-1" href=" {{ url('/Data_mhs_lihat/' . $file->id) }}"><i class="far fa-eye"></i> Lihat</a>
+                                            <a class="btn btn-primary p-1" href="/berkas-mhs-kelompok/{{$file->id}}"><i class="far fa-eye"></i> Lihat</a>
                                             <a class="btn btn-danger p-1" href="{{ url('Data_mhs/' . $file->id, $file->path) }}" onclick="return confirm('yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
 
                                         </td>
