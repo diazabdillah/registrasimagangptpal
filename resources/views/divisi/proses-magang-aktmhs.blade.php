@@ -22,24 +22,39 @@
                             <div class="card-body">
 
                                 <div class="col-sm-3 mb-3">
+
+                                    @if ($users[0]->status_user == "Individu")
+
                                     <div class="card">
                                         <img src="{{ asset('file/foto-mhs/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
                                     </div>
+
+                                    @else
+
+                                    <div class="card">
+                                        <img src="{{ asset('file/foto-mhs-kel/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                    </div>
+
+                                    @endif
                                 </div>
-                                <h5 class="card-title"><b>Nama :</b> {{ $user->nama }}</h5>
+
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title"><b>Nama :</b> {{ $user->nama }}</h3>
+                                <h5 class="card-title"> {{ $user->nim }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="far fa-fw fa-envelope mr-3"></i>
-                                    {{ $user->email }}
-                                </li>
-                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
-                                    {{ $user->no_hp }}
-                                </li>
                                 <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
                                     {{ $user->univ }}
                                 </li>
                                 <li class="list-group-item"><i class="fas fa-fw fa-graduation-cap mr-3"></i>
-                                    {{ $user->strata }}
+                                    {{ $user->strata }} {{ $user->jurusan }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-home mr-3"></i>
+                                    {{ $user->alamat_rumah }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
+                                    {{ $user->no_hp }}
                                 </li>
                                 <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                     {{ $user->divisi }}
@@ -47,13 +62,15 @@
                                 <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                     {{ $user->departemen }}
                                 </li>
-                                @endforeach
-                                @foreach ($tgl as $data)
-                                <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
-                                    Tgl Mulai <span class="badge badge-success p-2"> {{ $data->mulai }}</span>
-                                    Tgl Selesai <span class="badge badge-danger p-2"> {{ $data->selesai }}</span>
-                                </li>
-                                @endforeach
+                            </ul>
+
+                            @endforeach
+                            @foreach ($tgl as $data)
+                            <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                Tgl Mulai <span class="badge badge-success p-2"> {{ $data->mulai }}</span>
+                                Tgl Selesai <span class="badge badge-danger p-2"> {{ $data->selesai }}</span>
+                            </li>
+                            @endforeach
 
                             </ul>
                         </div>
@@ -75,7 +92,8 @@
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
                                             <option value="14">Sertifikat MHS</option>
-                                            <option value="11">Dokumen Magang Aktif</option>
+                                            <option value="11">Menu Dokumen MHS (Diterima)</option>
+
                                         </select>
 
                                         <div class="input-group-append">
@@ -117,12 +135,29 @@
                             </div>
                             <div class="card-body d-flex flex-wrap">
                                 @foreach ($fileFoto as $img)
+
+                                @if ($users[0]->status_user == "Individu")
+
                                 <div class="col-sm-3">
                                     <div class="card">
                                         <img src="{{ asset('file/dokumen-mhs/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('proses-magang-aktmhs/' . $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
 
                                     </div>
                                 </div>
+
+                                @else
+
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <img src="{{ asset('file/dokumen-mhs-kel/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('proses-magang-aktmhs/' . $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+
+                                    </div>
+                                </div>
+
+                                @endif
+
                                 @endforeach
                             </div>
                         </div>

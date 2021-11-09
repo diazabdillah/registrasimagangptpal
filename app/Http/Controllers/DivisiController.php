@@ -97,15 +97,13 @@ class DivisiController extends Controller
             $ti = 'Magang Aktif';
             $pagination = 5;
             $data = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->select('users.id', 'users.name', 'users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'users.name', 'users.status_user')
                 ->where('users.role_id', '=', 3)
                 ->orderBy('users.created_at', 'asc')
                 ->get();
 
             $dataSmk = DB::table('users')
-                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->select('users.id', 'users.name', 'users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
+                ->select('users.id', 'users.name', 'users.status_user')
                 ->where('users.role_id', '=', 4)
                 ->orderBy('users.created_at', 'asc')
                 ->get();
@@ -361,7 +359,7 @@ class DivisiController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
-                ->select('users.name', 'data_mhs_indivs.nama', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
+                ->select('users.name', 'users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'user_role.role', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
