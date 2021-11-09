@@ -41,8 +41,6 @@
                                                     {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
                                             </p>
                                             @if ($laporans->path != null)
-                                            {{-- <a class="btn btn-primary"
-                                                                        href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
                                             <a class="btn btn-primary" href="/lihat-laporan-mhs/{{$laporans->id}}">lihat</a>
                                             @if ($laporans->revisi != null)
                                             <a class="btn btn-warning" href="/edit-laporan-mhs/{{$laporans->id}}">Edit</a>

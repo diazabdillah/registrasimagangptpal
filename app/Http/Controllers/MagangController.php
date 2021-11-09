@@ -452,7 +452,7 @@ class MagangController extends Controller
             $data = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
-                ->select('foto_i_d_mhs.fotoID', 'users.id', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.univ', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.divisi', 'data_mhs_indivs.user_id', 'data_mhs_indivs.departemen')
+                ->select('foto_i_d_mhs.fotoID', 'users.id', 'users.status_user', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.univ', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.divisi', 'data_mhs_indivs.user_id', 'data_mhs_indivs.departemen')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             return view('magang.profil-mhs', [
@@ -533,7 +533,7 @@ class MagangController extends Controller
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.created_at', 'users.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
+                ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
                 ->where('users.id', '=', $id)
                 ->get();
 
@@ -558,7 +558,7 @@ class MagangController extends Controller
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nim')
+                ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nim')
                 ->where('users.id', '=', $id)
                 ->get();
 
@@ -584,7 +584,7 @@ class MagangController extends Controller
             ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.user_id')
             ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
             ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-            ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
+            ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
             ->where('users.id', '=', $id)
             ->get();
         // $pdf = PDF::make('dompdf');
@@ -599,11 +599,12 @@ class MagangController extends Controller
     public function laporan_mhs()
     {
         if (auth()->user()->role_id == 3) {
-            $id = Auth::user()->id;
+            $nama = Auth::user()->name;
             $users = DB::table('laporans')
-                ->where('laporans.id', '=', $id)
+                ->where('laporans.nama', '=', $nama)
                 ->get();
-            $user = DB::table('laporans')->get();
+            $user = DB::table('laporans')
+                ->get();
             $ti = 'Laporan Akhir';
             return view('magang.laporan-mhs', [
                 'ti' => $ti,
@@ -1107,8 +1108,6 @@ class MagangController extends Controller
         session()->flash('success', 'Dokumen berhasil dihapus');
         return redirect('dokumen-mhs');
     }
-
-    
     // Kelompok Mahasiswa
 
 
@@ -1158,7 +1157,7 @@ class MagangController extends Controller
         }
     }
 
-    
+
 
     public function OpenPDFSMKKel()
     {
@@ -1233,7 +1232,7 @@ class MagangController extends Controller
         }
     }
 
-    
+
 
     public function proses_data_smkKelompok(Request $request)
     {
@@ -1257,7 +1256,7 @@ class MagangController extends Controller
         return redirect('/data-smk-kelompok');
     }
 
-    
+
 
     public function file_smk_kelompok()
     {
@@ -1272,7 +1271,7 @@ class MagangController extends Controller
         }
     }
 
-    
+
 
     public function proses_file_smk_kelompok(Request $request)
     {

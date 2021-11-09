@@ -197,6 +197,7 @@ Route::put('/proses-edit-laporan-mhs/{id}', [MagangController::class, 'proses_ed
 Route::get('penilaian-mhs', [MagangController::class, 'penilaian_mhs']);
 // Halaman Magang Mahasiswa Individu ==================
 
+
 // Halaman Magang Mahasiswa Kelompok ==================
 Route::get('/data-mhs-kelompok', [MagangController::class, 'data_mhs_kelompok']);
 
@@ -223,6 +224,8 @@ Route::get('/dokumen-mhs-kel-foto/{id}/{fotoID}', [MagangController::class, 'hap
 
 Route::post('/upload-mhs-kel-foto/{id}', [MagangController::class, 'upload_mhs_kel_foto']);
 Route::post('/upload-mhs-kel/{id}', [MagangController::class, 'upload_mhs_kel']);
+// Halaman Magang Mahasiswa Kelompok ==================
+
 
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
 

@@ -18,11 +18,24 @@
 
                         <div class="card">
                             <div class="card-body">
+
+                                @if ($data[0]->status_user == "Individu")
+
                                 <div class="mb-3">
 
                                     <img class="gambar1" style="width: 150px; height:180px; border-radius: 5px;" src="{{ asset('file/foto-mhs/' .  $profile->fotoID) }}">
 
                                 </div>
+
+                                @else
+
+                                <div class="mb-3">
+
+                                    <img class="gambar1" style="width: 150px; height:180px; border-radius: 5px;" src="{{ asset('file/foto-mhs-kel/' .  $profile->fotoID) }}">
+
+                                </div>
+
+                                @endif
 
                                 <div class="form-group">
                                     <small class="ml-2">Nama</small>

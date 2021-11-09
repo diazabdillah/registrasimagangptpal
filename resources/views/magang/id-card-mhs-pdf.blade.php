@@ -43,12 +43,26 @@
                             <div class="card" style="width: 19rem;border: 1px black solid;">
                                 <div class="headerIdCard mb-5">
                                     <div class="mt-4">
+
+                                        @if ($datas[0]->status_user == "Individu")
                                         <div class="d-flex justify-content-center">
 
                                             <img src="{{ asset('file/foto-mhs/' . $data->fotoID) }}" alt="image"
                                                 style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                         </div>
+
+                                        @else
+
+                                        <div class="d-flex justify-content-center">
+
+                                            <img src="{{ asset('file/foto-mhs-kel/' . $data->fotoID) }}" alt="image"
+                                                style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
+
+                                        </div>
+
+                                        @endif
+
                                     </div>
                                 </div>
 
