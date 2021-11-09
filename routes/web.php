@@ -124,6 +124,7 @@ Route::get('/hapus-interview-mhs-kel/{id}/{foto}', [DivisiController::class, 'ha
 Route::get('/proses-magang-aktmhs/{id}', [DivisiController::class, 'magangAktMhs']);
 Route::get('/proses-magang-aktsmk/{user_id}', [DivisiController::class, 'magangAktSmk']);
 Route::get('/final-penerimaan-mhs/{id}/{foto}', [DivisiController::class, 'hapusfileMhs']);
+Route::get('/final-penerimaan-mhs-kel/{id}/{foto}', [DivisiController::class, 'hapusfileMhsKel']);
 Route::put('/final-penerimaan-mhs/{id}', [DivisiController::class, 'updateDiterima']);
 Route::put('/proses-magang-aktmhs/{id}', [DivisiController::class, 'mulaiSelesai']);
 Route::get('/final-penerimaan-smk/{user_id}', [DivisiController::class, 'finalSmk']);

@@ -1107,6 +1107,8 @@ class MagangController extends Controller
         session()->flash('success', 'Dokumen berhasil dihapus');
         return redirect('dokumen-mhs');
     }
+
+    
     // Kelompok Mahasiswa
 
 

@@ -19,6 +19,9 @@
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">Detail Calon Magang</h6>
                             </div>
+
+                            @if ($users[0]->status_user == "Individu")
+
                             @foreach ($users as $user)
                             <div class="col-sm-3 mb-3">
                                 <div class="card">
@@ -50,6 +53,43 @@
                                 </li>
                             </ul>
                             @endforeach
+
+                            @else
+
+                            @foreach ($users as $user)
+                            <div class="col-sm-3 mb-3">
+                                <div class="card">
+                                    <img src="{{ asset('file/foto-mhs-kel/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title"><b>Nama :</b> {{ $user->nama }}</h3>
+                                <h5 class="card-title"> {{ $user->nim }}</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
+                                    {{ $user->univ }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-graduation-cap mr-3"></i>
+                                    {{ $user->strata }} {{ $user->jurusan }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-home mr-3"></i>
+                                    {{ $user->alamat_rumah }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
+                                    {{ $user->no_hp }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
+                                    {{ $user->divisi }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
+                                    {{ $user->departemen }}
+                                </li>
+                            </ul>
+                            @endforeach
+
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -65,10 +105,23 @@
                             <ul class="list-group list-group-flush">
 
                                 @foreach ($filepdf as $file)
+
+                                @if ($users[0]->status_user == "Individu")
+
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                     {{ $file->path }}
                                     <a href="{{ url('pdf-mhs/' . $file->id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
                                 </li>
+
+                                @else
+
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $file->path }}
+                                    <a href="{{ url('pdf-mhs-kel/' . $file->id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
+                                </li>
+
+                                @endif
+
                                 @endforeach
 
                             </ul>
@@ -83,6 +136,9 @@
                             </div>
                             <div class="card-body d-flex flex-wrap">
                                 @foreach ($users as $img)
+
+                                @if ($users[0]->status_user == "Individu")
+
                                 <div class="col-sm-3">
                                     <div class="card">
                                         @if ($img->fileinterview != null)
@@ -90,6 +146,18 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                @else
+
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        @if ($img->fileinterview != null)
+                                        <a class="btn btn-primary" href="{{ asset('file/interview-mhs-kel/' . $img->fileinterview) }}">Download</a>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                @endif
                                 @endforeach
                             </div>
                         </div>
@@ -103,17 +171,37 @@
                             </div>
                             <div class="card-body d-flex flex-wrap">
                                 @foreach ($fileFoto as $img)
+
+                                @if ($users[0]->status_user == "Individu")
+
                                 <div class="col-sm-3">
                                     <div class="card">
                                         @if ($img->foto != null)
 
                                         <img src="{{ asset('file/dokumen-mhs/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                         <a class="btn btn-primary" href="{{ asset('file/dokumen-mhs/' . $img->foto) }}">Download</a>
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="{{ url('final-penerimaan-mhs/' . $img->id, $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                        <a class="btn btn-danger p-0 mt-2 float-right" href="/final-penerimaan-mhs/{{$img->id}}/{{$img->foto}}"><i class="far fa-trash-alt p-1"></i></a>
 
                                         @endif
                                     </div>
                                 </div>
+
+                                @else
+
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        @if ($img->foto != null)
+
+                                        <img src="{{ asset('file/dokumen-mhs-kel/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <a class="btn btn-primary" href="{{ asset('file/dokumen-mhs-kel/' . $img->foto) }}">Download</a>
+                                        <a class="btn btn-danger p-0 mt-2 float-right" href="/final-penerimaan-mhs-kel/{{$img->id}}/{{$img->foto}}"><i class="far fa-trash-alt p-1"></i></a>
+
+                                        @endif
+                                    </div>
+                                </div>
+
+                                @endif
+
                                 @endforeach
                             </div>
                         </div>
