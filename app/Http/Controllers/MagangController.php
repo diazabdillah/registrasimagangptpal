@@ -756,7 +756,42 @@ class MagangController extends Controller
         }
     }
 
-    
+    public function edit_data_mhs_kelompok($id)
+    {
+        if (auth()->user()->role_id == 6) {
+
+            $ti = 'Data Mahasiswa';
+            $data = DB::table('data_mhs_indivs')
+                ->where('id', $id)
+                ->first();
+
+            return view('magang.edit-data-mhs-kelompok', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function update_data_mhs_kelompok(Request $request, $id)
+    {
+        DB::table('data_mhs_indivs')
+            ->where('id', $id)
+            ->update([
+                'user_id' => Auth::user()->id,
+                'nama' => $request->nama,
+                'univ' => $request->univ,
+                'strata' => $request->strata,
+                'alamat_rumah' => $request->alamat_rumah,
+                'no_hp' => $request->no_hp,
+                'divisi' => $request->divisi,
+                'departemen' => $request->departemen
+            ]);
+
+        session()->flash('succes', 'Data Mahasiswa berhasil diperbarui');
+        return redirect('/data-mhs-kelompok');
+    }
     // Kelompok Mahasiswa
 
 
@@ -1085,23 +1120,7 @@ class MagangController extends Controller
     //     return redirect('/data-mhs-kelompok');
     // }
 
-    public function editDataMhskel($id)
-    {
-        if (auth()->user()->role_id == 6) {
-
-            $ti = 'Data Mahasiswa';
-            $data = DB::table('data_mhs_indivs')
-                ->where('id', $id)
-                ->first();
-
-            return view('magang.edit-data-mhskel', [
-                'ti' => $ti,
-                'data' => $data
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function editDataSmkKel($id)
     {
@@ -1121,24 +1140,7 @@ class MagangController extends Controller
         }
     }
 
-    public function updateDataMhskel(Request $request, $id)
-    {
-        DB::table('data_mhs_indivs')
-            ->where('id', $id)
-            ->update([
-                'user_id' => Auth::user()->id,
-                'nama' => $request->nama,
-                'univ' => $request->univ,
-                'strata' => $request->strata,
-                'alamat_rumah' => $request->alamat_rumah,
-                'no_hp' => $request->no_hp,
-                'divisi' => $request->divisi,
-                'departemen' => $request->departemen
-            ]);
-
-        session()->flash('succes', 'Data Mahasiswa berhasil diperbarui');
-        return redirect('/data-mhs-kelompok');
-    }
+    
 
     public function updateDataSmkKel(Request $request, $id)
     {

@@ -57,28 +57,6 @@
                                         <small class="ml-2">Nomer Hp</small>
                                         <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $data->no_hp }}">
                                     </div>
-                                    <div class="form-group">
-                                        <small class="ml-2">Pilih Divisi</small>
-                                        <div class="input-group mb-3">
-                                            <select class="custom-select" name="divisi">
-                                                <option>{{ $data->divisi }}</option>
-                                                <option value="Divisi 1">Divisi 1</option>
-                                                <option value="Divisi 2">Divisi 2</option>
-                                                <option value="Divisi 3">Divisi 3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <small class="ml-2">Pilih Departement</small>
-                                        <div class="input-group mb-3">
-                                            <select class="custom-select" name="departemen">
-                                                <option>{{ $data->departemen }}</option>
-                                                <option value="Departement 1">Departement 1</option>
-                                                <option value="Departement 2">Departement 2</option>
-                                                <option value="Departement 3">Departement 3</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i class="fas fa-paper-plane"></i></button>
                                 </form>
