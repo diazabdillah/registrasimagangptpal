@@ -283,6 +283,8 @@ class MagangController extends Controller
 
             $id = Auth::user()->id;
             $users = DB::table('data_mhs_indivs')
+                ->leftJoin('users', 'data_mhs_indivs.user_id', '=', 'users.id')
+                ->select('data_mhs_indivs.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'users.status_user')
                 ->where('user_id', '=', $id)
                 ->get();
 
@@ -975,6 +977,136 @@ class MagangController extends Controller
         session()->flash('succes', 'Terimakasih telah mengirimkan hasil tes kepribadian anda selanjutnya akan kami proses');
         return redirect('/interview-mhs');
     }
+
+    public function show_mhs_kel_foto($id)
+    {
+        $user = DataMhsIndiv::find($id);
+
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_mhs_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs-kel-upload-foto', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show_mhs_kel_dokumen($id)
+    {
+        $user = DataMhsIndiv::find($id);
+
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_mhs_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs-kel-upload', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function upload_mhs_kel_foto($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
+        $request->validate([
+            'fotoid' => 'required',
+            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('fotoid')) {
+
+            $files = $request->file('fotoid');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/foto-mhs-kel/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoIDMhs::create([
+                    'user_id' => $user->id,
+                    'fotoID' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload foto berhasil');
+            return redirect('dokumen-mhs');
+        }
+        return redirect()->back();
+    }
+
+    public function upload_mhs_kel($id, Request $request)
+    {
+        $user = DataMhsIndiv::find($id);
+        $request->validate([
+            'foto' => 'required',
+            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            $files = $request->file('foto');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/dokumen-mhs-kel/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoMhsModels::create([
+                    'user_id' => $user->id,
+                    'foto' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload dokumen berhasil');
+            return redirect('dokumen-mhs');
+        }
+        return redirect()->back();
+    }
+
+    public function hapus_mhs_kel_foto($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/foto-mhs-kel/' . $foto);
+        // Hapus di database
+        DB::table('foto_i_d_mhs')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Foto berhasil dihapus');
+        return redirect('dokumen-mhs');
+    }
+
+    public function hapus_mhs_kel_dokumen($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/dokumen-mhs-kel/' . $foto);
+        // Hapus di database
+        DB::table('foto_mhs_models')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Dokumen berhasil dihapus');
+        return redirect('dokumen-mhs');
+    }
     // Kelompok Mahasiswa
 
 
@@ -1258,61 +1390,6 @@ class MagangController extends Controller
         return redirect('/data-smk-kelompok')->with('succes', 'Data Siswa Berhasil DiHapus');
     }
     //end mhs kelompok
-
-
-
-
-
-    public function uploadDocFotoMhs($id, Request $request)
-    {
-        $user = DataMhsIndiv::find($id);
-        $request->validate([
-            'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:1048'
-        ]);
-
-        if ($request->hasFile('foto')) {
-
-            $files = $request->file('foto');
-
-            foreach ($files as $file) {
-                $extension = $file->getClientOriginalExtension();
-                $Namafoto = $file->getClientOriginalName();
-                // Upload ke public/fotoMhs
-                $tujuan_upload = 'file';
-                $size = $file->getSize();
-                $file->move($tujuan_upload, $Namafoto, $size);
-                FotoMhsModels::create([
-                    'user_id' => $user->id,
-                    'foto' => $Namafoto,
-                ]);
-            }
-            session()->flash('success', 'Upload foto berhasil');
-            return redirect('Dokumen_mhs');
-        }
-        return redirect()->back();
-    }
-
-
-
-
-
-    // public function hapusFotoMhs($id, $fotoID)
-    // {
-    //     if (Storage::exists('public/file' . $fotoID)) {
-    //         Storage::delete('public/file' . $fotoID);
-    //     }
-    //     DB::table('foto_i_d_mhs')->where('id', $id)->delete();
-
-    //     session()->flash('success', 'File berhasil dihapus');
-    //     return redirect('Dokumen_mhs');
-    // }
-
-
-
-
-
-
 
     public function sertifikatmhspdf()
     {

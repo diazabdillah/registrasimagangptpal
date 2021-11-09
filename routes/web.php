@@ -214,6 +214,15 @@ Route::get('/berkas-mhs-kelompok/{id}/{path}', [MagangController::class, 'proses
 Route::get('/interview-mhs-kel/{id}',[MagangController::class,'interview_mhs_kel_upload']);
 Route::post('/interview-mhs-kel/{id}',[MagangController::class,'proses_interview_mhs_kel_upload']);
 
+Route::get('/dokumen-mhs-kel-upload-foto/{id}', [MagangController::class, 'show_mhs_kel_foto']);
+Route::get('/dokumen-mhs-kel-upload/{id}', [MagangController::class, 'show_mhs_kel_dokumen']);
+
+Route::get('/dokumen-mhs-kel/{id}/{foto}', [MagangController::class, 'hapus_mhs_kel_dokumen']);
+Route::get('/dokumen-mhs-kel-foto/{id}/{fotoID}', [MagangController::class, 'hapus_mhs_kel_foto']);
+
+Route::post('/upload-mhs-kel-foto/{id}', [MagangController::class, 'upload_mhs_kel_foto']);
+Route::post('/upload-mhs-kel/{id}', [MagangController::class, 'upload_mhs_kel']);
+
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
 
 // Export PDF ID Card

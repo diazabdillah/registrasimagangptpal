@@ -96,20 +96,16 @@ class DivisiController extends Controller
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Magang Aktif';
             $pagination = 5;
-            $users = DB::table('users')
-                ->select('users.id', 'users.name', 'users.email')
-                ->where('users.role_id', '=', 3)
-                ->get();
             $data = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->select('users.id', 'users.name', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.user_id')
+                ->select('users.id', 'users.name', 'users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.user_id')
                 ->where('users.role_id', '=', 3)
                 ->orderBy('users.created_at', 'asc')
                 ->get();
 
             $dataSmk = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->select('users.id', 'users.name', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
+                ->select('users.id', 'users.name', 'users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.user_id')
                 ->where('users.role_id', '=', 4)
                 ->orderBy('users.created_at', 'asc')
                 ->get();
@@ -118,7 +114,6 @@ class DivisiController extends Controller
                 'ti' => $ti,
                 'data' => $data,
                 'dataSmk' => $dataSmk,
-                'users' => $users
 
             ])->with('i', ($request->input('page', 1) - 1) * $pagination);
         } else {
