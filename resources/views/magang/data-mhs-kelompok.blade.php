@@ -75,12 +75,12 @@
                                 upload file calon magang untuk kirimkan data-data kelompok anda. Jika sudah
                                 mengirim file pada form maka file data kelompok anda akan tampil di tabel bawah.
                             </p>
-                            <a href="/berkas-mhs-kel" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a> <br>
-                            <b>Kirim file berikut dalam bentuk PDF maksimal 1MB</b>
+                            <a href="/berkas-mhs-kelompok" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a> <br>
+                            <b>Kirim file berikut dalam bentuk PDF maksimal 2MB</b>
                             <ol>
                                 <li>Proposal Magang</li>
                                 <li>Surat Pengantar Magang dari universitas</li>
-                                <li>Curriculum Vitae (jika ada)</li>
+                                <li>Curriculum Vitae (opsional)</li>
                             </ol>
                         </div>
 

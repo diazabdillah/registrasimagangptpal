@@ -203,8 +203,8 @@ Route::get('/edit-data-mhs-kelompok/{id}', [MagangController::class, 'edit_data_
 Route::put('/edit-data-mhs-kelompok/{id}', [MagangController::class, 'update_data_mhs_kelompok']);
 Route::get('/delete-data-mhs-kelompok/{user_id}', [MagangController::class, 'proses_hapus_mhs_kelompok']);
 
-Route::get('/berkas-mhs-kel', [MagangController::class, 'file_mhs_kelompok']);
-Route::post('/berkas-mhs-kel', [MagangController::class, 'proses_file_mhs_kelompok'])->name('filekel');
+Route::get('/berkas-mhs-kelompok', [MagangController::class, 'berkas_mhs_kelompok']);
+Route::post('/berkas-mhs-kelompok', [MagangController::class, 'proses_berkas_mhs_kelompok'])->name('filekel');
 
 Route::get('/Data_mhs_lihat/{id}', [MagangController::class, 'liat_file']);
 

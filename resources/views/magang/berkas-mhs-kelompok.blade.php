@@ -25,7 +25,7 @@
                                 <p class="card-text">Kirim file dalam bentuk PDF dengan maksimal ukuran
                                     1MB</p>
 
-                                <form method="POST" action="{{ route('filekel') }}" enctype="multipart/form-data">
+                                <form method="POST" action="/berkas-mhs-kelompok" enctype="multipart/form-data">
                                     @csrf
                                     <!-- Upload Proposal dan surat pengajuan -->
                                     <div class="form-group">
@@ -49,7 +49,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <small class="ml-2">Lainnya</small>
+                                        <small class="ml-2">Curriculum Vitae (opsional)</small>
                                         <input type="file" name="berkas[]" class="form-control @error('berkas') is-invalid @enderror">
 
                                         @error('berkas')

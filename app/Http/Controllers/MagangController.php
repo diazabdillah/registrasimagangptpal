@@ -795,9 +795,54 @@ class MagangController extends Controller
         DB::table('data_mhs_indivs')
             ->where('id', $id)
             ->delete();
-            
+
         return redirect('/data-mhs-kelompok')
             ->with('succes', 'Data Mahasiswa Berhasil Dihapus');
+    }
+
+    public function berkas_mhs_kelompok()
+    {
+
+        if (auth()->user()->role_id == 6) {
+
+            $ti = 'Data File Mahasiswa Kelompok';
+
+            return view('magang.berkas-mhs-kelompok', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_berkas_mhs_kelompok(Request $request)
+    {
+        $request->validate([
+            'berkas' => 'required',
+            'berkas.*' => 'mimes:pdf|max:2048'
+        ]);
+
+        if ($request->hasFile('berkas')) {
+
+            $files = $request->file('berkas');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $NamaFile = $file->getClientOriginalName();
+                // Upload ke public/fileMhs
+                $tujuan_upload = 'file/berkas-mhs-kel/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $NamaFile);
+
+                FileMhsIndiv::create([
+                    'user_id' => Auth::user()->id,
+                    'path' => $NamaFile,
+                    'size' => $size
+                ]);
+            }
+
+            session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data kelompok anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+            return redirect('/data-mhs-kelompok');
+        }
+        return redirect()->back();
     }
     // Kelompok Mahasiswa
 
@@ -1000,18 +1045,7 @@ class MagangController extends Controller
         return redirect('/data-smk-kelompok');
     }
 
-    public function file_mhs_kelompok()
-    {
-
-        if (auth()->user()->role_id == 6) {
-
-            $ti = 'Data File Mahasiswa Kelompok';
-
-            return view('magang.berkas-mhs-kel', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function file_smk_kelompok()
     {
@@ -1026,37 +1060,7 @@ class MagangController extends Controller
         }
     }
 
-    public function proses_file_mhs_kelompok(Request $request)
-    {
-        $request->validate([
-            'berkas' => 'required',
-            'berkas.*' => 'mimes:jpeg,jpg,pdf|max:1048'
-        ]);
-
-        if ($request->hasFile('berkas')) {
-
-            $files = $request->file('berkas');
-
-            foreach ($files as $file) {
-                $extension = $file->getClientOriginalExtension();
-                $NamaFile = $file->getClientOriginalName();
-                // Upload ke public/fileMhs
-                $tujuan_upload = 'file';
-                $size = $file->getSize();
-                $file->move($tujuan_upload, $NamaFile, $size);
-
-                FileMhsIndiv::create([
-                    'user_id' => Auth::user()->id,
-                    'path' => $NamaFile,
-                    'size' => $size
-                ]);
-            }
-
-            session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data kelompok anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
-            return redirect('/data-mhs-kelompok');
-        }
-        return redirect()->back();
-    }
+    
 
     public function proses_file_smk_kelompok(Request $request)
     {
