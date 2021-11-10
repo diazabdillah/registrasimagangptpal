@@ -23,6 +23,5 @@ class Interview extends Model
         'improvisasi',
         'tegas',
         'waspada'
-
     ];
 }
