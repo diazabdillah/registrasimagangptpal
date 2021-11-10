@@ -34,8 +34,8 @@
                                             @foreach ($users as $u)
                                             <tr>
                                                 <td class="text-center">{{ ++$i }}.</td>
-                                                <td class="text-center">{{ $u->name }}</td>
-                                                <td class="text-center"><span class="badge badge-primary p-2">{{ $u->status_user }}</span></td>
+                                                <td class="text-center">{{ $u->nama }}</td>
+                                                <td class="text-center"><span class="badge badge-primary p-2">{{ $u->status_penilaian }}</span></td>
                                                 <td class="text-center">
                                                     <a class="badge badge-success p-2" href="{{ url('isi_penilaian/' . $u->id) }}">Detail <i class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
@@ -72,7 +72,7 @@
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $us->nama }}</td>
-                                                <td class="text-center"><span class="badge badge-warning p-2">{{ $us->status_user }}</span></td>
+                                                <td class="text-center"><span class="badge badge-warning p-2">{{ $us->status_penilaian }}</span></td>
                                                 <td class="text-center">
                                                     <a class="badge badge-success p-2" href="{{ url('isi_penilaian_smk/' . $us->id) }}">Detail
                                                         <i class="fas fa-info-circle ml-1"></i></a>

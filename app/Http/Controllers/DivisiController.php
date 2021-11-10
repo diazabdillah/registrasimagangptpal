@@ -676,15 +676,15 @@ class DivisiController extends Controller
             $id = Auth::user()->id;
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
+                ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->select('users.name', 'users.status_user', 'penilaians.status_penilaian', 'penilaians.pembimbing', 'data_mhs_indivs.id', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen')
                 ->where('users.role_id', '=', 3)
                 ->get();
 
             $usersSmk = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
-                ->select('users.name', 'users.status_user', 'penilaians.status_penilaian', 'penilaians.pembimbing', 'data_smk_indivs.id', 'users.role_id', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
+                ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
+                ->select('users.name', 'users.status_user', 'penilaians_smk.status_penilaian', 'penilaians_smk.pembimbing', 'data_smk_indivs.id', 'users.role_id', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
                 ->where('users.role_id', '=', 4)
                 ->get();
 
