@@ -817,7 +817,7 @@ class DivisiController extends Controller
             $usersSmk = DB::table('users')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
                 ->select('users.id', 'users.name', 'users.status_user', 'user_role.role')
-                ->where('users.role_id', '=', 18)
+                ->where('users.role_id', '=', 17)
                 ->get();
 
             return view('divisi.magang_interview', [

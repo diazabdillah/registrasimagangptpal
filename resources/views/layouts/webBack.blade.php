@@ -350,11 +350,11 @@
                 </li>
 
             @endif
-            @if (auth()->user()->role_id == 16)
-                <li class="nav-item {{ $ti === 'Test Interview Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/interview-mhs">
+            @if (auth()->user()->role_id == 14)
+                <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/sertifikat_mhs">
                         <i class="fas fa-fw fa-medal"></i>
-                        <span>Interview</span></a>
+                        <span>Sertifikat</span> </a>
                 </li>
             @endif
             @if (auth()->user()->role_id == 15)
@@ -364,14 +364,21 @@
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->role_id == 14)
-                <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/sertifikat_mhs">
+            @if (auth()->user()->role_id == 16)
+                <li class="nav-item {{ $ti === 'Test Interview Mahasiswa' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/interview-mhs">
                         <i class="fas fa-fw fa-medal"></i>
-                        <span>Sertifikat</span> </a>
+                        <span>Interview</span></a>
                 </li>
             @endif
             @if (auth()->user()->role_id == 17)
+                <li class="nav-item {{ $ti === 'Test Interview Mahasiswa' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/interview-smk">
+                        <i class="fas fa-fw fa-medal"></i>
+                        <span>Interview</span></a>
+                </li>
+            @endif
+            @if (auth()->user()->role_id == 18)
                 <li class="nav-item {{ $ti === 'Kelola Jurusan Magang' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/kelola-jurusan">
                         <i class="fas fa-fw fa-medal"></i>

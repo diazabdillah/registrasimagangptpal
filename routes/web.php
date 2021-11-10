@@ -240,6 +240,10 @@ Route::get('/berkas-smk', [MagangController::class, 'berkas_smk']);
 Route::post('/berkas-smk', [MagangController::class, 'proses_berkas_smk']);
 Route::get('/berkas-smk/{id}/{path}', [MagangController::class, 'proses_hapus_berkas_smk']);
 Route::get('/berkas-smk-semua', [MagangController::class, 'berkas_smk_semua']);
+
+Route::get('/interview-smk',[MagangController::class,'interview_smk']);
+Route::get('/interview-smk/{id}',[MagangController::class,'interview_smk_upload']);
+Route::post('/interview-smk/{id}',[MagangController::class,'proses_interview_smk_upload']);
 // Halaman Magang SMK Individu ==================
 
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
