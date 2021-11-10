@@ -459,7 +459,6 @@ class MagangController extends Controller
             return view('magang.profil-mhs', [
                 'ti' => $ti,
                 'data' => $data,
-
             ]);
         } else {
             return redirect()->back();
@@ -1338,6 +1337,75 @@ class MagangController extends Controller
         session()->flash('success', 'Dokumen berhasil dihapus');
         return redirect('dokumen-mhs');
     }
+
+    public function profil_smk()
+    {
+        if (auth()->user()->role_id == 4) {
+            $ti = 'Profil SMK';
+
+            $id = Auth::user()->id;
+
+            $data = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.user_id')
+                ->select('foto_i_d_smks.fotoID', 'users.id', 'users.status_user', 'users.role_id', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.sekolah', 'data_smk_indivs.no_hp', 'data_smk_indivs.divisi', 'data_smk_indivs.user_id', 'data_smk_indivs.departemen')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->get();
+            return view('magang.profil-smk', [
+                'ti' => $ti,
+                'data' => $data,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function absen_smk()
+    {
+        if (auth()->user()->role_id == 4) {
+
+            $id = Auth::user()->id;
+            $absensmk = DB::table('absen_indivs_tabel')
+                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absen_indivs_tabel.id_individu')
+                ->leftJoin('absenmhs', 'absenmhs.id', '=', 'absen_indivs_tabel.id_absen')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->select('absen_indivs_tabel.status_absen', 'absen_indivs_tabel.id_absen', 'absenmhs.waktu_awal', 'absenmhs.waktu_akhir', 'data_smk_indivs.id', 'data_smk_indivs.nama')
+                ->get();
+
+            $ti = 'Absen SMK';
+            return view('magang.absen-smk', [
+                'ti' => $ti,
+                'absensmk' => $absensmk,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_absen_smk($absenid, $individ)
+    {
+
+        // AbsenIndivsTabel::create([
+        //     'id_absen' => $idabsen,
+        //     'id_individu' => $idindividu,
+        //     'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
+        //     'status_absen' => 'Sudah Absensi'
+        // ]);
+
+        DB::table('absen_indivs_tabel')
+            ->where('id_absen', '=', $absenid)
+            ->where('id_individu', '=', $individ)
+            ->update([
+                'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
+                'status_absen' => "Sudah Absen",
+            ]);
+
+        // $absenindividu->waktu_absen = date('Y-m-d H:i:s', strtotime(now()));
+        // $absenindividu->status_absen = "Sudah Absen";
+        // $absenindividu->save();
+
+        return redirect()->back();
+    }
     // Individu SMK
 
     public function Kuota()
@@ -1667,29 +1735,7 @@ class MagangController extends Controller
     // Menu Magang Mahasiswa =============
 
     // Menu Magang SMK ===================
-    public function Profil_smk()
-    {
-        if (auth()->user()->role_id == 4 or auth()->user()->role_id == 9) {
-            $ti = 'Profil SMK';
-            $data = DB::table('data_smk_indivs')
-                ->where('user_id', '=', Auth::user()->id)
-                ->first();
-            $data2 = DB::table('users')
-                ->where('id', '=', Auth::user()->id)
-                ->first();
-            $fileFoto = DB::table('foto_smk_models')
-                ->where('foto_smk_models.user_id', '=', Auth::user()->id)
-                ->get();
-            return view('magang.Profil_smk', [
-                'ti' => $ti,
-                'data' => $data,
-                'data2' => $data2,
-                'foto' => $fileFoto,
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function edit_data_smk($id)
     {
@@ -1986,53 +2032,6 @@ class MagangController extends Controller
 
         session()->flash('success', 'File berhasil dihapus');
         return redirect('/Dokumen_smk');
-    }
-
-    public function Absen_smk()
-    {
-        if (auth()->user()->role_id == 4) {
-
-            $id = Auth::user()->id;
-            $absensmk = DB::table('absen_indivs_tabel')
-                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absen_indivs_tabel.id_individu')
-                ->leftJoin('absenmhs', 'absenmhs.id', '=', 'absen_indivs_tabel.id_absen')
-                ->where('data_smk_indivs.user_id', '=', $id)
-                ->select('absen_indivs_tabel.status_absen', 'absen_indivs_tabel.id_absen', 'absenmhs.waktu_awal', 'absenmhs.waktu_akhir', 'data_smk_indivs.id', 'data_smk_indivs.nama')
-                ->get();
-
-            $ti = 'Absen SMK';
-            return view('magang.Absen_smk', [
-                'ti' => $ti,
-                'absensmk' => $absensmk,
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function proses_absensmk($absenid, $individ)
-    {
-
-        // AbsenIndivsTabel::create([
-        //     'id_absen' => $idabsen,
-        //     'id_individu' => $idindividu,
-        //     'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
-        //     'status_absen' => 'Sudah Absensi'
-        // ]);
-
-        DB::table('absen_indivs_tabel')
-            ->where('id_absen', '=', $absenid)
-            ->where('id_individu', '=', $individ)
-            ->update([
-                'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
-                'status_absen' => "Sudah Absen",
-            ]);
-
-        // $absenindividu->waktu_absen = date('Y-m-d H:i:s', strtotime(now()));
-        // $absenindividu->status_absen = "Sudah Absen";
-        // $absenindividu->save();
-
-        return redirect()->back();
     }
 
     public function id_card_smk()

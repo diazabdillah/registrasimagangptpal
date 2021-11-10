@@ -39,7 +39,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 3) {
                 return redirect('/profil-mhs')->with('success', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
             } elseif (auth()->user()->role_id == 4) {
-                return redirect('/Profil_smk')->with('success', 'You are now logged in');
+                return redirect('/profil-smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 5) {
                 return redirect('/id-card')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 6) {

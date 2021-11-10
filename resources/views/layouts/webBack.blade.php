@@ -311,12 +311,12 @@
 
                 <!-- Nav Item -->
                 <li class="nav-item {{ $ti === 'Profil SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Profil_smk">
+                    <a class="nav-link pb-0" href="/profil-smk">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Profil</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Absen SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Absen_smk">
+                    <a class="nav-link pb-0" href="/absen-smk">
                         <i class="fas fa-fw fa-user-clock"></i>
                         <span>Absen</span></a>
                 </li>

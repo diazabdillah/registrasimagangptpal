@@ -636,12 +636,14 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $user = DB::table('laporans')->get();
+            $userSmk = DB::table('laporans_smk')->get();
             $id = 1;
             $ti = 'Laporan Akhir';
             return view('divisi.laporan', [
                 'ti' => $ti,
                 'id' => $id,
-                'user' => $user
+                'user' => $user,
+                'userSmk' => $userSmk,
             ]);
         } else {
             return redirect()->back();

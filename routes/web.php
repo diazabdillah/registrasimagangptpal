@@ -259,6 +259,11 @@ Route::get('/dokumen-smk-upload/{id}', [MagangController::class, 'show_smk_dokum
 Route::get('/dokumen-smk-upload-foto/{id}', [MagangController::class, 'show_smk_foto']);
 Route::post('/upload-smk-foto/{id}', [MagangController::class, 'upload_smk_foto']);
 Route::post('/upload-smk/{id}', [MagangController::class, 'upload_smk']);
+
+Route::get('/profil-smk', [MagangController::class, 'profil_smk']);
+
+Route::get('/absen-smk', [MagangController::class, 'absen_smk']);
+Route::get('/proses-absen-smk/{absenid}/{individ}', [MagangController::class, 'proses_absen_smk']);
 // Halaman Magang SMK Individu ==================
 
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
@@ -282,8 +287,6 @@ Route::get('/Dokumen_smk/{id}/{foto}', [MagangController::class, 'hapus_dok_smk'
 Route::get('/Dokumen_smk_upload/{id}/{fotoID}', [MagangController::class, 'hapusFotoSmk']);
 Route::post('/Dokumen_smk_upload', [MagangController::class, 'uploadDocFotoSmk'])->name('uploadFotoSmk');
 Route::post('/Dokumen_smk', [MagangController::class, 'upFotoSmk'])->name('upFotoSmk');
-Route::get('/Profil_smk', [MagangController::class, 'Profil_smk']);
-Route::get('/Absen_smk', [MagangController::class, 'Absen_smk']);
 Route::get('/proses_absensmk/{absenid}/{individ}', [MagangController::class, 'proses_absensmk']);
 Route::get('/id_card_smk', [MagangController::class, 'id_card_smk']);
 Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);

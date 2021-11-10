@@ -13,7 +13,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Absen SMK</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Absen Pemagang</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -29,27 +29,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($absensmk as $as)
-                                @if (now() <= $as->waktu_akhir)
+                                @foreach ($absensmk as $am)
+                                @if (now() <= $am->waktu_akhir)
                                     <tr>
-                                        <td>{{ $as->nama }}
-                                        <td>{{ date('D, d F Y H:i:s', strtotime($as->waktu_awal)) }}</td>
-                                        <td>{{ date('D, d F Y H:i:s', strtotime($as->waktu_akhir)) }}</td>
-                                        @if ($as->status_absen == 'Sudah Absen')
+                                        <td>{{ $am->nama }}
+                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_awal)) }}</td>
+                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_akhir)) }}</td>
+                                        @if ($am->status_absen == 'Sudah Absen')
                                         <td>
                                             <input class="btn btn-secondary" type="button" value="presensi" disabled>
                                         </td>
-                                        @elseif ($as->status_absen == "Belum Absen")
+                                        @elseif ($am->status_absen == "Belum Absen")
                                         <td>
-                                            <a class="btn btn-primary p-1" href="{{ url('/proses_absenmhs/' . $as->id_absen . '/' . $as->id) }}" role="button">Presensi</a>
+                                            <a class="btn btn-primary p-1" href="/proses-absen-mhs/{{$am->id_absen}}/{{$am->id}}" role="button">Presensi</a>
                                         </td>
                                         @endif
                                     </tr>
                                     @else
                                     <tr>
-                                        <td>{{ $as->nama }}
-                                        <td>{{ date('D, d F Y H:i:s', strtotime($as->waktu_awal)) }}</td>
-                                        <td>{{ date('D, d F Y H:i:s', strtotime($as->waktu_akhir)) }}</td>
+                                        <td>{{ $am->nama }}
+                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_awal)) }}</td>
+                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_akhir)) }}</td>
                                         <td>
                                             <input class="btn btn-secondary" type="button" value="presensi" disabled>
                                         </td>
