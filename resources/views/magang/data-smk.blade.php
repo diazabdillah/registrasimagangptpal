@@ -51,7 +51,7 @@
                                         <td>{{ $d->alamat_rumah }}</td>
                                         <td>{{ $d->no_hp }}</td>
                                         <td>
-                                            <a class="btn btn-warning p-1" href="/edit-data-smk{{$d->id}}" onclick="return confirm('Yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
+                                            <a class="btn btn-warning p-1" href="/edit-data-smk/{{$d->id}}" onclick="return confirm('Yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach

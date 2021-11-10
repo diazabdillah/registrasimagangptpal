@@ -1524,7 +1524,40 @@ class MagangController extends Controller
         }
     }
 
-    
+    public function edit_data_smk($id)
+    {
+        if (auth()->user()->role_id == 9) {
+
+            $ti = 'Data SMK';
+            $data = DB::table('data_smk_indivs')
+                ->where('id', $id)
+                ->first();
+
+            return view('magang.edit-data-smk', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function update_data_smk(Request $request, $id)
+    {
+        DB::table('data_smk_indivs')
+            ->where('id', $id)
+            ->update([
+                'user_id' => Auth::user()->id,
+                'sekolah' => $request->sekolah,
+                'jurusan' => $request->jurusan,
+                'alamat_rumah' => $request->alamat_rumah,
+                'no_hp' => $request->no_hp,
+                'nis' => $request->nis,
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('data-smk');
+    }
 
     
 
@@ -1575,42 +1608,7 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    public function editDataSmk($id)
-    {
-        if (auth()->user()->role_id == 9) {
-
-            $ti = 'Data SMK';
-            $data = DB::table('data_smk_indivs')
-                ->where('id', $id)
-                ->first();
-
-            return view('magang.edit-data-smkInd', [
-                'ti' => $ti,
-                'data' => $data
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function updateDataSmk(Request $request, $id)
-    {
-        DB::table('data_smk_indivs')
-            ->where('id', $id)
-            ->update([
-                'user_id' => Auth::user()->id,
-                'nama' => $request->nama,
-                'sekolah' => $request->sekolah,
-                'jurusan' => $request->jurusan,
-                'alamat_rumah' => $request->alamat_rumah,
-                'no_hp' => $request->no_hp,
-                'divisi' => $request->divisi,
-                'departemen' => $request->departemen
-            ]);
-
-        session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('Data_smk');
-    }
+    
 
     public function proses_hapus_fileSmk($id, $path)
     {

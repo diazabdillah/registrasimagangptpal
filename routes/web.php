@@ -236,6 +236,8 @@ Route::post('/input-data-smk', [MagangController::class, 'proses_data_smk']);
 Route::get('/edit-data-smk/{id}', [MagangController::class, 'edit_data_smk']);
 Route::put('/edit-data-smk/{id}', [MagangController::class, 'update_data_smk']);
 
+// Halaman Magang SMK Individu ==================
+
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
 Route::get('/Data_smk_kel_lihat/{id}', [MagangController::class, 'liat_file_smk_kel']);
 Route::get('/Data_smk_kel/{id}/{path}', [MagangController::class, 'proses_hapus_file_smk_kel']);
@@ -265,7 +267,6 @@ Route::get('/proses_absensmk/{absenid}/{individ}', [MagangController::class, 'pr
 Route::get('/id_card_smk', [MagangController::class, 'id_card_smk']);
 Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);
 Route::get('/data-smk-kelompok', [MagangController::class, 'Data_smk_kelompok']);
-// Halaman Magang SMK Individu ==================
 
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
 
