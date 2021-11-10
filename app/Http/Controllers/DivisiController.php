@@ -282,7 +282,9 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
-            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
+            $userid = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->first();
 
             $fileFoto = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
@@ -290,7 +292,10 @@ class DivisiController extends Controller
                 ->select('foto_mhs_models.id', 'foto_mhs_models.foto')
                 ->where('users.id', '=', $user_id)
                 ->get();
-            $filepdf = DB::table('file_mhs_indivs')->where('file_mhs_indivs.user_id', '=', $user_id)->get();
+
+            $filepdf = DB::table('file_mhs_indivs')
+                ->where('file_mhs_indivs.user_id', '=', $user_id)
+                ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
@@ -320,20 +325,24 @@ class DivisiController extends Controller
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
                 ->first();
-            $fileFoto = DB::table('foto_smk_models')
-                ->where('foto_smk_models.user_id', '=', $user_id)
+
+            $fileFoto = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_smk_models', 'data_smk_indivs.id', '=', 'foto_smk_models.user_id')
+                ->select('foto_smk_models.id', 'foto_smk_models.foto')
+                ->where('users.id', '=', $user_id)
                 ->get();
+
             $filepdf = DB::table('file_smk_indivs')
                 ->where('file_smk_indivs.user_id', '=', $user_id)
-                ->get();
-            $file3x4 = DB::table('foto_i_d_smks')
-                ->where('foto_i_d_smks.user_id', '=', $user_id)
                 ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.name', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id')
+                ->leftJoin('interview_smk', 'data_smk_indivs.id', '=', 'interview_smk.user_id')
+                ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.user_id')
+                ->select('interview_smk.fileinterview', 'interview_smk.id', 'users.name', 'users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'foto_i_d_smks.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -342,8 +351,7 @@ class DivisiController extends Controller
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
-                'fileFoto' => $fileFoto,
-                'file3x4' => $file3x4,
+                'fileFoto' => $fileFoto
             ]);
         } else {
             return redirect()->back();
@@ -387,7 +395,21 @@ class DivisiController extends Controller
 
     public function updatemagangdivisi($user_id, Request $request)
     {
-        DB::table('data_mhs_indivs')->where('user_id', $user_id)
+        DB::table('data_mhs_indivs')
+            ->where('user_id', $user_id)
+            ->update([
+                'divisi' => $request->divisi,
+                'departemen' => $request->departemen
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('/diterima');
+    }
+
+    public function updatemagangdivisismk($user_id, Request $request)
+    {
+        DB::table('data_smk_indivs')
+            ->where('user_id', $user_id)
             ->update([
                 'divisi' => $request->divisi,
                 'departemen' => $request->departemen
@@ -495,7 +517,7 @@ class DivisiController extends Controller
     public function hapusfileSmk($id, $foto)
     {
         // Hapus di file storage
-        File::delete('file/' . $foto);
+        File::delete('file/dokumen-smk/' . $foto);
         // Hapus di database
         DB::table('foto_smk_models')
             ->where('id', $id)
@@ -508,7 +530,7 @@ class DivisiController extends Controller
     public function hapusfotoSmk($id, $fotoID)
     {
         // Hapus di file storage
-        File::delete('file/' . $fotoID);
+        File::delete('file/foto-smk/' . $fotoID);
         // Hapus di database
         DB::table('foto_i_d_smks')
             ->where('id', $id)

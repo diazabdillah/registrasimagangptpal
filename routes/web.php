@@ -118,6 +118,7 @@ Route::get('/diterima', [DivisiController::class, 'showDiterima']);
 Route::get('/final-penerimaan-mhs/{user_id}', [DivisiController::class, 'finalMhs']);
 Route::get('/magang-selesai-mhs', [DivisiController::class, 'selesaiMhs']);
 Route::put('/update-magang-divisi/{user_id}', [DivisiController::class, 'updatemagangdivisi']);
+Route::put('/update-magang-divisi-smk/{user_id}', [DivisiController::class, 'updatemagangdivisismk']);
 Route::get('delete-selesai-mhs/{id}',[DivisiController::class,'deleteselesaimhs']);
 Route::get('/hapus-interview-mhs/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs']);
 Route::get('/hapus-interview-smk/{id}/{foto}', [DivisiController::class, 'hapus_interview_smk']);

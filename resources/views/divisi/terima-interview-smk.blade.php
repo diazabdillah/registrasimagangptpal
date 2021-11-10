@@ -90,7 +90,7 @@
                                 @if ($img->fileinterview != null)
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                     {{ $img->fileinterview }}
-                                    <a class="btn btn-danger p-1 float-right" href="{{ url('hapus-interview-smk/' . $img->id, $img->fileinterview) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                    <a class="btn btn-danger p-1 float-right" onclick="return confirm('yakin Hapus?');" href="{{ url('hapus-interview-smk/' . $img->id, $img->fileinterview) }}"><i class="far fa-trash-alt p-1"></i></a>
                                     <a class="btn btn-primary p-1 float-right" href="{{ asset('file/interview-smk/' . $img->fileinterview) }}"><i class="fa fa-download p-1"></i></a>
                                 </li>
                                 @endif
@@ -102,7 +102,7 @@
                                 @if ($img->fileinterview != null)
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                     {{ $img->fileinterview }}
-                                    <a class="btn btn-danger p-1 float-right" href="{{ url('hapus-interview-smk-kel/' . $img->id, $img->fileinterview) }}"><i class="far fa-trash-alt p-1"></i></a>
+                                    <a class="btn btn-danger p-1 float-right" onclick="return confirm('yakin Hapus?');" href="{{ url('hapus-interview-smk-kel/' . $img->id, $img->fileinterview) }}"><i class="far fa-trash-alt p-1"></i></a>
                                     <a class="btn btn-primary p-1 float-right" href="{{ asset('file/interview-smk-kel/' . $img->fileinterview) }}"><i class="fa fa-download p-1"></i></a>
                                 </li>
                                 @endif
