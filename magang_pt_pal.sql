@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2021 at 04:32 AM
+-- Generation Time: Nov 10, 2021 at 04:34 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -481,6 +481,24 @@ CREATE TABLE `penilaians` (
 
 CREATE TABLE `penilaians_smk` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `pembimbing` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Kerjasama` int(11) NOT NULL,
+  `Motivasi` int(11) NOT NULL,
+  `InisiatifKerja` int(11) NOT NULL,
+  `Loyalitas` int(11) NOT NULL,
+  `etika` int(11) NOT NULL,
+  `Disiplin` int(11) NOT NULL,
+  `PercayaDiri` int(11) NOT NULL,
+  `TanggungJawab` int(11) NOT NULL,
+  `PemahamanKemampuan` int(11) NOT NULL,
+  `KesehatanKeselamatanKerja` int(11) NOT NULL,
+  `laporankerja` int(11) NOT NULL,
+  `kehadiran` int(11) NOT NULL,
+  `sopansantun` int(11) NOT NULL,
+  `average` int(11) NOT NULL,
+  `nilai_huruf` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_penilaian` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
