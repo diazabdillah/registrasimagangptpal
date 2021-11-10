@@ -1604,19 +1604,17 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
-    
-
-    public function proses_hapus_fileSmk($id, $path)
+    public function proses_hapus_berkas_smk($id, $path)
     {
         // Hapus di file storage
-        File::delete('file/' . $path);
+        File::delete('file/berkas-smk/' . $path);
         // Hapus di database
         DB::table('file_smk_indivs')
             ->where('id', $id)
             ->delete();
 
         session()->flash('succes', 'File berhasil dihapus');
-        return redirect('/Data_smk');
+        return redirect('/data-smk');
     }
 
     public function openpdf_smk()
