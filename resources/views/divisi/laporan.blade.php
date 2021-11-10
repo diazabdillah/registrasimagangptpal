@@ -12,13 +12,12 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
 
-
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Penilaian Magang <span class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Magang <span class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -60,7 +59,7 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Penilaian Magang <span class="badge badge-warning ml-2 p-1">SMK</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Magang <span class="badge badge-warning ml-2 p-1">SMK</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

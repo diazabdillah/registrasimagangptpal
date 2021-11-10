@@ -241,7 +241,7 @@
                 <li class="nav-item {{ $ti === 'laporan akhir' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/laporan-mhs">
                         <i class="fas fa-fw fa-id-badge"></i>
-                        <span>Laporan akhir</span></a>
+                        <span>Laporan Akhir</span></a>
                 </li>
 
                 <li class="nav-item {{ $ti === 'Penilaian Mahasiswa' ? 'active' : '' }}">
@@ -321,16 +321,20 @@
                         <span>Absen</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'ID Card SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/id_card_smk">
+                    <a class="nav-link pb-0" href="/id-card-smk">
                         <i class="fas fa-fw fa-id-badge"></i>
                         <span>ID Card</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'laporan_smk' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan_smk">
+                    <a class="nav-link pb-0" href="/laporan-smk">
                         <i class="fas fa-fw fa-id-badge"></i>
-                        <span>Laporan akhir</span></a>
+                        <span>Laporan Akhir</span></a>
                 </li>
-
+                <li class="nav-item {{ $ti === 'Penilaian Mahasiswa' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/penilaian-smk">
+                        <i class="fas fa-fw fa-medal"></i>
+                        <span>Form Penilaian</span></a>
+                </li>
             @endif
 
             @if (auth()->user()->role_id == 10)

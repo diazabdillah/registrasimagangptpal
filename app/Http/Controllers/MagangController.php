@@ -708,7 +708,6 @@ class MagangController extends Controller
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
-                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
                 ->select('data_mhs_indivs.user_id', 'users.role_id', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifKerja', 'penilaians.Loyalitas', 'penilaians.motivasi', 'penilaians.etika', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin', 'penilaians.PercayaDiri', 'penilaians.TanggungJawab', 'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.status_idcard', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
                 ->where('penilaians.user_id', '=', $id)
@@ -1484,6 +1483,29 @@ class MagangController extends Controller
             'dates' => $dates
         ]);
         return $pdf->stream();
+    }
+
+
+
+    public function penilaian_smk()
+    {
+        if (auth()->user()->role_id == 4) {
+            $id = Auth::user()->id;
+            $users = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('data_smk_indivs.user_id', 'users.role_id', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.motivasi', 'penilaians_smk.etika', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin', 'penilaians_smk.PercayaDiri', 'penilaians_smk.TanggungJawab', 'penilaians_smk.PemahamanKemampuan', 'penilaians_smk.laporankerja', 'penilaians_smk.sopansantun', 'penilaians_smk.kehadiran', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'data_smk_indivs.status_idcard', 'data_smk_indivs.departemen', 'users.id', 'users.role_id', 'data_smk_indivs.created_at', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->get();
+            $ti = 'Penilaian SMK';
+            return view('magang.penilaian-smk', [
+                'ti' => $ti,
+                'users' => $users,
+            ]);
+        } else {
+            return redirect()->back();
+        }
     }
     // Individu SMK
 
