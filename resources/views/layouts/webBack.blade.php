@@ -260,7 +260,7 @@
                     Magang SMK
                 </div>
                 <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Data_smk">
+                    <a class="nav-link pb-0" href="/data-smk">
                         <i class="fas fa-fw fa-file-alt"></i>
                         <span>Data</span></a>
                 </li>

@@ -16,6 +16,7 @@ class DataSmkIndivs extends Model
         'alamat_rumah',
         'no_hp',
         'divisi',
-        'departemen'
+        'departemen',
+        'nis',
     ];
 }

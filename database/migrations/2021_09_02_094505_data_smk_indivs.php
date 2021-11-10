@@ -23,6 +23,8 @@ class DataSmkIndivs extends Migration
             $table->string('no_hp');
             $table->string('divisi')->nullable();
             $table->string('departemen')->nullable();
+            $table->integer('nis');
+            $table->string('status_idcard')->nullable();
             $table->timestamps();
         });
     }

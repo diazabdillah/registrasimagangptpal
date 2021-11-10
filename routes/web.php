@@ -34,8 +34,8 @@ Route::get('/service', function () {
 });
 
 // Welcome HCM
-// Route::get('/hcm-welcome', [WelcomeController::class, 'index']);
 Route::get('/home', [WelcomeController::class, 'home']);
+// Welcome HCM
 
 // Bagian auth registrasi sampai login  ===============
 Route::get('/login', [AuthhController::class, 'index'])->name('login');
@@ -227,28 +227,19 @@ Route::post('/upload-mhs-kel/{id}', [MagangController::class, 'upload_mhs_kel'])
 // Halaman Magang Mahasiswa Kelompok ==================
 
 
-Route::get('/Kuota', [MagangController::class, 'Kuota']);
+// Halaman Magang SMK Individu ==================
+Route::get('/data-smk', [MagangController::class, 'data_smk']);
 
-// Export PDF ID Card
+Route::get('/input-data-smk', [MagangController::class, 'input_data_smk']);
+Route::post('/input-data-smk', [MagangController::class, 'proses_data_smk']);
 
-Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
-Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);
-// data mahasiswa kelompok
-Route::get('/berkas-mhs-kel', [MagangController::class, 'file_mhs_kelompok']);
-Route::post('/berkas-mhs-kel', [MagangController::class, 'proses_file_mhs_kelompok'])->name('filekel');
-// Route::get('/input-mhs-tambahkelompok', [MagangController::class, 'inputDatatambahMhsKel']);
-// Route::post('/input-mhs-tambahkelompok', [MagangController::class, 'proses_data_tambahmhsKelompok'])->name('uploadtambahkel');
+Route::get('/edit-data-smk/{id}', [MagangController::class, 'edit_data_smk']);
+Route::put('/edit-data-smk/{id}', [MagangController::class, 'update_data_smk']);
 
-
-// End Halaman Magang Mahasiswa ==================
-
-// Halaman Magang SMK ===========================
-Route::get('/Data_smk', [MagangController::class, 'Data_smk']);
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
 Route::get('/Data_smk_kel_lihat/{id}', [MagangController::class, 'liat_file_smk_kel']);
 Route::get('/Data_smk_kel/{id}/{path}', [MagangController::class, 'proses_hapus_file_smk_kel']);
-Route::get('/input-data-smkInd', [MagangController::class, 'inputDataSmk']);
-Route::post('/input-data-smkInd', [MagangController::class, 'proses_data_smk'])->name('dataSmk');
+
 Route::get('/input-smk-kelompok', [MagangController::class, 'inputDataSmkKel']);
 Route::post('/input-smk-kelompok', [MagangController::class, 'proses_data_smkKelompok'])->name('uploadsmkkel');
 Route::get('/edit-data-smkInd/{id}', [MagangController::class, 'editDataSmk']);
@@ -274,4 +265,9 @@ Route::get('/proses_absensmk/{absenid}/{individ}', [MagangController::class, 'pr
 Route::get('/id_card_smk', [MagangController::class, 'id_card_smk']);
 Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);
 Route::get('/data-smk-kelompok', [MagangController::class, 'Data_smk_kelompok']);
-// End Halaman Magang SMK =======================
+// Halaman Magang SMK Individu ==================
+
+Route::get('/Kuota', [MagangController::class, 'Kuota']);
+
+Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
+Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);

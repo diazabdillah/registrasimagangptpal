@@ -1111,6 +1111,68 @@ class MagangController extends Controller
     // Kelompok Mahasiswa
 
 
+    // Individu SMK
+    public function data_smk()
+    {
+        if (auth()->user()->role_id == 9) {
+            $ti = 'Data SMK';
+
+            $id = Auth::user()->id;
+            $data = DB::table('data_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.data-smk', [
+                'ti' => $ti,
+                'data' => $data,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function input_data_smk()
+    {
+        if (auth()->user()->role_id == 9) {
+
+            $ti = 'Data SMK';
+
+            return view('magang.input-data-smk', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_data_smk(Request $request)
+    {
+        $request->validate([
+            'sekolah' => 'required',
+            'jurusan' => 'required',
+            'alamat_rumah' => 'required',
+            'no_hp' => 'required|max:14',
+            'nis' => 'required',
+        ]);
+
+        DataSmkIndivs::create([
+            'user_id' => Auth::user()->id,
+            'nama' => Auth::user()->name,
+            'sekolah' => $request->sekolah,
+            'jurusan' => $request->jurusan,
+            'alamat_rumah' => $request->alamat_rumah,
+            'no_hp' => $request->no_hp,
+            'nis' => $request->nis,
+        ]);
+
+        session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
+        return redirect('/data-smk');
+    }
+
+    // Individu SMK
+
     public function Kuota()
     {
         $ti = 'Kuota Magang';
@@ -1462,40 +1524,9 @@ class MagangController extends Controller
         }
     }
 
-    public function Data_smk()
-    {
-        if (auth()->user()->role_id == 9) {
-            $ti = 'Data SMK';
+    
 
-            $id = Auth::user()->id;
-            $data = DB::table('data_smk_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-            $files = DB::table('file_smk_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-
-            return view('magang.Data_smk', [
-                'ti' => $ti,
-                'data' => $data,
-                'files' => $files
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function inputDataSmk()
-    {
-        if (auth()->user()->role_id == 9) {
-
-            $ti = 'Data SMK';
-
-            return view('magang.input-data-smkInd', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
+    
 
     public function file_smk()
     {
@@ -1510,31 +1541,7 @@ class MagangController extends Controller
         }
     }
 
-    public function proses_data_smk(Request $request)
-    {
-        $request->validate([
-            'sekolah' => 'required',
-            'jurusan' => 'required',
-            'alamat_rumah' => 'required',
-            'no_hp' => 'required|max:14',
-            'divisi' => 'required',
-            'departemen' => 'required',
-        ]);
-
-        DataSmkIndivs::create([
-            'user_id' => Auth::user()->id,
-            'nama' => Auth::user()->name,
-            'sekolah' => $request->sekolah,
-            'jurusan' => $request->jurusan,
-            'alamat_rumah' => $request->alamat_rumah,
-            'no_hp' => $request->no_hp,
-            'divisi' => $request->divisi,
-            'departemen' => $request->departemen,
-        ]);
-
-        session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
-        return redirect('/Data_smk');
-    }
+    
 
     public function proses_file_smk(Request $request)
     {

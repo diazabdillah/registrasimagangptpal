@@ -23,22 +23,11 @@
                         Data Pemagang
                     </div>
                     <div class="card-body">
-                        <a href="/input-data-smkInd" class="btn btn-primary mb-3 mr-2">Isi Data <i class="fas fa-pencil-alt"></i></a>
-                        <a href="/berkas-smk-indiv" class="btn btn-success mb-3">Upload File <i class="fas fa-upload"></i></a>
 
                         <div class="alert alert-info" role="alert">
-                            <p class="card-text"><b>Klik Isi Data</b> untuk mengirimkan data-data anda. Jika sudah
-                                mengisi data pada form maka data anda akan tampil di tabel
-                            </p>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <p class="card-text"><b>Klik Upload File</b>
-                            </p>
-                            <b>Kirim file berikut dalam bentuk PDF maksimal 1MB</b>
-                            <ol>
-                                <li>Proposal Magang</li>
-                                <li>Surat Pengajuan Magang (Jika ada)</li>
-                            </ol>
+                            <h5>Langkah 1 :</h5>
+                            <p class="card-text"><b>Klik "Isi Data"</b><br> Jika sudah mengisi data pada form, maka data Anda akan tampil pada table dibawah.</p>
+                            <a href="/input-data-smk" class="btn btn-primary mb-3 mr-2">Isi Data <i class="fas fa-pencil-alt"></i></a>
                         </div>
 
                         <div class="table-responsive table-hover">
@@ -50,8 +39,6 @@
                                         <th>Jurusan</th>
                                         <th>Alamat Rumah</th>
                                         <th>No.HP</th>
-                                        <th>Divisi</th>
-                                        <th>Departmen</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -63,16 +50,30 @@
                                         <td>{{ $d->jurusan }}</td>
                                         <td>{{ $d->alamat_rumah }}</td>
                                         <td>{{ $d->no_hp }}</td>
-                                        <td>{{ $d->divisi }}</td>
-                                        <td>{{ $d->departemen }}</td>
                                         <td>
-                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-smkInd/' . $d->id) }}">Edit</a>
+                                            <a class="btn btn-warning p-1" href="/edit-data-smk{{$d->id}}" onclick="return confirm('Yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a class="btn btn-danger mt-3 mb-3" href="/openpdf-smk"><i class="fas fa-fw fa-file-pdf mr-2"></i>Open all file</a>
+                        </div>
+
+                        <div class="alert alert-primary" role="alert">
+                            <h5>Langkah 2 :</h5>
+                            <p class="card-text"><b>Klik "Upload Berkas"</b><br>Jika sudah upload berkas pada form, maka berkas Anda akan tampil pada table dibawah.</p>
+                            <a href="/berkas-smk" class="btn btn-success mb-3">Upload Berkas <i class="fas fa-upload"></i></a>
+                            <br>
+                            <b>Kirim berkas berikut dalam bentuk PDF maksimal 2MB</b>
+                            <ol>
+                                <li>Proposal Magang</li>
+                                <li>Surat Pengantar Magang dari universitas</li>
+                                <li>Curriculum Vitae (opsional)</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="table-responsive table-hover">
+                            <a class="btn btn-danger mt-3 mb-3" href="/berkas-smk-semua"><i class="fas fa-fw fa-file-pdf mr-2"></i>Buka Semua Berkas</a>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="text-center text-white bg-primary">
@@ -83,9 +84,10 @@
                                 <tbody>
                                     @foreach ($files as $file)
                                     <tr class="text-center">
-                                        <td><i class="fas fa-fw fa-file-pdf mr-3"></i> {{ $file->path }}</td>
+                                        <td><i class="fas fa-fw fa-file-pdf mr-3"></i>{{ $file->path }}</td>
                                         <td>
-                                            <a class="btn btn-secondary p-1" href="{{ url('Data_smk/' . $file->id, $file->path) }}">Hapus</a>
+                                            <a class="btn btn-primary p-1" href="{{ asset('file/berkas-smk/'. $file->path) }}"><i class="fa fa-download"></i> Download</a>
+                                            <a class="btn btn-danger p-1" href="/berkas-smk/{{$file->id/$file->path}}" onclick="return confirm('Yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -95,8 +97,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
