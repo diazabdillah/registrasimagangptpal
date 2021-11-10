@@ -1559,28 +1559,24 @@ class MagangController extends Controller
         return redirect('data-smk');
     }
 
-    
-
-    public function file_smk()
+    public function berkas_smk()
     {
 
         if (auth()->user()->role_id == 9) {
 
             $ti = 'Data SMK';
 
-            return view('magang.berkas-smk-indiv', ['ti' => $ti]);
+            return view('magang.berkas-smk', ['ti' => $ti]);
         } else {
             return redirect()->back();
         }
     }
 
-    
-
-    public function proses_file_smk(Request $request)
+    public function proses_berkas_smk(Request $request)
     {
         $request->validate([
             'berkas' => 'required',
-            'berkas.*' => 'mimes:png,jpeg,jpg,pdf|max:1048'
+            'berkas.*' => 'mimes:pdf|max:2048'
         ]);
 
         if ($request->hasFile('berkas')) {
@@ -1590,8 +1586,8 @@ class MagangController extends Controller
             foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $NamaFile = $file->getClientOriginalName();
-                // Upload ke public
-                $tujuan_upload = 'file';
+                // Upload ke public/file/berkas-smk/
+                $tujuan_upload = 'file/berkas-smk/';
                 $size = $file->getSize();
                 $file->move($tujuan_upload, $NamaFile);
 
@@ -1603,7 +1599,7 @@ class MagangController extends Controller
             }
 
             session()->flash('succes', 'Terimakasih telah mengirimkan file anda selanjutnya akan kami proses');
-            return redirect('/Data_smk');
+            return redirect('/data-smk');
         }
         return redirect()->back();
     }

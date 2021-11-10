@@ -236,6 +236,10 @@ Route::post('/input-data-smk', [MagangController::class, 'proses_data_smk']);
 Route::get('/edit-data-smk/{id}', [MagangController::class, 'edit_data_smk']);
 Route::put('/edit-data-smk/{id}', [MagangController::class, 'update_data_smk']);
 
+Route::get('/berkas-smk', [MagangController::class, 'berkas_smk']);
+Route::post('/berkas-smk', [MagangController::class, 'proses_berkas_smk']);
+Route::get('/berkas-smk/{id}/{path}', [MagangController::class, 'proses_hapus_berkas_smk']);
+Route::get('/berkas-smk-semua', [MagangController::class, 'berkas_smk_semua']);
 // Halaman Magang SMK Individu ==================
 
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
@@ -249,8 +253,6 @@ Route::put('/edit-data-smkInd/{id}', [MagangController::class, 'updateDataSmk'])
 Route::get('/edit-data-smkKel/{id}', [MagangController::class, 'editDataSmkKel']);
 Route::put('/edit-data-smkKel/{id}', [MagangController::class, 'updateDataSmkKel']);
 Route::get('/delete-data-smkKel/{user_id}', [MagangController::class, 'proses_hapus_smkkelompok']);
-Route::get('/berkas-smk-indiv', [MagangController::class, 'file_smk']);
-Route::post('/berkas-smk-indiv', [MagangController::class, 'proses_file_smk'])->name('fileSmk');
 Route::get('/berkas-smk-kel', [MagangController::class, 'file_smk_kelompok']);
 Route::post('/berkas-smk-kel', [MagangController::class, 'proses_file_smk_kelompok'])->name('fileSmkKel');
 Route::get('/openpdf-smk', [MagangController::class, 'openpdf_smk']);

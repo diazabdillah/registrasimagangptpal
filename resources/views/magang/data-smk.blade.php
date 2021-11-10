@@ -87,7 +87,7 @@
                                         <td><i class="fas fa-fw fa-file-pdf mr-3"></i>{{ $file->path }}</td>
                                         <td>
                                             <a class="btn btn-primary p-1" href="{{ asset('file/berkas-smk/'. $file->path) }}"><i class="fa fa-download"></i> Download</a>
-                                            <a class="btn btn-danger p-1" href="/berkas-smk/{{$file->id/$file->path}}" onclick="return confirm('Yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
+                                            <a class="btn btn-danger p-1" href="/berkas-smk/{{$file->id}}/{{$file->path}}" onclick="return confirm('Yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
