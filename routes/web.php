@@ -143,6 +143,8 @@ Route::put('/proseseditlaporan/{id}', [DivisiController::class, 'proseseditlapor
 Route::get('/penilaian', [DivisiController::class, 'penilaian']);
 Route::get('/isi_penilaian/{id}', [DivisiController::class, 'isi_penilaian']);
 Route::post('/proses_penilaian/{id}', [DivisiController::class, 'proses_penilaian'])->name('tambahnilai');
+Route::get('/isi_penilaian_smk/{id}', [DivisiController::class, 'isi_penilaian_smk']);
+Route::post('/proses_penilaian_smk/{id}', [DivisiController::class, 'proses_penilaian_smk'])->name('tambahnilaismk');
 
 Route::get('magang-interview',[DivisiController::class,'interview']);
 Route::get('terima-interview-mhs/{id}',[DivisiController::class,'terimainterviewmhs']);

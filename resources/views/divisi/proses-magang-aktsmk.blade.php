@@ -91,8 +91,8 @@
                                     <div class="input-group">
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
-                                            <option value="14">Sertifikat MHS</option>
-                                            <option value="12">Menu Dokumen MHS (Diterima)</option>
+                                            <option value="14">Sertifikat SMK</option>
+                                            <option value="12">Dokumen Magang Aktif</option>
 
                                         </select>
 
@@ -109,7 +109,7 @@
                                     </button>
                                 </div>
 
-                                <form method="POST" action="/proses-magang-aktmhs/{{ $userid->id }}">
+                                <form method="POST" action="/proses-magang-aktsmk/{{ $userid->id }}">
                                     @method('put')
                                     @csrf
                                     <label class="ml-2"><b>Tanggal Mulai</b></label>

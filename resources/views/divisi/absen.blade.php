@@ -75,7 +75,7 @@
                                             <tr>
                                                 <td>{{ $s->name }}</td>
                                                 <td>
-                                                    <a class="btn btn-primary p-1" href="{{ url('/tambah_absensmk/' . $s->id) }}" role="button">Buat Absen</a>
+                                                    <a class="btn btn-warning p-1" href="{{ url('/tambah_absensmk/' . $s->id) }}" role="button">Buat Absen</a>
                                                 </td>
                                             </tr>
                                             @endif

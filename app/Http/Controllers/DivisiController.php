@@ -10,6 +10,7 @@ use App\Models\DataSmkIndivs;
 use App\Models\Absenmhs;
 use App\Models\Kuota;
 use App\Models\Penilaian;
+use App\Models\PenilaianSmk;
 use App\Models\User;
 use App\Models\FileMhsIndiv;
 use Illuminate\Support\Facades\File;
@@ -426,8 +427,11 @@ class DivisiController extends Controller
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
                 ->first();
-            $fileFoto = DB::table('foto_smk_models')
-                ->where('foto_smk_models.user_id', '=', $user_id)
+            $fileFoto = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_smk_models', 'data_smk_indivs.id', '=', 'foto_smk_models.user_id')
+                ->select('foto_smk_models.id', 'foto_smk_models.foto')
+                ->where('users.id', '=', $user_id)
                 ->get();
             $filepdf = DB::table('file_smk_indivs')
                 ->where('file_smk_indivs.user_id', '=', $user_id)
@@ -439,8 +443,8 @@ class DivisiController extends Controller
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->leftJoin('foto_i_d_smks', 'users.id', '=', 'foto_i_d_smks.user_id')
-                ->select('users.name', 'user_role.role', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'foto_i_d_smks.fotoID')
+                ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.user_id')
+                ->select('users.name', 'users.status_user', 'user_role.role', 'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'foto_i_d_smks.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -673,7 +677,15 @@ class DivisiController extends Controller
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
-                ->select('penilaians.status_penilaian', 'penilaians.pembimbing', 'data_mhs_indivs.id', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen')
+                ->select('users.name', 'users.status_user', 'penilaians.status_penilaian', 'penilaians.pembimbing', 'data_mhs_indivs.id', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen')
+                ->where('users.role_id', '=', 3)
+                ->get();
+
+            $usersSmk = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
+                ->select('users.name', 'users.status_user', 'penilaians.status_penilaian', 'penilaians.pembimbing', 'data_smk_indivs.id', 'users.role_id', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
+                ->where('users.role_id', '=', 4)
                 ->get();
 
             $id = 1;
@@ -682,6 +694,7 @@ class DivisiController extends Controller
                 'ti' => $ti,
                 'id' => $id,
                 'users' => $users,
+                'usersSmk' => $usersSmk,
             ]);
         } else {
             return redirect()->back();
@@ -700,6 +713,18 @@ class DivisiController extends Controller
         }
     }
 
+    public function isi_penilaian_smk($id)
+    {
+        $user = User::find($id);
+
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Form Penilaian';
+            return view('divisi.penilaian_smk', ['ti' => $ti, 'user' => $user]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function proses_penilaian($id, Request $request)
     {
         $user = DataMhsIndiv::find($id);
@@ -708,6 +733,54 @@ class DivisiController extends Controller
         $nilaihuruf = "";
 
         $penilaians = new Penilaian;
+        $penilaians->user_id = $user->id;
+        $penilaians->pembimbing = Auth::user()->name;
+        $penilaians->Kerjasama = $request->Kerjasama;
+        $penilaians->Motivasi = $request->Motivasi;
+        $penilaians->InisiatifKerja = $request->InisiatifKerja;
+        $penilaians->Loyalitas = $request->Loyalitas;
+        $penilaians->etika = $request->etika;
+        $penilaians->Disiplin = $request->Disiplin;
+        $penilaians->PercayaDiri = $request->PercayaDiri;
+        $penilaians->TanggungJawab = $request->TanggungJawab;
+        $penilaians->PemahamanKemampuan = $request->PemahamanKemampuan;
+        $penilaians->KesehatanKeselamatanKerja = $request->KesehatanKeselamatanKerja;
+        $penilaians->laporankerja = $request->laporankerja;
+        $penilaians->sopansantun = $request->sopansantun;
+        $penilaians->kehadiran = $request->kehadiran;
+
+        $avgStar = ($penilaians->Kerjasama +  $penilaians->Motivasi + $penilaians->InisiatifKerja + $penilaians->Loyalitas + $penilaians->etika + $penilaians->Disiplin + $penilaians->PercayaDiri + $penilaians->TanggungJawab + $penilaians->PemahamanKemampuan + $penilaians->KesehatanKeselamatanKerja + $penilaians->laporankerja + $penilaians->sopansantun + $penilaians->kehadiran) / 13;
+        if ($avgStar >= 81 && $avgStar <= 100) {
+            $nilaihuruf = "A";
+        } else if ($avgStar >= 71  && $avgStar <= 80) {
+            $nilaihuruf = "AB";
+        } else if ($avgStar >= 67  && $avgStar <= 70) {
+            $nilaihuruf = "B";
+        } else if ($avgStar >= 61  && $avgStar <= 66) {
+            $nilaihuruf = "BC";
+        } else if ($avgStar >= 56  && $avgStar <= 60) {
+            $nilaihuruf = "C";
+        } else if ($avgStar >= 41  && $avgStar <= 55) {
+            $nilaihuruf = "D";
+        } else if ($avgStar >= 0  && $avgStar <= 55) {
+            $nilaihuruf = "E";
+        }
+        $penilaians->average = $avgStar;
+        $penilaians->nilai_huruf = $nilaihuruf;
+        $penilaians->status_penilaian = 'Sudah di nilai';
+        $penilaians->save();
+
+        return redirect('/penilaian');
+    }
+
+    public function proses_penilaian_smk($id, Request $request)
+    {
+        $user = DataSmkIndivs::find($id);
+
+        $avgStar = 0;
+        $nilaihuruf = "";
+
+        $penilaians = new PenilaianSmk;
         $penilaians->user_id = $user->id;
         $penilaians->pembimbing = Auth::user()->name;
         $penilaians->Kerjasama = $request->Kerjasama;
