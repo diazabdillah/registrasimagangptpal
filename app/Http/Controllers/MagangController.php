@@ -77,7 +77,7 @@ class MagangController extends Controller
 
         DataMhsIndiv::create([
             'user_id' => Auth::user()->id,
-            'nama' => $request->nama,
+            'nama' => Auth::user()->name,
             'univ' => $request->univ,
             'strata' => $request->strata,
             'jurusan' => $request->jurusan,

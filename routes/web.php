@@ -279,6 +279,8 @@ Route::put('/proses-edit-laporan-smk/{id}', [MagangController::class, 'proses_ed
 Route::get('penilaian-smk', [MagangController::class, 'penilaian_smk']);
 // Halaman Magang SMK Individu ==================
 
+
+// Halaman Magang SMK Kelompok ==================
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
 Route::get('/Data_smk_kel_lihat/{id}', [MagangController::class, 'liat_file_smk_kel']);
 Route::get('/Data_smk_kel/{id}/{path}', [MagangController::class, 'proses_hapus_file_smk_kel']);
