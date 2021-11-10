@@ -363,7 +363,7 @@ class MagangController extends Controller
         $user = DataMhsIndiv::find($id);
         $request->validate([
             'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'fotoid.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
         ]);
 
         if ($request->hasFile('fotoid')) {
@@ -406,7 +406,7 @@ class MagangController extends Controller
         $user = DataMhsIndiv::find($id);
         $request->validate([
             'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
         ]);
 
         if ($request->hasFile('foto')) {
@@ -1172,6 +1172,172 @@ class MagangController extends Controller
         return redirect('/data-smk');
     }
 
+    public function dokumen_smk()
+    {
+        if (auth()->user()->role_id == 12) {
+            $ti = 'Dokumen SMK';
+
+            $id = Auth::user()->id;
+            $users = DB::table('data_smk_indivs')
+                ->leftJoin('users', 'data_smk_indivs.user_id', '=', 'users.id')
+                ->select('data_smk_indivs.id', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'users.status_user')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            $showImage = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_i_d_smks', 'foto_i_d_smks.user_id', '=', 'data_smk_indivs.id')
+                ->select('foto_i_d_smks.fotoID', 'foto_i_d_smks.id', 'data_smk_indivs.nama')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->get();
+
+            $showImage1 = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_smk_models', 'foto_smk_models.user_id', '=', 'data_smk_indivs.id')
+                ->select('foto_smk_models.foto', 'foto_smk_models.id', 'data_smk_indivs.nama')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-smk', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'showImage1' => $showImage1,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show_smk_foto($id)
+    {
+        $user = DataSmkIndivs::find($id);
+
+        if (auth()->user()->role_id == 12) {
+            $ti = 'Dokumen SMK';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_smk_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-smk-upload-foto', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show_smk_dokumen($id)
+    {
+        $user = DataSmkIndivs::find($id);
+
+        if (auth()->user()->role_id == 12) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_smk_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-smk-upload', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function upload_smk_foto($id, Request $request)
+    {
+        $user = DataSmkIndivs::find($id);
+        $request->validate([
+            'fotoid' => 'required',
+            'fotoid.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
+        ]);
+
+        if ($request->hasFile('fotoid')) {
+
+            $files = $request->file('fotoid');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/foto-smk/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoIDSmks::create([
+                    'user_id' => $user->id,
+                    'fotoID' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload foto berhasil');
+            return redirect('dokumen-smk');
+        }
+        return redirect()->back();
+    }
+
+    public function hapus_smk_foto($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/foto-smk/' . $foto);
+        // Hapus di database
+        DB::table('foto_i_d_smks')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Foto berhasil dihapus');
+        return redirect('dokumen-smk');
+    }
+
+    public function upload_smk($id, Request $request)
+    {
+        $user = DataSmkIndivs::find($id);
+        $request->validate([
+            'foto' => 'required',
+            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            $files = $request->file('foto');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/dokumen-smk/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoSmkModels::create([
+                    'user_id' => $user->id,
+                    'foto' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload dokumen berhasil');
+            return redirect('dokumen-smk');
+        }
+        return redirect()->back();
+    }
+
+    public function hapus_smk_dokumen($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/dokumen-smk/' . $foto);
+        // Hapus di database
+        DB::table('foto_smk_models')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Dokumen berhasil dihapus');
+        return redirect('dokumen-mhs');
+    }
     // Individu SMK
 
     public function Kuota()
@@ -1755,29 +1921,6 @@ class MagangController extends Controller
 
         session()->flash('success', 'File berhasil dihapus');
         return redirect('/Dokumen_smk');
-    }
-
-    public function Dokumen_smk()
-    {
-        if (auth()->user()->role_id == 12) {
-            $ti = 'Dokumen SMK';
-
-            $id = Auth::user()->id;
-            $showImage = DB::table('foto_smk_models')
-                ->where('user_id', '=', $id)
-                ->get();
-            $showFoto = DB::table('foto_i_d_smks')
-                ->where('user_id', '=', $id)
-                ->get();
-
-            return view('magang.Dokumen_smk', [
-                'ti' => $ti,
-                'showImage' => $showImage,
-                'showFoto' => $showFoto,
-            ]);
-        } else {
-            return redirect()->back();
-        }
     }
 
     public function showUploadSmk()

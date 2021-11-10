@@ -57,8 +57,8 @@
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
-                                        <th>Nim</th>
-                                        <th>Universitas</th>
+                                        <th>Nis</th>
+                                        <th>Sekolah</th>
                                         <th>Action</th>
                                     </tr>
                                     </tr>
@@ -68,23 +68,23 @@
 
                                     <tr>
                                         <td>{{ $absen->nama }}</td>
-                                        <td>{{ $absen->nim }}</td>
-                                        <td>{{ $absen->univ }}</td>
+                                        <td>{{ $absen->nis }}</td>
+                                        <td>{{ $absen->sekolah }}</td>
 
-                                        @if ($users[0]->status_user == "Individu")
+                                        @if ($users[0]->status_user == "Individu SMK")
 
                                         <td>
-                                            <a class="btn btn-warning p-1" href="/dokumen-mhs-upload-foto/{{$absen->id}}" role="button">Foto 3x4</a>
+                                            <a class="btn btn-warning p-1" href="/dokumen-smk-upload-foto/{{$absen->id}}" role="button">Foto 3x4</a>
 
-                                            <a class="btn btn-primary p-1" href="/dokumen-mhs-upload/{{$absen->id}}" role="button">Berkas Lainnya</a>
+                                            <a class="btn btn-primary p-1" href="/dokumen-smk-upload/{{$absen->id}}" role="button">Berkas Lainnya</a>
                                         </td>
 
                                         @else
 
                                         <td>
-                                            <a class="btn btn-warning p-1" href="/dokumen-mhs-kel-upload-foto/{{$absen->id}}" role="button">Foto 3x4</a>
+                                            <a class="btn btn-warning p-1" href="/dokumen-smk-kel-upload-foto/{{$absen->id}}" role="button">Foto 3x4</a>
 
-                                            <a class="btn btn-primary p-1" href="/dokumen-mhs-kel-upload/{{$absen->id}}" role="button">Berkas Lainnya</a>
+                                            <a class="btn btn-primary p-1" href="/dokumen-smk-kel-upload/{{$absen->id}}" role="button">Berkas Lainnya</a>
                                         </td>
 
                                         @endif
@@ -116,16 +116,16 @@
                                 <tbody>
                                     @foreach ($showImage as $img)
 
-                                    @if ($users[0]->status_user == "Individu")
+                                    @if ($users[0]->status_user == "Individu SMK")
 
                                     @if ($img->fotoID != null)
                                     <tr>
                                         <td>{{ $img->nama }}</td>
                                         <td>
-                                            <img src="{{ asset('file/foto-mhs/' . $img->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                            <img src="{{ asset('file/foto-smk/' . $img->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
                                         </td>
                                         <td>
-                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-mhs-foto/{{$img->id}}/{{$img->fotoID}}">Hapus</a>
+                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-smk-foto/{{$img->id}}/{{$img->fotoID}}">Hapus</a>
                                         </td>
 
                                     </tr>
@@ -137,10 +137,10 @@
                                     <tr>
                                         <td>{{ $img->nama }}</td>
                                         <td>
-                                            <img src="{{ asset('file/foto-mhs-kel/' . $img->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                            <img src="{{ asset('file/foto-smk-kel/' . $img->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
                                         </td>
                                         <td>
-                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-mhs-kel-foto/{{$img->id}}/{{$img->fotoID}}">Hapus</a>
+                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-smk-kel-foto/{{$img->id}}/{{$img->fotoID}}">Hapus</a>
                                         </td>
 
                                     </tr>
@@ -174,17 +174,17 @@
                                 <tbody>
                                     @foreach ($showImage1 as $img1)
 
-                                    @if ($users[0]->status_user == "Individu")
+                                    @if ($users[0]->status_user == "Individu SMK")
 
                                     @if ($img1->foto != null)
 
                                     <tr>
                                         <td>{{ $img1->nama }}</td>
                                         <td>
-                                            <img src="{{ asset('file/dokumen-mhs/' . $img1->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                            <img src="{{ asset('file/dokumen-smk/' . $img1->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                         </td>
                                         <td>
-                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-mhs/{{$img1->id}}/{{$img1->foto}}">Hapus</a>
+                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-smk/{{$img1->id}}/{{$img1->foto}}">Hapus</a>
                                         </td>
                                     </tr>
 
@@ -197,10 +197,10 @@
                                     <tr>
                                         <td>{{ $img1->nama }}</td>
                                         <td>
-                                            <img src="{{ asset('file/dokumen-mhs-kel/' . $img1->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                            <img src="{{ asset('file/dokumen-smk-kel/' . $img1->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                         </td>
                                         <td>
-                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-mhs-kel/{{$img1->id}}/{{$img1->foto}}">Hapus</a>
+                                            <a class="btn btn-danger" onclick="return confirm('yakin Hapus?');" href="/dokumen-smk-kel/{{$img1->id}}/{{$img1->foto}}">Hapus</a>
                                         </td>
                                     </tr>
 

@@ -121,7 +121,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Proses Penerimaan</h6>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="/final-penerimaan-smk/{{ $userid->id }}">
+                                <form method="POST" action="/final-penerimaan-smk/{{$userid->id}}">
                                     @method('put')
                                     @csrf
                                     <label class="ml-2"><b>Pilih Tindakan Final</b></label>

@@ -127,6 +127,7 @@ Route::get('/proses-magang-aktsmk/{user_id}', [DivisiController::class, 'magangA
 Route::get('/final-penerimaan-mhs/{id}/{foto}', [DivisiController::class, 'hapusfileMhs']);
 Route::get('/final-penerimaan-mhs-kel/{id}/{foto}', [DivisiController::class, 'hapusfileMhsKel']);
 Route::put('/final-penerimaan-mhs/{id}', [DivisiController::class, 'updateDiterima']);
+Route::put('/final-penerimaan-smk/{id}', [DivisiController::class, 'updateDiterimaSmk']);
 Route::put('/proses-magang-aktmhs/{id}', [DivisiController::class, 'mulaiSelesai']);
 Route::get('/final-penerimaan-smk/{user_id}', [DivisiController::class, 'finalSmk']);
 Route::get('/final-penerimaan-smk/{id}/{foto}', [DivisiController::class, 'hapusfileSmk']);
@@ -246,6 +247,15 @@ Route::get('/berkas-smk-semua', [MagangController::class, 'berkas_smk_semua']);
 Route::get('/interview-smk',[MagangController::class,'interview_smk']);
 Route::get('/interview-smk/{id}',[MagangController::class,'interview_smk_upload']);
 Route::post('/interview-smk/{id}',[MagangController::class,'proses_interview_smk_upload']);
+
+Route::get('/dokumen-smk', [MagangController::class, 'dokumen_smk']);
+Route::get('/dokumen-smk/{id}/{foto}', [MagangController::class, 'hapus_smk_dokumen']);
+Route::get('/dokumen-smk-foto/{id}/{fotoID}', [MagangController::class, 'hapus_smk_foto']);
+
+Route::get('/dokumen-smk-upload/{id}', [MagangController::class, 'show_smk_dokumen']);
+Route::get('/dokumen-smk-upload-foto/{id}', [MagangController::class, 'show_smk_foto']);
+Route::post('/upload-smk-foto/{id}', [MagangController::class, 'upload_smk_foto']);
+Route::post('/upload-smk/{id}', [MagangController::class, 'upload_smk']);
 // Halaman Magang SMK Individu ==================
 
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);

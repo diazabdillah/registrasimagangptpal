@@ -294,7 +294,7 @@
                     Magang SMK
                 </div>
                 <li class="nav-item {{ $ti === 'Dokumen SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Dokumen_smk">
+                    <a class="nav-link pb-0" href="/dokumen-smk">
                         <i class="fas fa-fw fa-pencil-alt"></i>
                         <span>Dokumen</span></a>
                 </li>

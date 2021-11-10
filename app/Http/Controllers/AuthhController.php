@@ -55,7 +55,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 11) {
                 return redirect('/dokumen-mhs')->with('success', 'Selamat Anda lolos pada tahap interview kepribadian online. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 12) {
-                return redirect('/Dokumen_smk')->with('success', 'You are now logged in');
+                return redirect('/dokumen-smk')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 13) {
                 return redirect('/Dokumen_mhskel')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 14) {

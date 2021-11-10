@@ -168,6 +168,17 @@ class DivisiController extends Controller
         return redirect('/diterima');
     }
 
+    public function updateDiterimaSmk(Request $request, $id)
+    {
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Setatus berhasil di proses');
+        return redirect('/diterima');
+    }
+
     public function mulaiSelesai(Request $request, $id)
     {
         MulaiDanSelesaiMhs::create([
