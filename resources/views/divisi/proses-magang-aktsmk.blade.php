@@ -18,27 +18,43 @@
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">Detail Calon Magang</h6>
                             </div>
+                            @foreach ($users as $user)
                             <div class="card-body">
-                                @foreach ($users as $user)
+
                                 <div class="col-sm-3 mb-3">
+
+                                    @if ($users[0]->status_user == "Individu SMK")
+
                                     <div class="card">
-                                        <img src="{{ asset('file/' . $user->fotoID) }}" class="img-thumbnail" width="135">
+                                        <img src="{{ asset('file/foto-smk/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
                                     </div>
+
+                                    @else
+
+                                    <div class="card">
+                                        <img src="{{ asset('file/foto-smk-kel/' . $user->fotoID) }}" alt="Foto" class="img-thumbnail" width="135">
+                                    </div>
+
+                                    @endif
                                 </div>
-                                <h5 class="card-title"><b>Nama :</b> {{ $user->name }}</h5>
+
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title"><b>Nama :</b> {{ $user->nama }}</h3>
+                                <h5 class="card-title"> {{ $user->nis }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="far fa-fw fa-envelope mr-3"></i>
-                                    {{ $user->email }}
-                                </li>
-                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
-                                    {{ $user->no_hp }}
-                                </li>
                                 <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
                                     {{ $user->sekolah }}
                                 </li>
                                 <li class="list-group-item"><i class="fas fa-fw fa-graduation-cap mr-3"></i>
                                     {{ $user->jurusan }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-home mr-3"></i>
+                                    {{ $user->alamat_rumah }}
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
+                                    {{ $user->no_hp }}
                                 </li>
                                 <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                     {{ $user->divisi }}
@@ -46,21 +62,16 @@
                                 <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                     {{ $user->departemen }}
                                 </li>
-                                @endforeach
+                            </ul>
 
-                                @foreach ($tgl as $data)
-                                <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
-                                    Tgl Mulai <span class="badge badge-success p-2"> {{ $data->mulai }}</span>
-                                    Tgl Selesai <span class="badge badge-danger p-2"> {{ $data->selesai }}</span>
-                                </li>
-                                @endforeach
+                            @endforeach
+                            @foreach ($tgl as $data)
+                            <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                Tgl Mulai <span class="badge badge-success p-2"> {{ $data->mulai }}</span>
+                                Tgl Selesai <span class="badge badge-danger p-2"> {{ $data->selesai }}</span>
+                            </li>
+                            @endforeach
 
-                                @foreach ($filepdf as $file)
-                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
-                                    {{ $file->path }}
-                                    <a href="{{ url('pdf-smk/' . $file->user_id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
-                                </li>
-                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -73,18 +84,18 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Proses Penerimaan</h6>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="/final-penerimaan-mhs/{{ $userid->id }}">
+                                <form method="POST" action="/final-penerimaan-smk/{{ $userid->id }}">
                                     @method('put')
                                     @csrf
                                     <label class="ml-2"><b>Pilih Tindakan Final</b></label>
                                     <div class="input-group">
-                                        @foreach ($users as $data)
+
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id">
-                                            <option value="9">Pendaftar Magang SMK</option>
-                                            <option value="15">Sertifikat SMK</option>
-                                            <option value="0">Magang Selesai</option>
+                                            <option value="14">Sertifikat MHS</option>
+                                            <option value="12">Menu Dokumen MHS (Diterima)</option>
+
                                         </select>
-                                        @endforeach
+
                                         <div class="input-group-append">
                                             <button class="btn btn-danger" type="submit">Update</button>
                                         </div>
@@ -97,6 +108,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
                                 <form method="POST" action="/proses-magang-aktmhs/{{ $userid->id }}">
                                     @method('put')
                                     @csrf
@@ -119,15 +131,33 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">File Lainnya</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Dokumen Calon Magang</h6>
                             </div>
                             <div class="card-body d-flex flex-wrap">
                                 @foreach ($fileFoto as $img)
+
+                                @if ($users[0]->status_user == "Individu SMK")
+
                                 <div class="col-sm-3">
                                     <div class="card">
-                                        <img src="{{ asset('file/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <img src="{{ asset('file/dokumen-smk/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <a class="btn btn-danger p-0 mt-2 float-right" onclick="return confirm('yakin Hapus?');" href="{{ url('proses-magang-aktsmk/' . $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+
                                     </div>
                                 </div>
+
+                                @else
+
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <img src="{{ asset('file/dokumen-smk-kel/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
+                                        <a class="btn btn-danger p-0 mt-2 float-right" onclick="return confirm('yakin Hapus?');" href="{{ url('proses-magang-aktsmk/' . $img->foto) }}"><i class="far fa-trash-alt p-1"></i></a>
+
+                                    </div>
+                                </div>
+
+                                @endif
+
                                 @endforeach
                             </div>
                         </div>

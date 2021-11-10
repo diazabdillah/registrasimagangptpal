@@ -81,7 +81,7 @@
                                                 <td class="text-center">{{ $dsmk->name }}</td>
                                                 <td class="text-center"><span class="badge badge-warning p-2">{{ $dsmk->status_user }}</span></td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses-magang-aktsmk/' . $dsmk->user_id) }}">Detail
+                                                    <a class="badge badge-success p-2" href="{{ url('proses-magang-aktsmk/' . $dsmk->id) }}">Detail
                                                         <i class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>

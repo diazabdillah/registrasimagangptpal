@@ -423,10 +423,18 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Magang Aktif';
-            $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
-            $fileFoto = DB::table('foto_smk_models')->where('foto_smk_models.user_id', '=', $user_id)->get();
-            $filepdf = DB::table('file_smk_indivs')->where('file_smk_indivs.user_id', '=', $user_id)->get();
-            $tgl = DB::table('mulai_dan_selesai_mhs')->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)->get();
+            $userid = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->first();
+            $fileFoto = DB::table('foto_smk_models')
+                ->where('foto_smk_models.user_id', '=', $user_id)
+                ->get();
+            $filepdf = DB::table('file_smk_indivs')
+                ->where('file_smk_indivs.user_id', '=', $user_id)
+                ->get();
+            $tgl = DB::table('mulai_dan_selesai_smk')
+                ->where('mulai_dan_selesai_smk.user_id', '=', $user_id)
+                ->get();
 
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
