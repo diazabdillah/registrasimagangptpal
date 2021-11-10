@@ -63,8 +63,10 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 16) {
                 return redirect('/interview-mhs')->with('success', 'you are now logged in');
             } elseif (auth()->user()->role_id == 17) {
-                return redirect('/admindivisi')->with('success','you are now logged in');
+                return redirect('/interview-smk')->with('success', 'you are now logged in');
             } elseif (auth()->user()->role_id == 18) {
+                return redirect('/admindivisi')->with('success','you are now logged in');
+            } elseif (auth()->user()->role_id == 19) {
                 return redirect('/testinterviewsmk')->with('success','you are now logged in');
             }
         }

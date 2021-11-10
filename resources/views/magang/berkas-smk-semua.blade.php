@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body">
                         @foreach ($files as $file)
-                        <embed class="mt-3" type="application/pdf" src="{{ asset('file/berkas-smk/'.$file->path) }}" width="100%" height="400"></embed>
+                        <embed class="mt-3" type="application/pdf" src="{{ asset('file/berkas-smk/'.$file->path) }}" width="100%" height="600"></embed>
                         @endforeach
                     </div>
                 </div>

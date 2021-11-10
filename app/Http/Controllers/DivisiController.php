@@ -119,8 +119,6 @@ class DivisiController extends Controller
         }
     }
 
-
-
     public function proses_penerimaan_smk($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -132,7 +130,7 @@ class DivisiController extends Controller
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('users.id', 'user_role.role', 'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
+                ->select('users.id', 'users.status_user', 'user_role.role', 'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.jurusan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
                 ->where('users.id', '=', $user_id)
                 ->get();
 

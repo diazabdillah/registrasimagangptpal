@@ -14,16 +14,15 @@
             <div class="row">
 
                 <div class="col-sm-12">
-
                     <div class="card shadow mb-4">
-
                         <div class="card">
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">Detail Calon Magang</h6>
                             </div>
                             @foreach ($users as $user)
                             <div class="card-body">
-                                <h5 class="card-title"><b>Nama :</b> {{ $user->nama }}</h5>
+                                <h3 class="card-title"><b>Nama :</b> {{ $user->nama }}</h3>
+                                <h5 class="card-title"> {{ $user->nis }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
@@ -38,27 +37,21 @@
                                 <li class="list-group-item"><i class="fas fa-fw fa-phone-alt mr-3"></i>
                                     {{ $user->no_hp }}
                                 </li>
-                                <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
-                                    {{ $user->divisi }}
-                                </li>
-                                <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
-                                    {{ $user->departemen }}
-                                </li>
                             </ul>
                             @endforeach
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-12">
-
-                    <div class="card shadow mb-4">
-
+                    <div class="shadow mb-4">
                         <div class="card">
                             <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">File Calon Magang</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Berkas Calon Magang</h6>
                             </div>
 
                             <ul class="list-group list-group-flush">
+                                @if ($users[0]->status_user == "Individu SMK")
 
                                 @foreach ($filepdf as $file)
                                 <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
@@ -67,11 +60,20 @@
                                 </li>
                                 @endforeach
 
+                                @else
+
+                                @foreach ($filepdf as $file)
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $file->path }}
+                                    <a href="{{ url('pdf-smk-kel/' . $file->id) }}" class="badge badge-success float-right p-2">Open <i class="fas fa-eye ml-1"></i></a>
+                                </li>
+                                @endforeach
+
+                                @endif
                             </ul>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="col-sm-12">
                     <div class="card shadow mb-4">
@@ -85,14 +87,10 @@
                                     @csrf
                                     <label class="ml-2"><b>Pilih Tindakan Penerimaan</b></label>
                                     <div class="input-group">
-
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
-
-                                            <option value="12">Menu Dokumen SMK (Diterima)</option>
-                                            <option value="4">Magang Aktif (Resmi Diterima)</option>
+                                            <option value="17">Magang Interview</option>
                                             <option value="0">Kuota Penuh</option>
                                         </select>
-
                                         <div class="input-group-append">
                                             <button class="btn btn-danger" type="submit">Update</button>
                                         </div>
