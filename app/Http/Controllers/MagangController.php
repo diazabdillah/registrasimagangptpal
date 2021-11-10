@@ -1406,6 +1406,85 @@ class MagangController extends Controller
 
         return redirect()->back();
     }
+
+    public function id_card_smk()
+    {
+        if (auth()->user()->role_id == 4) {
+            $ti = 'ID Card SMK';
+            $id = Auth::user()->id;
+
+            $dates = DB::table('mulai_dan_selesai_smk')
+                ->where('user_id', '=', $id)
+                ->get();
+            $datas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'user_role.role')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            return view('magang.id-card-smk', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'dates' => $dates
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function id_card_smk_pdf()
+    {
+        if (auth()->user()->role_id == 4) {
+            $ti = 'ID Card SMK';
+            $id = Auth::user()->id;
+            $dates = DB::table('mulai_dan_selesai_smk')
+                ->where('user_id', '=', $id)
+                ->get();
+            $datas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->select('foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'user_role.role', 'data_smk_indivs.departemen', 'data_smk_indivs.nis')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            return view('magang.id-card-smk-pdf', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'dates' => $dates
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function id_card_smk_pdf_save()
+    {
+        $ti = 'ID Card SMK';
+        $id = Auth::user()->id;
+        $dates = DB::table('mulai_dan_selesai_smk')
+            ->where('user_id', '=', $id)
+            ->get();
+        $datas = DB::table('users')
+            ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+            ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.user_id')
+            ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+            ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+            ->select('foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'user_role.role')
+            ->where('users.id', '=', $id)
+            ->get();
+        // $pdf = PDF::make('dompdf');
+        $pdf = PDF::loadview('magang.id-card-smk-pdf-save', [
+            'ti' => $ti,
+            'datas' => $datas,
+            'dates' => $dates
+        ]);
+        return $pdf->stream();
+    }
     // Individu SMK
 
     public function Kuota()
@@ -1735,7 +1814,7 @@ class MagangController extends Controller
     // Menu Magang Mahasiswa =============
 
     // Menu Magang SMK ===================
-    
+
 
     public function edit_data_smk($id)
     {
@@ -2034,15 +2113,7 @@ class MagangController extends Controller
         return redirect('/Dokumen_smk');
     }
 
-    public function id_card_smk()
-    {
-        if (auth()->user()->role_id == 4) {
-            $ti = 'ID Card SMK';
-            return view('magang.id_card_smk', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
+
 
     public function sertifikat_smk()
     {

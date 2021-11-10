@@ -44,10 +44,10 @@
                                 <div class="headerIdCard mb-5">
                                     <div class="mt-4">
 
-                                        @if ($datas[0]->status_user == "Individu")
+                                        @if ($datas[0]->status_user == "Individu SMK")
                                         <div class="d-flex justify-content-center">
 
-                                            <img src="{{ asset('file/foto-mhs/' . $data->fotoID) }}" alt="image"
+                                            <img src="{{ asset('file/foto-smk/' . $data->fotoID) }}" alt="image"
                                                 style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                         </div>
@@ -56,7 +56,7 @@
 
                                         <div class="d-flex justify-content-center">
 
-                                            <img src="{{ asset('file/foto-mhs-kel/' . $data->fotoID) }}" alt="image"
+                                            <img src="{{ asset('file/foto-smk-kel/' . $data->fotoID) }}" alt="image"
                                                 style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                         </div>
@@ -75,7 +75,7 @@
                                 <div class="card-body">
 
                                     <h5 class="card-title text-dark mb-3"><b>{{ $data->nama }}</b></h5>
-                                    <h6 class="card-title text-dark mb-3"><b>Nim : </b>{{ $data->nim }}</h6>
+                                    <h6 class="card-title text-dark mb-3"><b>Nis : </b>{{ $data->nis }}</h6>
 
                                     <table>
                                         <tr>
@@ -84,7 +84,7 @@
                                         </tr>
                                         <tr>
                                             <td><b>Universitas</b></td>
-                                            <td class="pl-4">{{ $data->univ }}</td>
+                                            <td class="pl-4">{{ $data->sekolah }}</td>
                                         </tr>
                                         <tr>
                                             <td><b>Divisi</b></td>

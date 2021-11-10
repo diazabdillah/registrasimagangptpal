@@ -264,6 +264,10 @@ Route::get('/profil-smk', [MagangController::class, 'profil_smk']);
 
 Route::get('/absen-smk', [MagangController::class, 'absen_smk']);
 Route::get('/proses-absen-smk/{absenid}/{individ}', [MagangController::class, 'proses_absen_smk']);
+
+Route::get('/id-card-smk', [MagangController::class, 'id_card_smk']);
+Route::get('/id-card-smk-pdf', [MagangController::class, 'id_card_smk_pdf']);
+Route::get('/id-card-smk-pdf-save', [MagangController::class, 'id_card_smk_pdf_save']);
 // Halaman Magang SMK Individu ==================
 
 Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
