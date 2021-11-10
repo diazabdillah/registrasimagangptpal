@@ -1485,7 +1485,114 @@ class MagangController extends Controller
         return $pdf->stream();
     }
 
+    public function laporan_smk()
+    {
+        if (auth()->user()->role_id == 4) {
+            $nama = Auth::user()->name;
+            $users = DB::table('laporans_smk')
+                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'laporans_smk.user_id')
+                ->leftJoin('users', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->get();
+            $userSmk = DB::table('laporans_smk')
+                ->get();
+            $userMhs = DB::table('laporans_mhs')
+                ->get();
+            $ti = 'Laporan Akhir';
+            return view('magang.laporan-smk', [
+                'ti' => $ti,
+                'userSmk' => $userSmk,
+                'userMhs' => $userMhs,
+                'users' => $users,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 
+    public function upload_laporan_smk()
+    {
+        if (auth()->user()->role_id == 3) {
+            $ti = 'Upload Laporan';
+            return view('magang.upload-laporan', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_laporan_smk(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'tanggal_kumpul' => 'required',
+        ]);
+
+        $file = $request->file('cover');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-mhs/cover/';
+        $file->move($tujuan_upload, $nama_file);
+        $file1 = $request->file('path');
+        $namafile = $file1->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-mhs/isi/';
+        $file1->move($tujuan_upload, $namafile);
+        Laporan::create([
+            'nama' => Auth::user()->name,
+            'sinopsis' => $request->sinopsis,
+            'judul' => $request->judul,
+            'tanggal_kumpul' => $request->tanggal_kumpul,
+            'divisi' => $request->divisi,
+            'cover' => $nama_file,
+            'path' => $namafile
+        ]);
+
+        session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
+        return redirect('/laporan-mhs');
+    }
+
+    public function lihat_laporan_smk($id)
+    {
+        if (auth()->user()->role_id == 3) {
+            $user = Laporan::find($id);
+            $ti = 'Liat Laporan Akhir';
+            return view('magang.lihat-laporan-mhs', [
+                'ti' => $ti,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function edit_laporan_smk($id)
+    {
+        $ti = 'Edit Laporan';
+        $data = DB::table('laporans')
+            ->where('id', $id)
+            ->first();
+
+        return view('magang.edit-laporan-mhs', [
+            'ti' => $ti,
+            'data' => $data
+        ]);
+    }
+
+    public function proses_edit_laporan_smk($id, Request $request)
+    {
+        $lama = Laporan::find($id);
+        File::delete('file/laporan-mhs/isi/' . $lama->path);
+
+        $file = $request->file('path');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-mhs/isi/';
+        $file->move($tujuan_upload, $nama_file);
+        DB::table('laporans')
+            ->where('id', $id)
+            ->update([
+                'path' => $nama_file
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('/laporan-mhs');
+    }
 
     public function penilaian_smk()
     {

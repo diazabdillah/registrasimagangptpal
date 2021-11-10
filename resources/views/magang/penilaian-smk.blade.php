@@ -25,12 +25,6 @@
                     <div>
                         <h6>Nim : {{ $penilaian->nis }}</h6>
                     </div>
-                    {{-- <div>
-                            <h6>Lokasi Kp : PT. PAL Indonesia(Persero)</h6>
-                        </div>
-                        <div>
-                            <h6>Alamat Lokasi Kp : Jalan Ujung, Ujung, Kec. Semampir, Kota Surabaya, Jawa Timur 60155 </h6>
-                        </div> --}}
                     <div>
                         <h6>Waktu Pelaksanaan : {{ $penilaian->mulai }} s/d {{ $penilaian->selesai }}</h6>
                     </div>
