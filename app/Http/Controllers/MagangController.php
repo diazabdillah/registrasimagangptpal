@@ -20,6 +20,7 @@ use App\models\Interview;
 use App\Models\Absenmhs;
 use App\Models\AbsenIndivsTabel;
 use App\Models\DataMhsKelompoks;
+use App\Models\InterviewSmk;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -1693,7 +1694,7 @@ class MagangController extends Controller
         $tujuan_upload = 'file/interview-smk/';
         $file->move($tujuan_upload, $nama_file);
 
-        Interview::create([
+        InterviewSmk::create([
             'user_id' => $user->id,
             'tipe_kepribadian' => $request->tipe_kepribadian,
             'ekstrovet' => $request->ekstrovet,
@@ -1710,7 +1711,7 @@ class MagangController extends Controller
         ]);
 
         session()->flash('succes', 'Terimakasih telah mengirimkan hasil tes kepribadian anda selanjutnya akan kami proses');
-        return redirect('/interview-mhs');
+        return redirect('/interview-smk');
     }
 
     public function upFotoSmk(Request $request)
