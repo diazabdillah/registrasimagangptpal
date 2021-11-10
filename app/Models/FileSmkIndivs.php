@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FileSmkIndivs extends Model
 {
     use HasFactory;
+    protected $table = 'file_smk_indivs';
     protected $fillable = [
         'user_id',
         'path',

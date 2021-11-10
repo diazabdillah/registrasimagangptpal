@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DataMhsIndiv extends Model
 {
     use HasFactory;
+    protected $table = 'data_mhs_indivs';
     protected $fillable = [
        'user_id',
         'nama',

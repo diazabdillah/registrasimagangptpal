@@ -9,7 +9,6 @@ class Kuota extends Model
 {
     use HasFactory;
     protected $table = 'kuota';
-
     protected $fillable = [
         'bagian',
         'tanggal_buka',

@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataMhsKelompoks extends Model
+class AbsenSmk extends Model
 {
     use HasFactory;
+    protected $table = 'absensmk';
     protected $fillable = [
         'user_id',
-        'nama',
-        'univ',
-        'strata',
-        'alamat_rumah',
-        'no_hp',
-        'divisi',
-        'departemen'
+        'waktu_awal',
+        'waktu_akhir'
     ];
 }

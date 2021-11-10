@@ -49,7 +49,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 8) {
                 return redirect('/data-mhs')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah dilengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 9) {
-                return redirect('/Data_smk')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah dilengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-smk')->with('success', 'Lengkapi semua data yang diminta untuk diproses lebih lanjut, jika sudah dilengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 10) {
                 return redirect('/regis-step2')->with('success', 'You are now logged in');
             } elseif (auth()->user()->role_id == 11) {

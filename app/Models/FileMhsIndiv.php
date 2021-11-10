@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FileMhsIndiv extends Model
 {
     use HasFactory;
+    protected $table = 'file_mhs_indivs';
     protected $fillable = [
         'user_id',
         'path',

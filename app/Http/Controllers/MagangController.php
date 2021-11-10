@@ -1640,9 +1640,9 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 17) {
             $id = Auth::user()->id;
             $users = DB::table('data_smk_indivs')
-                ->leftjoin('interview', 'data_smk_indivs.id', '=', 'interview.user_id')
+                ->leftjoin('interview_smk', 'data_smk_indivs.id', '=', 'interview_smk.user_id')
                 ->leftJoin('users', 'data_smk_indivs.user_id', '=', 'users.id')
-                ->select('users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.id', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'interview.fileinterview')
+                ->select('users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.id', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'interview_smk.fileinterview')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
             $ti = 'Interview';

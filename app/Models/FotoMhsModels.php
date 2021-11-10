@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FotoMhsModels extends Model
 {
     use HasFactory;
+    protected $table = 'foto_mhs_models';
     protected $fillable = [
         'user_id',
         'foto'
