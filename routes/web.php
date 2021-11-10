@@ -120,6 +120,7 @@ Route::get('/magang-selesai-mhs', [DivisiController::class, 'selesaiMhs']);
 Route::put('/update-magang-divisi/{user_id}', [DivisiController::class, 'updatemagangdivisi']);
 Route::get('delete-selesai-mhs/{id}',[DivisiController::class,'deleteselesaimhs']);
 Route::get('/hapus-interview-mhs/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs']);
+Route::get('/hapus-interview-smk/{id}/{foto}', [DivisiController::class, 'hapus_interview_smk']);
 Route::get('/hapus-interview-mhs-kel/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs_kel']);
 Route::get('/proses-magang-aktmhs/{id}', [DivisiController::class, 'magangAktMhs']);
 Route::get('/proses-magang-aktsmk/{user_id}', [DivisiController::class, 'magangAktSmk']);
@@ -143,6 +144,7 @@ Route::post('/proses_penilaian/{id}', [DivisiController::class, 'proses_penilaia
 
 Route::get('magang-interview',[DivisiController::class,'interview']);
 Route::get('terima-interview-mhs/{id}',[DivisiController::class,'terimainterviewmhs']);
+Route::get('terima-interview-smk/{id}',[DivisiController::class,'terimainterviewsmk']);
 // End Halaman Divisi ========================
 
 // Penelitian ================================

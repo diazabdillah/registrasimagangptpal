@@ -455,6 +455,19 @@ class DivisiController extends Controller
         return redirect()->back();
     }
 
+    public function hapus_interview_smk($id, $foto)
+    {
+        // Hapus di file storage
+        File::delete('file/interview-smk/' . $foto);
+        // Hapus di database
+        DB::table('interview_smk')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
+
     public function hapus_interview_mhs_kel($id, $foto)
     {
         // Hapus di file storage
@@ -851,6 +864,37 @@ class DivisiController extends Controller
                 ->get();
 
             return view('divisi.terima-interview-mhs', [
+                'ti' => $ti,
+                'users' => $users,
+                'userid' => $userid,
+                'filepengajuan' => $filepengajuan
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function terimainterviewsmk($user_id)
+    {
+
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Hasil Interview';
+            $userid = DB::table('users')
+                ->where('users.id', '=', $user_id)
+                ->first();
+            $filepengajuan = DB::table('file_smk_indivs')
+                ->where('file_smk_indivs.user_id', '=', $user_id)
+                ->get();
+
+            $users = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
+                ->leftJoin('interview_smk', 'data_smk_indivs.id', '=', 'interview_smk.user_id')
+                ->select('interview_smk.id', 'interview_smk.fileinterview', 'users.name', 'data_smk_indivs.nama', 'user_role.role', 'users.email', 'users.status_user', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+
+            return view('divisi.terima-interview-smk', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,

@@ -14,9 +14,7 @@
             <div class="card shadow mb-4">
                 <div class="card">
                     <div class="card-header">
-                        @foreach ($users as $user)
-                        File <span class="badge badge-danger ml-2 p-2">{{ $user->name }}</span>
-                        @endforeach
+                        File
                     </div>
                     <div class="card-body">
                         @foreach ($files as $file)
