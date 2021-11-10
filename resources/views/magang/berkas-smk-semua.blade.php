@@ -17,9 +17,9 @@
                         File PDF
                     </div>
                     <div class="card-body">
-
-                        <embed class="mt-3" type="application/pdf" src="{{ asset('/file/'.$files->path) }}" width="100%" height="400"></embed>
-
+                        @foreach ($files as $file)
+                        <embed class="mt-3" type="application/pdf" src="{{ asset('file/berkas-smk/'.$file->path) }}" width="100%" height="400"></embed>
+                        @endforeach
                     </div>
                 </div>
             </div>

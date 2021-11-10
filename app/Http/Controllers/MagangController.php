@@ -1617,7 +1617,7 @@ class MagangController extends Controller
         return redirect('/data-smk');
     }
 
-    public function openpdf_smk()
+    public function berkas_smk_semua()
     {
         if (auth()->user()->role_id == 9) {
             $ti = 'Data SMK';
@@ -1626,7 +1626,7 @@ class MagangController extends Controller
                 ->where('user_id', '=', $id)
                 ->get();
 
-            return view('magang.openpdf-smk', [
+            return view('magang.berkas-smk-semua', [
                 'ti' => $ti,
                 'files' => $files
             ]);
