@@ -130,36 +130,34 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="card shadow mb-4">
-                        <div class="card">
+                    <div class="card">
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">File Interview Peserta Magang</h6>
                             </div>
-                            <div class="card-body d-flex flex-wrap">
+
+                            <ul class="list-group list-group-flush">
+
                                 @foreach ($users as $img)
 
                                 @if ($users[0]->status_user == "Individu SMK")
 
-                                <div class="col-sm-3">
-                                    <div class="card">
-                                        @if ($img->fileinterview != null)
-                                        <a class="btn btn-primary" href="{{ asset('file/interview-smk/' . $img->fileinterview) }}">Download</a>
-                                        @endif
-                                    </div>
-                                </div>
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $img->fileinterview }}
+                                    <a target="_blank" href="{{ asset('file/interview-smk/' . $img->fileinterview) }}" class="badge badge-primary float-right p-2">Download <i class="fa fa-download ml-1"></i></a>
+                                </li>
 
                                 @else
 
-                                <div class="col-sm-3">
-                                    <div class="card">
-                                        @if ($img->fileinterview != null)
-                                        <a class="btn btn-primary" href="{{ asset('file/interview-smk-kel/' . $img->fileinterview) }}">Download</a>
-                                        @endif
-                                    </div>
-                                </div>
+                                <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
+                                    {{ $img->fileinterview }}
+                                    <a target="_blank" href="{{ asset('file/interview-smk-kel/' . $img->fileinterview) }}" class="badge badge-primary float-right p-2">Download <i class="fa fa-download ml-1"></i></a>
+                                </li>
 
                                 @endif
+
                                 @endforeach
-                            </div>
+
+                            </ul>
                         </div>
                     </div>
                 </div>
