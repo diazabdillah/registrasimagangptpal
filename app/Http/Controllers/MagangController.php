@@ -1751,7 +1751,7 @@ class MagangController extends Controller
                 $size = $file->getSize();
                 $file->move($tujuan_upload, $NamaFile);
 
-                FileMhsIndiv::create([
+                FileSmkIndivs::create([
                     'user_id' => Auth::user()->id,
                     'path' => $NamaFile,
                     'size' => $size

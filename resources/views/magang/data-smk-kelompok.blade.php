@@ -67,7 +67,7 @@
                             <p class="card-text"><b>Klik "Upload File"</b><br>
                             Jika sudah upload file pada form, maka file akan tampil pada table dibawah.
                             </p>
-                            <a href="/berkas-smk-kel" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a> <br>
+                            <a href="/berkas-smk-kelompok" class="btn btn-success mb-3 mr-2">Upload File <i class="fas fa-upload"></i></a> <br>
                             <b>Kirim file berikut dalam bentuk PDF maksimal 1MB</b>
                             <ol>
                                 <li>Proposal Magang</li>
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="table-responsive table-hover">
-                            <a class="btn btn-danger mt-3 mb-3" href="/open-pdf-smk-kel"><i class="fas fa-fw fa-file-pdf mr-2"></i>Open all file</a>
+                            <a class="btn btn-danger mt-3 mb-3" href="/open-pdf-smk-kelompok"><i class="fas fa-fw fa-file-pdf mr-2"></i>Buka Semua Berkas</a>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="text-center text-white bg-primary">
@@ -90,8 +90,8 @@
                                     <tr class="text-center">
                                         <td><i class="fas fa-fw fa-file-pdf mr-3"></i>{{ $file->path }}</td>
                                         <td>
-                                            <a class="btn btn-primary p-1" href=" {{ url('/Data_smk_kel_lihat/' . $file->id) }}"><i class="far fa-eye"></i> Lihat</a>
-                                            <a class="btn btn-danger p-1" href="{{ url('Data_smk_kel/' . $file->id, $file->path) }}" onclick="return confirm('yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
+                                            <a class="btn btn-primary p-1" href="/berkas-smk-kelompok/{{$file->id}}"><i class="far fa-eye"></i> Lihat</a>
+                                            <a class="btn btn-danger p-1" href="/berkas-smk-kelompok/{{$file->id}}/{{$file->path}}" onclick="return confirm('yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
 
                                         </td>
                                     </tr>

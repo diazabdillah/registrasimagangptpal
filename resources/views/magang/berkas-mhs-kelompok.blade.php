@@ -22,8 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title mt-2">File</h5>
-                                <p class="card-text">Kirim file dalam bentuk PDF dengan maksimal ukuran
-                                    1MB</p>
+                                <p class="card-text">Kirim file dalam bentuk PDF dengan maksimal ukuran 2MB</p>
 
                                 <form method="POST" action="/berkas-mhs-kelompok" enctype="multipart/form-data">
                                     @csrf
