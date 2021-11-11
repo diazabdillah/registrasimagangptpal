@@ -13,6 +13,7 @@ use App\Models\Penilaian;
 use App\Models\PenilaianSmk;
 use App\Models\User;
 use App\Models\FileMhsIndiv;
+use App\Models\FileSmkIndivs;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -242,6 +243,25 @@ class DivisiController extends Controller
                 ->get();
 
             return view('divisi.pdf-smk', [
+                'ti' => $ti,
+                'files' => $files,
+                'users' => $users
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function showPdfSmkKel($id)
+    {
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Penerimaan';
+            $users = DB::table('users')
+                ->where('id', '=', $id)
+                ->get();
+            $files = FileSmkIndivs::find($id);
+
+            return view('divisi.pdf-smk-kel', [
                 'ti' => $ti,
                 'files' => $files,
                 'users' => $users
@@ -519,6 +539,19 @@ class DivisiController extends Controller
         File::delete('file/interview-mhs-kel/' . $foto);
         // Hapus di database
         DB::table('interview')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'File berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function hapus_interview_smk_kel($id, $foto)
+    {
+        // Hapus di file storage
+        File::delete('file/interview-smk-kel/' . $foto);
+        // Hapus di database
+        DB::table('interview_smk')
             ->where('id', $id)
             ->delete();
 

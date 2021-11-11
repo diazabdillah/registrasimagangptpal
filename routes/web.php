@@ -114,6 +114,7 @@ Route::put('/proses-penerimaan-smk/{id}', [DivisiController::class, 'upPenerimaa
 Route::get('/pdf-mhs/{id}', [DivisiController::class, 'showPdfMhs']);
 Route::get('/pdf-mhs-kel/{id}', [DivisiController::class, 'showPdfMhsKel']);
 Route::get('/pdf-smk/{id}', [DivisiController::class, 'showPdfSmk']);
+Route::get('/pdf-smk-kel/{id}', [DivisiController::class, 'showPdfSmkKel']);
 Route::get('/diterima', [DivisiController::class, 'showDiterima']);
 Route::get('/final-penerimaan-mhs/{user_id}', [DivisiController::class, 'finalMhs']);
 Route::get('/magang-selesai-mhs', [DivisiController::class, 'selesaiMhs']);
@@ -123,6 +124,7 @@ Route::get('delete-selesai-mhs/{id}',[DivisiController::class,'deleteselesaimhs'
 Route::get('/hapus-interview-mhs/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs']);
 Route::get('/hapus-interview-smk/{id}/{foto}', [DivisiController::class, 'hapus_interview_smk']);
 Route::get('/hapus-interview-mhs-kel/{id}/{foto}', [DivisiController::class, 'hapus_interview_mhs_kel']);
+Route::get('/hapus-interview-smk-kel/{id}/{foto}', [DivisiController::class, 'hapus_interview_smk_kel']);
 Route::get('/proses-magang-aktmhs/{id}', [DivisiController::class, 'magangAktMhs']);
 Route::get('/proses-magang-aktsmk/{user_id}', [DivisiController::class, 'magangAktSmk']);
 Route::get('/final-penerimaan-mhs/{id}/{foto}', [DivisiController::class, 'hapusfileMhs']);
@@ -281,7 +283,6 @@ Route::get('penilaian-smk', [MagangController::class, 'penilaian_smk']);
 
 
 // Halaman Magang SMK Kelompok ==================
-
 Route::get('/data-smk-kelompok', [MagangController::class, 'data_smk_kelompok']);
 
 Route::get('/input-smk-kelompok', [MagangController::class, 'input_smk_kelompok']);
