@@ -21,6 +21,7 @@ use App\Models\Absenmhs;
 use App\Models\AbsenIndivsTabel;
 use App\Models\DataMhsKelompoks;
 use App\Models\InterviewSmk;
+use App\Models\LaporanSmk;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -707,10 +708,10 @@ class MagangController extends Controller
             $id = Auth::user()->id;
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('penilaians', 'users.id', '=', 'penilaians.user_id')
+                ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('data_mhs_indivs.user_id', 'users.role_id', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifKerja', 'penilaians.Loyalitas', 'penilaians.motivasi', 'penilaians.etika', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin', 'penilaians.PercayaDiri', 'penilaians.TanggungJawab', 'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.status_idcard', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
-                ->where('penilaians.user_id', '=', $id)
+                ->select('data_mhs_indivs.user_id', 'users.role_id', 'penilaians.laporankerja', 'penilaians.sopansantun', 'penilaians.kehadiran', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifKerja', 'penilaians.Loyalitas', 'penilaians.motivasi', 'penilaians.etika', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin', 'penilaians.PercayaDiri', 'penilaians.TanggungJawab', 'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.status_idcard', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
+                ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             $ti = 'Penilaian Mahasiswa';
             return view('magang.penilaian-mhs', [
@@ -1364,11 +1365,11 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 4) {
 
             $id = Auth::user()->id;
-            $absensmk = DB::table('absen_indivs_tabel')
-                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absen_indivs_tabel.id_individu')
-                ->leftJoin('absenmhs', 'absenmhs.id', '=', 'absen_indivs_tabel.id_absen')
+            $absensmk = DB::table('absen_smks_tabel')
+                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absen_smks_tabel.id_individu')
+                ->leftJoin('absensmk', 'absensmk.id', '=', 'absen_smks_tabel.id_absen')
                 ->where('data_smk_indivs.user_id', '=', $id)
-                ->select('absen_indivs_tabel.status_absen', 'absen_indivs_tabel.id_absen', 'absenmhs.waktu_awal', 'absenmhs.waktu_akhir', 'data_smk_indivs.id', 'data_smk_indivs.nama')
+                ->select('absen_smks_tabel.status_absen', 'absen_smks_tabel.id_absen', 'absensmk.waktu_awal', 'absensmk.waktu_akhir', 'data_smk_indivs.id', 'data_smk_indivs.nama')
                 ->get();
 
             $ti = 'Absen SMK';
@@ -1391,7 +1392,7 @@ class MagangController extends Controller
         //     'status_absen' => 'Sudah Absensi'
         // ]);
 
-        DB::table('absen_indivs_tabel')
+        DB::table('absen_smks_tabel')
             ->where('id_absen', '=', $absenid)
             ->where('id_individu', '=', $individ)
             ->update([
@@ -1490,18 +1491,14 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 4) {
             $nama = Auth::user()->name;
             $users = DB::table('laporans_smk')
-                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'laporans_smk.user_id')
-                ->leftJoin('users', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->where('laporans_smk.nama', '=', $nama)
                 ->get();
             $userSmk = DB::table('laporans_smk')
-                ->get();
-            $userMhs = DB::table('laporans_mhs')
                 ->get();
             $ti = 'Laporan Akhir';
             return view('magang.laporan-smk', [
                 'ti' => $ti,
                 'userSmk' => $userSmk,
-                'userMhs' => $userMhs,
                 'users' => $users,
             ]);
         } else {
@@ -1511,9 +1508,9 @@ class MagangController extends Controller
 
     public function upload_laporan_smk()
     {
-        if (auth()->user()->role_id == 3) {
+        if (auth()->user()->role_id == 4) {
             $ti = 'Upload Laporan';
-            return view('magang.upload-laporan', ['ti' => $ti]);
+            return view('magang.upload-laporan-smk', ['ti' => $ti]);
         } else {
             return redirect()->back();
         }
@@ -1528,13 +1525,13 @@ class MagangController extends Controller
 
         $file = $request->file('cover');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs/cover/';
+        $tujuan_upload = 'file/laporan-smk/cover/';
         $file->move($tujuan_upload, $nama_file);
         $file1 = $request->file('path');
         $namafile = $file1->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs/isi/';
+        $tujuan_upload = 'file/laporan-smk/isi/';
         $file1->move($tujuan_upload, $namafile);
-        Laporan::create([
+        LaporanSmk::create([
             'nama' => Auth::user()->name,
             'sinopsis' => $request->sinopsis,
             'judul' => $request->judul,
@@ -1545,15 +1542,15 @@ class MagangController extends Controller
         ]);
 
         session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
-        return redirect('/laporan-mhs');
+        return redirect('/laporan-smk');
     }
 
     public function lihat_laporan_smk($id)
     {
-        if (auth()->user()->role_id == 3) {
-            $user = Laporan::find($id);
+        if (auth()->user()->role_id == 4) {
+            $user = LaporanSmk::find($id);
             $ti = 'Liat Laporan Akhir';
-            return view('magang.lihat-laporan-mhs', [
+            return view('magang.lihat-laporan-smk', [
                 'ti' => $ti,
                 'user' => $user
             ]);
@@ -1565,11 +1562,11 @@ class MagangController extends Controller
     public function edit_laporan_smk($id)
     {
         $ti = 'Edit Laporan';
-        $data = DB::table('laporans')
+        $data = DB::table('laporans_smk')
             ->where('id', $id)
             ->first();
 
-        return view('magang.edit-laporan-mhs', [
+        return view('magang.edit-laporan-smk', [
             'ti' => $ti,
             'data' => $data
         ]);
@@ -1577,21 +1574,21 @@ class MagangController extends Controller
 
     public function proses_edit_laporan_smk($id, Request $request)
     {
-        $lama = Laporan::find($id);
-        File::delete('file/laporan-mhs/isi/' . $lama->path);
+        $lama = LaporanSmk::find($id);
+        File::delete('file/laporan-smk/isi/' . $lama->path);
 
         $file = $request->file('path');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs/isi/';
+        $tujuan_upload = 'file/laporan-smk/isi/';
         $file->move($tujuan_upload, $nama_file);
-        DB::table('laporans')
+        DB::table('laporans_smk')
             ->where('id', $id)
             ->update([
                 'path' => $nama_file
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/laporan-mhs');
+        return redirect('/laporan-smk');
     }
 
     public function penilaian_smk()

@@ -178,7 +178,7 @@
 
                                         <img src="{{ asset('file/dokumen-mhs/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                         <a class="btn btn-primary" href="{{ asset('file/dokumen-mhs/' . $img->foto) }}">Download</a>
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="/final-penerimaan-mhs/{{$img->id}}/{{$img->foto}}"><i class="far fa-trash-alt p-1"></i></a>
+                                        <a class="btn btn-danger p-0 mt-2 float-right" onclick="return confirm('yakin Hapus?');" href="/final-penerimaan-mhs/{{$img->id}}/{{$img->foto}}"><i class="far fa-trash-alt p-1"></i></a>
 
                                         @endif
                                     </div>
@@ -192,7 +192,7 @@
 
                                         <img src="{{ asset('file/dokumen-mhs-kel/' . $img->foto) }}" alt="Foto" class="img-thumbnail" width="135">
                                         <a class="btn btn-primary" href="{{ asset('file/dokumen-mhs-kel/' . $img->foto) }}">Download</a>
-                                        <a class="btn btn-danger p-0 mt-2 float-right" href="/final-penerimaan-mhs-kel/{{$img->id}}/{{$img->foto}}"><i class="far fa-trash-alt p-1"></i></a>
+                                        <a class="btn btn-danger p-0 mt-2 float-right" onclick="return confirm('yakin Hapus?');" href="/final-penerimaan-mhs-kel/{{$img->id}}/{{$img->foto}}"><i class="far fa-trash-alt p-1"></i></a>
 
                                         @endif
                                     </div>

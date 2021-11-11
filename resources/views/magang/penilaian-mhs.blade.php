@@ -20,17 +20,10 @@
         <div class="card-body">
           <div>
             <h6>Nama : {{ $penilaian->nama }}</h6>
-
           </div>
           <div>
             <h6>Nim : {{ $penilaian->nim }}</h6>
           </div>
-          {{-- <div>
-                            <h6>Lokasi Kp : PT. PAL Indonesia(Persero)</h6>
-                        </div>
-                        <div>
-                            <h6>Alamat Lokasi Kp : Jalan Ujung, Ujung, Kec. Semampir, Kota Surabaya, Jawa Timur 60155 </h6>
-                        </div> --}}
           <div>
             <h6>Waktu Pelaksanaan : {{ $penilaian->mulai }} s/d {{ $penilaian->selesai }}</h6>
           </div>
@@ -40,7 +33,6 @@
 
 
           <div class="table-responsive">
-
 
             <table class="table table-bordered">
               <thead>
@@ -110,12 +102,12 @@
                   <td>{{ $penilaian->laporankerja }}</td>
                 </tr>
                 <tr>
-                  <th scope="row">10</th>
+                  <th scope="row">12</th>
                   <td>Sopan Santun</td>
                   <td>{{ $penilaian->sopansantun }}</td>
                 </tr>
                 <tr>
-                  <th scope="row">10</th>
+                  <th scope="row">13</th>
                   <td>Kehadiran</td>
                   <td>{{ $penilaian->kehadiran }}</td>
                 </tr>

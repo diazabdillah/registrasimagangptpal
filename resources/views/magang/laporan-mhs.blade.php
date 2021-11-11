@@ -57,7 +57,7 @@
 
 
                     </div>
-                    <h3 class="text-center">Perpustakaan Laporan Akhir</h3>
+                    <h3 class="text-center">Perpustakaan Laporan Akhir Mahasiswa</h3>
                     <div class="row mt-4">
                         @foreach ($user as $laporan)
 

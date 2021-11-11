@@ -29,7 +29,7 @@
                             <div class="card" style="border-weight:10px;border:1px solid;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4 mb-3 mt-3 ">
-                                        <img width="115px" height="240px" style="margin-left:5px;border-radius: 15px;border:1px solid;margin-top:10px;" src="{{ asset('file/laporan-mhs/cover/' . $laporans->cover) }}" class="gambar1" alt="pt pal">
+                                        <img width="115px" height="240px" style="margin-left:5px;border-radius: 15px;border:1px solid;margin-top:10px;" src="{{ asset('file/laporan-smk/cover/' . $laporans->cover) }}" class="gambar1" alt="pt pal">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -41,9 +41,9 @@
                                                     {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
                                             </p>
                                             @if ($laporans->path != null)
-                                            <a class="btn btn-primary" href="/lihat-laporan-mhs/{{$laporans->id}}">lihat</a>
+                                            <a class="btn btn-primary" href="/lihat-laporan-smk/{{$laporans->id}}">lihat</a>
                                             @if ($laporans->revisi != null)
-                                            <a class="btn btn-warning" href="/edit-laporan-mhs/{{$laporans->id}}">Edit</a>
+                                            <a class="btn btn-warning" href="/edit-laporan-smk/{{$laporans->id}}">Edit</a>
 
                                             @endif
                                             @endif
@@ -57,36 +57,8 @@
 
 
                     </div>
-                    <h3 class="text-center">Perpustakaan Laporan Akhir</h3>
+                    <h3 class="text-center">Perpustakaan Laporan Akhir SMK</h3>
                     <div class="row mt-4">
-                        @foreach ($userMhs as $laporan)
-
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4 mb-3 mt-3 ">
-                                        <img width="115px" height="220px" style="margin-left:5px;border-radius: 15px;border:1px solid;" src="{{ asset('file/laporan-mhs/cover/' . $laporan->cover) }}" class="gambar1" alt="pt pal">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $laporan->judul }}</h5>
-                                            <p class="card-text">{{ $laporan->sinopsis }}</p>
-                                            <p class="card-text">{{ $laporan->divisi }}</p>
-                                            <p class="card-text"><small class="text-muted">Diposting
-                                                    {{ date('d-m-Y', strtotime($laporan->tanggal_kumpul)) }}</small>
-                                            </p>
-                                            @if ($laporan->path != null)
-                                            {{-- <a class="btn btn-primary"
-                                                            href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
-                                            <a class="btn btn-primary" href="/lihat-laporan-mhs/{{$laporan->id}}">lihat</a>
-
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
                         
                         @foreach ($userSmk as $laporan)
 
@@ -94,7 +66,7 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-4 mb-3 mt-3 ">
-                                        <img width="115px" height="220px" style="margin-left:5px;border-radius: 15px;border:1px solid;" src="{{ asset('file/laporan-mhs/cover/' . $laporan->cover) }}" class="gambar1" alt="pt pal">
+                                        <img width="115px" height="220px" style="margin-left:5px;border-radius: 15px;border:1px solid;" src="{{ asset('file/laporan-smk/cover/' . $laporan->cover) }}" class="gambar1" alt="pt pal">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -107,7 +79,7 @@
                                             @if ($laporan->path != null)
                                             {{-- <a class="btn btn-primary"
                                                             href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
-                                            <a class="btn btn-primary" href="/lihat-laporan-mhs/{{$laporan->id}}">lihat</a>
+                                            <a class="btn btn-primary" href="/lihat-laporan-smk/{{$laporan->id}}">lihat</a>
 
                                             @endif
                                         </div>

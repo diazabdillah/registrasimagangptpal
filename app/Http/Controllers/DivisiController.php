@@ -8,6 +8,8 @@ use App\Models\MulaiDanSelesaiMhs;
 use App\Models\DataMhsIndiv;
 use App\Models\DataSmkIndivs;
 use App\Models\Absenmhs;
+use App\Models\AbsenSmk;
+use App\Models\AbsenSmksTabel;
 use App\Models\Kuota;
 use App\Models\Penilaian;
 use App\Models\PenilaianSmk;
@@ -920,14 +922,14 @@ class DivisiController extends Controller
     {
         $user = DataSmkIndivs::where('user_id', '=', $id)->get();
 
-        $absen = new Absenmhs;
+        $absen = new AbsenSmk;
         $absen->user_id = $id;
         $absen->waktu_awal = $request->waktu_awal;
         $absen->waktu_akhir = $request->waktu_akhir;
         $absen->save();
 
         foreach ($user as $u) {
-            $absen_indiv = new AbsenIndivsTabel;
+            $absen_indiv = new AbsenSmksTabel;
             $absen_indiv->id_absen = $absen->id;
             $absen_indiv->id_individu = $u->id;
             $absen_indiv->status_absen = "Belum Absen";

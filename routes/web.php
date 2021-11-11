@@ -308,36 +308,11 @@ Route::get('/dokumen-smk-kel-foto/{id}/{fotoID}', [MagangController::class, 'hap
 
 Route::post('/upload-smk-kel-foto/{id}', [MagangController::class, 'upload_smk_kel_foto']);
 Route::post('/upload-smk-kel/{id}', [MagangController::class, 'upload_smk_kel']);
-
 // Halaman Magang SMK Kelompok ==================
 
-// Route::get('/Data_smk/{id}/{path}', [MagangController::class, 'proses_hapus_fileSmk']);
-// Route::get('/Data_smk_kel_lihat/{id}', [MagangController::class, 'liat_file_smk_kel']);
-// Route::get('/Data_smk_kel/{id}/{path}', [MagangController::class, 'proses_hapus_file_smk_kel']);
+Route::get('/Kuota', [MagangController::class, 'Kuota']);
 
-// Route::get('/input-smk-kelompok', [MagangController::class, 'inputDataSmkKel']);
-// Route::post('/input-smk-kelompok', [MagangController::class, 'proses_data_smkKelompok'])->name('uploadsmkkel');
-// Route::get('/edit-data-smkInd/{id}', [MagangController::class, 'editDataSmk']);
-// Route::put('/edit-data-smkInd/{id}', [MagangController::class, 'updateDataSmk']);
-// Route::get('/edit-data-smkKel/{id}', [MagangController::class, 'editDataSmkKel']);
-// Route::put('/edit-data-smkKel/{id}', [MagangController::class, 'updateDataSmkKel']);
-// Route::get('/delete-data-smkKel/{user_id}', [MagangController::class, 'proses_hapus_smkkelompok']);
-// Route::get('/berkas-smk-kel', [MagangController::class, 'file_smk_kelompok']);
-// Route::post('/berkas-smk-kel', [MagangController::class, 'proses_file_smk_kelompok'])->name('fileSmkKel');
-// Route::get('/openpdf-smk', [MagangController::class, 'openpdf_smk']);
-// Route::get('/open-pdf-smk-kel', [MagangController::class, 'OpenPDFSMKKel']);
-// Route::get('/Dokumen_smk', [MagangController::class, 'Dokumen_smk']);
-// Route::get('/Dokumen_smk_upload', [MagangController::class, 'showUploadSmk']);
-// Route::get('/Dokumen_smk/{id}/{foto}', [MagangController::class, 'hapus_dok_smk']);
-// Route::get('/Dokumen_smk_upload/{id}/{fotoID}', [MagangController::class, 'hapusFotoSmk']);
-// Route::post('/Dokumen_smk_upload', [MagangController::class, 'uploadDocFotoSmk'])->name('uploadFotoSmk');
-// Route::post('/Dokumen_smk', [MagangController::class, 'upFotoSmk'])->name('upFotoSmk');
-// Route::get('/proses_absensmk/{absenid}/{individ}', [MagangController::class, 'proses_absensmk']);
-// Route::get('/id_card_smk', [MagangController::class, 'id_card_smk']);
+
 // Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);
-// Route::get('/data-smk-kelompok', [MagangController::class, 'Data_smk_kelompok']);
-
-// Route::get('/Kuota', [MagangController::class, 'Kuota']);
-
 // Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
 // Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);

@@ -41,7 +41,7 @@
                                         </td>
                                         @elseif ($am->status_absen == "Belum Absen")
                                         <td>
-                                            <a class="btn btn-primary p-1" href="/proses-absen-mhs/{{$am->id_absen}}/{{$am->id}}" role="button">Presensi</a>
+                                            <a class="btn btn-primary p-1" href="/proses-absen-smk/{{$am->id_absen}}/{{$am->id}}" role="button">Presensi</a>
                                         </td>
                                         @endif
                                     </tr>

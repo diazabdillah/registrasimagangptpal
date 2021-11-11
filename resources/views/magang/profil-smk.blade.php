@@ -46,11 +46,11 @@
                                     <input type="text" class="form-control" id="nama" name="nama" value=" {{$profile->nis}}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <small class="ml-2">Univ</small>
+                                    <small class="ml-2">Sekolah</small>
                                     <input type="text" class="form-control" id="email" name="univ" value="{{$profile->sekolah}}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <small class="ml-2">Strata dan Jurusan</small>
+                                    <small class="ml-2">Jurusan</small>
                                     <input type="text" class="form-control" id="nama" name="nama" value="{{$profile->jurusan}}" disabled>
                                 </div>
                                 <div class="form-group">
