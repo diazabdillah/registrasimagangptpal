@@ -54,8 +54,8 @@
                                         <td>{{ $d->no_hp }}</td>
 
                                         <td>
-                                            <a class="btn btn-warning p-1" href="{{ url('edit-data-smkKel/' . $d->id) }}" onclick="return confirm('Yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
-                                            <a class="btn btn-danger p-1" href="{{ url('delete-data-smkKel/' . $d->id) }}" onclick="return confirm('Yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
+                                            <a class="btn btn-warning p-1" href="/edit-data-smk-kelompok/{{$d->id}}" onclick="return confirm('Yakin Edit?');"><i class="far fa-edit"></i> Edit</a>
+                                            <a class="btn btn-danger p-1" href="/delete-data-smk-kelompok/{{$d->id}}" onclick="return confirm('Yakin Hapus?');"><i class="far fa-trash-alt"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach

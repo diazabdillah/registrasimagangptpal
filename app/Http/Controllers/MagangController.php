@@ -1616,6 +1616,391 @@ class MagangController extends Controller
     }
     // Individu SMK
 
+
+    // Kelompok SMK
+    public function data_smk_kelompok()
+    {
+        if (auth()->user()->role_id == 7) {
+            $ti = 'Data SMK Kelompok';
+
+            $id = Auth::user()->id;
+            $data = DB::table('data_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.data-smk-kelompok', [
+                'ti' => $ti,
+                'data' => $data,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function input_smk_kelompok()
+    {
+        if (auth()->user()->role_id == 7) {
+            $ti = 'Form Data SMK Kelompok';
+            return view('magang.input-data-smk-kelompok', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_data_smk_kelompok(Request $request)
+    {
+        $request->validate([
+            'sekolah' => 'required',
+            'jurusan' => 'required',
+            'alamat_rumah' => 'required',
+            'no_hp' => 'required|max:14',
+            'nis' => 'required'
+        ]);
+
+        DataSmkIndivs::create([
+            'user_id' => Auth::user()->id,
+            'nama' => $request->nama,
+            'sekolah' => $request->sekolah,
+            'alamat_rumah' => $request->alamat_rumah,
+            'no_hp' => $request->no_hp,
+            'nis' => $request->nis,
+            'jurusan' => $request->jurusan,
+        ]);
+        session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
+        return redirect('/data-smk-kelompok');
+    }
+
+    public function edit_data_smk_kelompok($id)
+    {
+        if (auth()->user()->role_id == 7) {
+
+            $ti = 'Data SMK';
+            $data = DB::table('data_smk_indivs')
+                ->where('id', $id)
+                ->first();
+
+            return view('magang.edit-data-smk-kelompok', [
+                'ti' => $ti,
+                'data' => $data
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function update_data_smk_kelompok(Request $request, $id)
+    {
+        DB::table('data_smk_indivs')
+            ->where('id', $id)
+            ->update([
+                'nama' => $request->nama,
+                'sekolah' => $request->sekolah,
+                'alamat_rumah' => $request->alamat_rumah,
+                'no_hp' => $request->no_hp,
+                'nis' => $request->nis,
+                'jurusan' => $request->jurusan,
+            ]);
+
+        session()->flash('succes', 'Data SMK berhasil diperbarui');
+        return redirect('/data-smk-kelompok');
+    }
+
+    public function proses_hapus_smk_kelompok($id)
+    {
+        DB::table('data_smk_indivs')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect('/data-smk-kelompok')
+            ->with('succes', 'Data SMK Berhasil Dihapus');
+    }
+
+    public function berkas_smk_kelompok()
+    {
+
+        if (auth()->user()->role_id == 7) {
+
+            $ti = 'Data File SMK Kelompok';
+
+            return view('magang.berkas-smk-kelompok', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_berkas_smk_kelompok(Request $request)
+    {
+        $request->validate([
+            'berkas' => 'required',
+            'berkas.*' => 'mimes:pdf|max:2048'
+        ]);
+
+        if ($request->hasFile('berkas')) {
+
+            $files = $request->file('berkas');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $NamaFile = $file->getClientOriginalName();
+                // Upload ke public/fileMhs
+                $tujuan_upload = 'file/berkas-smk-kel/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $NamaFile);
+
+                FileMhsIndiv::create([
+                    'user_id' => Auth::user()->id,
+                    'path' => $NamaFile,
+                    'size' => $size
+                ]);
+            }
+
+            session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data kelompok anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+            return redirect('/data-smk-kelompok');
+        }
+        return redirect()->back();
+    }
+
+    public function berkas_smk_kelompok_semua()
+    {
+        if (auth()->user()->role_id == 7) {
+            $ti = 'Data SMK';
+            $id = Auth::user()->id;
+            $files = DB::table('file_smk_indivs')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.berkas-smk-kelompok-semua', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function berkas_smk_kelompok_lihat($id)
+    {
+        if (auth()->user()->role_id == 7) {
+            $ti = 'Data Mahasiswa';
+
+            $files = FileSmkIndivs::find($id);
+
+            return view('magang.berkas-smk-kelompok-lihat', [
+                'ti' => $ti,
+                'files' => $files
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_hapus_berkas_kelompok_smk($id, $path)
+    {
+        // Hapus di local storage
+        File::delete('file/berkas-smk-kel/' . $path);
+        // Hapus di database
+        DB::table('file_smk_indivs')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Berkas berhasil dihapus');
+        return redirect('/data-smk-kelompok');
+    }
+
+    public function interview_smk_kel_upload($id)
+    {
+        if (auth()->user()->role_id == 17) {
+ 
+            $user = DataSmkIndivs::find($id);
+            $ti = 'Upload Hasil Interview';
+            return view('magang.interview-smk-kel-upload', [
+                'ti' => $ti,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function proses_interview_smk_kel_upload($id, Request $request)
+    {
+        $user = DataSmkIndivs::find($id);
+        $request->validate([
+            'tipe_kepribadian' => 'required',
+            'introvet' => 'required',
+            'ekstrovet' => 'required',
+            'visioner' => 'required',
+            'realistik' => 'required',
+            'emosional' => 'required',
+            'rasional' => 'required',
+            'perencanaan' => 'required',
+            'improvisasi' => 'required',
+            'tegas' => 'required',
+            'waspada' => 'required',
+            'fileinterview' => 'required',
+        ]);
+
+        $file = $request->file('fileinterview');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/interview-smk-kel/';
+        $file->move($tujuan_upload, $nama_file);
+
+        InterviewSmk::create([
+            'user_id' => $user->id,
+            'tipe_kepribadian' => $request->tipe_kepribadian,
+            'ekstrovet' => $request->ekstrovet,
+            'introvet' => $request->introvet,
+            'visioner' => $request->visioner,
+            'realistik' => $request->realistik,
+            'emosional' => $request->emosional,
+            'rasional' => $request->rasional,
+            'perencanaan' => $request->perencanaan,
+            'improvisasi' => $request->improvisasi,
+            'tegas' => $request->tegas,
+            'waspada' => $request->waspada,
+            'fileinterview' => $nama_file,
+        ]);
+
+        session()->flash('succes', 'Terimakasih telah mengirimkan hasil tes kepribadian anda selanjutnya akan kami proses');
+        return redirect('/interview-smk');
+    }
+
+    public function show_smk_kel_foto($id)
+    {
+        $user = DataSmkIndivs::find($id);
+
+        if (auth()->user()->role_id == 12) {
+            $ti = 'Dokumen SMK';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_smk_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-smk-kel-upload-foto', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show_smk_kel_dokumen($id)
+    {
+        $user = DataSmkIndivs::find($id);
+
+        if (auth()->user()->role_id == 12) {
+            $ti = 'Dokumen SMK';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_smk_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-smk-kel-upload', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function upload_smk_kel_foto($id, Request $request)
+    {
+        $user = DataSmkIndivs::find($id);
+        $request->validate([
+            'fotoid' => 'required',
+            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('fotoid')) {
+
+            $files = $request->file('fotoid');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/foto-smk-kel/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoIDSmks::create([
+                    'user_id' => $user->id,
+                    'fotoID' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload foto berhasil');
+            return redirect('dokumen-smk');
+        }
+        return redirect()->back();
+    }
+
+    public function upload_smk_kel($id, Request $request)
+    {
+        $user = DataSmkIndivs::find($id);
+        $request->validate([
+            'foto' => 'required',
+            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            $files = $request->file('foto');
+
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/dokumen-smk-kel/';
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoSmkModels::create([
+                    'user_id' => $user->id,
+                    'foto' => $Namafoto,
+                ]);
+            }
+            session()->flash('success', 'Upload dokumen berhasil');
+            return redirect('dokumen-smk');
+        }
+        return redirect()->back();
+    }
+
+    public function hapus_smk_kel_foto($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/foto-smk-kel/' . $foto);
+        // Hapus di database
+        DB::table('foto_i_d_smks')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Foto berhasil dihapus');
+        return redirect('dokumen-smk');
+    }
+
+    public function hapus_smk_kel_dokumen($id, $foto)
+    {
+        // Hapus di local storage
+        File::delete('file/dokumen-smk-kel/' . $foto);
+        // Hapus di database
+        DB::table('foto_smk_models')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('success', 'Dokumen berhasil dihapus');
+        return redirect('dokumen-smk');
+    }
+
+    // Kelompok SMK
+
     public function Kuota()
     {
         $ti = 'Kuota Magang';
@@ -1699,203 +2084,6 @@ class MagangController extends Controller
         return redirect('/data-mhs-kelompok');
     }
 
-    //mhs kelompok
-
-
-    public function Data_smk_kelompok()
-    {
-        if (auth()->user()->role_id == 7) {
-            $ti = 'Data Pendaftaran Kelompok';
-
-            $id = Auth::user()->id;
-            $data = DB::table('data_smk_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-            $files = DB::table('file_smk_indivs')
-                ->where('user_id', '=', $id)
-                ->get();
-
-            return view('magang.data-smk-kelompok', [
-                'ti' => $ti,
-                'data' => $data,
-                'files' => $files
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-
-
-    public function inputDataSmkKel()
-    {
-        if (auth()->user()->role_id == 7) {
-            $ti = 'Form Data SMK Kelompok';
-            return view('magang.input-data-smkkel', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-
-
-    public function proses_data_smkKelompok(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'sekolah' => 'required',
-            'jurusan' => 'required',
-            'alamat_rumah' => 'required',
-            'no_hp' => 'required|max:14',
-        ]);
-
-        DataSmkIndivs::create([
-            'user_id' => Auth::user()->id,
-            'nama' => $request->nama,
-            'sekolah' => $request->sekolah,
-            'jurusan' => $request->jurusan,
-            'alamat_rumah' => $request->alamat_rumah,
-            'no_hp' => $request->no_hp,
-        ]);
-        session()->flash('succes', 'Terimakasih telah mengirimkan data anggota kelompok anda, selanjutnya mohon klik upload file calon magang');
-        return redirect('/data-smk-kelompok');
-    }
-
-
-
-    public function file_smk_kelompok()
-    {
-
-        if (auth()->user()->role_id == 7) {
-
-            $ti = 'Data File SMK Kelompok';
-
-            return view('magang.berkas-smk-kel', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-
-
-    public function proses_file_smk_kelompok(Request $request)
-    {
-        $request->validate([
-            'berkas' => 'required',
-            'berkas.*' => 'mimes:png,jpeg,jpg,pdf|max:2048'
-        ]);
-
-        if ($request->hasFile('berkas')) {
-
-            $files = $request->file('berkas');
-
-            foreach ($files as $file) {
-                $extension = $file->getClientOriginalExtension();
-                $NamaFile = $file->getClientOriginalName();
-                // Upload ke public/fileMhs
-                $tujuan_upload = 'file';
-                $size = $file->getSize();
-                $file->move($tujuan_upload, $NamaFile);
-
-                FileSmkIndivs::create([
-                    'user_id' => Auth::user()->id,
-                    'path' => $NamaFile,
-                    'size' => $size
-                ]);
-            }
-
-            session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data kelompok anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
-            return redirect('/data-smk-kelompok');
-        }
-        return redirect()->back();
-    }
-
-    // public function inputDatatambahMhsKel()
-    // {
-    //     if (auth()->user()->role_id == 6) {
-
-    //         $ti = 'Form Tambah Mahasiswa Kelompok';
-
-    //         return view('magang.input-data-tambahmhskel', ['ti' => $ti]);
-    //     } else {
-    //         return redirect()->back();
-    //     }
-    // }
-
-    // public function proses_data_tambahmhsKelompok(Request $request)
-    // {
-    //     $request->validate([
-    //         'nama' => 'required',
-    //         'univ' => 'required',
-    //         'strata' => 'required',
-    //         'alamat_rumah' => 'required',
-    //         'no_hp' => 'required|max:14',
-    //         'divisi' => 'required'
-    //     ]);
-
-    //     DataMhsKelompoks::create([
-    //         'user_id' => Auth::user()->id,
-    //         'nama' => $request->nama,
-    //         'univ' => $request->univ,
-    //         'alamat_rumah' => $request->alamat_rumah,
-    //         'strata' => $request->strata,
-    //         'no_hp' => $request->no_hp,
-    //         'divisi' => $request->divisi,
-    //     ]);
-
-    //     session()->flash('succes', 'Terimakasih telah mengirimkan data anda selanjutnya akan kami proses');
-    //     return redirect('/data-mhs-kelompok');
-    // }
-
-
-
-    public function editDataSmkKel($id)
-    {
-        if (auth()->user()->role_id == 7) {
-
-            $ti = 'Data SMK';
-            $data = DB::table('data_smk_indivs')
-                ->where('id', $id)
-                ->first();
-
-            return view('magang.edit-data-smkkel', [
-                'ti' => $ti,
-                'data' => $data
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-
-
-    public function updateDataSmkKel(Request $request, $id)
-    {
-        DB::table('data_smk_indivs')
-            ->where('id', $id)
-            ->update([
-                'user_id' => Auth::user()->id,
-                'nama' => $request->nama,
-                'sekolah' => $request->sekolah,
-                'jurusan' => $request->jurusan,
-                'alamat_rumah' => $request->alamat_rumah,
-                'no_hp' => $request->no_hp,
-            ]);
-
-        session()->flash('succes', 'Data Siswa berhasil diperbarui');
-        return redirect('/data-smk-kelompok');
-    }
-
-
-
-    public function proses_hapus_smkkelompok($id)
-    {
-        DB::table('data_smk_indivs')
-            ->where('id', $id)
-            ->delete();
-        return redirect('/data-smk-kelompok')->with('succes', 'Data Siswa Berhasil DiHapus');
-    }
-    //end mhs kelompok
 
     public function sertifikatmhspdf()
     {

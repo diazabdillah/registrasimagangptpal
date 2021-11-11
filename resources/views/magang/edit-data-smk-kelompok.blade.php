@@ -25,29 +25,29 @@
                                 <h5 class="card-title mt-2">Edit Data</h5>
 
 
-                                <form method="POST" action="/edit-data-smkKel/{{ $data->id }}">
+                                <form method="POST" action="/edit-data-smk-kelompok/{{ $data->id }}">
                                     @method('put')
                                     @csrf
                                     <div class="form-group">
                                         <small class="ml-2">Nama Anggota</small>
                                         <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}">
                                     </div>
-                                    <!-- Input Univ -->
                                     <div class="form-group">
-                                        <small class="ml-2">Sekolah Asal</small>
+                                        <small class="ml-2">Sekolah</small>
                                         <input type="text" class="form-control" id="sekolah" name="sekolah" value="{{ $data->sekolah }}">
                                     </div>
-                                    <!-- Input Strata (S1/d3) -->
                                     <div class="form-group">
                                         <small class="ml-2">Jurusan</small>
                                         <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $data->jurusan }}">
                                     </div>
-                                    <!-- Input Alamat Rumah -->
+                                    <div class="form-group">
+                                        <small class="ml-2">Nis</small>
+                                        <input type="text" class="form-control" id="nis" name="nis" value="{{ $data->nis }}">
+                                    </div>
                                     <div class="form-group">
                                         <small class="ml-2">Alamat Rumah</small>
                                         <input type="text" class="form-control" id="alamat_rumah" name="alamat_rumah" value="{{ $data->alamat_rumah }}">
                                     </div>
-                                    <!-- Input No HP -->
                                     <div class="form-group">
                                         <small class="ml-2">Nomer Hp</small>
                                         <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $data->no_hp }}">
