@@ -12,11 +12,10 @@ class Laporan extends Model
     protected $fillable = [
         'user_id',
         'nama',
-        'sinopsis',
         'judul',
         'tanggal_kumpul',
         'divisi',
-        'cover',
+        'jurusan',
         'revisi',
         'path'
     ];

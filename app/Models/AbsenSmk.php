@@ -10,8 +10,9 @@ class AbsenSmk extends Model
     use HasFactory;
     protected $table = 'absensmk';
     protected $fillable = [
-        'user_id',
-        'waktu_awal',
-        'waktu_akhir'
+        'id_individu',
+        'waktu_absen',
+        'jenis_absen',
+        'keterangan',
     ];
 }

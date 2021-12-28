@@ -15,7 +15,7 @@ class CreateInterviewSmkTabel extends Migration
     {
         Schema::create('interview_smk', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->bigInteger('id_individu');
             $table->string('fileinterview');
             $table->string('tipe_kepribadian');
             $table->integer('ekstrovet');

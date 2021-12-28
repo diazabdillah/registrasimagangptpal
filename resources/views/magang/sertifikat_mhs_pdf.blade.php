@@ -11,91 +11,177 @@
 
     <title>PT.PAL</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    {{-- Fonts Poppins --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 </head>
 
-<body id="page-top">
+<body>
 
-    {{-- <button class="btn btn-danger mb-3 mt-3" onclick="window.print()"><i class="fas fa-download"></i> Cetak dan
-        Simpan</button> --}}
+    @foreach ($datas as $sertif)
+        <div style="border:1px solid;">
+            <div class="d-flex justify-content-between pl-4 pr-4 pt-3 pb-4 mt-4">
+                <img src="{{ public_path('img/bumn.png') }}" alt="image" style="width: 130px;margin-top:30px;">
+                <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap"
+                    style="width: 130px;margin-left:1080px;margin-top:30px;">
+            </div>
+            <div class="text-center" style="margin-top:-50px;">
+                <u>
+                    <h1 style="font-family:Lucida Sans;">SERTIFIKAT</h1>
+                </u>
+                <p>Nomor :
+                    <b> PKL/{{ $datas[0]->id }}/51200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
+                    </b>
+                </p>
 
-    <!-- Card -->
-    <div class="container-fluid">
-        <div class="row">
+                <span> Dengan ini menerangkan bahwa:</span>
+                <b>
+                    <u>
+                        <h1 style="font-family:Comic Sans MS;font-weight: bold;font-size: 50px;">
+                            {{ strtoupper($sertif->nama) }}
+                        </h1>
+                    </u>
+                </b>
+                <p>Nim : <b>{{ $sertif->nim }}</b> </p>
+
+                <h5 style="font-family:Comic Sans MS;font-weight: bold;">
+                    {{ strtoupper($sertif->strata) }} {{ strtoupper($sertif->univ) }}
+                </h5>
 
 
-            @foreach ($datas as $sertif)
 
-            <div class="card-body">
-                <div class="chart-area">
-                    <div class="d-flex justify-content-between pl-4 pr-4 pt-3 pb-4 mt-3" style="margin-bottom:50px ">
-                        <img src="{{ asset('img/bumn.png') }}" alt="image" style="width: 130px;">
-                        <img src="{{ asset('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;">
-                    </div>
-                    <div class="text-center">
-                        <h4 style="font-family:Lucida Sans;">SURAT - KETERANGAN </h4>
-                        <hr style="width:260px;weight:200px;margin-top: 5px;margin-bottom: 5px;border:1px solid;">
-                        <p>Nomor :</p>
-                    </div>
-                    <div class="text-center" style="margin-top: 50px">
-                        <span> Dengan ini menerangkan bahwa:</span>
-                        <b>
-                            <h1 style="margin-top:5px;margin-bottom:30px;font-family:Comic Sans MS;font-weight: bold;font-size: 50px;">{{strtoupper($sertif->nama)}}
-                                <hr style="border:1px solid;width:350px;margin-top: 5px;">
-                            </h1>
-                        </b>
-                        <p style="margin-top: -25px">Nim : <b>{{$sertif->nim}}</b> </p>
-                        <div class="text-center" style="margin-top: 20px">
-                            <h5 style="font-family:Comic Sans MS;font-weight: bold;">{{strtoupper($sertif->strata)}}</h5>
-                            <h5 style="font-family:Georgia;font-weight: bold;">{{strtoupper($sertif->univ)}}</h5>
-                        </div>
-                        <div class="text-center" style="margin-top: 20px">
-                            <p>Telah Melaksanakan Kerja Praktek di <b>PT PAL INDONESIA (PERSERO)</b> <br> Pada Tanggal <b>{{date('d-m-Y', strtotime($sertif->mulai))}}</b> s/d <b>{{date('d-m-Y', strtotime($sertif->selesai))}}</b> dengan hasil predikat <b>{{$sertif->nilai_huruf}}</b> <b>(Baik)</b></p>
-                        </div>
-                        <div style="float: right;margin-right:60px;margin-top:40px;">
-                            <div>
-                                <p class="text-center">Surabaya, {{date('d-F-Y', strtotime($sertif->created_at))}} </p>
-                            </div>
-                            <div style="margin-top: -20px">
-                                <p> PT PAL INDONESIA (PERSERO)</p>
-                            </div>
-                            <div style="margin-top: -20px">
-                                <p> Kadep Human Capital Management</p>
-                            </div>
-                            <div>
-                                <hr style="width:280px;weight:200px;margin-top: 140px;margin-bottom: 5px;border:1px solid;">
-                            </div>
-                        </div>
-                    </div>
+                <p>Telah Melaksanakan Kerja Praktek di <b>PT PAL Indonesia (Persero)</b>
+                    <br>
+                    Pada Tanggal <b>{{ date('d-m-Y', strtotime($sertif->mulai)) }}</b>
+                    s/d
+                    <b>{{ date('d-m-Y', strtotime($sertif->selesai)) }}</b> dengan hasil
+                    predikat <b>{{ $sertif->nilai_huruf }}</b>
+                    <b>({{ $sertif->keterangan }})</b>
+                </p>
+                <div>
+                    <p style="margin-left:900px;">Surabaya,
+                        {{ date('d-F-Y', strtotime($datas[0]->selesai)) }} </p>
+                    <p style="margin-top: -20px;margin-left:900px;"> PT PAL Indonesia (Persero)</p>
+
+                    <hr style="margin-left:950px;width:280px;weight:200px;margin-top: 225px;border:1px solid;">
+
                 </div>
             </div>
-            @endforeach
         </div>
-    </div>
-    {{-- end card --}}
 
-    <script>
-        window.print();
-    </script>
+    @endforeach
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    @foreach ($users as $penilaian)
+        <div style="border:1px solid;">
+            <div class="card-body">
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th style="height:5px;" scope="col">No</th>
+                            <th style="height:5px;" scope="col">AKTIVITAS YANG DINILAI</th>
+                            <th style="height:5px;" scope="col">NILAI</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">1</th>
+                            <td>Kerjasama</td>
+                            <td>{{ $penilaian->kerjasama }}</td>
+
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">2</th>
+                            <td>Motivasi & Percaya Diri</td>
+                            <td>{{ $penilaian->MotivasiPercayaDiri }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">3</th>
+                            <td>Inisiatif & Tanggung Jawab Kerja</td>
+                            <td>{{ $penilaian->InisiatifTanggungJawabKerja }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">4</th>
+                            <td>Loyalitas</td>
+                            <td>{{ $penilaian->Loyalitas }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">5</th>
+                            <td>Etika & Sopan Santun</td>
+                            <td>{{ $penilaian->EtikaSopanSantun }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">6</th>
+                            <td>Disiplin</td>
+                            <td>{{ $penilaian->disiplin }}</td>
+                        </tr>
+
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">7</th>
+                            <td>Kemampuan dan Pemahaman Kerja</td>
+                            <td>{{ $penilaian->PemahamanKemampuan }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">8</th>
+                            <td>Kesehatan dan Keselamatan Kerja</td>
+                            <td>{{ $penilaian->KesehatanKeselamatanKerja }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">9</th>
+                            <td>Laporan Kerja</td>
+                            <td>{{ $penilaian->laporankerja }}</td>
+                        </tr>
+
+                        <tr style="width: 10px;font-size:15px;">
+                            <th scope="row">10</th>
+                            <td>Kehadiran</td>
+                            <td>{{ $penilaian->kehadiran }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <td colspan="2" class="text-center">RATA-RATA</td>
+                            <td>{{ $penilaian->average }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <td colspan="2" class="text-center">KETERANGAN NILAI</td>
+                            <td>{{ $penilaian->keterangan }}</td>
+                        </tr>
+                        <tr style="width: 10px;font-size:15px;">
+                            <td colspan="2" class="text-center">NILAI HURUF</td>
+                            <td>{{ $penilaian->nilai_huruf }}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            {{-- <div style="font-size: 15px;margin-top:-100px;" class="card-body">
+                <h6 style="font-size:20px;" class="card-title">Kriteria Penilaian</h6>
+                <hr>
+
+                <span class="card-text">81 – 100 : (A) Istimewa,</span>
+
+                <span class="card-text">71 – 80 : (AB) Sangat Baik,</span>
+
+                <span class="card-text">67 - 70 : (B) Baik,</span>
+
+                <span class="card-text">61 - 66 : (BC) Cukup Baik,</span>
+
+                <span class="card-text">56 - 60 : (C) Cukup,</span>
+
+                <span class="card-text">41 - 55 : (D) kurang,</span>
+
+                <span class="card-text">0 - 40 : (E) gagal</span>
+            </div> --}}
+        </div>
+
+
+    @endforeach
+
 
 </body>
 

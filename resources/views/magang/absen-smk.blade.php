@@ -22,44 +22,63 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Absen Masuk</th>
-                                    <th>Absen Pulang</th>
+                                    <th>Absen</th>
                                     <th>Action</th>
-                                </tr>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($absensmk as $am)
-                                @if (now() <= $am->waktu_akhir)
-                                    <tr>
-                                        <td>{{ $am->nama }}
-                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_awal)) }}</td>
-                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_akhir)) }}</td>
-                                        @if ($am->status_absen == 'Sudah Absen')
-                                        <td>
-                                            <input class="btn btn-secondary" type="button" value="presensi" disabled>
-                                        </td>
-                                        @elseif ($am->status_absen == "Belum Absen")
-                                        <td>
-                                            <a class="btn btn-primary p-1" href="/proses-absen-smk/{{$am->id_absen}}/{{$am->id}}" role="button">Presensi</a>
-                                        </td>
-                                        @endif
-                                    </tr>
-                                    @else
-                                    <tr>
-                                        <td>{{ $am->nama }}
-                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_awal)) }}</td>
-                                        <td>{{ date('D, d F Y H:i', strtotime($am->waktu_akhir)) }}</td>
-                                        <td>
-                                            <input class="btn btn-secondary" type="button" value="presensi" disabled>
-                                        </td>
-                                    </tr>
-                                    @endif
-
-
-                                    @endforeach
+                                @foreach($absensmk as $as)
+                                <tr>
+                                    <th>{{ $as->nama }}</th>
+                                    <th>Datang</th>
+                                    <th>
+                                        <a class="btn btn-primary p-1" href="/proses-absen-masuk-smk/{{ $as->id }}" role="button">Presensi</a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>{{ $as->nama }}</th>
+                                    <th>Pulang</th>
+                                    <th>
+                                        <a class="btn btn-primary p-1" href="/proses-absen-pulang-smk/{{ $as->id }}" role="button">Presensi</a>
+                                    </th>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Rekap Absen</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered mt-4" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Waktu Absen</th>
+                                    <th>Absen</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($absensmkk as $ass)
+                                <tr>
+                                    <th> {{ $ass->nama }} </th>
+                                    <th>{{ date('H:i, d F Y', strtotime($ass->waktu_absen)) }}</th>
+                                    <th>{{ $ass->jenis_absen }}</th>
+                                    <th>{{ $ass->keterangan }}</th>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        
+                        {{$absensmkk->links()}}
 
                     </div>
                 </div>

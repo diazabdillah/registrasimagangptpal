@@ -10,7 +10,7 @@ class Interview extends Model
     use HasFactory;
     protected $table = 'interview';
     protected $fillable = [
-        'user_id',
+        'id_individu',
         'tipe_kepribadian',
         'fileinterview',
         'ekstrovet',

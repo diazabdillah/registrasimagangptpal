@@ -15,7 +15,7 @@ class FotoMhsModel extends Migration
     {
         Schema::create('foto_mhs_models', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
+            $table->bigInteger('id_individu');
             $table->string('foto');
             $table->timestamps();
         });

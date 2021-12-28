@@ -19,6 +19,7 @@ class DataMhsIndiv extends Model
         'alamat_rumah',
         'no_hp',
         'divisi',
-        'departemen'
+        'departemen',
+        'status_penerimaan'
     ];
 }

@@ -10,7 +10,7 @@ class FotoIDSmks extends Model
     use HasFactory;
     protected $table = 'foto_i_d_smks';
     protected $fillable = [
-        'user_id',
+        'id_individu',
         'fotoID',
     ];
 }

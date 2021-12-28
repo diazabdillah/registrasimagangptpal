@@ -15,24 +15,22 @@ class CreatePenilaiansSmkTable extends Migration
     {
         Schema::create('penilaians_smk', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->string('pembimbing');
+            $table->integer('user_id');
+            $table->string('pembimbing')->nullable();
             $table->integer('Kerjasama');
-            $table->integer('Motivasi');
-            $table->integer('InisiatifKerja');
+            $table->integer('MotivasiPercayaDiri');
+            $table->integer('InisiatifTanggungJawabKerja');
             $table->integer('Loyalitas');
-            $table->integer('etika');
+            $table->integer('EtikaSopanSantun');
             $table->integer('Disiplin');
-            $table->integer('PercayaDiri');
-            $table->integer('TanggungJawab');
             $table->integer('PemahamanKemampuan');
             $table->integer('KesehatanKeselamatanKerja');
             $table->integer('laporankerja');
             $table->integer('kehadiran');
-            $table->integer('sopansantun');
             $table->integer('average');
-            $table->string('nilai_huruf');
-            $table->string('status_penilaian');
+            $table->string('nilai_huruf')->nullable();
+            $table->string('status_penilaian')->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

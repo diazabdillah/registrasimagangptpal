@@ -22,14 +22,19 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <form method="POST" action="/upload-smk-kel-foto/{{$user->id}}" enctype="multipart/form-data">
+                                    <form method="POST" action="/upload-smk-kel-foto/{{ $user->id }}"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        <div class="alert alert-info" role="alert">
-                                            <p>Kirim Foto 3x4 dengan background merah / biru max 2MB</p>
+                                        <div class="alert alert-danger" role="alert">
+                                            <p>Kirim Foto 3x4 dengan background merah / biru dan Format JPG</p>
                                         </div>
-                                        <label>Foto 3x4</label>
+                                        <label>Foto 3x4 <small style="color: red">*Max
+                                                2MB</small></label>
+                                        <br><small style="color: blue">Contoh :</small>
+                                        <br><img width="30%" src="{{ asset('img/contoh-foto.png') }}" alt="">
                                         <input type="file" class="form-control" id="foto" name="fotoid[]">
-                                        <button type="submit" class="btn btn-primary mt-3">Upload Foto <i class="fas fa-upload"></i></button>
+                                        <button type="submit" class="btn btn-primary mt-3">Upload Foto <i
+                                                class="fas fa-upload"></i></button>
                                     </form>
                                 </div>
                             </div>

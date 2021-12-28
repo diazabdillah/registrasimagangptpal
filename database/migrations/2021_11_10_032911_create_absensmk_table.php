@@ -15,9 +15,10 @@ class CreateAbsensmkTable extends Migration
     {
         Schema::create('absensmk', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->datetime('waktu_awal');
-            $table->datetime('waktu_akhir');
+            $table->bigInteger('id_individu');
+            $table->datetime('waktu_absen');
+            $table->string('jenis_absen');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

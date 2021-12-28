@@ -16,9 +16,8 @@ class CreateLaporanTabel extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('sinopsis');
             $table->string('judul');
-            $table->string('cover');
+            $table->string('jurusan');
             $table->string('path');
             $table->string('revisi')->nullable();
             $table->date('tanggal_kumpul');

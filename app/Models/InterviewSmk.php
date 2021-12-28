@@ -10,7 +10,7 @@ class InterviewSmk extends Model
     use HasFactory;
     protected $table = 'interview_smk';
     protected $fillable = [
-        'user_id',
+        'id_individu',
         'tipe_kepribadian',
         'fileinterview',
         'ekstrovet',

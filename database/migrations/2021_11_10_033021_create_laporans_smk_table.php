@@ -16,10 +16,9 @@ class CreateLaporansSmkTable extends Migration
         Schema::create('laporans_smk', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('sinopsis');
             $table->string('judul');
-            $table->string('cover');
             $table->string('path');
+            $table->string('jurusan');
             $table->string('revisi')->nullable();
             $table->date('tanggal_kumpul');
             $table->string('divisi');

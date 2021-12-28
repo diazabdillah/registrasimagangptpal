@@ -19,5 +19,6 @@ class DataSmkIndivs extends Model
         'divisi',
         'departemen',
         'nis',
+        'status_penerimaan'
     ];
 }

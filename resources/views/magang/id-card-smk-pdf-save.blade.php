@@ -44,10 +44,10 @@
                                 <div class="headerIdCard mb-5">
                                     <div class="mt-4">
 
-                                        @if ($datas[0]->status_user == "Individu SMK")
+                                        @if ($datas[0]->status_user == "SMK")
                                         <div class="d-flex justify-content-center">
 
-                                            <img src="{{ asset('file/foto-smk/' . $data->fotoID) }}" alt="image"
+                                            <img src="{{ asset('file/foto-smk/' . $data->id_individu . '/' . $data->fotoID) }}" alt="image"
                                                 style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                         </div>
@@ -56,7 +56,7 @@
 
                                         <div class="d-flex justify-content-center">
 
-                                            <img src="{{ asset('file/foto-smk-kel/' . $data->fotoID) }}" alt="image"
+                                            <img src="{{ asset('file/foto-smk-kel/' . $data->id_individu . '/' . $data->fotoID) }}" alt="image"
                                                 style="width: 150px; height:180px; border-radius: 5px; border: 3px white solid;">
 
                                         </div>

@@ -12,11 +12,10 @@ class LaporanSmk extends Model
     protected $fillable = [
         'user_id',
         'nama',
-        'sinopsis',
         'judul',
+        'jurusan',
         'tanggal_kumpul',
         'divisi',
-        'cover',
         'revisi',
         'path'
     ];

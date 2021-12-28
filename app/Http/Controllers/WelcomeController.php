@@ -16,4 +16,5 @@ class WelcomeController extends Controller
         $ti = 'Welcome';
         return view('home', ['ti' => $ti]);
     }
+
 }

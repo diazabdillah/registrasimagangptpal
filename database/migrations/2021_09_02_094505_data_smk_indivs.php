@@ -24,7 +24,7 @@ class DataSmkIndivs extends Migration
             $table->string('divisi')->nullable();
             $table->string('departemen')->nullable();
             $table->integer('nis');
-            $table->string('status_idcard')->nullable();
+            $table->string('status_penerimaan')->nullable();
             $table->timestamps();
         });
     }

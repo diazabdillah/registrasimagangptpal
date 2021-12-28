@@ -13,18 +13,18 @@ class Penilaian extends Model
         'user_id',
         'pembimbing',
         'Kerjasama',
-        'Motivasi',
-        'InisiatifKerja',
+        'MotivasiPercayaDiri',
+        'InisiatifTanggungJawabKerja',
         'Loyalitas',
-        'etika',
+        'EtikaSopanSantun',
         'Disiplin',
-        'PercayaDiri',
-        'TanggungJawab',
         'PemahamanKemampuan',
         'KesehatanKeselamatanKerja',
+        'Laporankerja',
+        'kehadiran',
         'average',
-        'judul',
         'nilai_huruf',
-        'status_penilaian'
+        'status_penilaian',
+        'keterangan'
     ];
 }

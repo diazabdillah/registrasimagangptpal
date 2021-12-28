@@ -41,14 +41,53 @@
                                                 @php $no = 1; @endphp
                                                 @foreach ($users as $data)
                                                     <tr>
-                                                        <td>{{ $no++ }}.</td>
-                                                        <td>{{ $data->name }}</td>
-                                                        <td><span class="badge badge-warning p-2">{{ $data->role }}</span>
-                                                        </td>
+                                                        <td class="text-center">{{ $no++ }}.</td>
+                                                        <td class="text-center">{{ $data->name }}</td>
+                                                        @if ($data->status_user == 'Mahasiswa' || $data->status_user == 'Mahasiswa Kelompok')
+                                                            <td class="text-center"><span
+                                                                    class="badge badge-primary p-2">{{ $data->status_user }}</span>
+                                                            </td>
+                                                        @elseif ($data->status_user == 'SMK' || $data->status_user ==
+                                                            'SMK Kelompok')
+                                                            <td class="text-center"><span
+                                                                    class="badge badge-warning p-2">{{ $data->status_user }}</span>
+                                                            </td>
+                                                        @endif
                                                         <td class="text-center">
-                                                            <a class="badge badge-success p-2"
-                                                                href="{{ url('delete-selesai-mhs/' . $data->id) }}">Delete
-                                                                <i class="fas fa-info-circle ml-1"></i></a>
+                                                            @if ($data->role_id == 14)
+                                                                <a class="badge badge-success p-2"
+                                                                    href="{{ url('proses-mhs-selesai/' . $data->id) }}">Detail
+                                                                    <i class="fas fa-info-circle ml-1"></i></a>
+                                                            @endif
+                                                            @if ($data->role_id == 15)
+                                                                <a class="badge badge-success p-2"
+                                                                    href="{{ url('proses-smk-selesai/' . $data->id) }}">Detail
+                                                                    <i class="fas fa-info-circle ml-1"></i></a>
+                                                            @endif
+
+                                                            @if ($data->role_id == 19)
+                                                                @if ($data->status_user == 'Mahasiswa')
+                                                                    <a class="badge badge-danger p-2"
+                                                                        href="{{ url('delete-selesai-mhs/' . $data->id) }}">Hapus
+                                                                        Akun <i class="fas fa-info-circle ml-1"></i></a>
+                                                                @elseif ($data->status_user == "Mahasiswa Kelompok")
+                                                                    <a class="badge badge-danger p-2"
+                                                                        href="{{ url('delete-selesai-mhs-kel/' . $data->id) }}">Hapus
+                                                                        Akun <i class="fas fa-info-circle ml-1"></i></a>
+                                                                @endif
+                                                            @endif
+                                                            @if ($data->role_id == 20)
+                                                                @if ($data->status_user == 'SMK')
+                                                                    <a class="badge badge-danger p-2"
+                                                                        href="{{ url('delete-selesai-smk/' . $data->id) }}">Hapus
+                                                                        Akun <i class="fas fa-info-circle ml-1"></i></a>
+                                                                @elseif ($data->status_user == "SMK Kelompok")
+                                                                    <a class="badge badge-danger p-2"
+                                                                        href="{{ url('delete-selesai-smk-kel/' . $data->id) }}">Hapus
+                                                                        Akun <i class="fas fa-info-circle ml-1"></i></a>
+                                                                @endif
+                                                            @endif
+
                                                         </td>
                                                     </tr>
                                                 @endforeach

@@ -12,6 +12,10 @@ class FileMhsIndiv extends Model
     protected $fillable = [
         'user_id',
         'path',
-        'size'
+        'size',
+        'nomorsurat',
+        'nama',
+        'jabatan'
+
     ];
 }

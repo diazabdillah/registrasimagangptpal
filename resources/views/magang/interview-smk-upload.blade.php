@@ -28,9 +28,12 @@
                                             sesuai dengan hasil tes kepribadian dimasing-masing peserta</small></p>
 
 
-                                    <form method="POST" action="/interview-smk/{{ $user->id }}" enctype="multipart/form-data">
+                                    <form method="POST" action="/interview-smk/{{ $user->id }}"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        <!-- Input Univ -->
+                                        <div class="alert alert-danger" role="alert">
+                                            <p>Kirim File dengan Format JPG/PNG</p>
+                                        </div>
                                         <div class="form-group">
                                             <small class="ml-2">Tipe Kepribadian</small>
                                             <input type="text" class="form-control" id="" name="tipe_kepribadian">
@@ -76,10 +79,15 @@
                                             <input type="text" class="form-control" id="" name="waspada">
                                         </div>
                                         <div class="form-group">
-                                            <small>File Interview</small><br>
+                                            <small>File Interview <span style="color: red">*Max
+                                                    2MB</span></small><br>
+                                            <small style="color: blue">Contoh :</small>
+                                            <br><img style="margin-bottom: 10px" width="100%"
+                                                src="{{ asset('img/mbti.png') }}" alt="">
                                             <input type="file" name="fileinterview">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i class="fas fa-paper-plane"></i></button>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
+                                                class="fas fa-paper-plane"></i></button>
                                     </form>
                                 </div>
                             </div>

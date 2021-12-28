@@ -3,24 +3,24 @@
 @section('kontenWebBack')
 
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-lg">
+        <div class="row">
+            <div class="col-lg">
 
-            <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
 
-            @if (session()->has('succes'))
-            <div class="alert alert-success" role="alert">
-                {{ session()->get('succes') }}
-            </div>
-            @endif
+                @if (session()->has('succes'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session()->get('succes') }}
+                    </div>
+                @endif
 
-            <div class="row">
-                <div class="card shadow mb-4">
-                    <div class="card">
+                <div class="row">
+                    <div class="card shadow mb-4">
+
                         <div class="card-body">
                             <h5 class="card-title mt-2">Data</h5>
                             <p class="card-text"><small>Setelah membuat akun mohon lengkapi data berikut dengan
@@ -56,14 +56,15 @@
                                     <small class="ml-2">Nomer Hp</small>
                                     <input type="text" class="form-control" id="no_hp" name="no_hp">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i class="fas fa-paper-plane"></i></button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
+                                        class="fas fa-paper-plane"></i></button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
 
 @endsection

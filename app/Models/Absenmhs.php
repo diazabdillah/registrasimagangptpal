@@ -10,8 +10,9 @@ class Absenmhs extends Model
     use HasFactory;
     protected $table = 'absenmhs';
     protected $fillable = [
-        'user_id',
-        'waktu_awal',
-        'waktu_akhir'
+        'id_individu',
+        'waktu_absen',
+        'jenis_absen',
+        'keterangan',
     ];
 }
