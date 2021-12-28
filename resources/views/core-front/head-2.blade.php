@@ -40,6 +40,13 @@
 	<link rel="apple-touch-icon" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="72x72" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="114x114" href="{{URL::asset('frontend')}}/img/pal.jpg">
+
+	<!-- Custom fonts for this template-->
+	<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- Fonts Poppins --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body >
 
@@ -94,10 +101,19 @@
 										Internship
 									</a>
 								</li>
-								<li class="nav-item dropdown {{ Request::is('services')? "active":"" }}">
-									<a class="nav-link" href="{{('services')}}">
+								<li class="nav-item dropdown {{ Request::is('service')? "active":"" }}">
+									<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										Services
 									</a>
+
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+										<a class="dropdown-item" href="{{('info_beasiswa')}}">Info Beasiswa</a>
+										<a class="dropdown-item" href="{{('training')}}">Training</a>
+										<a class="dropdown-item" href="{{('peminjaman_ruangan')}}">Peminjaman Ruangan</a>
+										<a class="dropdown-item" href="{{('mekanisme_layanan')}}">Mekanisme Layanan</a>
+										<a class="dropdown-item" href="{{('unit_kerja')}}">Informasi Unit Kerja</a>
+										<a class="dropdown-item" href="{{('informasi_lsp')}}">Informasi LSP PAL</a>
+									</div>
 								</li>
 								<li class="nav-item dropdown {{ Request::is('/contact')? "active":"" }}">
 									<a class="nav-link" href="{{URL('contact')}}">
@@ -207,23 +223,20 @@
 				<div style="color: black" class="col-md-6">
 					<?php
                 $tgl = date('Y');
-                echo "<p>Copyright " . $tgl . " Workplaceme Design - graphic</p>";
+                echo "<p>Copyright " . $tgl . " Anak PENS</p>";
                 ?>
-					{{-- <p>© 2018 . Powerd with <i class="fa fa-heart"></i> by <a href="https://themeforest.net/user/ig_design/portfolio?ref=IG_design" target="_blank">IG Design</a>!</p> --}}
+					{{-- <p>© 2021 . Powerd with <i class="fa fa-heart"></i> by <a href="https://themeforest.net/user/ig_design/portfolio?ref=IG_design" target="_blank">Anak PENS</a>!</p> --}}
 				</div>
 				<div class="col-md-6">
 					<ul  class="footer-social">
 						<li style="color: black" class="twitter">
-							<a href="#">Tw</a>
+							<a src="https://twitter.com/PTPAL_INDONESIA">Tw</a>
 						</li>
 						<li style="color: black" class="facebook">
-							<a href="#">Fb</a>
+							<a src="https://web.facebook.com/PenataranAngkatanLaut">Fb</a>
 						</li>
-						<li style="color: black" class="google">
-							<a href="#">G+</a>
-						</li>
-						<li style="color: black" class="vimeo">
-							<a href="#">Vm</a>
+						<li style="color: black" class="instagram">
+							<a src="https://www.instagram.com/ptpal_indonesia/">Ig</a>
 						</li>
 					</ul>
 				</div>
@@ -236,6 +249,9 @@
 
 	<!-- JAVASCRIPT
     ================================================== -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{{URL::asset('frontend')}}/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="{{URL::asset('frontend')}}/js/royal_preloader.min.js"></script>
 	<script type="text/javascript" src="{{URL::asset('frontend')}}/js/tether.min.js"></script>

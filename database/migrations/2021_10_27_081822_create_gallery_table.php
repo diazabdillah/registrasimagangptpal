@@ -17,6 +17,7 @@ class CreateGalleryTable extends Migration
             $table->id();
             $table->string('judul');
             $table->string('foto');
+            $table->string('url');
             $table->timestamps();
         });
     }

@@ -28,12 +28,17 @@
                                         <!-- Input Judul Berita -->
                                         <div class="form-group">
                                             <small class="ml-2">Judul</small>
-                                            <input type="text" class="form-control" id="judul" name="judul">
+                                            <textarea type="text" class="form-control" id="judul" name="judul"></textarea>
                                         </div>
+                                        <!-- Input Headline Berita -->
+                                        <div class="form-group">
+                                            <small class="ml-2">Headline</small>
+                                            <textarea type="text" class="form-control" id="headline" name="headline"></textarea>
+                                        </div>                                        
                                         <!-- Input Konten Beria -->
                                         <div class="form-group">
                                             <small class="ml-2">Konten</small>
-                                            <input type="longText" class="form-control" id="konten" name="konten">
+                                            <textarea type="longText" class="form-control" id="news-textarea" name="konten"></textarea>
                                         </div>
                                         <!-- Input Foto Beritta -->
                                         <div class="form-group">
@@ -53,6 +58,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#news-textarea' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 
 
 @endsection
