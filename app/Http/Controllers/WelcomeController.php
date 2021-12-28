@@ -10,15 +10,11 @@ class WelcomeController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
-    {
-        $ti = 'Welcome';
-        return view('hcm-welcome', ['ti' => $ti]);
-    }
 
     public function home()
     {
         $ti = 'Welcome';
         return view('home', ['ti' => $ti]);
     }
+
 }

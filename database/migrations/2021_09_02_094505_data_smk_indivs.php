@@ -21,8 +21,10 @@ class DataSmkIndivs extends Migration
             $table->string('jurusan');
             $table->string('alamat_rumah');
             $table->string('no_hp');
-            $table->string('divisi');
-            $table->string('departemen');
+            $table->string('divisi')->nullable();
+            $table->string('departemen')->nullable();
+            $table->integer('nis');
+            $table->string('status_penerimaan')->nullable();
             $table->timestamps();
         });
     }

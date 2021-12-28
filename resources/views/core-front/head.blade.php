@@ -89,12 +89,7 @@
 										Gallery
 									</a>
 								</li>
-								<li class="nav-item dropdown {{ Request::is('internship')? "active":"" }}">
-									<a class="nav-link" href="{{('internship')}}">
-										Internship
-									</a>
-								</li>
-								<li class="nav-item dropdown {{ Request::is('service')? "active":"" }}">
+								<li class="nav-item dropdown {{ Request::is('services')? "active":"" }}">
 									<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										Services
 									</a>
@@ -112,9 +107,15 @@
 									<a class="nav-link" href="{{URL('contact')}}">
 										Contact Us
 									</a>
+								</li>
+								<li class="nav-item dropdown {{ Request::is('internship')? "active":"" }}">
+									<a class="nav-link" href="{{('internship')}}">
+										Info Internship
+									</a>
+								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link colored-prim" href="{{URL('login')}}">
-										PORTAL
+										Internship
 									</a>
 								</li>
 								<li class="nav-item icons-item-menu modal-search">

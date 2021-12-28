@@ -8,22 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Penilaian extends Model
 {
     use HasFactory;
+    protected $table = 'penilaians';
     protected $fillable = [
         'user_id',
         'pembimbing',
         'Kerjasama',
-        'Motivasi',
-        'InisiatifKerja',
+        'MotivasiPercayaDiri',
+        'InisiatifTanggungJawabKerja',
         'Loyalitas',
-        'etika',
+        'EtikaSopanSantun',
         'Disiplin',
-        'PercayaDiri',
-        'TanggungJawab',
         'PemahamanKemampuan',
         'KesehatanKeselamatanKerja',
+        'Laporankerja',
+        'kehadiran',
         'average',
-        'judul',
         'nilai_huruf',
-        'status_penilaian'
+        'status_penilaian',
+        'keterangan'
     ];
 }

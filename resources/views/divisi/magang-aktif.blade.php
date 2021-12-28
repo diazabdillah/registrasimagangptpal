@@ -23,7 +23,7 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Magang <span class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Magang <span class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -32,16 +32,16 @@
                                             <tr class="text-center">
                                                 <th>No.</th>
                                                 <th>Nama</th>
-                                                <th>Email</th>
+                                                <th>status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $d)
+                                            @foreach ($data as $d)
                                             <tr>
-                                                <td>{{ ++$i }}.</td>
-                                                <td>{{ $d->name }}</td>
-                                                <td>{{ $d->email }}</td>
+                                                <td class="text-center">{{ ++$i }}.</td>
+                                                <td class="text-center">{{ $d->name }}</td>
+                                                <td class="text-center"><span class="badge badge-primary p-2">{{ $d->status_user }}</span></td>
                                                 <td class="text-center">
                                                     <a class="badge badge-success p-2" href="{{ url('proses-magang-aktmhs/' . $d->id) }}">Detail
                                                         <i class="fas fa-info-circle ml-1"></i></a>
@@ -60,7 +60,7 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Magang <span class="badge badge-warning text-dark ml-2 p-1">SMK</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Magang <span class="badge badge-warning ml-2 p-1">SMK</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -69,21 +69,19 @@
                                             <tr class="text-center">
                                                 <th>No.</th>
                                                 <th>Nama</th>
-                                                <th>Sekolah</th>
-                                                <th>Jurusan</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @php $no = 1; @endphp --}}
+                                            @php $no = 1; @endphp
                                             @foreach ($dataSmk as $dsmk)
                                             <tr>
-                                                <td>{{ ++$i }}.</td>
-                                                <td>{{ $dsmk->nama }}</td>
-                                                <td>{{ $dsmk->sekolah }}</td>
-                                                <td>{{ $dsmk->jurusan }}</td>
+                                                <td class="text-center">{{ $no++ }}.</td>
+                                                <td class="text-center">{{ $dsmk->name }}</td>
+                                                <td class="text-center"><span class="badge badge-warning p-2">{{ $dsmk->status_user }}</span></td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses-magang-aktsmk/' . $dsmk->user_id) }}">Detail
+                                                    <a class="badge badge-success p-2" href="{{ url('proses-magang-aktsmk/' . $dsmk->id) }}">Detail
                                                         <i class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>

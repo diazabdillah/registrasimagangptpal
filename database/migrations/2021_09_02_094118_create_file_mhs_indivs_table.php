@@ -18,6 +18,9 @@ class CreateFileMhsIndivsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('path');
             $table->string('size');
+            $table->string('nomorsurat');
+            $table->string('nama');
+            $table->string('jabatan');
             $table->timestamps();
         });
     }

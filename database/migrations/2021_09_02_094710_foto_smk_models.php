@@ -15,7 +15,7 @@ class FotoSmkModels extends Migration
     {
         Schema::create('foto_smk_models', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
+            $table->bigInteger('id_individu');
             $table->string('foto');
             $table->timestamps();
         });

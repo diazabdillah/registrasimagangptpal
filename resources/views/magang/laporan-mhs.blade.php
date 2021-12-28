@@ -1,0 +1,202 @@
+{{-- Mengambil layout dari webBack.blade.php --}}
+@extends('layouts.webBack')
+
+@section('kontenWebBack')
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
+                <div class="alert alert-success">
+                    <span>
+                        Sebelum laporan dikumpulkan, harap ke departemen hcd untuk menemui koordinator internship
+                        untuk melakukan presentasi singkat (laporan akhir).Jika sudah melakukan Presentasi mohon
+                        klik button
+                        upload laporan.
+                    </span>
+                    <br>
+                    <br>
+                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan" role="button"><i class="fas fa-plus"></i>
+                        upload laporan</a>
+                </div>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Laporan Akhir</h6>
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="row mt-4">
+                            @foreach ($users as $laporans)
+
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4 mb-3 mt-3 ">
+                                                <img width="150px" height="150px" style="margin-left:10px;"
+                                                    src="{{ asset('img/book.png') }}" class="gambar1" alt="pt pal">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body" style="margin-left:15px;">
+                                                    <h5 class="card-title"><b>{{ $laporans->judul }}</b></h5>
+                                                    <p class="card-text">{{ $laporans->divisi }}</p>
+                                                    <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
+                                                    <p class="card-text"><small class="text-muted">Diposting
+                                                            {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
+                                                    </p>
+                                                    @if ($laporans->path != null)
+                                                        <a class="btn btn-primary"
+                                                            href="/lihat-laporan-mhs/{{ $laporans->id }}">lihat</a>
+
+                                                        <a class="btn btn-warning"
+                                                            href="/edit-laporan-mhs/{{ $laporans->id }}">Edit</a>
+
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            @endforeach
+
+
+                        </div>
+                        <h3 class="text-center">Perpustakaan Laporan Akhir Mahasiswa</h3>
+                        <div class="container">
+                            <div class="row">
+                                <div class="d-flex justify-content-center">
+                                    <form action="/mhs/cari" method="GET">
+                                        @csrf
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="cari"
+                                                placeholder="Cari Laporan ..">
+
+                                            <button class="btn btn-primary" type="submit">cari</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+
+                                <form method="GET" action="/mhs/cari">
+
+                                    @csrf
+                                    <label for="">Kategori:</label>
+                                    <div class="input-group" style="width:200px;">
+                                        <select class="custom-select" name="kategori" required>
+
+                                            <option value="Informatika">
+                                                Informatika
+                                            </option>
+                                            <option value="Elektro">
+                                                Elektro
+                                            </option>
+                                            <option value="Komputer">
+                                                Komputer
+                                            </option>
+                                            <option value="Industri">
+                                                Industri
+                                            </option>
+                                            <option value="Mesin">
+                                                Mesin
+                                            </option>
+                                            <option value="Arsitek">
+                                                Arsitek
+                                            </option>
+                                            <option value="Matematika">
+                                                Matematika
+                                            </option>
+                                            <option value="ManajemenBisnis">
+                                                Manajemen Bisnis
+                                            </option>
+                                            <option value="Manajemen">
+                                                Manajemen
+                                            </option>
+                                            <option value="Ekonomi">
+                                                Ekonomi
+                                            </option>
+                                            <option value="Akutansi">
+                                                Akutansi
+                                            </option>
+                                            <option value="Hukum">
+                                                Hukum
+                                            </option>
+                                            <option value="SistemInformasi">
+                                                Sistem Informasi
+                                            </option>
+                                            <option value="Sipil">
+                                                Sipil
+                                            </option>
+                                            <option value="Lingkungan">
+                                                Lingkungan
+                                            </option>
+
+                                        </select>
+
+                                        <button class="btn btn-primary" type="submit">Sort</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            @foreach ($user as $laporan)
+                                @if ($status_user == 'Mahasiswa' || $status_user == 'Mahasiswa Kelompok')
+
+                                    <div class="card ml-2" style="width: 500px;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4 mb-3 mt-3 ">
+                                                <img width="100px" height="90px" style="margin-left:10px;"
+                                                    src="{{ asset('img/book.png') }}" class="gambar1" alt="pt pal">
+                                            </div>
+                                            <div class="col-md-6 mt-2 mb-2">
+                                                <h6 class="card-title"> <b> {{ $laporan->judul }}</b>
+                                                </h6>
+                                                <p style="font-size:15px;" class="card-text">
+                                                    {{ $laporan->divisi }}</p>
+                                                <p class="card-text"><small class="text-muted">Diposting
+                                                        {{ date('d-M-Y', strtotime($laporan->created_at)) }}</small>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-md-2 mb-4">
+                                                @if ($laporan->path != null)
+                                                    {{-- <a class="btn btn-primary"
+                                                            href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
+                                                    <a class="mr-4 mt-4 btn btn-primary"
+                                                        href="/lihat-laporan-mhs/{{ $laporan->id }}">lihat</a>
+
+                                                @endif
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+
+        </div>
+    </div>
+    <!-- End of Main Content -->
+@endsection

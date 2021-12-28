@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DataSmkIndivs extends Model
 {
     use HasFactory;
+    protected $table = 'data_smk_indivs';
     protected $fillable = [
         'user_id',
         'nama',
@@ -16,6 +17,8 @@ class DataSmkIndivs extends Model
         'alamat_rumah',
         'no_hp',
         'divisi',
-        'departemen'
+        'departemen',
+        'nis',
+        'status_penerimaan'
     ];
 }

@@ -33,33 +33,57 @@ class AuthhController extends Controller
         // Cek apakah data user yang dikirim dalam variabel $attributes benar atau tidak, syartnya name dan field di database harus sama
         if (Auth::attempt($attributes)) {
             if (auth()->user()->role_id == 1) {
-                return redirect('/admin_dash')->with('success', 'You are now logged in');
+                return redirect('/admin_dash')->with('succes', 'You are now logged in');
+            } elseif (auth()->user()->role_id == 0) {
+                return redirect('/penuh')->with('succes', 'You are now logged in');
             } elseif (auth()->user()->role_id == 2) {
-                return redirect('/Penerimaan')->with('success', 'You are now logged in');
+                return redirect('/Penerimaan')->with('succes', 'You are now logged in');
             } elseif (auth()->user()->role_id == 3) {
-                return redirect('/Profil_mhs')->with('success', 'You are now logged in');
+                return redirect('/profil-mhs')->with('succes', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
             } elseif (auth()->user()->role_id == 4) {
-                return redirect('/Profil_smk')->with('success', 'You are now logged in');
+                return redirect('/profil-smk')->with('succes', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
             } elseif (auth()->user()->role_id == 5) {
-                return redirect('/id-card')->with('success', 'You are now logged in');
+                return redirect('/id-card')->with('succes', 'You are now logged in');
             } elseif (auth()->user()->role_id == 6) {
-                return redirect('/data-mhs-kelompok')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-mhs-kelompok')->with('succes', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 7) {
-                return redirect('/data-smk-kelompok')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-smk-kelompok')->with('succes', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 8) {
-                return redirect('/Data_mhs')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+                return redirect('/data-mhs')->with('succes', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 9) {
-                return redirect('/Data_smk')->with('success', 'Lengakapi semua data yang diminta untuk diproses lebih lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
-            } elseif (auth()->user()->role_id == 10) {
-                return redirect('/regis-step2')->with('success', 'You are now logged in');
+                return redirect('/data-smk')->with('succes', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
             } elseif (auth()->user()->role_id == 11) {
-                return redirect('/Dokumen_mhs')->with('success', 'You are now logged in');
+                return redirect('/dokumen-mhs')->with('succes', 'Selamat Anda lolos pada tahap interview kepribadian online. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 12) {
-                return redirect('/Dokumen_smk')->with('success', 'You are now logged in');
+                return redirect('/dokumen-smk')->with('succes', 'Selamat Anda lolos pada tahap interview kepribadian online. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 13) {
-                return redirect('/Dokumen_mhskel')->with('success', 'You are now logged in');
+                return redirect('/Dokumen_mhskel')->with('succes', 'Selamat Anda lolos pada tahap interview kepribadian online. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 14) {
-                return redirect('/sertifikat_mhs')->with('success', 'You are now logged in');
+                return redirect('/sertifikat_mhs')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+            } elseif (auth()->user()->role_id == 15) {
+                return redirect('/sertifikat_smk')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+            } elseif (auth()->user()->role_id == 16) {
+                return redirect('/interview-mhs')->with('succes', 'Selamat Anda lolos pada tahap Pendaftaran. Mohon segera melakukan test interview dan mengupload hasilnya dengan mengikuti pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk melengkapi dokumen interview tersebut.');
+            } elseif (auth()->user()->role_id == 17) {
+                return redirect('/interview-smk')->with('succes', 'Selamat Anda lolos pada tahap Pendaftaran. Mohon segera melakukan test interview dan mengupload hasilnya dengan mengikuti pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk melengkapi dokumen tersebut.');
+            } elseif (auth()->user()->role_id == 18) {
+                return redirect('/kelola-jurusan')->with('succes', 'you are now logged in');
+            } elseif (auth()->user()->role_id == 19) {
+                return redirect('/selesai')->with('succes', 'you are now logged in');
+            } elseif (auth()->user()->role_id == 20) {
+                return redirect('/selesai-smk')->with('succes', 'you are now logged in');
+            } elseif (auth()->user()->role_id == 21) {
+                return redirect('/data-penelitian')->with('succes', 'Selamat Datang di Registrasi Magang PT PAL Indonesia.Mohon Lengkapi semua data Kelompok anda untuk diproses ke tahap lanjut, jika sudah di lengkapi anda tidak perlu mengirimkan ulang');
+            } elseif (auth()->user()->role_id == 22) {
+                return redirect('/dokumen-penelitian')->with('succes', 'Selamat Anda lolos pada tahap Pendaftaran Penelitian. Mohon segera lengkapi data dokumen penelitian di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
+            } elseif (auth()->user()->role_id == 23) {
+                return redirect('/profil-penelitian')->with('succes', 'Selamat Anda Lolos Seleksi Penelitian. Silahkan print surat penerimaan penelitian untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
+            } elseif (auth()->user()->role_id == 24) {
+                return redirect('/surat_penelitian')->with('succes', 'you are now logged in');
+            } elseif (auth()->user()->role_id == 25) {
+                return redirect('/penelitian-selesai')->with('succes', 'you are now logged in');
+            } elseif (auth()->user()->role_id == 26) {
+                return redirect('/penelitian-kuota-penuh')->with('succes', 'you are now logged in');
             }
         }
 
@@ -105,7 +129,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 6,
-            'status_user' => 'kelompok',
+            'status_user' => 'Mahasiswa Kelompok',
             'rememberToken' => str::random(60)
         ]);
 
@@ -135,7 +159,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 8,
-            'status_user' => 'individu',
+            'status_user' => 'Mahasiswa',
             'rememberToken' => str::random(60)
         ]);
 
@@ -165,6 +189,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 7,
+            'status_user' => 'SMK Kelompok',
             'rememberToken' => str::random(60)
         ]);
 
@@ -201,6 +226,7 @@ class AuthhController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 9,
+            'status_user' => 'SMK',
             'rememberToken' => str::random(60)
         ]);
 
@@ -229,7 +255,8 @@ class AuthhController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role_id' => 10,
+            'role_id' => 21,
+            'status_user' => 'Penelitian',
             'rememberToken' => str::random(60)
         ]);
 
