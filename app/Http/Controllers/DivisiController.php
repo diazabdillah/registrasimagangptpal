@@ -161,6 +161,7 @@ class DivisiController extends Controller
                 ->select('users.id', 'users.status_user', 'user_role.role', 'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.status_penerimaan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
                 ->where('users.id', '=', $user_id)
                 ->get();
+
             $departemen = DB::table('departemen')
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
@@ -190,6 +191,7 @@ class DivisiController extends Controller
         session()->flash('succes', 'Status penerimaan berhasil di proses');
         return redirect('/Penerimaan');
     }
+
     public function update_terima_interview(Request $request, $id)
     {
         DB::table('users')->where('id', $id)
@@ -200,6 +202,18 @@ class DivisiController extends Controller
         session()->flash('succes', 'Setatus berhasil di proses');
         return redirect('/diterima');
     }
+
+    public function update_terima_interview_smk(Request $request, $id)
+    {
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Setatus berhasil di proses');
+        return redirect('/diterima');
+    }
+
     public function updateDiterima(Request $request, $id)
     {
         DB::table('users')->where('id', $id)
@@ -538,7 +552,7 @@ class DivisiController extends Controller
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/Penerimaan');
+        return redirect()->back();
     }
 
     public function updatemagangdivisismk($user_id, Request $request)
@@ -556,7 +570,7 @@ class DivisiController extends Controller
 
             ]);
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/Penerimaan');
+        return redirect()->back();
     }
 
     public function magangAktSmk($user_id)
@@ -1652,7 +1666,7 @@ class DivisiController extends Controller
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/kelola-jurusan');
+        return redirect()->back();
     }
     public function update_magang_departemen_smk($user_id, Request $request)
     {
@@ -1689,7 +1703,7 @@ class DivisiController extends Controller
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/kelola-jurusan');
+        return redirect()->back();
     }
 
     public function update_departemen_smk($user_id, Request $request)
@@ -1708,7 +1722,7 @@ class DivisiController extends Controller
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/kelola-jurusan');
+        return redirect()->back();
     }
 
     public function update_magang_departemen_penelitian($user_id, Request $request)
@@ -1904,7 +1918,7 @@ class DivisiController extends Controller
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/penerimaan-penelitian');
+        return redirect()->back();
     }
     public function diterima_penelitian()
     {
