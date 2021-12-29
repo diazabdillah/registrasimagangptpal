@@ -622,7 +622,7 @@
                 </li>
             @endif
             @if (auth()->user()->role_id == 17)
-                <li class="nav-item {{ $ti === 'Test Interview SMK' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Interview SMK' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/interview-smk">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Interview</span></a>

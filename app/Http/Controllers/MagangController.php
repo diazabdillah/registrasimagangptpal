@@ -2695,7 +2695,7 @@ class MagangController extends Controller
                 ->select('users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.id', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'interview_smk.fileinterview')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
-            $ti = 'Interview';
+            $ti = 'Interview SMK';
             return view('magang.interview-smk', [
                 'ti' => $ti,
                 'users' => $users
