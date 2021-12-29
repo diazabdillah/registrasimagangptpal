@@ -598,21 +598,12 @@ class MagangController extends Controller
 
     public function proses_absen_pulang_mhs($individ)
     {
-        if (date('H:i', strtotime(now())) >= '16:30') {
-            Absenmhs::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Tepat Waktu",
-            ]);
-        } elseif (date('H:i', strtotime(now())) < '16:30') {
-            Absenmhs::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Terlalu Cepat",
-            ]);
-        }
+        Absenmhs::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }
@@ -1643,21 +1634,12 @@ class MagangController extends Controller
 
     public function proses_absen_pulang_smk($individ)
     {
-        if (date('H:i', strtotime(now())) >= '16:30') {
-            AbsenSmk::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Tepat Waktu",
-            ]);
-        } elseif (date('H:i', strtotime(now())) < '16:30') {
-            AbsenSmk::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Terlalu Cepat",
-            ]);
-        }
+        AbsenSmk::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }

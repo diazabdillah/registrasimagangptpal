@@ -31,16 +31,28 @@
                                 <tr>
                                     <th>{{ $am->nama }}</th>
                                     <th>Datang</th>
-                                    <th>
-                                        <a class="btn btn-primary p-1" href="/proses-absen-masuk-mhs/{{ $am->id }}" role="button">Presensi</a>
-                                    </th>
+                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '08:00')
+                                        <th>
+                                            <a class="btn btn-primary p-1" href="/proses-absen-masuk-mhs/{{ $am->id }}" role="button">Presensi</a>
+                                        </th>
+                                    @else
+                                        <th>
+                                            <button class="btn btn-secondary" disabled>Presensi</button>
+                                        </th>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <th>{{ $am->nama }}</th>
                                     <th>Pulang</th>
-                                    <th>
-                                        <a class="btn btn-primary p-1" href="/proses-absen-pulang-mhs/{{ $am->id }}" role="button">Presensi</a>
-                                    </th>
+                                    @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:00')
+                                        <th>
+                                            <a class="btn btn-primary p-1" href="/proses-absen-pulang-mhs/{{ $am->id }}" role="button">Presensi</a>
+                                        </th>
+                                    @else
+                                        <th>
+                                            <button class="btn btn-secondary" disabled>Presensi</button>
+                                        </th>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

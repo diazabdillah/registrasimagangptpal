@@ -520,21 +520,12 @@ class PenelitianController extends Controller
 
     public function proses_absen_pulang_penelitian($individ)
     {
-        if (date('H:i', strtotime(now())) >= '16:30') {
-            AbsenPenelitian::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Tepat Waktu",
-            ]);
-        } elseif (date('H:i', strtotime(now())) < '16:30') {
-            AbsenPenelitian::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Terlalu Cepat",
-            ]);
-        }
+        AbsenPenelitian::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }
