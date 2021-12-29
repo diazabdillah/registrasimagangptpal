@@ -9,6 +9,13 @@
 
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
+            <div class="alert alert-info" role="alert">
+                <p class="card-text">
+                    <b>Peraturan Absensi:</b><br>
+                    - Absen Datang dibuka pukul 06.00 - 08.00<br>
+                    - Absen Pulang dibuka pukul 16:30 - 19.00
+                </p>
+            </div>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -31,28 +38,26 @@
                                 <tr>
                                     <th>{{ $as->nama }}</th>
                                     <th>Datang</th>
-                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '08:00')
-                                        <th>
-                                            <a class="btn btn-primary p-1" href="/proses-absen-masuk-smk/{{ $as->id }}" role="button">Presensi</a>
+                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '08:00' ) <th>
+                                        <a class="btn btn-primary p-1" href="/proses-absen-masuk-smk/{{ $as->id }}" role="button">Presensi</a>
                                         </th>
-                                    @else
+                                        @else
                                         <th>
                                             <button class="btn btn-secondary" disabled>Presensi</button>
                                         </th>
-                                    @endif
+                                        @endif
                                 </tr>
                                 <tr>
                                     <th>{{ $as->nama }}</th>
                                     <th>Pulang</th>
-                                    @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:00')
-                                        <th>
-                                            <a class="btn btn-primary p-1" href="/proses-absen-pulang-smk/{{ $as->id }}" role="button">Presensi</a>
+                                    @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:00' ) <th>
+                                        <a class="btn btn-primary p-1" href="/proses-absen-pulang-smk/{{ $as->id }}" role="button">Presensi</a>
                                         </th>
-                                    @else
+                                        @else
                                         <th>
                                             <button class="btn btn-secondary" disabled>Presensi</button>
                                         </th>
-                                    @endif
+                                        @endif
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -89,7 +94,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+
                         {{$absensmkk->links()}}
 
                     </div>
