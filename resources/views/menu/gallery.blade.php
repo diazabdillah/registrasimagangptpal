@@ -15,7 +15,8 @@
 
 
         <!-- Tombol Tambah -->
-        <a href="/input-galeri" class="btn btn-primary mb-3" >Tambah Galeri Baru</a>
+        <a href="/input-galeri-foto" class="btn btn-primary mb-3" >Tambah Galeri Foto Baru</a>
+        <a href="/input-galeri-video" class="btn btn-primary mb-3" >Tambah Galeri Video Baru</a>
 
         <!-- DataTales E#le -->
         <div class="card Menu mb-4">
@@ -45,6 +46,11 @@
                                     </th>
                                     <th>
                                         <div class="d-flex justify-content-center">
+                                            Video
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="d-flex justify-content-center">
                                             Tanggal Upload
                                         </div>
                                     </th>
@@ -61,11 +67,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($data as $d)
+                                @foreach ($data as $d)
                                 <tr class="text-center">
-                                    <td>{{ ++$i }}.</td>
+                                    <td>{{ $data->firstItem() + ++$i - 1 }}.</td>
                                     <td>{{ $d->judul }}</td>
-                                    <td>{{ $d->foto }}</td>
+                                    <td>
+                                        @if ($d->foto == '0')
+                                            -
+                                        @else
+                                            {{ $d->foto }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($d->url == '0')
+                                            -
+                                        @else
+                                            {{ $d->url }}
+                                        @endif
+                                    </td>
                                     <td>{{ $d->created_at }}</td>
                                     <td>{{ $d->updated_at }}</td>
                                     <td>
@@ -75,9 +94,12 @@
                                             href="{{ url('delete-galeri/' . $d->id) }}"  onclick="return confirm('yakin Hapus?');">Hapus</a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @endforeach
                             </tbody>
                         </table>
+                        <div class="pull-right">
+                            {{ $data->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

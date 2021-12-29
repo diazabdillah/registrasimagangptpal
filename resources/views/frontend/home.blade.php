@@ -79,7 +79,7 @@
 			<h3>Internship</h3>
 			<div class="row">
 				<div class="col-md-4" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
-					<a href="#" class="btn-link btn-primary">
+					<a href="/internship#materi" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Monitor-phone"></i></div>
 							<h5 class="mt-4">Materi</h5>
@@ -88,7 +88,7 @@
 					</a>
 				</div>
 				<div class="col-md-4 mt-4 mt-md-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
-					<a href="#" class="btn-link btn-primary">
+					<a href="prosedur" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Support"></i></div>
 							<h5 class="mt-4">Prosedur</h5>
@@ -97,7 +97,7 @@
 					</a>
 				</div>
 				<div class="col-md-4 mt-4 mt-md-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
-					<a href="#" class="btn-link btn-primary">
+					<a href="formatLaporan" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Split-FourSquareWindow"></i></div>
 							<h5 class="mt-4">Format Laporan</h5>
@@ -122,7 +122,7 @@
 				<div class="main-title on-dark text-center">
 					<div class="main-subtitle-top mb-4">Gallery</div>
 					<h3>We Take Pride In Delivering Only The Best.</h3>
-					<div class="main-subtitle-bottom mt-3"><a style="color: rgb(30, 206, 50)" href="">Read More</a></div>
+					<div class="main-subtitle-bottom mt-3"><a style="color: rgb(30, 206, 50)" href="gallery">Read More</a></div>
 				</div>
 			</div>
 		</div>
@@ -137,91 +137,167 @@
 		<div class="row transform-y-120 transform-on-mob">
 			<div class="work-slider-wrap mb-4">
 				<div id="owl-work" class="owl-carousel owl-theme">
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/PT_PAL_Jan_2018-scaled.jpg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
+					@foreach($gallery as $g)
+						@if ($g->url == '0')
+						<div class="item">
+							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
+						@elseif ($g->foto == '0')
+						<div class="item">
+							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                        <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
+						@endif
+					@endforeach
+					@foreach($gallery as $g)
+						@if ($g->url == '0')
+						<div class="item">
+							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
+						@elseif ($g->foto == '0')
+						<div class="item">
+							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                        <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
+						@endif
+					@endforeach
+					@foreach($gallery as $g)
+						@if ($g->url == '0')
+						<div class="item">
+							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
+						@elseif ($g->foto == '0')
+						<div class="item">
+							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                        <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
+						@endif
+					@endforeach
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Foto -->
+@foreach ($gallery as $g)
+<!-- <div class="modal" id="staticBackdrop{{$g->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-xl">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img style="width: 100%" class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="modal fade default search-modal" id="staticBackdrop{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header justify-content-end">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="hero-center-wrap move-top">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-12">
+								<div class="video-section">
+									<figure class="vimeo rounded-2 over-hide">
+											<img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
+									</figure>
+								</div>
 							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/BLOCK-BERJALAN.MP4_snapshot_02.26_2021.08.24_10.06.27.jpg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/PT_PAL_Jan_2018-scaled.jpg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/BLOCK-BERJALAN.MP4_snapshot_02.26_2021.08.24_10.06.27.jpg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/PT_PAL_Jan_2018-scaled.jpg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
-					</div>
-					<div class="item">
-						<a href="project-image.html">
-							<div class="portfolio-box-1 dark rounded">
-								<img src="{{URL::asset('frontend')}}/img/BLOCK-BERJALAN.MP4_snapshot_02.26_2021.08.24_10.06.27.jpg" alt="" />
-								<div class="portfolio-mask-2 rounded"></div>
-								<h5 class="on-center text-center">primarily serve people</h5>
-								<p class="on-center text-center">design, motion</p>
-							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@endforeach
+
+<!-- Modal Foto -->
+@foreach ($gallery as $g)
+<div class="modal fade default search-modal" id="Modal-video{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header justify-content-end">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="hero-center-wrap move-top">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-8">
+								<div class="video-section">
+									<figure class="vimeo rounded-2 over-hide">
+										<iframe class="rounded-2 over-hide" src="{{ $g->url }}" title="{{ $g->judul }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="560" height="315"></iframe>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 <!-- Separator Line
 	================================================== -->
@@ -247,31 +323,31 @@
 			<div class="col-md-1 mt-md-0">
 			</div>
 			<div class="col-md-2 mt-md-0">
-				<a href="#">
+				<a href="naval-shipbuilding">
 					<img src="{{URL::asset('frontend')}}/img/KCR-220x146.png" class="img-120 mx-auto" alt="" />
 				</a>
 				<h5 style="color: white">Naval Shipbuilding</h5>
 			</div>
 			<div class="col-md-2 mt-4 mt-md-0">
-				<a href="#">
+				<a href="submarine">
 					<img src="{{URL::asset('frontend')}}/img/KASEL-FIX-220x146.png" class="img-120 mx-auto" alt="" />
 				</a>
 				<h5 style="color: white">Submarine</h5>
 			</div>
 			<div class="col-md-2 mt-4 mt-md-0">
-				<a href="#">
+				<a href="merchant-shipbuilding">
 					<img src="{{URL::asset('frontend')}}/img/Niaga-220x146.png" class="img-120 mx-auto" alt="" />
 				</a>
 				<h5 style="color: white">Merchant Shipbuilding</h5>
 			</div>
 			<div class="col-md-2 mt-4 mt-md-0">
-				<a href="#">
+				<a href="energy">
 					<img src="{{URL::asset('frontend')}}/img/BMPP-220x146.png" class="img-120 mx-auto" alt="" />
 				</a>
 				<h5 style="color: white">Energy</h5>
 			</div>
 			<div class="col-md-2 mt-4 mt-md-0">
-				<a href="#">
+				<a href="maintenance-repair-overhaul">
 					<img src="{{URL::asset('frontend')}}/img/MLM-FIX-220x146.png" class="img-120 mx-auto" alt="" />
 				</a>
 				<h5 style="color: white">Maintenance, Repair, & Overhaul</h5>
@@ -296,36 +372,18 @@
 			<div class="clear"></div>
 			<div class="team-slider-wrap">
 				<div id="owl-team-1" class="owl-carousel owl-theme">
+					@foreach ($news as $n)
 					<div class="item">
 						<div class="team-box-1 all-padding background-white drop-shadow text-center mt-5">
-							<a style="text-decoration:none; color: black" href="">
-								<img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-								<h6 class="mb-4">Marco Kulis</h6>
-								Design must reflect the practical in business but above all... good design must primarily serve people.
+							<a style="text-decoration:none; color: black" href="{{ url('detail-news/' . $n->id) }}">
+								<img class="mb-4" src="{{ asset('/berita/' . $n->foto) }}" alt="" />
+								<h6 class="mb-4">{{ $n->judul }}</h6>
+								{{ $n->headline}}
 							</a>
-							<p>Sunday, 29 August 2021</p>
+							<p>{{ date('D, d F Y', strtotime($n->updated_at)) }}</p>
 						</div>
 					</div>
-					<div class="item">
-						<div class="team-box-1 all-padding background-white drop-shadow text-center mt-5">
-							<a style="text-decoration:none; color: black" href="">
-								<img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-								<h6 class="mb-4">Marco Kulis</h6>
-								Design must reflect the practical in business but above all... good design must primarily serve people.
-							</a>
-							<p>Sunday, 29 August 2021</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="team-box-1 all-padding background-white drop-shadow text-center mt-5">
-							<a style="text-decoration:none; color: black" href="">
-								<img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-								<h6 class="mb-4">Marco Kulis</h6>
-								Design must reflect the practical in business but above all... good design must primarily serve people.
-							</a>
-							<p>Sunday, 29 August 2021</p>
-						</div>
-					</div>
+					@endforeach
 				</div>
 			</div>
 			<p style="padding-top: 10px"><a href="news">News More</a></p>

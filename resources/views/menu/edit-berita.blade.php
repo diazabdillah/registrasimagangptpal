@@ -25,26 +25,31 @@
                                     <h5 class="card-title mt-2">Edit Data</h5>
 
 
-                                    <form method="POST" action="/edit-berita/{{ $data->id }}">
+                                    <form method="POST" action="/edit-berita/{{ $data->id }}" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
-                                        <!-- Input Univ -->
+                                        <!-- Input Judul -->
                                         <div class="form-group">
                                             <small class="ml-2">Judul</small>
-                                            <input type="text" class="form-control" id="judul" name="judul"
-                                                value="{{ $data->judul }}">
+                                            <textarea type="text" class="form-control" id="judul" name="judul"
+                                                >{{ $data->judul }}</textarea>
                                         </div>
-                                        <!-- Input Strata (S1/d3) -->
+                                        <!-- Input Headline -->
+                                        <div class="form-group">
+                                            <small class="ml-2">Headline</small>
+                                            <textarea type="text" class="form-control" id="headline" name="headline"
+                                                >{{ $data->headline }}</textarea>
+                                        </div>                                        
+                                        <!-- Input Kontent -->
                                         <div class="form-group">
                                             <small class="ml-2">Konten</small>
-                                            <input type="text" class="form-control" id="konten" name="konten"
-                                                value="{{ $data->konten }}">
+                                            <textarea type="text" class="form-control" id="news-textarea" name="konten"
+                                                >{{ $data->konten }}</textarea>
                                         </div>
-                                        <!-- Input Alamat Rumah -->
+                                        <!-- Input Foto -->
                                         <div class="form-group">
                                             <small class="ml-2">Foto</small>
-                                            <input type="file" class="form-control" id="foto" name="foto"
-                                                value="{{ $data->foto }}">
+                                            <input type="file" class="form-control" id="foto" name="foto">
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i
@@ -59,6 +64,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#news-textarea' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 
 
 @endsection

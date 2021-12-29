@@ -52,90 +52,39 @@
     </div>
 </div>
 
-{{-- list news --}}
+{{-- list gallery --}}
 <div class="section padding-top-bottom-small background-white over-hide">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                <div class="item">
-                    <div class="team-box-1 background-white drop-shadow text-center">
-                        <a style="text-decoration:none; color: black">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
-                        </a>
+            @foreach ($gallery as $g)
+                @if ($g->url == '0')
+                    <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+                        <div class="item">
+                            <div class="team-box-1 background-white drop-shadow text-center">
+                                <a style="text-decoration:none; color: black">
+                                    <img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" width="30" />
+                                    {{ $g->judul }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                <div class="item">
-                    <div class="team-box-1 background-white drop-shadow text-center">
-                        <a style="text-decoration:none; color: black">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
-                        </a>
+                @elseif ($g->foto == '0')
+                    <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+                        <div class="item">
+                            <div class="team-box-1 background-white drop-shadow text-center">
+                                    
+                                        <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
+                                    
+                                    {{ $g->judul }}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                <div class="item">
-                    <div class="team-box-1 background-white drop-shadow text-center">
-                        <a style="text-decoration:none; color: black">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                <div class="item">
-                    <div class="team-box-1 background-white drop-shadow text-center">
-                        <a style="text-decoration:none; color: black">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                <div class="item">
-                    <div class="team-box-1 background-white drop-shadow text-center">
-                        <a style="text-decoration:none; color: black">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop">
-                <div class="item">
-                    <div class="team-box-1 background-white drop-shadow text-center">
-                        <a style="text-decoration:none; color: black">
-                            <img class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-                            Design must reflect the practical in business but above all... good design must
-                            primarily serve people.
-                        </a>
-                    </div>
-                </div>
-            </div>
+                @endif
+            @endforeach
         </div>
         <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
+                {{ $gallery->links() }}
             </nav>
         </div>
     </div>
@@ -158,22 +107,65 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-xl">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="false">x</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img style="width: 100%" class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
-            </div>
-        </div>
-    </div>
+<!-- Modal Foto -->
+@foreach ($gallery as $g)
+<div class="modal fade default search-modal" id="staticBackdrop{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header justify-content-end">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="hero-center-wrap move-top">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-8">
+								<div class="video-section">
+									<figure class="vimeo rounded-2 over-hide">
+											<img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+@endforeach
+
+<!-- Modal Video -->
+@foreach ($gallery as $g)
+<div class="modal fade default search-modal" id="Modal-video{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header justify-content-end">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="hero-center-wrap move-top">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-8">
+								<div class="video-section">
+									<figure class="vimeo rounded-2 over-hide">
+										<iframe class="rounded-2 over-hide" src="{{ $g->url }}" title="{{ $g->judul }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="560" height="315"></iframe>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 <!-- Pricing Block
 	================================================== -->
@@ -181,5 +173,11 @@
     $('#myModal').on('shown.bs.modal', function() {
         $('#myInput').trigger('focus')
     })
+    $(function() {
+		$('.modal').on('hidden.bs.modal', function(e) {
+			$iframe = $(this).find("iframe");
+			$iframe.attr("src", $iframe.attr("src"));
+		});
+	});
 </script>
 @endsection

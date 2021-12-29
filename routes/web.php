@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\MagangController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LogoutController;
@@ -15,24 +16,61 @@ use App\Http\Controllers\WelcomeController;
 // Web Landing =================================
 Route::get('/', [WebController::class, 'index']);
 // Web Landing =================================
-Route::get('/profile', function () {
-    return view('frontend.profile');
-});
+Route::get('/home', [WebController::class, 'index']);
+
+Route::get('/materi', [WebController::class, 'toMateri']);
+Route::get('/prosedur', [WebController::class, 'toProsedur']);
+Route::get('/formatLaporan', [WebController::class, 'toFormatLaporan']);
+
+Route::get('/ship-building', [WebController::class, 'toShipBuilding']);
+Route::get('/naval-shipbuilding', [WebController::class, 'toNavalShipbuilding']);
+Route::get('/submarine', [WebController::class, 'toSubmarine']);
+Route::get('/merchant-shipbuilding', [WebController::class, 'toMerchantShipbuilding']);
+Route::get('/rekayasa-umum', [WebController::class, 'toRekayasaUmum']);
+Route::get('/energy', [WebController::class, 'toEnergy']);
+Route::get('/off-shore', [WebController::class, 'toOffShore']);
+Route::get('/maintenance-repair-overhaul', [WebController::class, 'toMaintenanceRepairOverhaul']);
+Route::get('/kri', [WebController::class, 'toKRI']);
+Route::get('/non-kri', [WebController::class, 'toNonKRI']);
+Route::get('/fasilitas', [WebController::class, 'toFasilitas']);
+Route::get('/penyedia-solusi', [WebController::class, 'toPenyediaSolusi']);
 
 Route::get('/news', [WebController::class, 'showNews']);
+Route::get('/gallery', [WebController::class, 'showGalleries']);
 
-Route::get('/gallery', function () {
+Route::get('/profile', function () { return view('frontend.profile'); });
+Route::get('/human-capital-services', function () { return view('departemen_hcm.departemen_human_capital_services'); });
+Route::get('/human-capital-development', function () { return view('departemen_hcm.departemen_human_capital_development'); });
+Route::get('/organization-development-and-command-media', function () { return view('departemen_hcm.departemen_organization_development'); });
+Route::get('/lembaga-sertifikasi-profesi', function () { return view('departemen_hcm.departemen_organization_lsp'); });
+
+Route::get('/toNews', function () {
+    return view('frontend.news');
+});
+Route::get('/detail-news/{id}', [WebController::class, 'detailNews']);
+
+Route::get('/toGallery', function () {
     return view('frontend.gallery');
 });
+
 Route::get('/internship', function () {
     return view('frontend.internship');
 });
+
 Route::get('/contact', function () {
     return view('frontend.contact');
 });
-Route::get('/service', function () {
-    return view('frontend.service');
+
+Route::get('/services', function () {
+    return view('frontend.services');
 });
+
+Route::get('/info_beasiswa', [WebController::class, 'showInfoBeasiswa']);
+Route::get('/mekanisme_layanan', [WebController::class, 'showMekanismeLayanan']);
+Route::get('/peminjaman_ruangan', [WebController::class, 'showDaftarRuangan']);
+Route::get('/training', [WebController::class, 'showTraining']);
+Route::get('/unit_kerja', [WebController::class, 'showUnitKerja']);
+Route::get('/informasi_lsp', [WebController::class, 'showInformasiLSP']);
 
 // Welcome HCM
 Route::get('/home', [WelcomeController::class, 'home']);
@@ -80,13 +118,80 @@ Route::get('delete-berita/{user_id}', [MenuController::class, 'deleteBerita']);
 // Bagian Berita ================================
 
 // Bagian Galeri ================================
-Route::get('/galeri', [MenuController::class, 'Gallery']);
-Route::get('/input-galeri', [MenuController::class, 'inputGaleri']);
-Route::post('/input-galeri', [MenuController::class, 'prosesInputGaleri'])->name('uploadGaleri');
+Route::get('/show-galeri', [MenuController::class, 'Gallery']);
+Route::get('/input-galeri-foto', [MenuController::class, 'inputGaleriFoto']);
+Route::get('/input-galeri-video', [MenuController::class, 'inputGaleriVideo']);
+Route::post('/input-galeri-foto', [MenuController::class, 'prosesInputGaleriFoto'])->name('uploadGaleriFoto');
+Route::post('/input-galeri-video', [MenuController::class, 'prosesInputGaleriVideo'])->name('uploadGaleriVideo');
 Route::get('/edit-galeri/{id}', [MenuController::class, 'editGaleri']);
 Route::put('/edit-galeri/{id}', [MenuController::class, 'updateGaleri']);
 Route::get('delete-galeri/{user_id}', [MenuController::class, 'deleteGaleri']);
 // Bagian Galeri ================================
+
+// Bagian Info Beasiswa ================================
+Route::get('/show-info-beasiswa', [ServiceController::class, 'showInfoBeasiswa']);
+Route::get('/input-info-beasiswa', [ServiceController::class, 'inputInfoBeasiswa']);
+Route::post('/input-info-beasiswa', [ServiceController::class, 'prosesInputInfoBeasiswa'])->name('uploadInfoBeasiswa');
+Route::get('/edit-info-beasiswa/{id}', [ServiceController::class, 'editInfoBeasiswa']);
+Route::put('/edit-info-beasiswa/{id}', [ServiceController::class, 'updateInfoBeasiswa']);
+Route::get('delete-info-beasiswa/{user_id}', [ServiceController::class, 'deleteInfoBeasiswa']);
+// Bagian Info Beasiswa ==================================
+
+// Bagian Training ================================
+Route::get('/show-training', [ServiceController::class, 'showTraining']);
+Route::get('/input-training', [ServiceController::class, 'inputTraining']);
+Route::post('/input-training', [ServiceController::class, 'prosesInputTraining'])->name('uploadTraining');
+Route::get('/edit-training/{id}', [ServiceController::class, 'editTraining']);
+Route::put('/edit-training/{id}', [ServiceController::class, 'updateTraining']);
+Route::get('delete-training/{user_id}', [ServiceController::class, 'deleteTraining']);
+// Bagian Training ==================================
+
+// Bagian Peminjaman Ruangan ================================
+Route::get('/show-peminjaman-ruangan', [ServiceController::class, 'showPeminjamanRuangan']);
+Route::get('/input-daftar-ruangan', [ServiceController::class, 'inputDaftarRuangan']);
+Route::post('/input-daftar-ruangan', [ServiceController::class, 'prosesInputDaftarRuangan'])->name('uploadDaftarRuangan');
+Route::get('/available-ruangan/{id}', [ServiceController::class, 'availableRuangan']);
+Route::get('/unavailable-ruangan/{id}', [ServiceController::class, 'unavailableRuangan']);
+Route::get('/edit-daftar-ruangan/{id}', [ServiceController::class, 'editDaftarRuangan']);
+Route::put('/edit-daftar-ruangan/{id}', [ServiceController::class, 'updateDaftarRuangan']);
+Route::get('delete-daftar-ruangan/{user_id}', [ServiceController::class, 'deleteDaftarRuangan']);
+
+Route::post('/input-peminjaman-ruangan', [ServiceController::class, 'prosesInputPeminjamanRuangan'])->name('uploadPeminjamanRuangan');
+Route::get('/edit-peminjaman-ruangan/{id}', [ServiceController::class, 'editPeminjamanRuangan']);
+Route::put('/edit-peminjaman-ruangan/{id}', [ServiceController::class, 'updatePeminjamanRuangan']);
+Route::get('delete-peminjaman-ruangan/{user_id}', [ServiceController::class, 'deletePeminjamanRuangan']);
+// Bagian Peminjaman Ruangan ==================================
+
+// Bagian Unit Kerja ================================
+Route::get('/show-unit-kerja', [ServiceController::class, 'showUnitKerja']);
+Route::get('/input-unit-kerja', [ServiceController::class, 'inputUnitKerja']);
+Route::post('/input-unit-kerja', [ServiceController::class, 'prosesInputUnitKerja'])->name('uploadUnitKerja');
+Route::get('/edit-unit-kerja/{id}', [ServiceController::class, 'editUnitKerja']);
+Route::put('/edit-unit-kerja/{id}', [ServiceController::class, 'updateUnitKerja']);
+Route::get('delete-unit-kerja/{user_id}', [ServiceController::class, 'deleteUnitKerja']);
+// Bagian Unit Kerja ==================================
+
+// Bagian Informasi LSP ================================
+Route::get('/show-informasi-lsp', [ServiceController::class, 'showInformasiLSP']);
+
+Route::get('/input-jadwal-sertifikat', [ServiceController::class, 'inputJadwalSertifikasi']);
+Route::post('/input-jadwal-sertifikat', [ServiceController::class, 'prosesJadwalSertifikasi'])->name('uploadSertifikasi');
+Route::get('/edit-jadwal-sertifikat/{id}', [ServiceController::class, 'editJadwalSertifikasi']);
+Route::put('/edit-jadwal-sertifikat/{id}', [ServiceController::class, 'updateJadwalSertifikasi']);
+Route::get('delete-jadwal-sertifikat/{user_id}', [ServiceController::class, 'deleteJadwalSertifikasi']);
+
+Route::get('/input-skema-bnsp', [ServiceController::class, 'inputSkemaBNSP']);
+Route::post('/input-skema-bnsp', [ServiceController::class, 'prosesInputSkemaBNSP'])->name('uploadSkemaBNSP');
+Route::get('/edit-skema-bnsp/{id}', [ServiceController::class, 'editSkemaBNSP']);
+Route::put('/edit-skema-bnsp/{id}', [ServiceController::class, 'updateSkemaBNSP']);
+Route::get('delete-skema-bnsp/{user_id}', [ServiceController::class, 'deleteSkemaBNSP']);
+
+Route::get('/input-jumlah-asesor', [ServiceController::class, 'inputJumlahAsesor']);
+Route::post('/input-jumlah-asesor', [ServiceController::class, 'prosesInputJumlahAsesor'])->name('uploadJumlahAsesor');
+Route::get('/edit-jumlah-asesor/{id}', [ServiceController::class, 'editJumlahAsesor']);
+Route::put('/edit-jumlah-asesor/{id}', [ServiceController::class, 'updateJumlahAsesor']);
+Route::get('delete-jumlah-asesor/{user_id}', [ServiceController::class, 'deleteJumlahAsesor']);
+// Bagian Informasi LSP ==================================
 
 // Halaman administrasi ========================
 Route::get('/admin_dash', [AdminController::class, 'index']);

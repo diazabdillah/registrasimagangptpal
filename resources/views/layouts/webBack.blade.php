@@ -25,6 +25,8 @@
     <link rel="icon" href="{{ asset('img/navy.png') }}">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     <link href="{{ asset('css/jquery-3.5.1.min.js') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -129,28 +131,41 @@
                 </div>
 
                 <!-- Nav Item -->
-                {{-- <li class="nav-item {{ $ti === 'Menu Managemet' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/menu">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>Menu Management</span></a>
-                </li> --}}
-                <li class="nav-item {{ $ti === 'Submenu Managemet' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/sub-menu">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Submenu</span></a>
-                </li>
                 <li class="nav-item {{ $ti === 'Berita Managemen' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/show-berita">
                         <i class="fas fa-fw fa-folder-open"></i>
                         <span>Berita</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Galeri Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/galeri">
+                    <a class="nav-link pb-0" href="/show-galeri">
                         <i class="fas fa-fw fa-folder-open"></i>
                         <span>Galeri</span></a>
-
                 </li>
-
+                <li class="nav-item {{ $ti === 'Info Beasiswa Managemen' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/show-info-beasiswa">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                        <span>Info Beasiswa</span></a>
+                </li>
+                <li class="nav-item {{ $ti === 'Training Managemen' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/show-training">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                        <span>Training</span></a>
+                </li>
+                <li class="nav-item {{ $ti === 'Peminjaman Ruangan Managemen' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/show-peminjaman-ruangan">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                        <span>Peminjaman Ruangan</span></a>
+                </li>
+                <li class="nav-item {{ $ti === 'Informasi Unit Kerja Managemen' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/show-unit-kerja">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                        <span>Unit Kerja</span></a>
+                </li>
+                <li class="nav-item {{ $ti === 'Informasi LSP Managemen' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/show-informasi-lsp">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                        <span>Informasi LSP</span></a>
+                </li>
             @endif
 
             @if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1)

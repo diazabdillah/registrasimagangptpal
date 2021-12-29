@@ -58,7 +58,7 @@
                             <tbody>
                                 @foreach ($data as $d)
                                 <tr class="text-center">
-                                    <td>{{ ++$i }}.</td>
+                                    <td>{{ $data->firstItem() + ++$i - 1 }}.</td>
                                     <td>{{ $d->judul }}</td>
                                     <td>{{ $d->created_at }}</td>
                                     <td>{{ $d->updated_at }}</td>
@@ -72,6 +72,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="pull-right">
+                            {{ $data->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

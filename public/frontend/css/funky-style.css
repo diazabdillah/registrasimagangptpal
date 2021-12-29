@@ -2998,6 +2998,13 @@ figure.vimeo a img, figure.youtube a img {
 	width: 100%;
 	border-top: 1px solid #e3e3e3;
 }
+.separator-line-1{
+	position: relative;
+	display: block;
+	top: 1px;
+	width: 100%;
+	border-top: 1px solid #e3e3e3;
+}
 .opacity-40{
 	opacity: 0.4;
 }

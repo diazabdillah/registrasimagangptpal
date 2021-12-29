@@ -12,57 +12,17 @@ use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     $this->MenuModel = new MenuModel();
-    // }
-
-    // public function menu()
-    // {
-    //     $data = [
-    //         'menu' => $this->MenuModel->allData(),
-    //     ];
-    //     $ti = 'Welcome';
-    //     return view('home', $data, ['ti' => $ti]);
-    // }
-
-    // public function menuM()
-    // {
-    //     $data = [
-    //         'menu' => $this->MenuModel->allData(),
-    //     ];
-
-    //     return view('layouts.webBack', $data);
-    // }
-
-    // public function dataSubmenu()
-    // {
-    //     $data = [
-    //         'datamenu' => $this->MenuModel->dataMenu(),
-    //     ];
-
-    //     return view('layouts.webBack', $data);
-    // }
-
-
     public function index()
     {
         $ti = 'Menu Managemet';
         return view('menu.menu', ['ti' => $ti]);
     }
 
-    public function Submenu()
-    {
-        $ti = 'Submenu Managemet';
-        return view('menu.sub-menu', ['ti' => $ti]);
-    }
-
     public function News()
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Berita Managemen';
-            $data = DB::table('news')->get();
+            $data = DB::table('news')->orderByDesc('id')->simplePaginate(10);
     
             return view('menu.news', [
                 'ti' => $ti,
@@ -89,6 +49,7 @@ class MenuController extends Controller
     {
         $request->validate([
             'judul' =>'required',
+            'headline' =>'required',
             'konten' => 'required',
             'foto' => 'required'
         ]);
@@ -100,6 +61,7 @@ class MenuController extends Controller
 
         News::create([
             'judul' => $request->judul,
+            'headline' => $request->headline,
             'konten' => $request->konten,
             'foto' => $nama_file,
         ]);
@@ -126,12 +88,29 @@ class MenuController extends Controller
 
     public function updateBerita(Request $request, $id)
     {
-        DB::table('news')->where('id', $id)
+        if ($request->file('foto') == null){
+            $fotoLama = News::find($id)->select('foto')->first();
+            DB::table('news')->where('id', $id)
             ->update([
                 'judul' => $request->judul,
+                'headline' => $request->headline,
                 'konten' => $request->konten,
-                'foto' => $request->foto
+                'foto' => $fotoLama->foto,
             ]);
+        } else {
+            $file = $request->file('foto');
+            $nama_file = $file->getClientOriginalName();
+            $tujuan_upload = 'berita';
+            $file->move($tujuan_upload, $nama_file);
+    
+            DB::table('news')->where('id', $id)
+                ->update([
+                    'judul' => $request->judul,
+                    'headline' => $request->headline,
+                    'konten' => $request->konten,
+                    'foto' => $nama_file
+                ]);
+        }
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/show-berita');
@@ -147,7 +126,7 @@ class MenuController extends Controller
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Galeri Managemen';
-            $data = DB::table('gallery')->get();
+            $data = DB::table('gallery')->orderByDesc('id')->simplePaginate(10);
     
             return view('menu.gallery', [
                 'ti' => $ti,
@@ -158,32 +137,70 @@ class MenuController extends Controller
         }
     }
 
-    public function inputGaleri()
+    public function inputGaleriFoto()
     {
         if (auth()->user()->role_id == 1) {
 
             $ti = 'Data Galeri';
 
-            return view('menu.input-galeri', ['ti' => $ti]);
+            return view('menu.input-galeri_foto', ['ti' => $ti]);
         } else {
             return redirect()->back();
         }
     }
 
-    public function prosesInputGaleri(Request $request)
+    public function inputGaleriVideo()
+    {
+        if (auth()->user()->role_id == 1) {
+
+            $ti = 'Data Galeri';
+
+            return view('menu.input-galeri_video', ['ti' => $ti]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function prosesInputGaleriFoto(Request $request)
     {
         $request->validate([
-            'judul' =>'required',
-            'foto' => 'required'
+            'judul' =>'required'
         ]);
+
+        $file = $request->file('foto');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'galeri';
+        $file->move($tujuan_upload, $nama_file);
+        $url = 0;
 
         Gallery::create([
             'judul' => $request->judul,
-            'foto' => $request->foto
+            'foto' => $nama_file,
+            'url' => $url,
         ]);
 
-        session()->flash('succes', 'galeri sudah di upload!');
-        return redirect('/galeri');
+        session()->flash('succes', 'galeri foto sudah di upload!');
+        return redirect('/show-galeri');
+    }
+
+    public function prosesInputGaleriVideo(Request $request)
+    {
+        $request->validate([
+            'judul' =>'required'
+        ]);
+
+        $foto = 0;
+        $videoURL = $request->url;
+        $convertedURL = str_replace("watch?v=", "embed/", $videoURL);
+
+        Gallery::create([
+            'judul' => $request->judul,
+            'foto' => $foto,
+            'url' => $convertedURL,
+        ]);
+
+        session()->flash('succes', 'galeri video sudah di upload!');
+        return redirect('/show-galeri');
     }
 
     public function editGaleri($id)
@@ -204,19 +221,39 @@ class MenuController extends Controller
 
     public function updateGaleri(Request $request, $id)
     {
-        DB::table('gallery')->where('id', $id)
-            ->update([
-                'judul' => $request->judul,
-                'foto' => $request->foto
-            ]);
+        if ($request->file('foto') != null) {
+            $file = $request->file('foto');
+            $nama_file = $file->getClientOriginalName();
+            $tujuan_upload = 'galeri';
+            $file->move($tujuan_upload, $nama_file);
+            $url = 0;
+    
+            DB::table('gallery')->where('id', $id)
+                ->update([
+                    'judul' => $request->judul,
+                    'foto' => $nama_file,
+                    'url' => $url,
+                ]);
+        } else if ($request->url != null) {
+            $nama_file = 0;
+            $videoURL = $request->url;
+            $convertedURL = str_replace("watch?v=", "embed/", $videoURL);
+
+            DB::table('gallery')->where('id', $id)
+                ->update([
+                    'judul' => $request->judul,
+                    'foto' => $nama_file,
+                    'url' => $convertedURL,
+                ]);
+        }
 
         session()->flash('succes', 'Data anda berhasil di update');
-        return redirect('/galeri');
+        return redirect('/show-galeri');
     }
 
     public function deleteGaleri($id)
     {
         DB::table('gallery')->where('id', $id)->delete();
-         return redirect('/galeri')->with('succes', 'Galeri Anda Berhasil DiHapus');
+         return redirect('/show-galeri')->with('succes', 'Galeri Anda Berhasil DiHapus');
     }
 }

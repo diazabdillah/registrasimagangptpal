@@ -25,7 +25,7 @@
                                     <h5 class="card-title mt-2">Edit Data</h5>
 
 
-                                    <form method="POST" action="/edit-galeri/{{ $data->id }}">
+                                    <form method="POST" action="/edit-galeri/{{ $data->id }}" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
                                         <!-- Input Judul Galeri -->
@@ -34,12 +34,21 @@
                                             <input type="text" class="form-control" id="judul" name="judul"
                                                 value="{{ $data->judul }}">
                                         </div>
-                                        <!-- Input Foto Galer -->
+                                        @if ($data->url == '0')
+                                        <!-- Input Foto Galeri -->
                                         <div class="form-group">
                                             <small class="ml-2">Foto</small>
                                             <input type="file" class="form-control" id="foto" name="foto"
                                                 value="{{ $data->foto }}">
                                         </div>
+                                        @elseif ($data->foto == '0')
+                                        <!-- Input Videeo Galeri -->
+                                        <div class="form-group">
+                                            <small class="ml-2">URL Youtube</small>
+                                            <input type="text" class="form-control" id="url" name="url"
+                                                value="{{ $data->url }}">
+                                        </div>
+                                        @endif
 
                                         <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i
                                                 class="fas fa-paper-plane"></i></button>
