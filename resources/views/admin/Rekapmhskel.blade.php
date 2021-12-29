@@ -35,10 +35,10 @@
                                             <th>Nim</th>
                                             <th>Universitas</th>
                                             <th>Strata</th>
+                                            <th>Jurusan</th>
                                             <th>No_Hp</th>
                                             <th>Divisi</th>
                                             <th>Departemen</th>
-
                                             <th>Tanggal Daftar</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Selesai</th>
@@ -55,10 +55,10 @@
                                                     <td>{{ $rekap->nim }}</td>
                                                     <td>{{ $rekap->univ }}</td>
                                                     <td>{{ $rekap->strata }}</td>
+                                                    <td>{{ $rekap->jurusan }}</td>
                                                     <td>{{ $rekap->no_hp }}</td>
                                                     <td>{{ $rekap->divisi }}</td>
                                                     <td>{{ $rekap->departemen }}</td>
-
                                                     <td>{{ $rekap->created_at }}</td>
                                                     <td>{{ $rekap->mulai }}</td>
                                                     <td>{{ $rekap->selesai }}</td>

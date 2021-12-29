@@ -32,9 +32,9 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama</th>
-
                                             <th>Asal Instansi</th>
                                             <th>Strata</th>
+                                            <th>Jurusan</th>
                                             <th>No_Hp</th>
                                             <th>Divisi</th>
                                             <th>Departemen</th>
@@ -42,7 +42,6 @@
                                             <th>Tanggal Daftar</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Selesai</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,6 +53,7 @@
                                                     <td>{{ $rekap->nama }}</td>
                                                     <td>{{ $rekap->asal_instansi }}</td>
                                                     <td>{{ $rekap->strata }}</td>
+                                                    <td>{{ $rekap->jurusan }}</td>
                                                     <td>{{ $rekap->no_hp }}</td>
                                                     <td>{{ $rekap->divisi }}</td>
                                                     <td>{{ $rekap->departemen }}</td>

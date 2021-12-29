@@ -274,7 +274,7 @@ class AdminController extends Controller
     public function Rekapsmkkel()
     {
         if (auth()->user()->role_id == 1) {
-            $ti = 'Rekap Smk Kelompok';
+            $ti = 'Rekap SMK Kelompok';
             $users = DB::table('rekapsmk')->get();
             return view('admin.Rekapsmkkel', [
                 'ti' => $ti,
@@ -300,12 +300,7 @@ class AdminController extends Controller
     public function cetak_rekapmhspdf()
     {
         $ti = 'Rekap Mahasiswa Magang';
-        $users = DB::table('users')
-            ->leftJoin('rekapmhs', 'users.id', '=', 'rekapmhs.user_id')
-            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('users.created_at', 'users.role_id', 'users.status_user', 'rekapmhs.strata', 'rekapmhs.nim', 'rekapmhs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'rekapmhs.divisi', 'rekapmhs.departemen', 'rekapmhs.nama', 'rekapmhs.univ', 'mulai_dan_selesai_mhs.selesai')
-            ->where('users.status_user', '=', 'Mahasiswa')
-            ->get();
+        $users = DB::table('rekapmhs')->get();
 
         $pdf = PDF::loadview('admin.RekapPDF', [
             'ti' => $ti,
@@ -334,12 +329,7 @@ class AdminController extends Controller
     public function cetak_rekapsmkpdf()
     {
         $ti = 'Rekap Smk';
-        $users = DB::table('users')
-            ->leftJoin('rekapsmk', 'users.id', '=', 'rekapsmk.user_id')
-            ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-            ->select('users.created_at', 'users.role_id', 'rekapsmk.nis', 'rekapsmk.no_hp', 'mulai_dan_selesai_smk.mulai', 'rekapsmk.divisi', 'rekapsmk.departemen', 'rekapsmk.nama', 'rekapsmk.sekolah', 'mulai_dan_selesai_smk.selesai')
-            ->where('users.status_user', '=', 'Smk')
-            ->get();
+        $users = DB::table('rekapsmk')->get();
 
         $pdf = PDF::loadview('admin.RekapSmkPDF', [
             'ti' => $ti,
@@ -350,12 +340,7 @@ class AdminController extends Controller
     public function cetak_rekapmhskelpdf()
     {
         $ti = 'Rekap Mahasiswa Kelompok';
-        $users = DB::table('users')
-            ->leftJoin('rekapmhs', 'users.id', '=', 'rekapmhs.user_id')
-            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('users.created_at', 'users.role_id', 'users.status_user', 'rekapmhs.strata', 'rekapmhs.nim', 'rekapmhs.no_hp', 'mulai_dan_selesai_mhs.mulai', 'rekapmhs.divisi', 'rekapmhs.departemen', 'rekapmhs.nama', 'rekapmhs.univ', 'mulai_dan_selesai_mhs.selesai')
-            ->where('users.status_user', '=', 'Mahasiswa kelompok')
-            ->get();
+        $users = DB::table('rekapmhs')->get();
 
         $pdf = PDF::loadview('admin.RekapMhsKelPDF', [
             'ti' => $ti,
@@ -367,12 +352,7 @@ class AdminController extends Controller
     public function cetak_rekapsmkkelpdf()
     {
         $ti = 'Rekap Smk';
-        $users = DB::table('users')
-            ->leftJoin('rekapsmk', 'users.id', '=', 'rekapsmk.user_id')
-            ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-            ->select('users.created_at', 'users.role_id', 'rekapsmk.nis', 'rekapsmk.no_hp', 'mulai_dan_selesai_smk.mulai', 'rekapsmk.divisi', 'rekapsmk.departemen', 'rekapsmk.nama', 'rekapsmk.sekolah', 'mulai_dan_selesai_smk.selesai')
-            ->where('users.status_user', '=', 'Smk Kelompok')
-            ->get();
+        $users = DB::table('rekapsmk')->get();
 
         $pdf = PDF::loadview('admin.RekapSmkKelPDF', [
             'ti' => $ti,
@@ -383,12 +363,7 @@ class AdminController extends Controller
     public function cetak_rekappenelitianpdf()
     {
         $ti = 'Rekap Smk';
-        $users = DB::table('users')
-            ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
-            ->leftJoin('mulai_dan_selesai_penelitian', 'users.id', '=', 'mulai_dan_selesai_penelitian.user_id')
-            ->select('users.created_at', 'users.role_id', 'data_penelitian.strata', 'data_penelitian.no_hp', 'mulai_dan_selesai_penelitian.mulai', 'data_penelitian.divisi', 'data_penelitian.departemen', 'data_penelitian.nama', 'data_penelitian.asal_instansi', 'mulai_dan_selesai_penelitian.selesai')
-            ->where('users.status_user', '=', 'Penelitian')
-            ->get();
+        $users = DB::table('rekappenelitian')->get();
 
         $pdf = PDF::loadview('admin.RekapPenelitianPDF', [
             'ti' => $ti,
