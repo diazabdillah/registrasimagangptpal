@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Dec 29, 2021 at 01:21 AM
+-- Generation Time: Dec 29, 2021 at 03:48 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -84,21 +84,13 @@ CREATE TABLE IF NOT EXISTS `absensmk` (
 DROP TABLE IF EXISTS `beasiswa`;
 CREATE TABLE IF NOT EXISTS `beasiswa` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nama_beasiswa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `institusi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_beasiswa` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institusi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `beasiswa`
---
-
-INSERT INTO `beasiswa` (`id`, `nama_beasiswa`, `institusi`, `url`, `created_at`, `updated_at`) VALUES
-(1, 'BEASISWA LPDP', 'Institusi : KEMENTRIAN PENDIDIKAN', 'https://www.pertamina.com/', '2021-12-02 23:08:24', '2021-12-02 23:08:24'),
-(2, 'BEASISWA A', 'Institusi : Instansi A', 'http://www.pal.co.id', '2021-12-02 23:08:54', '2021-12-02 23:08:54');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -109,22 +101,15 @@ INSERT INTO `beasiswa` (`id`, `nama_beasiswa`, `institusi`, `url`, `created_at`,
 DROP TABLE IF EXISTS `daftar_ruangan`;
 CREATE TABLE IF NOT EXISTS `daftar_ruangan` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nama_ruangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fasilitas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_ruangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fasilitas` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kapasitas` int NOT NULL,
-  `foto_ruangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto_ruangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `daftar_ruangan`
---
-
-INSERT INTO `daftar_ruangan` (`id`, `nama_ruangan`, `fasilitas`, `kapasitas`, `foto_ruangan`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Louge Room', 'Kursi, Meja, Sound System, AC, mic', 200, 'Lounge_Room.jpg', 'Available', '2021-12-03 00:00:58', '2021-12-03 00:00:58');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -149,14 +134,7 @@ CREATE TABLE IF NOT EXISTS `data_mhs_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `data_mhs_indivs`
---
-
-INSERT INTO `data_mhs_indivs` (`id`, `user_id`, `nama`, `univ`, `jurusan`, `strata`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nim`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Zaid Abdillah', 'PENS', 'Teknik Informatika', 'D4', 'Keputih', '08xxx', NULL, NULL, 2110191013, NULL, '2021-12-20 13:00:23', '2021-12-20 13:00:23');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -181,14 +159,7 @@ CREATE TABLE IF NOT EXISTS `data_penelitian` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `data_penelitian`
---
-
-INSERT INTO `data_penelitian` (`id`, `user_id`, `nama`, `asal_instansi`, `strata`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `judul_penelitian`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Made Rahano', 'PENS', 'D4', 'Teknik Informatika', 'Gubeng', '08xxx', NULL, NULL, 'Sabun Mandi', NULL, '2021-12-20 14:20:32', '2021-12-20 14:20:32');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -212,14 +183,7 @@ CREATE TABLE IF NOT EXISTS `data_smk_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `data_smk_indivs`
---
-
-INSERT INTO `data_smk_indivs` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nis`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Fabyan Kindarya', 'SMK Bhayangkari', 'Teknik Informatika', 'Sidoarjo', '08xxx', NULL, NULL, 1009, NULL, '2021-12-20 13:37:05', '2021-12-20 13:37:05');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -394,7 +358,19 @@ CREATE TABLE IF NOT EXISTS `file_mhs_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `file_mhs_indivs`
+--
+
+INSERT INTO `file_mhs_indivs` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
+(1, 22, '2110191013_muhammad zaid Uas.pdf', '624217', '2110', 'Zaid', 'Ocd', '2021-12-29 02:20:57', '2021-12-29 02:20:57'),
+(2, 22, '2110191013_muhammad zaid issue profesional.pdf', '764988', '2110', 'Zaid', 'Ocd', '2021-12-29 02:20:57', '2021-12-29 02:20:57'),
+(3, 22, '2021-2-45157-1-4myJu8SCFk.pdf', '146077', '2110', 'Zaid', 'Ocd', '2021-12-29 02:20:57', '2021-12-29 02:20:57'),
+(4, 23, '2110191013_muhammad zaid issue profesional.pdf', '764988', '34', 'Fabyan', 'Hcm', '2021-12-29 02:27:39', '2021-12-29 02:27:39'),
+(5, 23, '2110191013_muhammad zaid Uas.pdf', '624217', '34', 'Fabyan', 'Hcm', '2021-12-29 02:27:39', '2021-12-29 02:27:39'),
+(6, 23, 'Final-Test.pdf', '33470', '34', 'Fabyan', 'Hcm', '2021-12-29 02:27:39', '2021-12-29 02:27:39');
 
 -- --------------------------------------------------------
 
@@ -414,7 +390,16 @@ CREATE TABLE IF NOT EXISTS `file_penelitian` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `file_penelitian`
+--
+
+INSERT INTO `file_penelitian` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
+(1, 26, '2110191013_muhammad zaid Uas.pdf', '624217', '211', 'Zaid', 'Kaprodi mesin', '2021-12-29 03:04:09', '2021-12-29 03:04:09'),
+(2, 26, '2110191013_muhammad zaid.pdf', '619650', '211', 'Zaid', 'Kaprodi mesin', '2021-12-29 03:04:09', '2021-12-29 03:04:09'),
+(3, 26, '2021-2-45157-1-4myJu8SCFk.pdf', '146077', '211', 'Zaid', 'Kaprodi mesin', '2021-12-29 03:04:09', '2021-12-29 03:04:09');
 
 -- --------------------------------------------------------
 
@@ -434,7 +419,19 @@ CREATE TABLE IF NOT EXISTS `file_smk_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `file_smk_indivs`
+--
+
+INSERT INTO `file_smk_indivs` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
+(1, 24, '2110191013_muhammad zaid Uas.pdf', '624217', '76', 'Zaid', 'Kaprodi it', '2021-12-29 02:55:38', '2021-12-29 02:55:38'),
+(2, 24, '2110191013_muhammad zaid issue profesional.pdf', '764988', '76', 'Zaid', 'Kaprodi it', '2021-12-29 02:55:38', '2021-12-29 02:55:38'),
+(3, 24, '2110191013_muhammad zaid issue profesional.pdf', '764988', '76', 'Zaid', 'Kaprodi it', '2021-12-29 02:55:38', '2021-12-29 02:55:38'),
+(4, 25, 'Muhammad Muadz Abdillah_6032211101_UAS MO.pdf', '1184458', '45', 'Zaid', 'Kaprodi tekkom', '2021-12-29 02:59:35', '2021-12-29 02:59:35'),
+(5, 25, '2110191013_muhammad zaid issue profesional.pdf', '764988', '45', 'Zaid', 'Kaprodi tekkom', '2021-12-29 02:59:35', '2021-12-29 02:59:35'),
+(6, 25, '2021-2-45157-1-4myJu8SCFk.pdf', '146077', '45', 'Zaid', 'Kaprodi tekkom', '2021-12-29 02:59:35', '2021-12-29 02:59:35');
 
 -- --------------------------------------------------------
 
@@ -446,6 +443,8 @@ DROP TABLE IF EXISTS `forum`;
 CREATE TABLE IF NOT EXISTS `forum` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_user` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `konten` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -559,22 +558,13 @@ CREATE TABLE IF NOT EXISTS `foto_smk_models` (
 DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE IF NOT EXISTS `gallery` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `judul` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id`, `judul`, `foto`, `url`, `created_at`, `updated_at`) VALUES
-(2, 'Saya HIyama', '0', 'https://www.youtube.com/embed/drzd6M0sgOE', '2021-11-30 01:40:45', '2021-11-30 01:40:45'),
-(3, 'Stiker Zaed', 'bfda97fd-6195-4a3d-b43e-f92c4cb6a237.png', '0', '2021-11-30 01:40:58', '2021-11-30 01:40:58'),
-(4, 'Febyan', 'Fabyan.jpg', '0', '2021-12-01 10:39:35', '2021-12-01 10:39:35');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -639,19 +629,19 @@ CREATE TABLE IF NOT EXISTS `interview_smk` (
 DROP TABLE IF EXISTS `jadwal_sertifikasi`;
 CREATE TABLE IF NOT EXISTS `jadwal_sertifikasi` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nama_training` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penyelenggara` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_training` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `penyelenggara` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_mulai` datetime NOT NULL,
   `tanggal_selesai` datetime NOT NULL,
-  `tempat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tempat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `peserta_sprint` int NOT NULL,
   `peserta_hadir` int NOT NULL,
-  `fileSertifikasi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fileSertifikasi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -662,12 +652,12 @@ CREATE TABLE IF NOT EXISTS `jadwal_sertifikasi` (
 DROP TABLE IF EXISTS `jumlah_asesor`;
 CREATE TABLE IF NOT EXISTS `jumlah_asesor` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nomor_registrasi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_assessor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nomor_registrasi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_assessor` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -680,6 +670,8 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint NOT NULL,
   `forum_id` bigint NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_user` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent` bigint NOT NULL,
   `konten` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -739,9 +731,7 @@ DROP TABLE IF EXISTS `laporans_smk`;
 CREATE TABLE IF NOT EXISTS `laporans_smk` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sinopsis` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cover` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `revisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -762,9 +752,7 @@ DROP TABLE IF EXISTS `laporan_penelitian`;
 CREATE TABLE IF NOT EXISTS `laporan_penelitian` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sinopsis` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cover` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `revisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tanggal_kumpul` date NOT NULL,
@@ -787,7 +775,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -816,28 +804,33 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2021_10_23_164936_create_indexnilai_tabel', 1),
 (21, '2021_10_25_070220_create_news_table', 1),
 (22, '2021_10_27_081822_create_gallery_table', 1),
-(23, '2021_10_27_112732_create_absen_indivs_tabel', 1),
-(24, '2021_11_05_035032_create_interview_tabel', 1),
-(25, '2021_11_10_032440_create_interview_smk_tabel', 1),
-(26, '2021_11_10_032911_create_absensmk_table', 1),
-(27, '2021_11_10_033021_create_laporans_smk_table', 1),
-(28, '2021_11_10_033158_create_penilaians_smk_table', 1),
-(29, '2021_11_10_081241_create_mulai_dan_selesai_smk_table', 1),
-(30, '2021_11_10_153034_create_absen_smks_tabel', 1),
-(31, '2021_11_14_023424_create_data_penelitian_tabel', 1),
-(32, '2021_11_14_023839_create_file_penelitian_tabel', 1),
-(33, '2021_11_16_054035_foto_i_d_penelitian', 1),
-(34, '2021_11_16_054232_foto_penelitian_models', 1),
-(35, '2021_11_17_122911_create_absenpenelitian_tabel', 1),
-(36, '2021_11_18_012846_create_absen_penelitians_tabel', 1),
-(37, '2021_11_18_014156_create_laporan_penelitian_tabel', 1),
-(38, '2021_11_18_025323_create_mulai_dan_selesai_penelitian_table', 1),
-(39, '2021_11_24_113915_create_forum_table', 1),
-(40, '2021_11_24_113950_create_komentar_table', 1),
-(41, '2021_12_07_142646_create_departemen_table', 1),
-(42, '2021_12_20_102415_create__rekapsmk_table', 1),
-(43, '2021_12_20_102443_create__rekappenelitian_table', 1),
-(44, '2021_12_20_102454_create__rekapmhs_table', 1);
+(23, '2021_11_04_154128_create_training_table', 1),
+(24, '2021_11_04_154635_create_beasiswa_table', 1),
+(25, '2021_11_04_155457_create_daftar_ruangan_table', 1),
+(26, '2021_11_04_155637_create_peminjaman_ruangan_table', 1),
+(27, '2021_11_05_035032_create_interview_tabel', 1),
+(28, '2021_11_10_020649_create_unit_kerja_table', 1),
+(29, '2021_11_10_021434_create_skema_bnsp_table', 1),
+(30, '2021_11_10_021705_create_jumlah_asesor_table', 1),
+(31, '2021_11_10_032440_create_interview_smk_tabel', 1),
+(32, '2021_11_10_032911_create_absensmk_table', 1),
+(33, '2021_11_10_033021_create_laporans_smk_table', 1),
+(34, '2021_11_10_033158_create_penilaians_smk_table', 1),
+(35, '2021_11_10_081241_create_mulai_dan_selesai_smk_table', 1),
+(36, '2021_11_14_023424_create_data_penelitian_tabel', 1),
+(37, '2021_11_14_023839_create_file_penelitian_tabel', 1),
+(38, '2021_11_16_054035_foto_i_d_penelitian', 1),
+(39, '2021_11_16_054232_foto_penelitian_models', 1),
+(40, '2021_11_17_122911_create_absenpenelitian_tabel', 1),
+(41, '2021_11_18_014156_create_laporan_penelitian_tabel', 1),
+(42, '2021_11_18_025323_create_mulai_dan_selesai_penelitian_table', 1),
+(43, '2021_11_24_113915_create_forum_table', 1),
+(44, '2021_11_24_113950_create_komentar_table', 1),
+(45, '2021_11_29_073550_create_jadwal_sertifikasi', 1),
+(46, '2021_12_07_142646_create_departemen_table', 1),
+(47, '2021_12_20_102415_create__rekapsmk_table', 1),
+(48, '2021_12_20_102443_create__rekappenelitian_table', 1),
+(49, '2021_12_20_102454_create__rekapmhs_table', 1);
 
 -- --------------------------------------------------------
 
@@ -899,24 +892,14 @@ CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_smk` (
 DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `judul` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `headline` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `konten` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `headline` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `konten` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `news`
---
-
-INSERT INTO `news` (`id`, `judul`, `headline`, `konten`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 'Sukses Laksanakan Commodore Inspection, KRI Cakra-401 Siap Perkuat Koarmada TNI AL', '(Panarukan, 22 November) PT PAL Indonesia (Persero) sekali lagi membuktikan kemampuan teknisnya dalam pemeliharaan kapal perang dengan melaksanakan overhaul terhadap kapal selam di jajaran TNI AL yakni KRI Cakra-401.', '<p>(Panarukan, 22 November) PT PAL Indonesia (Persero) sekali lagi membuktikan kemampuan teknisnya dalam pemeliharaan kapal perang dengan melaksanakan overhaul terhadap kapal selam di jajaran TNI AL yakni KRI Cakra-401. Dengan telah dilakukan Commodore Inspection pada KRI Cakra-401 di Panarukan, yang dipimpin oleh Waasops Kasal – Laksma TNI Wasis Priyono. Setelah dilaksanakannya serangkaian uji coba (HAT &amp; SAT), dilakukan Commodore Inspection dalam rangka meninjau kesesuaian dan kelaikan hasil dari overhaul (OVH) atau perbaikan menyeluruh pada kapal selam KRI Cakra-401 sesuai yang diamanatkan dalam kontrak. Sebagai alutsista dengan misi strategis, Project Manager (PM) KRI Cakra-401 Kolonel Laut (T) Wiranto dalam Commodore Inspection menyampaikan bahwa “KRI Cakra-401 telah mampu mencapai kecepatan maksimal di atas permukaan air dan di bawah permukaan air. Menilik fungsi dan kemampuan penyelamannya, KRI Cakra-401 juga telah menunjukkan hasil yang memuaskan dengan melakukan penyelaman sampai 200 meter” tuturnya. “Sebelumnya telah dilakukan pengujian terpisah pada seluruh sistem pipa dan katup-katup pokok kapal dengan tekanan 32-50 bar” tutur Kolonel Laut (P) Indra Agus Wijaya. Sebagai informasi 1 bar setara dengan tekanan air sedalam 10 meter, “sehingga disimpulkan sistem tersebut mampu menerima tekanan sampai lebih dari 300 meter” tutup Komandan Satuan Tugas (DanSatgas) Kolonel Laut (P) Indra Agus Wijaya.</p>', 'Sukses-Laksanakan-Commodore-InspectionKRI-Cakra-401-Siap-Perkuat-Koarmada-TNI-AL-1.jpeg', '2021-12-01 19:02:29', '2021-12-01 19:02:29'),
-(2, 'Perkuat Global Supply Chain, Menlu Denmark Kunjungi PAL', 'Surabaya, 21 November 2021 – Ministry of Foreign Affairs (Kementerian Luar Negeri) Denmark H.E. Jeppe Sebastian Kofod, serta duta besar Denmark untuk Indonesia H.E Lars Bo Larsen bersama para rombongan berkunjung ke PT PAL Indonesia (Persero).', 'Surabaya, 21 November 2021 – Ministry of Foreign Affairs (Kementerian Luar Negeri) Denmark H.E. Jeppe Sebastian Kofod, serta duta besar Denmark untuk Indonesia H.E Lars Bo Larsen bersama para rombongan berkunjung ke PT PAL Indonesia (Persero). Kunjungan perdana oleh Kementerian Luar Negeri Denmark ini disambut langsung oleh CEO Bapak Kaharuddin Djenod bersama jajaran pejabat PAL di gedung Pusat Informasi Perusahaan (PIP) PT PAL Indonesia (Persero).  Bapak Kaharuddin Djenod dalam sambutannya menyampaikan “PAL selama ini telah melakukan kolaborasi dan kerjasama yang luar biasa dengan Denmark, terutama dengan Terma. Diwujudkan melalui supply radar pada empat proyek Kapal Cepat Rudal (KCR) 60 meter. Selain itu teknologi Denmark juga berperan dalam Kapal Bantu Rumah Sakit (BRS) yang menggunakan Naval Surveillance Radar-Scanter 6002”. Dilanjutkan sambutan dari Minister of Foreign Affairs of Denmark H.E. Jeppe Sebastian Kofod yang menyatakan bahwa “komunikasi dan kerjasama yang selama ini dilakukan Denmark, khususnya Terma merupakan bukti dari kolaborasi yang luar biasa. Kami berharap dalam waktu dekat akan adanya kerjasama dan kolaborasi yang lebih besar antara Indonesia khususnya PT PAL dengan Denmark” ujarnya. Dalam kesempatan tersebut, Menlu Denmark juga menunjukkan antusiasmenya atas rencana implementasi transfromasi industry maritim 4.0 yang akan dilakukan oleh PT PAL Indonesia (Persero).', '20211121-Perkuat-Global-Supply-Chain-Menlu-Denmark-Kunjungi-PAL-2.jpeg', '2021-12-01 23:45:13', '2021-12-01 23:45:13'),
-(3, 'CEO PT PAL Indonesia (Persero) Resmikan TIM 4.0', '(Surabaya, 10 November 2021) Hari Pahlawan turut dirayakan dengan suka cita oleh PT PAL Indonesia (Persero). Tepat pada Hari Pahlawan, Bapak Kaharuddin Djenod selaku CEO PT PAL Indonesia (Persero)', '(Surabaya, 10 November 2021) Hari Pahlawan turut dirayakan dengan suka cita oleh PT PAL Indonesia (Persero). Tepat pada Hari Pahlawan, Bapak Kaharuddin Djenod selaku CEO PT PAL Indonesia (Persero) secara detil sampaikan konsep Transformasi Industri Maritim (TIM) 4.0. Acara tersebut dilaksanakan di Hanggar Divisi Kapal Selam dengan mengundang jajaran pejabat PT PAL Indonesia (Persero) eselon 1, eselon 2, dan eselon 3.  Sebagai tonggak terdepan dalam pengembangan industri maritim nasional, PT PAL Indonesia (Persero) terus mengembangkan diri untuk menyerap sebesar-besarnya peluang tersebut sebagai bentuk kontribusi kepada RI. Melalui lompatan kuantum ini, PT PAL Indonesia (Persero) akan mendukung pertahanan maritim Indonesia melalui pembangunan kapal kombatan dan non-kombatan sejumlah 2805 unit yang tersebar di seluruh perairan Indonesia. Dengan potensi pasar yang besar dan peluang untuk meningkatkan kapabilitas perusahaan, dibutuhkan dukungan aspek keuangan dan peningkatan kompetensi SDM guna menyerap segala potensi yang ada. Kerjasama yang dilakukan PT PAL Indonesia (Persero) dengan Bank/Asuransi/Lembaga keuangan non-bank (trade finance) dilaksanakan untuk meningkatkan kapasitas dalam pembiayaan. Salah satunya diwujudkan dalam restrukturisasi bunga hutang sehingga dapat meningkatkan status kredit.', 'Pemukulan-Gong-Oleh-CEO-PT-PAL-Indonesia-Persero-menandai-dimulainya-TIM-4.0-di-PT-PAL-Indonesia-Persero.jpeg', '2021-12-01 23:46:15', '2021-12-01 23:46:15'),
-(4, 'Selesaikan Final Docking, Kapal Bantu Rumah Sakit (BRS) dr. Wahidin Sudirohusodo Siap Lanjutkan Harbour Acceptance Test', 'Surabaya, 03/11) Tim Kemanproan Kapal BRS PT PAL Indonesia (Persero), Tim Kelaikan Material (TKM) dari TNI AL, dan Tim Satgas sukses laksanakan Sea Trial pada Rigid Hull Inflatable Boat (RHIB) dan Landing Craft Vehicle Personnel (LCVP)', '<p><strong>(Surabaya, 03/11)</strong> Tim Kemanproan Kapal BRS PT PAL Indonesia (Persero), Tim Kelaikan Material (TKM) dari TNI AL, dan Tim Satgas sukses laksanakan Sea Trial pada Rigid Hull Inflatable Boat (RHIB) dan Landing Craft Vehicle Personnel (LCVP) kapal Bantu Rumah Sakit (BRS) dr. Wahidin Sudirohusodo, yang dilaksanakan tanggal 25 Oktober 2021 di PT PAL Indonesia (Persero). Rigid Hull Inflatable Boat (RHIB) dan Landing Craft Vehicle Personnel (LCVP) sendiri merupakan bagian dari kapal Bantu Rumah Sakit (BRS) dr. Wahidin Sudirohusodo. Uji coba tersebut menandai salah satu pencapaian proyek sebelum pelaksanaan Harbour Acceptance Test (HAT).</p><p>Sea Trial pada RHIB dan LCVP kapal Bantu Rumah Sakit (BRS) dr. Wahidin Sudirohusodo memenuhi parameter keberhasilan dengan tercapainya maximum speed sebesar 31,9 knots dan 30,7 knots pada LCVP ke-1 dan ke-2 dengan kondisi full load. Angka tersebut melebihi persyaratan minimum yang diamanatkan kontrak antara PAL dengan Mabes TNI AL yaitu sebesar 30 knots. Pada uji coba RHIB, maximun speed yang tercapai adalah 27,6 knots dengan persyaratan minimum 27 knots.</p><p><br>RHIB dan LCVP memiliki fungsi sebagai sarana angkut personil, relawan medis, atau peralatan dari darat ke kapal ataupun sebaliknya. Kapal Bantu Rumah Sakit (BRS) memiliki ukuran yang besar dan tidak bisa merapat ke daratan dalam kondisi tertentu atau diperlukan Tug Boat untuk menarik kapal ke dermaga, sehingga akan memakan waktu yang cukup lama. Hal ini membuat RHIB dan LCVP sangat diperlukan dalam mobilitas evakuasi medis dengan estimasi waktu lebih singkat, terutama dalam kondisi darurat.</p><p>Setelah dilakukan uji coba pada LCVP dan RHIB, akan dilanjutkan dengan final docking. Proses tersebut meliputi penyiapan peralatan pendukung di atas kapal untuk kelanjutan pekerjaan outstanding kapal, perbaikan lampu penerangan kapal yang berfungsi untuk pergeseran, open sea chest yang dilakukan pembersihan di dalamnya, pemeriksaan cat bawah garis air (BGA), penyempurnaan pengecatan di bagian kapal bawah garis air, pemeriksaan propeler dan daun kemudi (rudder blade), dan pembersihan bow thruster. Setelah final docking, akan dilakukan inclining test untuk memenuhi persyaratan HAT (Harbour Acceptance Test) dilanjutkan dengan SAT, dan serah-terima kapal.</p><p>Kemajuan proses pembangunan kapal Bantu Rumah Sakit dr. Wahidin Sudirohusodo secara keseluruhan telah mencapai sebesar 96,259%, dengan semua block sudah terpasang 100%,. Alat kesehatan yang telah siap beroperasi meliputi: X-Ray, CT-Scan, Mortuary Refrigerator, CSSD dan Ruang Isolasi untuk penanggulangan wabah menular seperti Covid-19.</p><p><strong>Tentang PT PAL Indonesia (Persero)</strong><br>PT PAL Indonesia (Persero) merupakan perusahaan galangan kapal terbesar di Indonesia. Kami memiliki keunggulan bisnis pada kapabilitas Pembangunan dan rancang-bangun Kapal Perang dan Kapal Niaga; Pembangunan dan Maintenance, Repair, dan Overhaul ( MRO ) Kapal Selam; Maintenance, Repair, dan Overhaul Kapal Perang, Kapal Niaga, dan produk-produk kemaritiman; General Engineering produk Energi dan Elektrifikasi; dan Technology Development.</p>', 'IMG-20211025-WA0048.jpg', '2021-12-02 01:05:50', '2021-12-02 01:05:50');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -941,28 +924,21 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 DROP TABLE IF EXISTS `peminjaman_ruangan`;
 CREATE TABLE IF NOT EXISTS `peminjaman_ruangan` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `pilih_ruangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_peminjam` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `divisi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `departemen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_telp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pilih_ruangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_peminjam` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `departemen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_telp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_mulai` date NOT NULL,
   `tanggal_selesai` date NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
-  `keperluan` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keperluan` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `peminjaman_ruangan`
---
-
-INSERT INTO `peminjaman_ruangan` (`id`, `pilih_ruangan`, `nama_peminjam`, `divisi`, `departemen`, `no_telp`, `tanggal_mulai`, `tanggal_selesai`, `jam_mulai`, `jam_selesai`, `keperluan`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Louge Room', 'Fabyan', 'HCM', 'ODCM', '231241241', '2021-12-03', '2021-12-08', '08:00:00', '16:00:00', 'nobar', 'Proses', '2021-12-03 00:02:22', '2021-12-03 00:02:22');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -992,7 +968,16 @@ CREATE TABLE IF NOT EXISTS `penilaians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `penilaians`
+--
+
+INSERT INTO `penilaians` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:19:35', '2021-12-29 02:19:35'),
+(2, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:25:48', '2021-12-29 02:25:48'),
+(3, 3, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:26:28', '2021-12-29 02:26:28');
 
 -- --------------------------------------------------------
 
@@ -1022,14 +1007,18 @@ CREATE TABLE IF NOT EXISTS `penilaians_smk` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `penilaians_smk`
 --
 
 INSERT INTO `penilaians_smk` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-20 13:37:05', '2021-12-20 13:37:05');
+(1, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:36:25', '2021-12-29 02:36:25'),
+(2, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:37:27', '2021-12-29 02:37:27'),
+(6, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:54:15', '2021-12-29 02:54:15'),
+(7, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:57:32', '2021-12-29 02:57:32'),
+(8, 3, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:58:11', '2021-12-29 02:58:11');
 
 -- --------------------------------------------------------
 
@@ -1073,6 +1062,9 @@ CREATE TABLE IF NOT EXISTS `rekapmhs` (
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nim` int NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_user` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mulai` date DEFAULT NULL,
+  `selesai` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1098,17 +1090,13 @@ CREATE TABLE IF NOT EXISTS `rekappenelitian` (
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `judul_penelitian` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_user` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mulai` date DEFAULT NULL,
+  `selesai` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rekappenelitian`
---
-
-INSERT INTO `rekappenelitian` (`id`, `user_id`, `nama`, `asal_instansi`, `strata`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `judul_penelitian`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Made Rahano', 'PENS', 'D4', 'Teknik Informatika', 'Gubeng', '08xxx', NULL, NULL, 'Sabun Mandi', NULL, '2021-12-20 14:20:32', '2021-12-20 14:20:32');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1129,17 +1117,13 @@ CREATE TABLE IF NOT EXISTS `rekapsmk` (
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nis` int NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_user` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mulai` date DEFAULT NULL,
+  `selesai` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rekapsmk`
---
-
-INSERT INTO `rekapsmk` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nis`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Fabyan Kindarya', 'SMK Bhayangkari', 'Teknik Informatika', 'Sidoarjo', '08xxx', NULL, NULL, 1009, NULL, '2021-12-20 13:37:05', '2021-12-20 13:37:05');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1150,14 +1134,14 @@ INSERT INTO `rekapsmk` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_r
 DROP TABLE IF EXISTS `skema_bnsp`;
 CREATE TABLE IF NOT EXISTS `skema_bnsp` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `kode_skema` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_skema` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_skema` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_skema` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` int NOT NULL,
-  `bidang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bidang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1168,32 +1152,19 @@ CREATE TABLE IF NOT EXISTS `skema_bnsp` (
 DROP TABLE IF EXISTS `training`;
 CREATE TABLE IF NOT EXISTS `training` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nama_training` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penyelenggara` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tanggal_mulai` timestamp NULL DEFAULT NULL,
-  `tanggal_selesai` timestamp NULL DEFAULT NULL,
-  `tempat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_training` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `penyelenggara` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_mulai` datetime NOT NULL,
+  `tanggal_selesai` datetime NOT NULL,
+  `tempat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `peserta_sprint` int NOT NULL,
   `peserta_hadir` int NOT NULL,
-  `fileTraining` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fileTraining` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `training`
---
-
-INSERT INTO `training` (`id`, `nama_training`, `penyelenggara`, `tanggal_mulai`, `tanggal_selesai`, `tempat`, `peserta_sprint`, `peserta_hadir`, `fileTraining`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Pelatihan pemadam kebakaran & P3K _Divisi Kawasan dan KAM & K3LH', 'PT. PAL Indonesia (Persero)', '2021-12-01 01:00:00', '2021-12-05 09:00:00', 'Divisi Kawasan', 21, 20, '{\"fileTraining\":\"Katalog Booth & Avatar SimHive v6.0 Fix.pdf\"}', 'Proses', '2021-12-02 23:10:44', '2021-12-02 23:10:44'),
-(2, 'fjkkasldfj', 'dsjfklajslkdf', '2021-12-03 09:25:00', '2021-12-03 12:25:00', 'fsafsadfs', 21, 11, '{\"fileTraining\":\"{\\\"fileTraining\\\":\\\"Katalog Booth & Avatar SimHive v6.0 Fix.pdf\\\"}\"}', 'Proses', '2021-12-03 02:24:05', '2021-12-03 02:24:05'),
-(3, 'fasdfasdf', 'asdfasdfas', '2021-12-03 09:32:00', '2021-12-03 12:32:00', 'fsadfasd', 21, 22, '{\"fileTraining\":\"{\\\"fileTraining\\\":\\\"Katalog Booth & Avatar SimHive v6.0 Fix.pdf\\\"}\"}', 'Selesai', '2021-12-03 02:31:56', '2021-12-03 02:31:56'),
-(4, 'ghjhjhjhjgjhgk', 'hjkhjk', '2021-12-03 09:33:00', '2021-12-03 13:33:00', 'fasfasd', 21, 224, 'Katalog Booth & Avatar SimHive v6.0 Fix.pdf', 'Proses', '2021-12-03 02:34:07', '2021-12-03 02:34:07'),
-(5, 'ffsdfasdfasdf', 'safsadfasdfas', '2021-12-02 09:53:00', '2021-12-10 09:53:00', 'adfasdfa', 25, 75, 'IJISRT20AUG414_(1).pdf', 'Proses', '2021-12-03 02:53:31', '2021-12-03 02:53:31'),
-(6, 'et3qeterer', 'qertqwerwrerq', '2021-12-03 10:53:00', '2021-12-16 09:55:00', 'rqwerwqer', 41, 555, '-', 'Proses', '2021-12-03 02:53:52', '2021-12-03 02:53:52'),
-(7, 'sfasfasdfasdf', '3r3tqffqwefqerf', '2021-12-03 10:18:00', '2021-12-03 11:18:00', 'fqwefqwef', 51, 654, 'WCECS2018_pp349-356.pdf', 'Proses', '2021-12-03 02:54:16', '2021-12-03 02:54:16');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1205,12 +1176,12 @@ DROP TABLE IF EXISTS `unit_kerja`;
 CREATE TABLE IF NOT EXISTS `unit_kerja` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `kode_divisi` int NOT NULL,
-  `divisi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1232,32 +1203,34 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin pusat', 'admin@gmail.com', NULL, '$2y$10$X6P2rcoaYnllxPL5lq9NguE4OK9XL/cWKPm5VZndtIIlngBhagjBm', 1, 'Mahasiswa', NULL, '2021-12-19 14:49:21', '2021-12-19 14:49:21'),
-(2, 'zaid', 'zaidabdillah@gmail.com', NULL, '$2y$10$s3sGlIg0iH7rL9L37EuvkuZmLsQiXYrLriKk1LHdp9.5L/dCucTlq', 3, 'Mahasiswa', NULL, '2021-12-19 14:54:14', '2021-12-19 14:54:14'),
-(3, 'Fabyan Kindarya', 'fabyan@gmail.com', NULL, '$2y$10$gMR81pHLFSx2XEIcY6PbKumupRusiprp66XdlObUvXj5/xpH09UCC', 4, 'SMK', NULL, '2021-12-20 13:27:13', '2021-12-20 13:27:13'),
-(4, 'Made Rahano', 'rahano@gmail.com', NULL, '$2y$10$oKqRAtA35VB0lbKbLIWZ3OEdkwzEJdwhiE88jhIyc7ndTAkYLkL1C', 23, 'Penelitian', NULL, '2021-12-20 14:14:53', '2021-12-20 14:14:53');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_role`
---
-
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE IF NOT EXISTS `user_role` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `role` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(1, 'Admin Pusat', 'adminpusat@gmail.com', NULL, '$2y$10$0EIvwzn8sMIoofBBng3x5e9pAogE7lSfM6AQbVQr8NokiJIbCJism', 1, 'Admin Pusat', NULL, '2021-12-29 02:03:05', '2021-12-29 02:03:05'),
+(2, 'Admin HCM', 'adminhcm@gmail.com', NULL, '$2y$10$Xw7QBIZnRq3z9LoYCz8smuxbCnj5AA.qJQSLgnZOAJR.9optzsRCO', 18, 'Admin HCM', NULL, '2021-12-29 02:03:57', '2021-12-29 02:03:57'),
+(3, 'Admin Sekretaris Perusahaan', 'adminsekper@gmail.com', NULL, '$2y$10$PDl1ysrDS4282P7pZUz2XOPeRVnMPGEcS9OGB9Vlk9ZfbpZnP0Vra', 18, 'Admin Sekretaris Perusahaan', NULL, '2021-12-29 02:05:04', '2021-12-29 02:05:04'),
+(4, 'Admin Satuan Pengawasan Intern', 'adminspi@gmail.com', NULL, '$2y$10$T6YK/fYEtFIvAs18qk8oKeKLoCMwPdcT3dHCP4NMSkpqmMdAQDG/C', 18, 'Admin Satuan Pengawasan Intern', NULL, '2021-12-29 02:05:28', '2021-12-29 02:05:28'),
+(5, 'Admin Naval Technology', 'adminnavtech@gmail.com', NULL, '$2y$10$TTvMbFhNri5LFfSgSlwPVuESg06TdvKsGvF6urgfijatv9pQTURPe', 18, 'Admin Naval Technology', NULL, '2021-12-29 02:06:04', '2021-12-29 02:06:04'),
+(6, 'Admin Pemasaran dan Penjualan Kapal', 'adminpdpk@gmail.com', NULL, '$2y$10$b1iBKUMuA.UQXVn.vnsioOxjAC4u88fP.L/Lz.FWrXgt2waM0lbv6', 18, 'Admin Pemasaran dan Penjualan Kapal', NULL, '2021-12-29 02:06:54', '2021-12-29 02:06:54'),
+(7, 'Admin Penjualan REKUMHAR', 'adminprekumhar@gmail.com', NULL, '$2y$10$Uo3T2oVk0Wf4T/X1wCigCe/rdEV7P/FY7equpPo5f1goWxfSPg/Tq', 18, 'Admin Penjualan REKUMHAR', NULL, '2021-12-29 02:07:21', '2021-12-29 02:07:21'),
+(8, 'Admin Desain', 'admindesain@gmail.com', NULL, '$2y$10$yfW4QmYrHSxWwkzYUyNHR.qjfmoZY8NZWPnebCGNgiEHeBhbEo3A2', 18, 'Admin Desain', NULL, '2021-12-29 02:07:55', '2021-12-29 02:07:55'),
+(9, 'Admin Jaminan Kualitas', 'adminjaminankualitas@gmail.com', NULL, '$2y$10$PH8bxllJwSj..vt7hQv8ae27O2qxRch2jGCma5NtOjlH2dDFcGUEm', 18, 'Admin Jaminan Kualitas', NULL, '2021-12-29 02:08:20', '2021-12-29 02:08:20'),
+(10, 'Admin Supply Chain', 'adminsupplychain@gmail.com', NULL, '$2y$10$BNArCU5Ge1P56WC90wiLa.qaSn0u0RqCYv49lW9t2mmKPUVyF9VTu', 18, 'Admin Supply Chain', NULL, '2021-12-29 02:08:59', '2021-12-29 02:08:59'),
+(11, 'Admin Kapal Perang', 'adminkaprang@gmail.com', NULL, '$2y$10$h8896e.sea58SCsR9AaqEemyiRIalzdrJ4vdo4jMTc4nBD4mejgwq', 18, 'Admin Kapal Perang', NULL, '2021-12-29 02:09:18', '2021-12-29 02:09:18'),
+(12, 'Admin Kapal Selam', 'adminkasel@gmail.com', NULL, '$2y$10$vfioizRvtdCzvF9yussmSOfOwumk93tAnAirqNCqx/UuKFY3ykMye', 18, 'Admin Kapal Selam', NULL, '2021-12-29 02:09:39', '2021-12-29 02:09:39'),
+(13, 'Admin Kapal Niaga', 'adminkapalniaga@gmail.com', NULL, '$2y$10$j4Oaw1Oo9dd2Z4mhXRTZAOleOhCmeN6VMxcl5YFmARfuD57yn0Oxy', 18, 'Admin Kapal Niaga', NULL, '2021-12-29 02:10:02', '2021-12-29 02:10:02'),
+(14, 'Admin Rekayasa Umum', 'adminrekum@gmail.com', NULL, '$2y$10$ThTUrD6lEHIJhXX/UiESGuuJhel6IS2HDpeHT.qaIVuB.07L1syfe', 18, 'Admin Rekayasa Umum', NULL, '2021-12-29 02:10:18', '2021-12-29 02:10:18'),
+(15, 'Admin Pemeliharaan dan Perbaikan', 'adminpdp@gmail.com', NULL, '$2y$10$1MVLe.GjzDxjmXIdhH5XUO26QwpIROZ3DhSCqZpCijq6inT.IvHqi', 18, 'Admin Pemeliharaan dan Perbaikan', NULL, '2021-12-29 02:10:44', '2021-12-29 02:10:44'),
+(16, 'Admin Akuntansi', 'adminakuntansi@gmail.com', NULL, '$2y$10$aOy8VUBy6hyH2s0jT.stT.UBdwLwcY4VNbilxCYS.gq24zKLXHHM.', 18, 'Admin Akuntansi', NULL, '2021-12-29 02:11:03', '2021-12-29 02:11:03'),
+(17, 'Admin Perencanaan Strategis Perusahaan', 'adminpsp@gmail.com', NULL, '$2y$10$fR9WZ2xz58mOrqP2vJFTU.lHTf2L.wXtwMi8AVcFnkJlSqlEQ8Slq', 18, 'Admin Perencanaan Strategis Perusahaan', NULL, '2021-12-29 02:11:40', '2021-12-29 02:11:40'),
+(18, 'Admin Perbendaharaan', 'adminperbendaharaan@gmail.com', NULL, '$2y$10$mpLrMaqexiJfT7YnFwr0muueZ1TaNu8Ycn2KTKMUu3pD3/lf15rTa', 18, 'Admin Perbendaharaan', NULL, '2021-12-29 02:12:09', '2021-12-29 02:12:09'),
+(19, 'Admin Teknologi Informasi', 'adminti@gmail.com', NULL, '$2y$10$LvvWI1ZUX6zwe/znxxAB.uQasETDM.Wt7o6ZpJui9pjGCfeKlbSkK', 18, 'Admin Teknologi Informasi', NULL, '2021-12-29 02:12:29', '2021-12-29 02:12:29'),
+(20, 'Admin Kawasan', 'adminkawasan@gmail.com', NULL, '$2y$10$sKCPXM97G0lnuqlx2hDF7eDjFBnwoCb9f7q.1/pE/CzdY0YXSIXY6', 18, 'Admin Kawasan', NULL, '2021-12-29 02:12:53', '2021-12-29 02:12:53'),
+(21, 'Admin Keamanan & K3LH', 'adminkeamanan@gmail.com', NULL, '$2y$10$2CNpGdyvzEYtAlkfCa0L3.eDDIPgeWG0/5CR58JxgFq9KA7VboyKi', 18, 'Admin Keamanan & K3LH', NULL, '2021-12-29 02:13:17', '2021-12-29 02:13:17');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
