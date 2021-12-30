@@ -102,12 +102,12 @@
                         <i class="fas fa-database"></i>
                         <span>Rekap MHS Kelompok</span></a>
                 </li>
-                <li class="nav-item {{ $ti === 'Rekap SMk' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Rekap SMK' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/Rekap-Smk">
                         <i class="fas fa-database"></i>
                         <span>Rekap SMK</span></a>
                 </li>
-                <li class="nav-item {{ $ti === 'Rekap SMk Kelompok' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Rekap SMK Kelompok' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/Rekap-smk-kelompok">
                         <i class="fas fa-database"></i>
                         <span>Rekap SMK Kelompok</span></a>
@@ -622,7 +622,7 @@
                 </li>
             @endif
             @if (auth()->user()->role_id == 17)
-                <li class="nav-item {{ $ti === 'Test Interview SMK' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Interview SMK' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/interview-smk">
                         <i class="fas fa-fw fa-medal"></i>
                         <span>Interview</span></a>

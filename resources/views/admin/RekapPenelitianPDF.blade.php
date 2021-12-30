@@ -22,6 +22,7 @@
                     <th>Nama</th>
                     <th>Asal Instansi</th>
                     <th>Strata</th>
+                    <th>Jurusan</th>
                     <th>No Hp</th>
                     <th>Divisi</th>
                     <th>Departemen</th>
@@ -43,6 +44,7 @@
                             <td>{{ $rekap->nama }}</td>
                             <td>{{ $rekap->asal_instansi }}</td>
                             <td>{{ $rekap->strata }}</td>
+                            <td>{{ $rekap->jurusan }}</td>
                             <td>{{ $rekap->no_hp }}</td>
                             <td>{{ $rekap->divisi }}</td>
                             <td>{{ $rekap->departemen }}</td>

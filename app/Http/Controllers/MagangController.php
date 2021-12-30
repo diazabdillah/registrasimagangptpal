@@ -598,21 +598,12 @@ class MagangController extends Controller
 
     public function proses_absen_pulang_mhs($individ)
     {
-        if (date('H:i', strtotime(now())) >= '16:30') {
-            Absenmhs::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Tepat Waktu",
-            ]);
-        } elseif (date('H:i', strtotime(now())) < '16:30') {
-            Absenmhs::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Terlalu Cepat",
-            ]);
-        }
+        Absenmhs::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }
@@ -1643,21 +1634,12 @@ class MagangController extends Controller
 
     public function proses_absen_pulang_smk($individ)
     {
-        if (date('H:i', strtotime(now())) >= '16:30') {
-            AbsenSmk::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Tepat Waktu",
-            ]);
-        } elseif (date('H:i', strtotime(now())) < '16:30') {
-            AbsenSmk::create([
-                'id_individu' => $individ,
-                'waktu_absen' => Carbon::now(),
-                'jenis_absen' => "Pulang",
-                'keterangan' => "Terlalu Cepat",
-            ]);
-        }
+        AbsenSmk::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }
@@ -2695,7 +2677,7 @@ class MagangController extends Controller
                 ->select('users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.id', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'interview_smk.fileinterview')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
-            $ti = 'Interview';
+            $ti = 'Interview SMK';
             return view('magang.interview-smk', [
                 'ti' => $ti,
                 'users' => $users

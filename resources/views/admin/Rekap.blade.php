@@ -35,6 +35,7 @@
                                             <th>Nim</th>
                                             <th>Universitas</th>
                                             <th>Strata</th>
+                                            <th>Jurusan</th>
                                             <th>No_Hp</th>
                                             <th>Divisi</th>
                                             <th>Departemen</th>
@@ -54,6 +55,7 @@
                                                     <td>{{ $rekap->nim }}</td>
                                                     <td>{{ $rekap->univ }}</td>
                                                     <td>{{ $rekap->strata }}</td>
+                                                    <td>{{ $rekap->jurusan }}</td>
                                                     <td>{{ $rekap->no_hp }}</td>
                                                     <td>{{ $rekap->divisi }}</td>
                                                     <td>{{ $rekap->departemen }}</td>

@@ -24,10 +24,10 @@
                     <th style="font-size: 14px">Nim</th>
                     <th style="font-size: 14px">Universitas</th>
                     <th style="font-size: 14px">Strata</th>
+                    <th style="font-size: 14px">Jurusan</th>
                     <th style="font-size: 14px">No_Hp</th>
                     <th style="font-size: 14px">Divisi</th>
                     <th style="font-size: 14px">Departemen</th>
-                    {{-- <th style="font-size: 14px">Status</th> --}}
                     <th style="font-size: 14px">Tanggal Daftar</th>
                     <th style="font-size: 14px">Tanggal Masuk</th>
                     <th style="font-size: 14px">Tanggal Selesai</th>
@@ -42,14 +42,10 @@
                             <td style="font-size: 14px">{{ $rekap->nim }}</td>
                             <td style="font-size: 14px">{{ $rekap->univ }}</td>
                             <td style="font-size: 14px">{{ $rekap->strata }}</td>
+                            <td style="font-size: 14px">{{ $rekap->jurusan }}</td>
                             <td style="font-size: 14px">{{ $rekap->no_hp }}</td>
                             <td style="font-size: 14px">{{ $rekap->divisi }}</td>
                             <td style="font-size: 14px">{{ $rekap->departemen }}</td>
-                            {{-- <td style="font-size: 14px">
-                                @if ($rekap->role_id == 3)
-                                    <span class="badge badge-success p-1">{{ $rekap->status_user }}</span>
-                                @endif
-                            </td> --}}
                             <td style="font-size: 14px">{{ $rekap->created_at }}</td>
                             <td style="font-size: 14px">{{ $rekap->mulai }}</td>
                             <td style="font-size: 14px">{{ $rekap->selesai }}</td>

@@ -16,12 +16,9 @@ class RekapExport implements FromCollection,WithHeadings
      */
     public function collection()
     {
-        return DB::table('users')
-            ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-            ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('data_mhs_indivs.nama','data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'users.created_at', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai')
-            ->where('users.status_user', '=', 'Mahasiswa')
-            ->where('users.role_id', '!=', 1)
+        return DB::table('rekapmhs')
+            ->select('rekapmhs.nama','rekapmhs.nim', 'rekapmhs.univ', 'rekapmhs.strata', 'rekapmhs.jurusan', 'rekapmhs.no_hp', 'rekapmhs.divisi', 'rekapmhs.departemen', 'rekapmhs.created_at', 'rekapmhs.mulai', 'rekapmhs.selesai')
+            ->where('status_user', "Mahasiswa")
             ->get();
     }
     public function headings(): array
@@ -31,6 +28,7 @@ class RekapExport implements FromCollection,WithHeadings
             'Nim',
             'Universitas',
             'Strata',
+            'Jurusan',
             'No_Hp',
             'Divisi',
             'Departemen',

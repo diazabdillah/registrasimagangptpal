@@ -16,22 +16,20 @@ class RekapPenelitianExport implements FromCollection,WithHeadings
      */
     public function collection()
     {
-        return DB::table('users')
-            ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
-            ->leftJoin('mulai_dan_selesai_penelitian', 'users.id', '=', 'mulai_dan_selesai_penelitian.user_id')
-            ->select('data_penelitian.nama','data_penelitian.asal_instansi','data_penelitian.strata', 'data_penelitian.no_hp', 'data_penelitian.alamat_rumah', 'data_penelitian.divisi', 'data_penelitian.departemen','data_penelitian.created_at', 'mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai')
-            ->where('users.status_user', '=', 'Penelitian')
-            ->where('users.role_id', '!=', 1)
+        return DB::table('rekappenelitian')
+            ->select('rekappenelitian.nama', 'rekappenelitian.asal_instansi', 'rekappenelitian.strata', 'rekappenelitian.jurusan', 'rekappenelitian.no_hp', 'rekappenelitian.alamat_rumah', 'rekappenelitian.divisi', 'rekappenelitian.departemen', 'rekappenelitian.created_at', 'rekappenelitian.mulai', 'rekappenelitian.selesai')
+            ->where('status_user', "Penelitian")
             ->get();
     }
     public function headings(): array
     {
         return [
             'Nama',
-            'Nis',
-            'Sekolah',
-            'Alamat Rumah',
+            'Asal Instansi',
+            'Strata',
+            'Jurusan',
             'No Hp',
+            'Alamat Rumah',
             'Divisi',
             'Departemen',
             'Tanggal Daftar',

@@ -34,11 +34,11 @@
                                             <th>Nama</th>
                                             <th>Nis</th>
                                             <th>Sekolah</th>
+                                            <th>Jurusan</th>
                                             <th>Alamat Rumah</th>
                                             <th>No HP</th>
                                             <th>Divisi</th>
                                             <th>Departemen</th>
-
                                             <th>Tanggal Daftar</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Selesai</th>
@@ -54,11 +54,11 @@
                                                     <td>{{ $rekap->nama }}</td>
                                                     <td>{{ $rekap->nis }}</td>
                                                     <td>{{ $rekap->sekolah }}</td>
+                                                    <td>{{ $rekap->jurusan }}</td>
                                                     <td>{{ $rekap->alamat_rumah }}</td>
                                                     <td>{{ $rekap->no_hp }}</td>
                                                     <td>{{ $rekap->divisi }}</td>
                                                     <td>{{ $rekap->departemen }}</td>
-
                                                     <td>{{ $rekap->created_at }}</td>
                                                     <td>{{ $rekap->mulai }}</td>
                                                     <td>{{ $rekap->selesai }}</td>

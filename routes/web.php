@@ -287,6 +287,7 @@ Route::post('/proses_penilaian_smk/{id}', [DivisiController::class, 'proses_peni
 Route::get('magang-interview', [DivisiController::class, 'interview']);
 Route::get('terima-interview-mhs/{id}', [DivisiController::class, 'terimainterviewmhs']);
 Route::put('update-terima-interview/{user_id}', [DivisiController::class, 'update_terima_interview']);
+Route::put('update-terima-interview-smk/{user_id}', [DivisiController::class, 'update_terima_interview_smk']);
 Route::get('terima-interview-smk/{id}', [DivisiController::class, 'terimainterviewsmk']);
 
 Route::get('/kelola-jurusan', [DivisiController::class, 'kelola_jurusan']);
