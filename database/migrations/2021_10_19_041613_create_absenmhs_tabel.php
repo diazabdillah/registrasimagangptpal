@@ -19,6 +19,7 @@ class CreateAbsenmhsTabel extends Migration
             $table->datetime('waktu_absen');
             $table->string('jenis_absen');
             $table->string('keterangan');
+            $table->string('file_absen')->nullable();
             $table->timestamps();
         });
     }

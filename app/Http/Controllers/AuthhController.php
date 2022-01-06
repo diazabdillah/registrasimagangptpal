@@ -39,9 +39,9 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 2) {
                 return redirect('/Penerimaan')->with('succes', 'You are now logged in');
             } elseif (auth()->user()->role_id == 3) {
-                return redirect('/profil-mhs')->with('succes', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
+                return redirect('/profil-mhs')->with('succes', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM Pak Iwan (088226199728).');
             } elseif (auth()->user()->role_id == 4) {
-                return redirect('/profil-smk')->with('succes', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
+                return redirect('/profil-smk')->with('succes', 'Selamat Anda Lolos Magang. Silahkan print form konfirmasi magang untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM Pak Iwan (088226199728).');
             } elseif (auth()->user()->role_id == 5) {
                 return redirect('/id-card')->with('succes', 'You are now logged in');
             } elseif (auth()->user()->role_id == 6) {
@@ -59,9 +59,9 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 13) {
                 return redirect('/Dokumen_mhskel')->with('succes', 'Selamat Anda lolos pada tahap interview kepribadian online. Mohon segera lengkapi data dokumen magang di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 14) {
-                return redirect('/sertifikat_mhs')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+                return redirect('/sertifikat_mhs')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.Mohon segera mencetak sertifikat anda.Akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
             } elseif (auth()->user()->role_id == 15) {
-                return redirect('/sertifikat_smk')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.di mohon untuk segera mencetak sertifikat anda.akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+                return redirect('/sertifikat_smk')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.Mohon segera mencetak sertifikat anda.Akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
             } elseif (auth()->user()->role_id == 16) {
                 return redirect('/interview-mhs')->with('succes', 'Selamat Anda lolos pada tahap Pendaftaran. Mohon segera melakukan test interview dan mengupload hasilnya dengan mengikuti pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk melengkapi dokumen interview tersebut.');
             } elseif (auth()->user()->role_id == 17) {
@@ -77,7 +77,7 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 22) {
                 return redirect('/dokumen-penelitian')->with('succes', 'Selamat Anda lolos pada tahap Pendaftaran Penelitian. Mohon segera lengkapi data dokumen penelitian di bawah ini dan baca pentunjuk yang sudah di berikan. Kami beri waktu 5 hari kerja untuk mengisi berkas dokumen ini.');
             } elseif (auth()->user()->role_id == 23) {
-                return redirect('/profil-penelitian')->with('succes', 'Selamat Anda Lolos Seleksi Penelitian. Silahkan print surat penerimaan penelitian untuk di serahkan ke HCM. Selama magang selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM.');
+                return redirect('/profil-penelitian')->with('succes', 'Selamat Anda Lolos Seleksi Penelitian. Silahkan print surat penerimaan penelitian untuk di serahkan ke HCM. Selama meneliti selalu gunakan fitur yang sudah di sediakan jika terdapat kendala silahkan hubungi admin HCM Pak Iwan (088226199728).');
             } elseif (auth()->user()->role_id == 24) {
                 return redirect('/surat_penelitian')->with('succes', 'you are now logged in');
             } elseif (auth()->user()->role_id == 25) {

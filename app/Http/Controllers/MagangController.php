@@ -18,11 +18,14 @@ use App\Models\PenilaianSmk;
 use App\Models\FileSmkIndivs;
 use App\Models\FotoIDMhs;
 use App\Models\FotoIDSmks;
+use App\Models\MulaiDanSelesaiMhs;
 use App\models\Interview;
 use App\Models\Absenmhs;
+use App\Models\RekapAbsenmhs;
 use App\Models\AbsenSmk;
 use App\Models\InterviewSmk;
 use App\Models\LaporanSmk;
+use App\Models\RekapAbsensmk;
 use App\Models\Rekapsmk;
 use Carbon\Carbon;
 use FotoIDSmks as GlobalFotoIDSmks;
@@ -46,7 +49,8 @@ class MagangController extends Controller
             $data = DB::table('data_mhs_indivs')
                 ->leftJoin('rekapmhs', 'rekapmhs.nama', '=', 'data_mhs_indivs.nama')
                 ->select('rekapmhs.id as id_rekap', 'data_mhs_indivs.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp')
-                ->where('data_mhs_indivs.user_id', '=', $id)
+                ->where('data_mhs_indivs.user_id', $id)
+                ->where('rekapmhs.user_id', $id)
                 ->get();
             $files = DB::table('file_mhs_indivs')->where('user_id', '=', $id)->get();
 
@@ -302,7 +306,7 @@ class MagangController extends Controller
             'improvisasi' => 'required',
             'tegas' => 'required',
             'waspada' => 'required',
-            'fileinterview' => 'required',
+            'fileinterview' => 'required|mimes:jpg,bmp,png|max:2048',
         ]);
 
         $file = $request->file('fileinterview');
@@ -416,7 +420,7 @@ class MagangController extends Controller
         $individu = DataMhsIndiv::find($id);
         $request->validate([
             'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
+            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->hasFile('fotoid')) {
@@ -460,7 +464,7 @@ class MagangController extends Controller
         $individu = DataMhsIndiv::find($id);
         $request->validate([
             'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
+            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->hasFile('foto')) {
@@ -525,13 +529,14 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 3) {
             $absenmhs = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.user_id', '=', 'users.id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'mulai_dan_selesai_mhs.user_id', '=', 'data_mhs_indivs.user_id')
                 ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
-                ->select('data_mhs_indivs.id', 'data_mhs_indivs.nama')
+                ->select('data_mhs_indivs.id', 'data_mhs_indivs.nama', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai')
                 ->get();
 
             $absenmhss = DB::table('absenmhs')
                 ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'absenmhs.id_individu')
-                ->select('data_mhs_indivs.nama', 'absenmhs.waktu_absen', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
+                ->select('data_mhs_indivs.nama', 'absenmhs.waktu_absen', 'absenmhs.id', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
                 ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
                 ->simplePaginate(4);
 
@@ -584,8 +589,20 @@ class MagangController extends Controller
                 'jenis_absen' => "Datang",
                 'keterangan' => "Telat",
             ]);
+            RekapAbsenmhs::create([
+                'id_individu' => $individ,
+                'waktu_absen' => Carbon::now(),
+                'jenis_absen' => "Datang",
+                'keterangan' => "Telat",
+            ]);
         } elseif (date('H:i', strtotime(now())) <= '07:30') {
             Absenmhs::create([
+                'id_individu' => $individ,
+                'waktu_absen' => Carbon::now(),
+                'jenis_absen' => "Datang",
+                'keterangan' => "Tepat Waktu",
+            ]);
+            RekapAbsenmhs::create([
                 'id_individu' => $individ,
                 'waktu_absen' => Carbon::now(),
                 'jenis_absen' => "Datang",
@@ -596,6 +613,7 @@ class MagangController extends Controller
         return redirect()->back();
     }
 
+
     public function proses_absen_pulang_mhs($individ)
     {
         Absenmhs::create([
@@ -604,10 +622,41 @@ class MagangController extends Controller
             'jenis_absen' => "Pulang",
             'keterangan' => "Tepat Waktu",
         ]);
+        RekapAbsenmhs::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }
-
+    public function proses_absen_izin_mhs($individ, Request $request)
+    {
+        $request->validate([
+            'keterangan' => 'required',
+            'file_absen' => 'required|mimes:jpg,bmp,png|max:2048',
+        ]);
+        $file = $request->file('file_absen');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/absen';
+        $file->move($tujuan_upload, $nama_file);
+        Absenmhs::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Izin",
+            'keterangan' => $request->keterangan,
+            'file_absen' => $nama_file
+        ]);
+        RekapAbsenmhs::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Izin",
+            'keterangan' => $request->keterangan,
+            'file_absen' => $nama_file
+        ]);
+        return redirect()->back();
+    }
     // public function proses_absen_mhs($absenid, $individ)
     // {
 
@@ -632,7 +681,29 @@ class MagangController extends Controller
 
     //     return redirect()->back();
     // }
+    public function cetak_absenmhs_pdf()
+    {
+        if (auth()->user()->role_id == 3) {
 
+            $absenmhss = DB::table('absenmhs')
+                ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'absenmhs.id_individu')
+                ->leftJoin('mulai_dan_selesai_mhs', 'mulai_dan_selesai_mhs.user_id', '=', 'data_mhs_indivs.user_id')
+                ->select('data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'absenmhs.waktu_absen', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
+                ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
+                ->get();
+            $i = 1;
+            $ti = 'DAFTAR HADIR';
+            $pdf = PDF::loadview('magang.absen-mhs-pdf', [
+                'ti' => $ti,
+                'absenmhss' =>  $absenmhss,
+                'i' => $i,
+            ]);
+
+            return $pdf->download('Absen Mahasiswa.pdf');
+        } else {
+            return redirect()->back();
+        }
+    }
     public function id_card_mhs()
     {
         if (auth()->user()->role_id == 3) {
@@ -646,8 +717,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.id_individu')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('foto_i_d_mhs.id_individu', 'foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
+                ->select('foto_i_d_mhs.id_individu', 'foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
                 ->where('users.id', '=', $id)
                 ->get();
 
@@ -671,8 +741,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.id_individu')
                 ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('foto_i_d_mhs.id_individu', 'foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nim')
+                ->select('foto_i_d_mhs.id_individu', 'foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nim')
                 ->where('users.id', '=', $id)
                 ->get();
 
@@ -704,8 +773,7 @@ class MagangController extends Controller
             ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
             ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.id_individu')
             ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-            ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
+            ->select('foto_i_d_mhs.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
             ->where('users.id', '=', $id)
             ->get();
         // $pdf = PDF::make('dompdf');
@@ -766,6 +834,8 @@ class MagangController extends Controller
         $request->validate([
             'judul' => 'required',
             'tanggal_kumpul' => 'required',
+            'path' => 'required|mimes:pdf',
+            'jurusan' => 'required'
         ]);
 
         $file = $request->file('path');
@@ -814,6 +884,10 @@ class MagangController extends Controller
 
     public function proses_edit_laporan_mhs($id, Request $request)
     {
+        $request->validate([
+            'path' => 'required|mimes:pdf',
+
+        ]);
         $lama = Laporan::find($id);
         File::delete('file/laporan-mhs/' . $lama->path);
         $file = $request->file('path');
@@ -1312,6 +1386,7 @@ class MagangController extends Controller
                 ->leftJoin('rekapsmk', 'rekapsmk.nama', '=', 'data_smk_indivs.nama')
                 ->select('rekapsmk.id as id_rekap', 'data_smk_indivs.id', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.no_hp', 'data_smk_indivs.nis')
                 ->where('data_smk_indivs.user_id', $id)
+                ->where('rekapsmk.user_id', $id)
                 ->get();
             $files = DB::table('file_smk_indivs')
                 ->where('user_id', '=', $id)
@@ -1480,7 +1555,7 @@ class MagangController extends Controller
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
             'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
+            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->hasFile('fotoid')) {
@@ -1524,7 +1599,7 @@ class MagangController extends Controller
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
             'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
+            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->hasFile('foto')) {
@@ -1590,13 +1665,14 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 4) {
             $absensmk = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'data_smk_indivs.user_id', '=', 'users.id')
+                ->leftJoin('mulai_dan_selesai_smk', 'mulai_dan_selesai_smk.user_id', '=', 'data_smk_indivs.user_id')
                 ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
-                ->select('data_smk_indivs.id', 'data_smk_indivs.nama')
+                ->select('data_smk_indivs.id', 'data_smk_indivs.nama', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai')
                 ->get();
 
             $absensmkk = DB::table('absensmk')
                 ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absensmk.id_individu')
-                ->select('data_smk_indivs.nama', 'absensmk.waktu_absen', 'absensmk.jenis_absen', 'absensmk.keterangan')
+                ->select('data_smk_indivs.nama', 'absensmk.waktu_absen', 'absensmk.id', 'absensmk.jenis_absen', 'absensmk.keterangan')
                 ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
                 ->simplePaginate(4);
 
@@ -1620,8 +1696,20 @@ class MagangController extends Controller
                 'jenis_absen' => "Datang",
                 'keterangan' => "Telat",
             ]);
+            RekapAbsensmk::create([
+                'id_individu' => $individ,
+                'waktu_absen' => Carbon::now(),
+                'jenis_absen' => "Datang",
+                'keterangan' => "Telat",
+            ]);
         } elseif (date('H:i', strtotime(now())) <= '07:30') {
             AbsenSmk::create([
+                'id_individu' => $individ,
+                'waktu_absen' => Carbon::now(),
+                'jenis_absen' => "Datang",
+                'keterangan' => "Tepat Waktu",
+            ]);
+            RekapAbsensmk::create([
                 'id_individu' => $individ,
                 'waktu_absen' => Carbon::now(),
                 'jenis_absen' => "Datang",
@@ -1640,34 +1728,88 @@ class MagangController extends Controller
             'jenis_absen' => "Pulang",
             'keterangan' => "Tepat Waktu",
         ]);
+        RekapAbsenSmk::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Pulang",
+            'keterangan' => "Tepat Waktu",
+        ]);
 
         return redirect()->back();
     }
-
-    public function proses_absen_smk($absenid, $individ)
+    public function proses_absen_izin_smk($individ, Request $request)
     {
+        $request->validate([
+            'keterangan' => 'required',
+            'file_absen' => 'required|mimes:jpg,bmp,png|max:2048',
+        ]);
+        $file = $request->file('file_absen');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/absen';
+        $file->move($tujuan_upload, $nama_file);
+        AbsenSmk::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Izin",
+            'keterangan' => $request->keterangan,
+            'file_absen' => $nama_file
+        ]);
+        RekapAbsensmk::create([
+            'id_individu' => $individ,
+            'waktu_absen' => Carbon::now(),
+            'jenis_absen' => "Izin",
+            'keterangan' => $request->keterangan,
+            'file_absen' => $nama_file
+        ]);
+        return redirect()->back();
+    }
+    public function cetak_absensmk_pdf()
+    {
+        if (auth()->user()->role_id == 4) {
 
-        // AbsenIndivsTabel::create([
-        //     'id_absen' => $idabsen,
-        //     'id_individu' => $idindividu,
-        //     'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
-        //     'status_absen' => 'Sudah Absensi'
-        // ]);
-
-        DB::table('absen_smks_tabel')
-            ->where('id_absen', '=', $absenid)
-            ->where('id_individu', '=', $individ)
-            ->update([
-                'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
-                'status_absen' => "Sudah Absen",
+            $absensmk = DB::table('absensmk')
+                ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absensmk.id_individu')
+                ->leftJoin('mulai_dan_selesai_smk', 'mulai_dan_selesai_smk.user_id', '=', 'data_smk_indivs.user_id')
+                ->select('data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'absensmk.waktu_absen', 'absensmk.jenis_absen', 'absensmk.keterangan')
+                ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
+                ->get();
+            $i = 1;
+            $ti = 'DAFTAR HADIR';
+            $pdf = PDF::loadview('magang.absen-smk-pdf', [
+                'ti' => $ti,
+                'absensmk' =>  $absensmk,
+                'i' => $i,
             ]);
 
-        // $absenindividu->waktu_absen = date('Y-m-d H:i:s', strtotime(now()));
-        // $absenindividu->status_absen = "Sudah Absen";
-        // $absenindividu->save();
-
-        return redirect()->back();
+            return $pdf->download('Absen SMK.pdf');
+        } else {
+            return redirect()->back();
+        }
     }
+    // public function proses_absen_smk($absenid, $individ)
+    // {
+
+    //     // AbsenIndivsTabel::create([
+    //     //     'id_absen' => $idabsen,
+    //     //     'id_individu' => $idindividu,
+    //     //     'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
+    //     //     'status_absen' => 'Sudah Absensi'
+    //     // ]);
+
+    //     DB::table('absen_smks_tabel')
+    //         ->where('id_absen', '=', $absenid)
+    //         ->where('id_individu', '=', $individ)
+    //         ->update([
+    //             'waktu_absen' => date('Y-m-d H:i:s', strtotime(now())),
+    //             'status_absen' => "Sudah Absen",
+    //         ]);
+
+    //     // $absenindividu->waktu_absen = date('Y-m-d H:i:s', strtotime(now()));
+    //     // $absenindividu->status_absen = "Sudah Absen";
+    //     // $absenindividu->save();
+
+    //     return redirect()->back();
+    // }
     public function surat_penerimaan_smk()
     {
         if (auth()->user()->role_id == 4) {
@@ -1739,8 +1881,7 @@ class MagangController extends Controller
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.id_individu')
                 ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('foto_i_d_smks.id_individu', 'foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'user_role.role')
+                ->select('foto_i_d_smks.id_individu', 'foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
                 ->where('users.id', '=', $id)
                 ->get();
 
@@ -1766,8 +1907,7 @@ class MagangController extends Controller
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.id_individu')
                 ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('foto_i_d_smks.id_individu', 'foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'user_role.role', 'data_smk_indivs.departemen', 'data_smk_indivs.nis')
+                ->select('foto_i_d_smks.id_individu', 'foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.departemen', 'data_smk_indivs.nis')
                 ->where('users.id', '=', $id)
                 ->get();
 
@@ -1794,8 +1934,7 @@ class MagangController extends Controller
             ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
             ->leftJoin('foto_i_d_smks', 'data_smk_indivs.id', '=', 'foto_i_d_smks.id_individu')
             ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-            ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-            ->select('foto_i_d_smks.id_individu', 'foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'user_role.role')
+            ->select('foto_i_d_smks.id_individu', 'foto_i_d_smks.fotoID', 'users.name', 'users.status_user', 'users.created_at', 'users.id', 'users.role_id', 'data_smk_indivs.divisi', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
             ->where('users.id', '=', $id)
             ->get();
         // $pdf = PDF::make('dompdf');
@@ -1857,6 +1996,8 @@ class MagangController extends Controller
         $request->validate([
             'judul' => 'required',
             'tanggal_kumpul' => 'required',
+            'path' => 'required|mimes:pdf',
+            'jurusan' => 'required'
         ]);
 
         $file1 = $request->file('path');
@@ -1907,6 +2048,10 @@ class MagangController extends Controller
 
     public function proses_edit_laporan_smk($id, Request $request)
     {
+        $request->validate([
+            'path' => 'required|mimes:pdf',
+
+        ]);
         $lama = LaporanSmk::find($id);
         File::delete('file/laporan-smk/' . $lama->path);
 
@@ -1958,6 +2103,7 @@ class MagangController extends Controller
                 ->leftJoin('rekapsmk', 'rekapsmk.nama', '=', 'data_smk_indivs.nama')
                 ->select('rekapsmk.id as id_rekap', 'data_smk_indivs.id', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.no_hp', 'data_smk_indivs.nis')
                 ->where('data_smk_indivs.user_id', $id)
+                ->where('rekapsmk.user_id', $id)
                 ->get();
             $files = DB::table('file_smk_indivs')
                 ->where('user_id', '=', $id)
@@ -2481,23 +2627,22 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->leftJoin('user_role', 'users.role_id', '=', 'user_role.id')
-                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'user_role.role')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
 
-            $users = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
-                ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('data_mhs_indivs.user_id', 'users.role_id',  'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
-                ->where('data_mhs_indivs.user_id', '=', $id)
-                ->get();
+            // $users = DB::table('users')
+            //     ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+            //     ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
+            //     ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
+            //     ->select('data_mhs_indivs.user_id', 'users.role_id',  'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
+            //     ->where('data_mhs_indivs.user_id', '=', $id)
+            //     ->get();
             $ti = 'Sertifikat Mahasiswa';
             $pdf = PDF::loadview('magang.sertifikat_mhs_pdf', [
                 'ti' => $ti,
                 'datas' => $datas,
-                'users' => $users
+                // 'users' => $users
             ])->setPaper('a4', 'landscape');
 
             return $pdf->download('sertifikat Mahasiswa.pdf');
@@ -2514,22 +2659,21 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
-
-            $users = DB::table('users')
-                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
-                ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('data_mhs_indivs.user_id', 'users.role_id',  'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
-                ->where('data_mhs_indivs.user_id', '=', $id)
-                ->get();
+            // $users = DB::table('users')
+            //     ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+            //     ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
+            //     ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
+            //     ->select('data_mhs_indivs.user_id', 'users.role_id',  'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'data_mhs_indivs.departemen', 'users.id', 'users.role_id', 'data_mhs_indivs.created_at', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim')
+            //     ->where('data_mhs_indivs.user_id', '=', $id)
+            //     ->get();
             $ti = 'Sertifikat Mahasiswa';
             return view('magang.sertifikat_mhs', [
                 'ti' => $ti,
                 'datas' => $datas,
-                'users' => $users
+                // 'users' => $users
             ]);
         } else {
             return redirect()->back();
@@ -2717,7 +2861,7 @@ class MagangController extends Controller
             'improvisasi' => 'required',
             'tegas' => 'required',
             'waspada' => 'required',
-            'fileinterview' => 'required',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $file = $request->file('fileinterview');
@@ -2749,7 +2893,7 @@ class MagangController extends Controller
     {
         $request->validate([
             'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:1048'
+            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->hasFile('fotoid')) {
@@ -2815,7 +2959,7 @@ class MagangController extends Controller
     {
         $request->validate([
             'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:1048'
+            'foto.*' => 'mimes:jpeg,jpg,png,pdf|max:2048'
         ]);
 
         if ($request->hasFile('foto')) {
@@ -2863,22 +3007,22 @@ class MagangController extends Controller
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
                 ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
-                ->select('penilaians_smk.nilai_huruf', 'penilaians_smk.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis',  'data_smk_indivs.departemen', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
+                ->select('penilaians_smk.nilai_huruf', 'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'penilaians_smk.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis',  'data_smk_indivs.departemen', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
 
-            $users = DB::table('users')
-                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
-                ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
-                ->select('data_smk_indivs.user_id', 'users.role_id',  'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'data_smk_indivs.departemen', 'users.id', 'users.role_id', 'data_smk_indivs.created_at', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis')
-                ->where('data_smk_indivs.user_id', '=', $id)
-                ->get();
+            // $users = DB::table('users')
+            //     ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+            //     ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
+            //     ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
+            //     ->select('data_smk_indivs.user_id', 'users.role_id',  'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'data_smk_indivs.departemen', 'users.id', 'users.role_id', 'data_smk_indivs.created_at', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis')
+            //     ->where('data_smk_indivs.user_id', '=', $id)
+            //     ->get();
             $ti = 'Sertifikat SMK';
             return view('magang.sertifikat_smk', [
                 'ti' => $ti,
                 'datas' => $datas,
-                'users' => $users
+                // 'users' => $users
             ]);
         } else {
             return redirect()->back();
@@ -2892,22 +3036,23 @@ class MagangController extends Controller
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
                 ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
-                ->select('penilaians_smk.nilai_huruf', 'penilaians_smk.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis',  'data_smk_indivs.departemen', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
+                ->select('penilaians_smk.nilai_huruf', 'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'penilaians_smk.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis',  'data_smk_indivs.departemen', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
 
-            $users = DB::table('users')
-                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
-                ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
-                ->select('data_smk_indivs.user_id', 'users.role_id',  'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'data_smk_indivs.departemen', 'users.id', 'users.role_id', 'data_smk_indivs.created_at', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis')
-                ->where('data_smk_indivs.user_id', '=', $id)
-                ->get();
+
+            // $users = DB::table('users')
+            //     ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+            //     ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
+            //     ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
+            //     ->select('data_smk_indivs.user_id', 'users.role_id',  'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'data_smk_indivs.departemen', 'users.id', 'users.role_id', 'data_smk_indivs.created_at', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis')
+            //     ->where('data_smk_indivs.user_id', '=', $id)
+            //     ->get();
             $ti = 'Sertifikat SMK';
             $pdf = PDF::loadview('magang.sertifikat_smk_pdf', [
                 'ti' => $ti,
                 'datas' => $datas,
-                'users' => $users
+                // 'users' => $users
             ])->setPaper('a4', 'landscape');
 
             return $pdf->download('sertifikat SMK.pdf');

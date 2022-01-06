@@ -244,6 +244,15 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
+    public function delete_rekap_mhs($id)
+    {
+        DB::table('rekapmhs')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Data berhasil dihapus');
+        return redirect()->back();
+    }
     public function Rekapmhskel()
     {
         if (auth()->user()->role_id == 1) {
@@ -258,6 +267,15 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
+    public function delete_rekap_mhskel($id)
+    {
+        DB::table('rekapmhs')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Data berhasil dihapus');
+        return redirect()->back();
+    }
     public function Rekapsmk()
     {
         if (auth()->user()->role_id == 1) {
@@ -270,6 +288,15 @@ class AdminController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+    public function delete_rekap_smk($id)
+    {
+        DB::table('rekapsmk')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Data berhasil dihapus');
+        return redirect()->back();
     }
     public function Rekapsmkkel()
     {
@@ -284,6 +311,15 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
+    public function delete_rekap_smkkel($id)
+    {
+        DB::table('rekapsmk')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Data berhasil dihapus');
+        return redirect()->back();
+    }
     public function Rekappenelitian()
     {
         if (auth()->user()->role_id == 1) {
@@ -296,6 +332,15 @@ class AdminController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+    public function delete_rekap_penelitian($id)
+    {
+        DB::table('rekappenelitian')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'File berhasil dihapus');
+        return redirect()->back();
     }
     public function cetak_rekapmhspdf()
     {

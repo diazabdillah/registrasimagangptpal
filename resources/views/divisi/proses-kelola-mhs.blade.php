@@ -130,15 +130,46 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12">
-                        @if ($users[0]->departemen == null)
+
+                    @if ($users[0]->divisi == null)
+                        <div class="col-sm-12">
                             <div class="card shadow mb-4">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h6 class="m-0 font-weight-bold text-primary">Pilih Departemen Magang</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Pilih Departemen Magang
+                                        </h6>
                                     </div>
                                     <div class="card-body">
-                                        <form method="POST" action="/update-departemen-mhs/{{ $userid->id }}">
+                                        <form>
+                                            <div class="form-group">
+                                                <small class="ml-2">Pilih Departement</small>
+                                                <div class="input-group mb-3">
+                                                    <select disabled class="custom-select"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <small class="ml-2">Pilih Status</small>
+                                                <div class="input-group mb-3">
+                                                    <select disabled class="custom-select"></select>
+                                                </div>
+                                            </div>
+                                            <button disabled class="btn btn-primary mt-4" type="submit">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-sm-12">
+                            <div class="card shadow mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="m-0 font-weight-bold text-primary">Pilih Departemen Magang
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST"
+                                            action="/update-magang-departemen-penelitian/{{ $user->id }}">
                                             @method('put')
                                             @csrf
                                             <div class="form-group">
@@ -164,12 +195,11 @@
                                             </div>
                                             <button class="btn btn-primary mt-4" type="submit">Simpan</button>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
 
                 </div>

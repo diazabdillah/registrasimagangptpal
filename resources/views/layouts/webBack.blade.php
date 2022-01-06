@@ -37,7 +37,6 @@
             height: 400px;
             overflow: scroll;
         }
-
     </style>
 
 </head>
@@ -61,657 +60,657 @@
 
             @endif
             @if (auth()->user()->role_id == 1)
-                <!-- Divider -->
+            <!-- Divider -->
 
-                <li class="nav-item {{ $ti === 'Dashboard' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/admin_dash">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Dashboard</span></a>
-                </li>
-                <hr class="sidebar-divider mt-3">
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Admin
-                </div>
+            <li class="nav-item {{ $ti === 'Dashboard' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/admin_dash">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <hr class="sidebar-divider mt-3">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Admin
+            </div>
 
 
-                <!-- Nav Item -->
-                {{-- <li class="nav-item {{ $ti === 'Dashboard' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/admin_dash">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
-                </li> --}}
-                <li class="nav-item {{ $ti === 'Divisi' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/divisi">
-                        <i class="fas fa-building"></i>
-                        <span>Divisi</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Departemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/departemen">
-                        <i class="fas fa-network-wired"></i>
-                        <span>Departemen</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Rekap Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Rekap">
-                        <i class="fas fa-database"></i>
-                        <span>Rekap Mahasiswa</span></a>
-                </li>
+            <!-- Nav Item -->
+            {{-- <li class="nav-item {{ $ti === 'Dashboard' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/admin_dash">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li> --}}
+            <li class="nav-item {{ $ti === 'Divisi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/divisi">
+                    <i class="fas fa-building"></i>
+                    <span>Divisi</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Departemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/departemen">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Departemen</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap Mahasiswa</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Rekap Mahasiswa Kelompok' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Rekap-mhs-kelompok">
-                        <i class="fas fa-database"></i>
-                        <span>Rekap MHS Kelompok</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Rekap SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Rekap-Smk">
-                        <i class="fas fa-database"></i>
-                        <span>Rekap SMK</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Rekap SMK Kelompok' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Rekap-smk-kelompok">
-                        <i class="fas fa-database"></i>
-                        <span>Rekap SMK Kelompok</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Rekap Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Rekap-penelitian">
-                        <i class="fas fa-database"></i>
-                        <span>Rekap Penelitian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <li class="nav-item {{ $ti === 'Rekap Mahasiswa Kelompok' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-mhs-kelompok">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap MHS Kelompok</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-Smk">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap SMK</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap SMK Kelompok' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-smk-kelompok">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap SMK Kelompok</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-penelitian">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap Penelitian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Menu
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Menu
+            </div>
 
-                <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'Berita Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-berita">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Berita</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Galeri Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-galeri">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Galeri</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Info Beasiswa Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-info-beasiswa">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Info Beasiswa</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Training Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-training">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Training</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Peminjaman Ruangan Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-peminjaman-ruangan">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Peminjaman Ruangan</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Informasi Unit Kerja Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-unit-kerja">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Unit Kerja</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Informasi LSP Managemen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/show-informasi-lsp">
-                        <i class="fas fa-fw fa-folder-open"></i>
-                        <span>Informasi LSP</span></a>
-                </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ $ti === 'Berita Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-berita">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Berita</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Galeri Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-galeri">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Galeri</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Info Beasiswa Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-info-beasiswa">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Info Beasiswa</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Training Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-training">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Training</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Peminjaman Ruangan Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-peminjaman-ruangan">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Peminjaman Ruangan</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Informasi Unit Kerja Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-unit-kerja">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Unit Kerja</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Informasi LSP Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-informasi-lsp">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Informasi LSP</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang
+            </div>
 
-                <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'Penerimaan' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/Penerimaan">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Penerimaan Magang</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Magang Interview' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/magang-interview">
-                        <i class="fas fa-user-friends"></i>
-                        <span>Magang Interview</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Diterima' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/diterima">
-                        <i class="fas fa-paste"></i>
-                        <span>Dokumen Magang Aktif</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Magang Aktif' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/magang-aktif">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Magang Aktif</span></a>
-                </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ $ti === 'Penerimaan' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Penerimaan">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Penerimaan Magang</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Magang Interview' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/magang-interview">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Magang Interview</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Diterima' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/diterima">
+                    <i class="fas fa-paste"></i>
+                    <span>Dokumen Magang Aktif</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Magang Aktif' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/magang-aktif">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Magang Aktif</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen">
-                        <i class="fas fa-fingerprint"></i>
-                        <span>Absen</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Laporan Akhir' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan">
-                        <i class="fas fa-book"></i>
-                        <span>Laporan Akhir</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Laporan Akhir Revisi' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan-revisi">
-                        <i class="fas fa-journal-whills"></i>
-                        <span>Laporan Akhir Revisi</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Penilaian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penilaian">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Form Penilaian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Magang Selesai' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/magang-selesai-mhs">
-                        <i class="fas fa-fw fa-user-check"></i>
-                        <span>Magang Selesai</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Magang Kuota Penuh' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/magang-kuota-penuh">
-                        <i class="fas fa-user-times"></i>
-                        <span>Magang Kuota Penuh</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Laporan Akhir' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan">
+                    <i class="fas fa-book"></i>
+                    <span>Laporan Akhir</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Laporan Akhir Revisi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-revisi">
+                    <i class="fas fa-journal-whills"></i>
+                    <span>Laporan Akhir Revisi</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Penilaian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penilaian">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Form Penilaian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Magang Selesai' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/magang-selesai-mhs">
+                    <i class="fas fa-fw fa-user-check"></i>
+                    <span>Magang Selesai</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Magang Kuota Penuh' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/magang-kuota-penuh">
+                    <i class="fas fa-user-times"></i>
+                    <span>Magang Kuota Penuh</span></a>
+            </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Penelitian
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Penelitian
+            </div>
 
-                <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'Penerimaan Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penerimaan-penelitian">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Penerimaan Penelitian</span></a>
-                </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ $ti === 'Penerimaan Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penerimaan-penelitian">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Penerimaan Penelitian</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Diterima penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/diterima-penelitian">
-                        <i class="fas fa-paste"></i>
-                        <span>Dokumen Penelitian Aktif</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Penelitian Aktif' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penelitian-aktif">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Penelitian Aktif</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Diterima penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/diterima-penelitian">
+                    <i class="fas fa-paste"></i>
+                    <span>Dokumen Penelitian Aktif</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Penelitian Aktif' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penelitian-aktif">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Penelitian Aktif</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen-pnltn">
-                        <i class="fas fa-fingerprint"></i>
-                        <span>Absen Penelitian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Laporan Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan-pnltn">
-                        <i class="fas fa-journal-whills"></i>
-                        <span>Laporan Akhir Penelitian</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen-pnltn">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen Penelitian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Laporan Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-pnltn">
+                    <i class="fas fa-journal-whills"></i>
+                    <span>Laporan Akhir Penelitian</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Penelitian Selesai' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/pnltn-selesai">
-                        <i class="fas fa-fw fa-user-check"></i>
-                        <span>Penelitian Selesai</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Penelitian Judul Ditolak' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/pnltn-kuota-penuh">
-                        <i class="fas fa-user-times"></i>
-                        <span>Penelitian Judul Ditolak</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Penelitian Selesai' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/pnltn-selesai">
+                    <i class="fas fa-fw fa-user-check"></i>
+                    <span>Penelitian Selesai</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Penelitian Judul Ditolak' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/pnltn-kuota-penuh">
+                    <i class="fas fa-user-times"></i>
+                    <span>Penelitian Judul Ditolak</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 8)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang Mahasiswa
-                </div>
-                <li class="nav-item {{ $ti === 'Data Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/data-mhs">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Data Mahasiswa</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang Mahasiswa
+            </div>
+            <li class="nav-item {{ $ti === 'Data Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/data-mhs">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Data Mahasiswa</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
 
             @endif
 
             @if (auth()->user()->role_id == 6)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang Mahasiswa Kelompok
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang Mahasiswa Kelompok
+            </div>
 
-                <!-- Nav Item -->
+            <!-- Nav Item -->
 
-                <li class="nav-item {{ $ti === 'Data Mahasiswa Kelompok' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/data-mhs-kelompok">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Data Kelompok</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Data Mahasiswa Kelompok' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/data-mhs-kelompok">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Data Kelompok</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 11)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang Mahasiswa
-                </div>
-                <li class="nav-item {{ $ti === 'Dokumen Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/dokumen-mhs">
-                        <i class="fas fa-paste"></i>
-                        <span>Dokumen Mahasiswa</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang Mahasiswa
+            </div>
+            <li class="nav-item {{ $ti === 'Dokumen Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/dokumen-mhs">
+                    <i class="fas fa-paste"></i>
+                    <span>Dokumen Mahasiswa</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 3)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang Mahasiswa
-                </div>
-                <li class="nav-item {{ $ti === 'Surat Penerimaan Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/surat-penerimaan-mhs">
-                        <i class="fas fa-file-contract"></i>
-                        <span>Surat Penerimaan</span></a>
-                </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang Mahasiswa
+            </div>
+            <li class="nav-item {{ $ti === 'Surat Penerimaan Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-penerimaan-mhs">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Surat Penerimaan</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'ID Card Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/id-card-mhs">
-                        <i class="fas fa-id-card"></i>
-                        <span>ID Card</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'ID Card Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/id-card-mhs">
+                    <i class="fas fa-id-card"></i>
+                    <span>ID Card</span></a>
+            </li>
 
 
-                <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen-mhs">
-                        <i class="fas fa-fingerprint"></i>
-                        <span>Absen</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen-mhs">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Laporan Akhir' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan-mhs">
-                        <i class="fas fa-book"></i>
-                        <span>Laporan Akhir</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Laporan Akhir' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-mhs">
+                    <i class="fas fa-book"></i>
+                    <span>Laporan Akhir</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Penilaian Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penilaian-mhs">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Form Penilaian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Penilaian Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penilaian-mhs">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Form Penilaian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 9)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang SMK
-                </div>
-                <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/data-smk">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Data</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang SMK
+            </div>
+            <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/data-smk">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Data</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 7)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang SMK Kelompok
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang SMK Kelompok
+            </div>
 
-                <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/data-smk-kelompok">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Data</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Data SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/data-smk-kelompok">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Data</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
 
             @endif
 
             @if (auth()->user()->role_id == 12)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang SMK
-                </div>
-                <li class="nav-item {{ $ti === 'Dokumen SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/dokumen-smk">
-                        <i class="fas fa-paste"></i>
-                        <span>Dokumen</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang SMK
+            </div>
+            <li class="nav-item {{ $ti === 'Dokumen SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/dokumen-smk">
+                    <i class="fas fa-paste"></i>
+                    <span>Dokumen</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 4)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Magang SMK
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Magang SMK
+            </div>
 
-                <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'Surat Penerimaan SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/surat-penerimaan-smk">
-                        <i class="fas fa-file-contract"></i>
-                        <span>Surat Penerimaan</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen-smk">
-                        <i class="fas fa-fingerprint"></i>
-                        <span>Absen</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'ID Card SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/id-card-smk">
-                        <i class="fas fa-id-card"></i>
-                        <span>ID Card</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Laporan Akhir SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan-smk">
-                        <i class="fas fa-book"></i>
-                        <span>Laporan Akhir</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Penilaian SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penilaian-smk">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Form Penilaian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ $ti === 'Surat Penerimaan SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-penerimaan-smk">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Surat Penerimaan</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'ID Card SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/id-card-smk">
+                    <i class="fas fa-id-card"></i>
+                    <span>ID Card</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen-smk">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Laporan Akhir SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-smk">
+                    <i class="fas fa-book"></i>
+                    <span>Laporan Akhir</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Penilaian SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penilaian-smk">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Form Penilaian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 21)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Penelitian
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Penelitian
+            </div>
 
-                <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'data Penilitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/data-penelitian">
-                        <i class="fas fa-fw fa-clipboard"></i>
-                        <span>Data Penelitian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ $ti === 'data Penilitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/data-penelitian">
+                    <i class="fas fa-fw fa-clipboard"></i>
+                    <span>Data Penelitian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 22)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Dokumen Penelitian
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Dokumen Penelitian
+            </div>
 
-                <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'Dokumen Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/dokumen-penelitian">
-                        <i class="fas fa-fw fa-clipboard"></i>
-                        <span>Dokumen Penelitian</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ $ti === 'Dokumen Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/dokumen-penelitian">
+                    <i class="fas fa-fw fa-clipboard"></i>
+                    <span>Dokumen Penelitian</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 23)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Penelitian Aktif
-                </div>
-                <li class="nav-item {{ $ti === 'Surat Penerimaan Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/surat-penerimaan-penelitian">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Surat Penerimaan</span></a>
-                </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Penelitian Aktif
+            </div>
+            <li class="nav-item {{ $ti === 'Surat Penerimaan Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-penerimaan-penelitian">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Surat Penerimaan</span></a>
+            </li>
 
 
-                <li class="nav-item {{ $ti === 'ID Card Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/id-card-penelitian">
-                        <i class="fas fa-fw fa-id-badge"></i>
-                        <span>ID Card</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen-penelitian">
-                        <i class="fas fa-fw fa-user-clock"></i>
-                        <span>Absen</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'ID Card Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/id-card-penelitian">
+                    <i class="fas fa-id-card"></i>
+                    <span>ID Card</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen-penelitian">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Laporan Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan-penelitian">
-                        <i class="fas fa-fw fa-id-badge"></i>
-                        <span>Laporan Akhir</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Laporan Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-penelitian">
+                    <i class="fas fa-book"></i>
+                    <span>Laporan Akhir</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
 
             @endif
             @if (auth()->user()->role_id == 24)
-                <li class="nav-item {{ $ti === 'Surat Keterangan Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/surat_penelitian">
-                        <i class="fas fa-fw fa-medal"></i>
-                        <span>Surat Pengantar</span> </a>
-                </li>
+            <li class="nav-item {{ $ti === 'Surat Keterangan Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat_penelitian">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Surat Pengantar</span> </a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 25)
-                <!-- penelitian selesai -->
+            <!-- penelitian selesai -->
             @endif
 
             @if (auth()->user()->role_id == 26)
-                <!-- penelitian penuh -->
+            <!-- penelitian penuh -->
             @endif
             @if (auth()->user()->role_id == 14)
-                <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/sertifikat_mhs">
-                        <i class="fas fa-fw fa-medal"></i>
-                        <span>Sertifikat Mahasiswa</span> </a>
-                </li>
+            <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/sertifikat_mhs">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Sertifikat Mahasiswa</span> </a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 15)
-                <li class="nav-item {{ $ti === 'Sertifikat SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/sertifikat_smk">
-                        <i class="fas fa-fw fa-medal"></i>
-                        <span>Sertifikat SMK</span> </a>
-                </li>
+            <li class="nav-item {{ $ti === 'Sertifikat SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/sertifikat_smk">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Sertifikat SMK</span> </a>
+            </li>
             @endif
 
             @if (auth()->user()->role_id == 19)
-                <!-- mahasiswa selesai -->
+            <!-- mahasiswa selesai -->
             @endif
 
             @if (auth()->user()->role_id == 20)
-                <!-- smk selesai -->
+            <!-- smk selesai -->
             @endif
             @if (auth()->user()->role_id == 16)
-                <li class="nav-item {{ $ti === 'Interview' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/interview-mhs">
-                        <i class="fas fa-fw fa-medal"></i>
-                        <span>Interview</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Interview' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/interview-mhs">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Interview</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 17)
-                <li class="nav-item {{ $ti === 'Interview SMK' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/interview-smk">
-                        <i class="fas fa-fw fa-medal"></i>
-                        <span>Interview</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Interview SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/interview-smk">
+                    <i class="fas fa-fw fa-medal"></i>
+                    <span>Interview</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 18)
-                <hr>
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Admin Divisi
-                </div>
+            <hr>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Admin Divisi
+            </div>
 
-                <li class="nav-item {{ $ti === 'Kelola Jurusan Magang' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/kelola-jurusan">
-                        <i class="fas fa-fw fa-medal"></i>
-                        <span>Kelola Departemen</span> </a>
-                </li>
-                <li class="nav-item {{ $ti === 'Kuota' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/kuota">
-                        <i class="fas fa-fw fa-bullhorn"></i>
-                        <span>Kuota</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/forum-mhs">
-                        <i class="fas fa-comments"></i>
-                        <span>Chat Admin</span></a>
-                </li>
-                <hr>
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Praktikan
-                </div>
+            <li class="nav-item {{ $ti === 'Kelola Jurusan Magang' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/kelola-jurusan">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Kelola Departemen</span> </a>
+            </li>
+            <li class="nav-item {{ $ti === 'Kuota' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/kuota">
+                    <i class="fas fa-fw fa-bullhorn"></i>
+                    <span>Kuota</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/forum-mhs">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat Admin</span></a>
+            </li>
+            <hr>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Praktikan
+            </div>
 
-                <li class="nav-item {{ $ti === 'absen' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen">
-                        <i class="fas fa-fw fa-thumbtack"></i>
-                        <span>Absen</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'laporan' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan">
-                        <i class="fas fa-fw fa-thumbtack"></i>
-                        <span>Laporan Akhir</span></a>
-                </li>
-                <li class="nav-item {{ $ti === 'penilaian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/penilaian">
-                        <i class="fas fa-fw fa-thumbtack"></i>
-                        <span>Form Penilaian</span></a>
-                </li>
-                <hr>
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Penelitian
-                </div>
+            <li class="nav-item {{ $ti === 'absen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen-divisi">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'laporan' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-divisi">
+                    <i class="fas fa-book"></i>
+                    <span>Laporan Akhir</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'penilaian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penilaian-divisi">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Form Penilaian</span></a>
+            </li>
+            <hr>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Penelitian
+            </div>
 
-                <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/absen-penelitian">
-                        <i class="fas fa-fw fa-user-clock"></i>
-                        <span>Absen</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/absen-penelitian-divisi">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Absen</span></a>
+            </li>
 
-                <li class="nav-item {{ $ti === 'Laporan Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/laporan-penelitian">
-                        <i class="fas fa-fw fa-id-badge"></i>
-                        <span>Laporan Akhir</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'Laporan Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/laporan-penelitian-divisi">
+                    <i class="fas fa-book"></i>
+                    <span>Laporan Akhir</span></a>
+            </li>
 
 
             @endif
             @if (auth()->user()->role_id == 5)
-                <!-- Divider -->
-                <hr class="sidebar-divider mt-3">
+            <!-- Divider -->
+            <hr class="sidebar-divider mt-3">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Penelitian
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Penelitian
+            </div>
 
-                <!-- Nav Item -->
+            <!-- Nav Item -->
 
-                <li class="nav-item {{ $ti === 'ID Card Penelitian' ? 'active' : '' }}">
-                    <a class="nav-link pb-0" href="/id-card">
-                        <i class="fas fa-fw fa-id-badge"></i>
-                        <span>ID Card</span></a>
-                </li>
+            <li class="nav-item {{ $ti === 'ID Card Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/id-card">
+                    <i class="fas fa-fw fa-id-badge"></i>
+                    <span>ID Card</span></a>
+            </li>
             @endif
 
 
@@ -774,22 +773,22 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 @if (Auth::user()->role_id == 3)
-                                    <a class="dropdown-item" href="/profil-mhs">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
+                                <a class="dropdown-item" href="/profil-mhs">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
                                 @endif
                                 @if (Auth::user()->role_id == 4)
-                                    <a class="dropdown-item" href="/profil-smk">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
+                                <a class="dropdown-item" href="/profil-smk">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
                                 @endif
                                 @if (Auth::user()->role_id == 23)
-                                    <a class="dropdown-item" href="/profil-penelitian">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
+                                <a class="dropdown-item" href="/profil-penelitian">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
                                 @endif
 
                                 <div class="dropdown-divider"></div>
@@ -823,7 +822,9 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PT PAL Colaboration ANAK PENS <?= date('Y') ?></span>
+                        <span>Copyright &copy; PT PAL
+                            <?= date('Y') ?> Powered By ANAK IT PENS 19
+                        </span>
                     </div>
                 </div>
             </footer>

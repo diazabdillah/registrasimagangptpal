@@ -15,12 +15,10 @@ class CreateKuotaTabel extends Migration
     {
         Schema::create('kuota', function (Blueprint $table) {
             $table->id();
-            $table->string('bagian');
             $table->date('tanggal_buka');
             $table->date('tanggal_tutup');
             $table->integer('kuota');
             $table->string('divisi');
-            $table->string('departemen');
             $table->string('status_kuota');
             $table->timestamps();
         });

@@ -23,6 +23,6 @@ class Rekappenelitian extends Model
         'status_penerimaan',
         'status_user',
         'mulai',
-        'selesai'
+        'selesai',
     ];
 }

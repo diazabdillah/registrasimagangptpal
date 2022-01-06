@@ -27,7 +27,7 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="alert alert-danger" role="alert">
-                                                <p>Kirim Foto 3x4 dengan background merah / biru dan Format JPG</p>
+                                                <p>Kirim Foto 3x4 dengan background merah / biru dan Format JPG/JPEG/PNG</p>
                                             </div>
                                             <label>Foto 3x4 <small style="color: red">*Max
                                                     2MB</small></label>

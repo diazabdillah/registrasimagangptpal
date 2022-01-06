@@ -12,6 +12,7 @@ use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Divisi;
 
 // Web Landing =================================
 Route::get('/', [WebController::class, 'index']);
@@ -38,11 +39,21 @@ Route::get('/penyedia-solusi', [WebController::class, 'toPenyediaSolusi']);
 Route::get('/news', [WebController::class, 'showNews']);
 Route::get('/gallery', [WebController::class, 'showGalleries']);
 
-Route::get('/profile', function () { return view('frontend.profile'); });
-Route::get('/human-capital-services', function () { return view('departemen_hcm.departemen_human_capital_services'); });
-Route::get('/human-capital-development', function () { return view('departemen_hcm.departemen_human_capital_development'); });
-Route::get('/organization-development-and-command-media', function () { return view('departemen_hcm.departemen_organization_development'); });
-Route::get('/lembaga-sertifikasi-profesi', function () { return view('departemen_hcm.departemen_organization_lsp'); });
+Route::get('/profile', function () {
+    return view('frontend.profile');
+});
+Route::get('/human-capital-services', function () {
+    return view('departemen_hcm.departemen_human_capital_services');
+});
+Route::get('/human-capital-development', function () {
+    return view('departemen_hcm.departemen_human_capital_development');
+});
+Route::get('/organization-development-and-command-media', function () {
+    return view('departemen_hcm.departemen_organization_development');
+});
+Route::get('/lembaga-sertifikasi-profesi', function () {
+    return view('departemen_hcm.departemen_organization_lsp');
+});
 
 Route::get('/toNews', function () {
     return view('frontend.news');
@@ -196,10 +207,15 @@ Route::get('delete-jumlah-asesor/{user_id}', [ServiceController::class, 'deleteJ
 // Halaman administrasi ========================
 Route::get('/admin_dash', [AdminController::class, 'index']);
 Route::get('/Rekap', [AdminController::class, 'Rekapmhs']);
+Route::get('delete-rekap-mhs/{id}', [AdminController::class, 'delete_rekap_mhs']);
 Route::get('/Rekap-mhs-kelompok', [AdminController::class, 'Rekapmhskel']);
+Route::get('delete-rekap-mhskel/{id}', [AdminController::class, 'delete_rekap_mhskel']);
 Route::get('/Rekap-Smk', [AdminController::class, 'Rekapsmk']);
+Route::get('delete-rekap-smk/{id}', [AdminController::class, 'delete_rekap_smk']);
 Route::get('/Rekap-smk-kelompok', [AdminController::class, 'Rekapsmkkel']);
+Route::get('delete-rekap-smkkel/{id}', [AdminController::class, 'delete_rekap_smkkel']);
 Route::get('/Rekap-penelitian', [AdminController::class, 'Rekappenelitian']);
+Route::get('delete-rekap-penelitian/{id}', [AdminController::class, 'delete_rekap_penelitian']);
 Route::get('/cetakRekapMhsPDF', [AdminController::class, 'cetak_rekapmhspdf']);
 Route::get('/cetakRekapmhskelPDF', [AdminController::class, 'cetak_rekapmhskelpdf']);
 Route::get('/cetakRekapSmkPDF', [AdminController::class, 'cetak_rekapsmkpdf']);
@@ -214,12 +230,28 @@ Route::get('/cetakRekapPenelitianEXCEL', [AdminController::class, 'cetak_rekappe
 // End Halaman administrasi ========================
 
 // Halaman Divisi ========================
+Route::get('/absen-divisi', [DivisiController::class, 'absen_divisi']);
+Route::get('/laporan-divisi', [DivisiController::class, 'laporan_divisi']);
+Route::get('/penilaian-divisi', [DivisiController::class, 'penilaian_divisi']);
+Route::get('editlaporan-divisi/{id}', [DivisiController::class, 'editlaporan_divisi']);
+Route::put('proseseditlaporan-divisi/{id}', [DivisiController::class, 'proseseditlaporan_divisi']);
+Route::get('editlaporansmk-divisi/{id}', [DivisiController::class, 'editlaporansmk_divisi']);
+Route::put('proseseditlaporansmk-divisi/{id}', [DivisiController::class, 'proseseditlaporansmk_divisi']);
+Route::get('/absen-penelitian-divisi', [DivisiController::class, 'absen_penelitian_divisi']);
+Route::get('laporan-penelitian-divisi', [DivisiController::class, 'laporan_penelitian_divisi']);
+
 Route::get('/Penerimaan', [DivisiController::class, 'index']);
 Route::get('/absen', [DivisiController::class, 'Absen']);
 Route::get('/lihat_absenmhs/{id}', [DivisiController::class, 'lihat_absenmhs']);
 Route::get('/rekap-absenmhs', [DivisiController::class, 'rekap_absenmhs']);
 Route::get('cetak-absen-pdf', [DivisiController::class, 'cetak_absen_pdf']);
-Route::get('cetak-absen-smk-pdf', [DivisiController::class, 'cetak_absen_smk_pdf']);
+Route::get('delete-rekapabsen-mhs/{id}', [DivisiController::class, 'delete_rekapabsen_mhs']);
+Route::get('delete-rekapabsen-smk/{id}', [DivisiController::class, 'delete_rekapabsen_smk']);
+Route::get('delete-rekapabsen-penelitian/{id}', [DivisiController::class, 'delete_rekapabsen_penelitian']);
+Route::get('/lihat-absenmhs/{id_individu}/delete-lihatabsen-mhs/{id}', [DivisiController::class, 'delete_lihatabsen_mhs']);
+Route::get('/lihat-absensmk/{id_individu}/delete-lihatabsen-smk/{id}', [DivisiController::class, 'delete_lihatabsen_smk']);
+Route::get('/lihat-absenpenelitian/{id_individu}/delete-lihatabsen-penelitian/{id}', [DivisiController::class, 'delete_lihatabsen_penelitian']);
+Route::get('cetak-absen-smk-admin-pdf', [DivisiController::class, 'cetak_absen_smk_pdf']);
 Route::get('/rekap-absensmk', [DivisiController::class, 'rekap_absensmk']);
 Route::get('/lihat_absensmk/{id}', [DivisiController::class, 'lihat_absensmk']);
 Route::post('/proses_absenmhs/{id}', [DivisiController::class, 'proses_absenmhs'])->name('tambahabsenmhs');
@@ -241,6 +273,8 @@ Route::get('/pdf-smk/{id}', [DivisiController::class, 'showPdfSmk']);
 Route::get('/pdf-smk-kel/{id}', [DivisiController::class, 'showPdfSmkKel']);
 Route::get('/diterima', [DivisiController::class, 'showDiterima']);
 Route::get('/final-penerimaan-mhs/{user_id}', [DivisiController::class, 'finalMhs']);
+Route::put('update-final-penerimaan-mhs/{id}', [DivisiController::class, 'updateFinalPenerimaan']);
+Route::put('update-final-penerimaan-smk/{id}', [DivisiController::class, 'updateFinalPenerimaanSmk']);
 Route::get('/magang-selesai-mhs', [DivisiController::class, 'selesaiMhs']);
 Route::get('proses-mhs-selesai/{id}', [DivisiController::class, 'proses_mhs_selesai']);
 Route::put('update-selesai-mhs/{id}', [DivisiController::class, 'update_selesai_mhs']);
@@ -275,6 +309,8 @@ Route::get('/laporan-revisi', [DivisiController::class, 'laporan_revisi']);
 Route::get('/editlaporan/{id}', [DivisiController::class, 'editlaporan']);
 Route::put('/proseseditlaporan/{id}', [DivisiController::class, 'proseseditlaporan']);
 Route::get('delete-laporan-mhs/{id}', [DivisiController::class, 'delete_laporan_mhs']);
+Route::get('editlaporan-smk/{id}', [DivisiController::class, 'editlaporansmk']);
+Route::put('proseseditlaporansmk/{id}', [DivisiController::class, 'proseseditlaporansmk']);
 Route::get('delete-laporan-smk/{id}', [DivisiController::class, 'delete_laporan_smk']);
 
 Route::get('delete-laporan-penelitian/{id}', [DivisiController::class, 'delete_laporan_penelitian']);
@@ -283,6 +319,10 @@ Route::get('/isi_penilaian/{id}', [DivisiController::class, 'isi_penilaian']);
 Route::post('/proses_penilaian/{id}', [DivisiController::class, 'proses_penilaian'])->name('tambahnilai');
 Route::get('/isi_penilaian_smk/{id}', [DivisiController::class, 'isi_penilaian_smk']);
 Route::post('/proses_penilaian_smk/{id}', [DivisiController::class, 'proses_penilaian_smk'])->name('tambahnilaismk');
+Route::get('isi_penilaian_divisi/{id}', [DivisiController::class, 'isi_penilaian_divisi']);
+Route::post('/proses_penilaian_divisi/{id}', [DivisiController::class, 'proses_penilaian_divisi'])->name('tambahnilaidivisi');
+Route::get('isi_penilaian_smk_divisi/{id}', [DivisiController::class, 'isi_penilaian_smk_divisi']);
+Route::post('/proses_penilaian_smk_divisi/{id}', [DivisiController::class, 'proses_penilaian_smk_divisi'])->name('tambahnilaismkdivisi');
 
 Route::get('magang-interview', [DivisiController::class, 'interview']);
 Route::get('terima-interview-mhs/{id}', [DivisiController::class, 'terimainterviewmhs']);
@@ -318,7 +358,7 @@ Route::put('/update-penelitian-aktif/{id}', [DivisiController::class, 'update_pe
 Route::post('/penelitian-aktif-waktu/{id}', [DivisiController::class, 'penelitian_aktif_waktu']);
 Route::get('/absen-pnltn', [DivisiController::class, 'absen_pnltn']);
 Route::get('/rekap-absenpenelitian', [DivisiController::class, 'rekap_absenpenelitian']);
-Route::get('/cetak-absen-penelitian-pdf', [DivisiController::class, 'cetak_absen_penelitian_pdf']);
+Route::get('/cetak-absen-penelitian-admin-pdf', [DivisiController::class, 'cetak_absen_penelitian_pdf']);
 Route::get('lihat-absenpenelitian/{id}', [DivisiController::class, 'lihat_absenpenelitian']);
 // Route::post('proses-absenpenelitian/{id}', [DivisiController::class, 'proses_absenpenelitian']);
 Route::get('laporan-pnltn', [DivisiController::class, 'laporan_penelitian']);
@@ -386,6 +426,8 @@ Route::get('/profil-mhs', [MagangController::class, 'profil_mhs']);
 Route::get('/absen-mhs', [MagangController::class, 'absen_mhs']);
 Route::get('/proses-absen-masuk-mhs/{individ}', [MagangController::class, 'proses_absen_masuk_mhs']);
 Route::get('/proses-absen-pulang-mhs/{individ}', [MagangController::class, 'proses_absen_pulang_mhs']);
+Route::post('/proses-absen-izin-mhs/{individ}', [MagangController::class, 'proses_absen_izin_mhs']);
+Route::get('/cetak-absen-mhs-pdf', [MagangController::class, 'cetak_absenmhs_pdf']);
 // Route::get('/proses-absen-mhs/{absenid}/{individ}', [MagangController::class, 'proses_absen_mhs']);
 
 Route::get('/id-card-mhs', [MagangController::class, 'id_card_mhs']);
@@ -472,6 +514,9 @@ Route::get('/profil-smk', [MagangController::class, 'profil_smk']);
 Route::get('/absen-smk', [MagangController::class, 'absen_smk']);
 Route::get('/proses-absen-masuk-smk/{individ}', [MagangController::class, 'proses_absen_masuk_smk']);
 Route::get('/proses-absen-pulang-smk/{individ}', [MagangController::class, 'proses_absen_pulang_smk']);
+Route::post('/proses-absen-izin-smk/{individ}', [MagangController::class, 'proses_absen_izin_smk']);
+Route::get('/cetak-absen-smk-pdf', [MagangController::class, 'cetak_absensmk_pdf']);
+
 // Route::get('/proses-absen-smk/{absenid}/{individ}', [MagangController::class, 'proses_absen_smk']);
 
 Route::get('/id-card-smk', [MagangController::class, 'id_card_smk']);
@@ -545,6 +590,8 @@ Route::get('profil-penelitian', [PenelitianController::class, 'profil_penelitian
 Route::get('absen-penelitian', [PenelitianController::class, 'absen_penelitian']);
 Route::get('/proses-absen-masuk-penelitian/{individ}', [PenelitianController::class, 'proses_absen_masuk_penelitian']);
 Route::get('/proses-absen-pulang-penelitian/{individ}', [PenelitianController::class, 'proses_absen_pulang_penelitian']);
+Route::get('/cetak-absen-penelitian-pdf', [PenelitianController::class, 'cetak_absenpenelitian_pdf']);
+Route::post('/proses-absen-izin-penelitian/{indivd}', [PenelitianController::class, 'proses_absen_izin_penelitian']);
 Route::get('proses-absen-penelitian/{absenid}/{individ}', [PenelitianController::class, 'proses_absen_penelitian']);
 Route::get('id-card-penelitian', [PenelitianController::class, 'id_card_penelitian']);
 Route::get('id-card-penelitian-cetak', [PenelitianController::class, 'id_card_penelitian_cetak']);

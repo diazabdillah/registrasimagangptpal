@@ -14,5 +14,6 @@ class Absenmhs extends Model
         'waktu_absen',
         'jenis_absen',
         'keterangan',
+        'file_absen'
     ];
 }
