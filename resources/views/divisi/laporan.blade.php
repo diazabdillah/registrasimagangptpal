@@ -46,7 +46,7 @@
                                                                     <a class="btn btn-primary"
                                                                         href="{{ asset('file/laporan-mhs/' . $u->path) }}">Download</a>
                                                                     <a class="btn btn-warning"
-                                                                        href="{{ asset('editlaporan/' . $u->id) }}">Edit</a>
+                                                                        href="{{ asset('editlaporan/' . $u->id) }}">Revisi</a>
                                                                     <a class="btn btn-danger"
                                                                         href="{{ asset('delete-laporan-mhs/' . $u->id) }}">Delete</a>
                                                                 @endif
@@ -97,7 +97,7 @@
                                                                     <a class="btn btn-primary"
                                                                         href="{{ asset('file/laporan-smk/' . $us->path) }}">Download</a>
                                                                     <a class="btn btn-warning"
-                                                                        href="{{ asset('file/laporan-smk/' . $us->id) }}">Edit</a>
+                                                                        href="{{ asset('editlaporan-smk/' . $us->id) }}">revisi</a>
                                                                     <a class="btn btn-danger"
                                                                         href="{{ asset('delete-laporan-smk/' . $us->id) }}">Delete</a>
                                                                 @endif

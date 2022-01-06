@@ -123,48 +123,76 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="card shadow mb-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6 class="m-0 font-weight-bold text-primary">Pilih Jurusan & Departemen Magang</h6>
-                                </div>
-                                <div class="card-body">
-                                    <form method="POST" action="/update-departemen-smk/{{ $userid->id }}">
-                                        @method('put')
-                                        @csrf
-                                        <div class="form-group">
-                                            <small class="ml-2">Pilih Departement</small>
-                                            <div class="input-group mb-3">
-                                                <select class="custom-select" name="departemen">
-                                                    @foreach ($departemen as $dep)
-                                                        <option value="{{ $dep->nama_departemen }}">
-                                                            {{ $dep->nama_departemen }}</option>
-                                                    @endforeach
-                                                </select>
+
+                    @if ($users[0]->divisi == null)
+                        <div class="col-sm-12">
+                            <div class="card shadow mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="m-0 font-weight-bold text-primary">Pilih Departemen Magang
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <small class="ml-2">Pilih Departement</small>
+                                                <div class="input-group mb-3">
+                                                    <select disabled class="custom-select"></select>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <small class="ml-2">Pilih Status</small>
-                                            <div class="input-group mb-3">
-                                                <select class="custom-select" name="status_penerimaan">
-                                                    <option selected>Pilih status</option>
-                                                    <option value="diterima">Diterima</option>
-                                                    <option value="ditolak">Ditolak</option>
-
-                                                </select>
+                                            <div class="form-group">
+                                                <small class="ml-2">Pilih Status</small>
+                                                <div class="input-group mb-3">
+                                                    <select disabled class="custom-select"></select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <button class="btn btn-primary mt-4" type="submit">Simpan</button>
-                                    </form>
-
+                                            <button disabled class="btn btn-primary mt-4" type="submit">Simpan</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
+                    @else
+                        <div class="col-sm-12">
+                            <div class="card shadow mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="m-0 font-weight-bold text-primary">Pilih Departemen Magang
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST"
+                                            action="/update-magang-departemen-penelitian/{{ $user->id }}">
+                                            @method('put')
+                                            @csrf
+                                            <div class="form-group">
+                                                <small class="ml-2">Pilih Departement</small>
+                                                <div class="input-group mb-3">
+                                                    <select class="custom-select" name="departemen">
+                                                        @foreach ($departemen as $dep)
+                                                            <option value="{{ $dep->nama_departemen }}">
+                                                                {{ $dep->nama_departemen }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <small class="ml-2">Pilih Status</small>
+                                                <div class="input-group mb-3">
+                                                    <select class="custom-select" name="status_penerimaan">
+                                                        <option selected>Pilih status</option>
+                                                        <option value="Diterima">Diterima</option>
+                                                        <option value="Ditolak">Ditolak</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary mt-4" type="submit">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 

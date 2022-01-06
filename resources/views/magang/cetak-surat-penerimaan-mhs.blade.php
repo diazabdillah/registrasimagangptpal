@@ -37,7 +37,8 @@
 
         <div>
             <p style="font-size:18px;" class="ml-4"> <b> Nomor :</b>
-                PKL/{{ $datas[0]->id }}/51200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
+                PKL/{{ $datas[0]->id }}/51200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y',
+                strtotime($datas[0]->selesai)) }}
             </p>
             <p style="margin-top: -20px;font-size:18px;" class="ml-4"> <b> Perihal :</b>
                 Praktek Kerja Lapangan </p>
@@ -74,18 +75,18 @@
                 </thead>
                 <tbody>
                     @foreach ($mahasiswas as $surat1)
-                        <tr>
+                    <tr>
 
 
-                            <td>{{ $surat1->nama }}</td>
-                            <td>{{ $surat1->nim }}</td>
-                            <td>{{ $surat1->jurusan }}</td>
-                            <td>{{ $surat1->divisi }}</td>
-                            <td>{{ $surat1->departemen }}</td>
-                            <td>{{ date('d F Y', strtotime($surat1->mulai)) }}
-                                s.d <br> {{ date('d F Y', strtotime($surat1->selesai)) }}</td>
+                        <td>{{ $surat1->nama }}</td>
+                        <td>{{ $surat1->nim }}</td>
+                        <td>{{ $surat1->jurusan }}</td>
+                        <td>{{ $surat1->divisi }}</td>
+                        <td>{{ $surat1->departemen }}</td>
+                        <td>{{ date('d F Y', strtotime($surat1->mulai)) }}
+                            s.d <br> {{ date('d F Y', strtotime($surat1->selesai)) }}</td>
 
-                        </tr>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -110,8 +111,8 @@
 
 
     {{-- <script>
-            window.print();
-        </script> --}}
+        window.print();
+    </script> --}}
 </body>
 
 </html>

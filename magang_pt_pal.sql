@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Generation Time: Dec 29, 2021 at 03:48 AM
--- Server version: 8.0.21
--- PHP Version: 7.4.9
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 05 Jan 2022 pada 13.22
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,103 +24,94 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absenmhs`
+-- Struktur dari tabel `absenmhs`
 --
 
-DROP TABLE IF EXISTS `absenmhs`;
-CREATE TABLE IF NOT EXISTS `absenmhs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `absenmhs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `waktu_absen` datetime NOT NULL,
   `jenis_absen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_absen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absenpenelitian`
+-- Struktur dari tabel `absenpenelitian`
 --
 
-DROP TABLE IF EXISTS `absenpenelitian`;
-CREATE TABLE IF NOT EXISTS `absenpenelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `absenpenelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `waktu_absen` datetime NOT NULL,
   `jenis_absen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_absen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensmk`
+-- Struktur dari tabel `absensmk`
 --
 
-DROP TABLE IF EXISTS `absensmk`;
-CREATE TABLE IF NOT EXISTS `absensmk` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `absensmk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `waktu_absen` datetime NOT NULL,
   `jenis_absen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `beasiswa`
+-- Struktur dari tabel `beasiswa`
 --
 
-DROP TABLE IF EXISTS `beasiswa`;
-CREATE TABLE IF NOT EXISTS `beasiswa` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `beasiswa` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama_beasiswa` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `institusi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daftar_ruangan`
+-- Struktur dari tabel `daftar_ruangan`
 --
 
-DROP TABLE IF EXISTS `daftar_ruangan`;
-CREATE TABLE IF NOT EXISTS `daftar_ruangan` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `daftar_ruangan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama_ruangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fasilitas` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kapasitas` int NOT NULL,
+  `kapasitas` int(11) NOT NULL,
   `foto_ruangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_mhs_indivs`
+-- Struktur dari tabel `data_mhs_indivs`
 --
 
-DROP TABLE IF EXISTS `data_mhs_indivs`;
-CREATE TABLE IF NOT EXISTS `data_mhs_indivs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `data_mhs_indivs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `univ` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -129,23 +120,21 @@ CREATE TABLE IF NOT EXISTS `data_mhs_indivs` (
   `no_hp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nim` int NOT NULL,
+  `nim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_penelitian`
+-- Struktur dari tabel `data_penelitian`
 --
 
-DROP TABLE IF EXISTS `data_penelitian`;
-CREATE TABLE IF NOT EXISTS `data_penelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `data_penelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `asal_instansi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `strata` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -157,20 +146,18 @@ CREATE TABLE IF NOT EXISTS `data_penelitian` (
   `judul_penelitian` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_smk_indivs`
+-- Struktur dari tabel `data_smk_indivs`
 --
 
-DROP TABLE IF EXISTS `data_smk_indivs`;
-CREATE TABLE IF NOT EXISTS `data_smk_indivs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `data_smk_indivs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sekolah` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -178,31 +165,28 @@ CREATE TABLE IF NOT EXISTS `data_smk_indivs` (
   `no_hp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nis` int NOT NULL,
+  `nis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `departemen`
+-- Struktur dari tabel `departemen`
 --
 
-DROP TABLE IF EXISTS `departemen`;
-CREATE TABLE IF NOT EXISTS `departemen` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_divisi` int NOT NULL,
+CREATE TABLE `departemen` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_divisi` int(11) NOT NULL,
   `nama_departemen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `departemen`
+-- Dumping data untuk tabel `departemen`
 --
 
 INSERT INTO `departemen` (`id`, `id_divisi`, `nama_departemen`, `created_at`, `updated_at`) VALUES
@@ -277,25 +261,24 @@ INSERT INTO `departemen` (`id`, `id_divisi`, `nama_departemen`, `created_at`, `u
 (72, 2, 'Pemeriksaan Produksi', '2021-12-16 14:02:19', '2021-12-16 14:02:19'),
 (73, 2, 'Pemeriksaan Supporting', '2021-12-16 14:02:50', '2021-12-16 14:02:50'),
 (74, 15, 'Rendal Korporasi', '2021-12-16 14:07:40', '2021-12-16 14:07:40'),
-(75, 15, 'Rendal Produksi Korporasi', '2021-12-16 14:08:11', '2021-12-16 14:08:11');
+(75, 15, 'Rendal Produksi Korporasi', '2021-12-16 14:08:11', '2021-12-16 14:08:11'),
+(76, 18, 'Lembaga Sertifikasi Profesi', '2022-01-05 04:51:55', '2022-01-05 04:51:55');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `divisi`
+-- Struktur dari tabel `divisi`
 --
 
-DROP TABLE IF EXISTS `divisi`;
-CREATE TABLE IF NOT EXISTS `divisi` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `divisi` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama_divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `divisi`
+-- Dumping data untuk tabel `divisi`
 --
 
 INSERT INTO `divisi` (`id`, `nama_divisi`, `created_at`, `updated_at`) VALUES
@@ -324,391 +307,318 @@ INSERT INTO `divisi` (`id`, `nama_divisi`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
-DROP TABLE IF EXISTS `failed_jobs`;
-CREATE TABLE IF NOT EXISTS `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file_mhs_indivs`
+-- Struktur dari tabel `file_mhs_indivs`
 --
 
-DROP TABLE IF EXISTS `file_mhs_indivs`;
-CREATE TABLE IF NOT EXISTS `file_mhs_indivs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `file_mhs_indivs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nomorsurat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jabatan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `file_mhs_indivs`
---
-
-INSERT INTO `file_mhs_indivs` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
-(1, 22, '2110191013_muhammad zaid Uas.pdf', '624217', '2110', 'Zaid', 'Ocd', '2021-12-29 02:20:57', '2021-12-29 02:20:57'),
-(2, 22, '2110191013_muhammad zaid issue profesional.pdf', '764988', '2110', 'Zaid', 'Ocd', '2021-12-29 02:20:57', '2021-12-29 02:20:57'),
-(3, 22, '2021-2-45157-1-4myJu8SCFk.pdf', '146077', '2110', 'Zaid', 'Ocd', '2021-12-29 02:20:57', '2021-12-29 02:20:57'),
-(4, 23, '2110191013_muhammad zaid issue profesional.pdf', '764988', '34', 'Fabyan', 'Hcm', '2021-12-29 02:27:39', '2021-12-29 02:27:39'),
-(5, 23, '2110191013_muhammad zaid Uas.pdf', '624217', '34', 'Fabyan', 'Hcm', '2021-12-29 02:27:39', '2021-12-29 02:27:39'),
-(6, 23, 'Final-Test.pdf', '33470', '34', 'Fabyan', 'Hcm', '2021-12-29 02:27:39', '2021-12-29 02:27:39');
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file_penelitian`
+-- Struktur dari tabel `file_penelitian`
 --
 
-DROP TABLE IF EXISTS `file_penelitian`;
-CREATE TABLE IF NOT EXISTS `file_penelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `file_penelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nomorsurat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jabatan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `file_penelitian`
---
-
-INSERT INTO `file_penelitian` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
-(1, 26, '2110191013_muhammad zaid Uas.pdf', '624217', '211', 'Zaid', 'Kaprodi mesin', '2021-12-29 03:04:09', '2021-12-29 03:04:09'),
-(2, 26, '2110191013_muhammad zaid.pdf', '619650', '211', 'Zaid', 'Kaprodi mesin', '2021-12-29 03:04:09', '2021-12-29 03:04:09'),
-(3, 26, '2021-2-45157-1-4myJu8SCFk.pdf', '146077', '211', 'Zaid', 'Kaprodi mesin', '2021-12-29 03:04:09', '2021-12-29 03:04:09');
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file_smk_indivs`
+-- Struktur dari tabel `file_smk_indivs`
 --
 
-DROP TABLE IF EXISTS `file_smk_indivs`;
-CREATE TABLE IF NOT EXISTS `file_smk_indivs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `file_smk_indivs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nomorsurat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jabatan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `file_smk_indivs`
---
-
-INSERT INTO `file_smk_indivs` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
-(1, 24, '2110191013_muhammad zaid Uas.pdf', '624217', '76', 'Zaid', 'Kaprodi it', '2021-12-29 02:55:38', '2021-12-29 02:55:38'),
-(2, 24, '2110191013_muhammad zaid issue profesional.pdf', '764988', '76', 'Zaid', 'Kaprodi it', '2021-12-29 02:55:38', '2021-12-29 02:55:38'),
-(3, 24, '2110191013_muhammad zaid issue profesional.pdf', '764988', '76', 'Zaid', 'Kaprodi it', '2021-12-29 02:55:38', '2021-12-29 02:55:38'),
-(4, 25, 'Muhammad Muadz Abdillah_6032211101_UAS MO.pdf', '1184458', '45', 'Zaid', 'Kaprodi tekkom', '2021-12-29 02:59:35', '2021-12-29 02:59:35'),
-(5, 25, '2110191013_muhammad zaid issue profesional.pdf', '764988', '45', 'Zaid', 'Kaprodi tekkom', '2021-12-29 02:59:35', '2021-12-29 02:59:35'),
-(6, 25, '2021-2-45157-1-4myJu8SCFk.pdf', '146077', '45', 'Zaid', 'Kaprodi tekkom', '2021-12-29 02:59:35', '2021-12-29 02:59:35');
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `forum`
+-- Struktur dari tabel `forum`
 --
 
-DROP TABLE IF EXISTS `forum`;
-CREATE TABLE IF NOT EXISTS `forum` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `forum` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_user` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `konten` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_i_d_mhs`
+-- Struktur dari tabel `foto_i_d_mhs`
 --
 
-DROP TABLE IF EXISTS `foto_i_d_mhs`;
-CREATE TABLE IF NOT EXISTS `foto_i_d_mhs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `foto_i_d_mhs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `fotoID` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_i_d_penelitian`
+-- Struktur dari tabel `foto_i_d_penelitian`
 --
 
-DROP TABLE IF EXISTS `foto_i_d_penelitian`;
-CREATE TABLE IF NOT EXISTS `foto_i_d_penelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `foto_i_d_penelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `fotoID` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_i_d_smks`
+-- Struktur dari tabel `foto_i_d_smks`
 --
 
-DROP TABLE IF EXISTS `foto_i_d_smks`;
-CREATE TABLE IF NOT EXISTS `foto_i_d_smks` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `foto_i_d_smks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `fotoID` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_mhs_models`
+-- Struktur dari tabel `foto_mhs_models`
 --
 
-DROP TABLE IF EXISTS `foto_mhs_models`;
-CREATE TABLE IF NOT EXISTS `foto_mhs_models` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `foto_mhs_models` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_penelitian_models`
+-- Struktur dari tabel `foto_penelitian_models`
 --
 
-DROP TABLE IF EXISTS `foto_penelitian_models`;
-CREATE TABLE IF NOT EXISTS `foto_penelitian_models` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `foto_penelitian_models` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_smk_models`
+-- Struktur dari tabel `foto_smk_models`
 --
 
-DROP TABLE IF EXISTS `foto_smk_models`;
-CREATE TABLE IF NOT EXISTS `foto_smk_models` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `foto_smk_models` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery`
+-- Struktur dari tabel `gallery`
 --
 
-DROP TABLE IF EXISTS `gallery`;
-CREATE TABLE IF NOT EXISTS `gallery` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `gallery` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interview`
+-- Struktur dari tabel `interview`
 --
 
-DROP TABLE IF EXISTS `interview`;
-CREATE TABLE IF NOT EXISTS `interview` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `interview` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `fileinterview` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipe_kepribadian` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ekstrovet` int NOT NULL,
-  `introvet` int NOT NULL,
-  `visioner` int NOT NULL,
-  `realistik` int NOT NULL,
-  `emosional` int NOT NULL,
-  `rasional` int NOT NULL,
-  `perencanaan` int NOT NULL,
-  `improvisasi` int NOT NULL,
-  `tegas` int NOT NULL,
-  `waspada` int NOT NULL,
+  `ekstrovet` int(11) NOT NULL,
+  `introvet` int(11) NOT NULL,
+  `visioner` int(11) NOT NULL,
+  `realistik` int(11) NOT NULL,
+  `emosional` int(11) NOT NULL,
+  `rasional` int(11) NOT NULL,
+  `perencanaan` int(11) NOT NULL,
+  `improvisasi` int(11) NOT NULL,
+  `tegas` int(11) NOT NULL,
+  `waspada` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interview_smk`
+-- Struktur dari tabel `interview_smk`
 --
 
-DROP TABLE IF EXISTS `interview_smk`;
-CREATE TABLE IF NOT EXISTS `interview_smk` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_individu` bigint NOT NULL,
+CREATE TABLE `interview_smk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
   `fileinterview` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipe_kepribadian` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ekstrovet` int NOT NULL,
-  `introvet` int NOT NULL,
-  `visioner` int NOT NULL,
-  `realistik` int NOT NULL,
-  `emosional` int NOT NULL,
-  `rasional` int NOT NULL,
-  `perencanaan` int NOT NULL,
-  `improvisasi` int NOT NULL,
-  `tegas` int NOT NULL,
-  `waspada` int NOT NULL,
+  `ekstrovet` int(11) NOT NULL,
+  `introvet` int(11) NOT NULL,
+  `visioner` int(11) NOT NULL,
+  `realistik` int(11) NOT NULL,
+  `emosional` int(11) NOT NULL,
+  `rasional` int(11) NOT NULL,
+  `perencanaan` int(11) NOT NULL,
+  `improvisasi` int(11) NOT NULL,
+  `tegas` int(11) NOT NULL,
+  `waspada` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal_sertifikasi`
+-- Struktur dari tabel `jadwal_sertifikasi`
 --
 
-DROP TABLE IF EXISTS `jadwal_sertifikasi`;
-CREATE TABLE IF NOT EXISTS `jadwal_sertifikasi` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `jadwal_sertifikasi` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama_training` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `penyelenggara` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_mulai` datetime NOT NULL,
   `tanggal_selesai` datetime NOT NULL,
   `tempat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `peserta_sprint` int NOT NULL,
-  `peserta_hadir` int NOT NULL,
+  `peserta_sprint` int(11) NOT NULL,
+  `peserta_hadir` int(11) NOT NULL,
   `fileSertifikasi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jumlah_asesor`
+-- Struktur dari tabel `jumlah_asesor`
 --
 
-DROP TABLE IF EXISTS `jumlah_asesor`;
-CREATE TABLE IF NOT EXISTS `jumlah_asesor` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `jumlah_asesor` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nomor_registrasi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_assessor` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komentar`
+-- Struktur dari tabel `komentar`
 --
 
-DROP TABLE IF EXISTS `komentar`;
-CREATE TABLE IF NOT EXISTS `komentar` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
-  `forum_id` bigint NOT NULL,
+CREATE TABLE `komentar` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `forum_id` bigint(20) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_user` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent` bigint NOT NULL,
+  `parent` bigint(20) NOT NULL,
   `konten` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kuota`
+-- Struktur dari tabel `kuota`
 --
 
-DROP TABLE IF EXISTS `kuota`;
-CREATE TABLE IF NOT EXISTS `kuota` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `bagian` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `kuota` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `tanggal_buka` date NOT NULL,
   `tanggal_tutup` date NOT NULL,
-  `kuota` int NOT NULL,
+  `kuota` int(11) NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `departemen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_kuota` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporans`
+-- Struktur dari tabel `laporans`
 --
 
-DROP TABLE IF EXISTS `laporans`;
-CREATE TABLE IF NOT EXISTS `laporans` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `laporans` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -717,19 +627,17 @@ CREATE TABLE IF NOT EXISTS `laporans` (
   `tanggal_kumpul` date NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporans_smk`
+-- Struktur dari tabel `laporans_smk`
 --
 
-DROP TABLE IF EXISTS `laporans_smk`;
-CREATE TABLE IF NOT EXISTS `laporans_smk` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `laporans_smk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -738,19 +646,17 @@ CREATE TABLE IF NOT EXISTS `laporans_smk` (
   `tanggal_kumpul` date NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan_penelitian`
+-- Struktur dari tabel `laporan_penelitian`
 --
 
-DROP TABLE IF EXISTS `laporan_penelitian`;
-CREATE TABLE IF NOT EXISTS `laporan_penelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `laporan_penelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -759,26 +665,23 @@ CREATE TABLE IF NOT EXISTS `laporan_penelitian` (
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -830,100 +733,94 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (46, '2021_12_07_142646_create_departemen_table', 1),
 (47, '2021_12_20_102415_create__rekapsmk_table', 1),
 (48, '2021_12_20_102443_create__rekappenelitian_table', 1),
-(49, '2021_12_20_102454_create__rekapmhs_table', 1);
+(49, '2021_12_20_102454_create__rekapmhs_table', 1),
+(50, '2022_01_01_074336_create__rekap_absenmhs_table', 2),
+(51, '2022_01_01_075100_create_rekapabsemhs_table', 3),
+(52, '2022_01_01_075220_create_rekapabsenmhs_table', 4),
+(53, '2022_01_01_162118_create_rekapabsensmk_table', 5),
+(54, '2022_01_02_124705_create_rekapabsenpenelitian_table', 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mulai_dan_selesai_mhs`
+-- Struktur dari tabel `mulai_dan_selesai_mhs`
 --
 
-DROP TABLE IF EXISTS `mulai_dan_selesai_mhs`;
-CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_mhs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `mulai_dan_selesai_mhs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `mulai` date NOT NULL,
   `selesai` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mulai_dan_selesai_penelitian`
+-- Struktur dari tabel `mulai_dan_selesai_penelitian`
 --
 
-DROP TABLE IF EXISTS `mulai_dan_selesai_penelitian`;
-CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_penelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `mulai_dan_selesai_penelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `mulai` date NOT NULL,
   `selesai` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mulai_dan_selesai_smk`
+-- Struktur dari tabel `mulai_dan_selesai_smk`
 --
 
-DROP TABLE IF EXISTS `mulai_dan_selesai_smk`;
-CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_smk` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `mulai_dan_selesai_smk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `mulai` date NOT NULL,
   `selesai` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Struktur dari tabel `news`
 --
 
-DROP TABLE IF EXISTS `news`;
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `headline` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `konten` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struktur dari tabel `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
-CREATE TABLE IF NOT EXISTS `password_resets` (
+CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman_ruangan`
+-- Struktur dari tabel `peminjaman_ruangan`
 --
 
-DROP TABLE IF EXISTS `peminjaman_ruangan`;
-CREATE TABLE IF NOT EXISTS `peminjaman_ruangan` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `peminjaman_ruangan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `pilih_ruangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_peminjam` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -936,122 +833,143 @@ CREATE TABLE IF NOT EXISTS `peminjaman_ruangan` (
   `keperluan` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penilaians`
+-- Struktur dari tabel `penilaians`
 --
 
-DROP TABLE IF EXISTS `penilaians`;
-CREATE TABLE IF NOT EXISTS `penilaians` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+CREATE TABLE `penilaians` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `pembimbing` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Kerjasama` int NOT NULL,
-  `MotivasiPercayaDiri` int NOT NULL,
-  `InisiatifTanggungJawabKerja` int NOT NULL,
-  `Loyalitas` int NOT NULL,
-  `EtikaSopanSantun` int NOT NULL,
-  `Disiplin` int NOT NULL,
-  `PemahamanKemampuan` int NOT NULL,
-  `KesehatanKeselamatanKerja` int NOT NULL,
-  `laporankerja` int NOT NULL,
-  `kehadiran` int NOT NULL,
-  `average` int NOT NULL,
+  `Kerjasama` int(11) NOT NULL,
+  `MotivasiPercayaDiri` int(11) NOT NULL,
+  `InisiatifTanggungJawabKerja` int(11) NOT NULL,
+  `Loyalitas` int(11) NOT NULL,
+  `EtikaSopanSantun` int(11) NOT NULL,
+  `Disiplin` int(11) NOT NULL,
+  `PemahamanKemampuan` int(11) NOT NULL,
+  `KesehatanKeselamatanKerja` int(11) NOT NULL,
+  `laporankerja` int(11) NOT NULL,
+  `kehadiran` int(11) NOT NULL,
+  `average` int(11) NOT NULL,
   `nilai_huruf` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_penilaian` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `penilaians`
---
-
-INSERT INTO `penilaians` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:19:35', '2021-12-29 02:19:35'),
-(2, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:25:48', '2021-12-29 02:25:48'),
-(3, 3, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:26:28', '2021-12-29 02:26:28');
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penilaians_smk`
+-- Struktur dari tabel `penilaians_smk`
 --
 
-DROP TABLE IF EXISTS `penilaians_smk`;
-CREATE TABLE IF NOT EXISTS `penilaians_smk` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+CREATE TABLE `penilaians_smk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `pembimbing` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Kerjasama` int NOT NULL,
-  `MotivasiPercayaDiri` int NOT NULL,
-  `InisiatifTanggungJawabKerja` int NOT NULL,
-  `Loyalitas` int NOT NULL,
-  `EtikaSopanSantun` int NOT NULL,
-  `Disiplin` int NOT NULL,
-  `PemahamanKemampuan` int NOT NULL,
-  `KesehatanKeselamatanKerja` int NOT NULL,
-  `laporankerja` int NOT NULL,
-  `kehadiran` int NOT NULL,
-  `average` int NOT NULL,
+  `Kerjasama` int(11) NOT NULL,
+  `MotivasiPercayaDiri` int(11) NOT NULL,
+  `InisiatifTanggungJawabKerja` int(11) NOT NULL,
+  `Loyalitas` int(11) NOT NULL,
+  `EtikaSopanSantun` int(11) NOT NULL,
+  `Disiplin` int(11) NOT NULL,
+  `PemahamanKemampuan` int(11) NOT NULL,
+  `KesehatanKeselamatanKerja` int(11) NOT NULL,
+  `laporankerja` int(11) NOT NULL,
+  `kehadiran` int(11) NOT NULL,
+  `average` int(11) NOT NULL,
   `nilai_huruf` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_penilaian` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `penilaians_smk`
---
-
-INSERT INTO `penilaians_smk` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:36:25', '2021-12-29 02:36:25'),
-(2, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:37:27', '2021-12-29 02:37:27'),
-(6, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:54:15', '2021-12-29 02:54:15'),
-(7, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:57:32', '2021-12-29 02:57:32'),
-(8, 3, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2021-12-29 02:58:11', '2021-12-29 02:58:11');
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Struktur dari tabel `personal_access_tokens`
 --
 
-DROP TABLE IF EXISTS `personal_access_tokens`;
-CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekapmhs`
+-- Struktur dari tabel `rekapabsenmhs`
 --
 
-DROP TABLE IF EXISTS `rekapmhs`;
-CREATE TABLE IF NOT EXISTS `rekapmhs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `rekapabsenmhs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
+  `waktu_absen` datetime NOT NULL,
+  `jenis_absen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_absen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rekapabsenpenelitian`
+--
+
+CREATE TABLE `rekapabsenpenelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
+  `waktu_absen` datetime NOT NULL,
+  `jenis_absen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_absen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rekapabsensmk`
+--
+
+CREATE TABLE `rekapabsensmk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_individu` bigint(20) NOT NULL,
+  `waktu_absen` datetime NOT NULL,
+  `jenis_absen` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keterangan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_absen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rekapmhs`
+--
+
+CREATE TABLE `rekapmhs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `univ` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1060,26 +978,24 @@ CREATE TABLE IF NOT EXISTS `rekapmhs` (
   `no_hp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nim` int NOT NULL,
+  `nim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_user` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mulai` date DEFAULT NULL,
   `selesai` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekappenelitian`
+-- Struktur dari tabel `rekappenelitian`
 --
 
-DROP TABLE IF EXISTS `rekappenelitian`;
-CREATE TABLE IF NOT EXISTS `rekappenelitian` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `rekappenelitian` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `asal_instansi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `strata` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1094,20 +1010,18 @@ CREATE TABLE IF NOT EXISTS `rekappenelitian` (
   `mulai` date DEFAULT NULL,
   `selesai` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekapsmk`
+-- Struktur dari tabel `rekapsmk`
 --
 
-DROP TABLE IF EXISTS `rekapsmk`;
-CREATE TABLE IF NOT EXISTS `rekapsmk` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint NOT NULL,
+CREATE TABLE `rekapsmk` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sekolah` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1115,98 +1029,88 @@ CREATE TABLE IF NOT EXISTS `rekapsmk` (
   `no_hp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `departemen` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nis` int NOT NULL,
+  `nis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_penerimaan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_user` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mulai` date DEFAULT NULL,
   `selesai` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skema_bnsp`
+-- Struktur dari tabel `skema_bnsp`
 --
 
-DROP TABLE IF EXISTS `skema_bnsp`;
-CREATE TABLE IF NOT EXISTS `skema_bnsp` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `skema_bnsp` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `kode_skema` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_skema` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `level` int NOT NULL,
+  `level` int(11) NOT NULL,
   `bidang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training`
+-- Struktur dari tabel `training`
 --
 
-DROP TABLE IF EXISTS `training`;
-CREATE TABLE IF NOT EXISTS `training` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `training` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nama_training` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `penyelenggara` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_mulai` datetime NOT NULL,
   `tanggal_selesai` datetime NOT NULL,
   `tempat` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `peserta_sprint` int NOT NULL,
-  `peserta_hadir` int NOT NULL,
+  `peserta_sprint` int(11) NOT NULL,
+  `peserta_hadir` int(11) NOT NULL,
   `fileTraining` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unit_kerja`
+-- Struktur dari tabel `unit_kerja`
 --
 
-DROP TABLE IF EXISTS `unit_kerja`;
-CREATE TABLE IF NOT EXISTS `unit_kerja` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `kode_divisi` int NOT NULL,
+CREATE TABLE `unit_kerja` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `kode_divisi` int(11) NOT NULL,
   `divisi` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `file` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` int NOT NULL,
+  `role_id` int(11) NOT NULL,
   `status_user` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `status_user`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -1231,6 +1135,624 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (19, 'Admin Teknologi Informasi', 'adminti@gmail.com', NULL, '$2y$10$LvvWI1ZUX6zwe/znxxAB.uQasETDM.Wt7o6ZpJui9pjGCfeKlbSkK', 18, 'Admin Teknologi Informasi', NULL, '2021-12-29 02:12:29', '2021-12-29 02:12:29'),
 (20, 'Admin Kawasan', 'adminkawasan@gmail.com', NULL, '$2y$10$sKCPXM97G0lnuqlx2hDF7eDjFBnwoCb9f7q.1/pE/CzdY0YXSIXY6', 18, 'Admin Kawasan', NULL, '2021-12-29 02:12:53', '2021-12-29 02:12:53'),
 (21, 'Admin Keamanan & K3LH', 'adminkeamanan@gmail.com', NULL, '$2y$10$2CNpGdyvzEYtAlkfCa0L3.eDDIPgeWG0/5CR58JxgFq9KA7VboyKi', 18, 'Admin Keamanan & K3LH', NULL, '2021-12-29 02:13:17', '2021-12-29 02:13:17');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `absenmhs`
+--
+ALTER TABLE `absenmhs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `absenpenelitian`
+--
+ALTER TABLE `absenpenelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `absensmk`
+--
+ALTER TABLE `absensmk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `beasiswa`
+--
+ALTER TABLE `beasiswa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `daftar_ruangan`
+--
+ALTER TABLE `daftar_ruangan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `data_mhs_indivs`
+--
+ALTER TABLE `data_mhs_indivs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `data_penelitian`
+--
+ALTER TABLE `data_penelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `data_smk_indivs`
+--
+ALTER TABLE `data_smk_indivs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `departemen`
+--
+ALTER TABLE `departemen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `divisi`
+--
+ALTER TABLE `divisi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indeks untuk tabel `file_mhs_indivs`
+--
+ALTER TABLE `file_mhs_indivs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `file_penelitian`
+--
+ALTER TABLE `file_penelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `file_smk_indivs`
+--
+ALTER TABLE `file_smk_indivs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `forum`
+--
+ALTER TABLE `forum`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `foto_i_d_mhs`
+--
+ALTER TABLE `foto_i_d_mhs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `foto_i_d_penelitian`
+--
+ALTER TABLE `foto_i_d_penelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `foto_i_d_smks`
+--
+ALTER TABLE `foto_i_d_smks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `foto_mhs_models`
+--
+ALTER TABLE `foto_mhs_models`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `foto_penelitian_models`
+--
+ALTER TABLE `foto_penelitian_models`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `foto_smk_models`
+--
+ALTER TABLE `foto_smk_models`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `interview`
+--
+ALTER TABLE `interview`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `interview_smk`
+--
+ALTER TABLE `interview_smk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jadwal_sertifikasi`
+--
+ALTER TABLE `jadwal_sertifikasi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jumlah_asesor`
+--
+ALTER TABLE `jumlah_asesor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `komentar`
+--
+ALTER TABLE `komentar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `kuota`
+--
+ALTER TABLE `kuota`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `laporans`
+--
+ALTER TABLE `laporans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `laporans_smk`
+--
+ALTER TABLE `laporans_smk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `laporan_penelitian`
+--
+ALTER TABLE `laporan_penelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `mulai_dan_selesai_mhs`
+--
+ALTER TABLE `mulai_dan_selesai_mhs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `mulai_dan_selesai_penelitian`
+--
+ALTER TABLE `mulai_dan_selesai_penelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `mulai_dan_selesai_smk`
+--
+ALTER TABLE `mulai_dan_selesai_smk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indeks untuk tabel `peminjaman_ruangan`
+--
+ALTER TABLE `peminjaman_ruangan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `penilaians`
+--
+ALTER TABLE `penilaians`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `penilaians_smk`
+--
+ALTER TABLE `penilaians_smk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indeks untuk tabel `rekapabsenmhs`
+--
+ALTER TABLE `rekapabsenmhs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `rekapabsenpenelitian`
+--
+ALTER TABLE `rekapabsenpenelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `rekapabsensmk`
+--
+ALTER TABLE `rekapabsensmk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `rekapmhs`
+--
+ALTER TABLE `rekapmhs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `rekappenelitian`
+--
+ALTER TABLE `rekappenelitian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `rekapsmk`
+--
+ALTER TABLE `rekapsmk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `skema_bnsp`
+--
+ALTER TABLE `skema_bnsp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `training`
+--
+ALTER TABLE `training`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `unit_kerja`
+--
+ALTER TABLE `unit_kerja`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `absenmhs`
+--
+ALTER TABLE `absenmhs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `absenpenelitian`
+--
+ALTER TABLE `absenpenelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `absensmk`
+--
+ALTER TABLE `absensmk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `beasiswa`
+--
+ALTER TABLE `beasiswa`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `daftar_ruangan`
+--
+ALTER TABLE `daftar_ruangan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_mhs_indivs`
+--
+ALTER TABLE `data_mhs_indivs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_penelitian`
+--
+ALTER TABLE `data_penelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_smk_indivs`
+--
+ALTER TABLE `data_smk_indivs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `departemen`
+--
+ALTER TABLE `departemen`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+
+--
+-- AUTO_INCREMENT untuk tabel `divisi`
+--
+ALTER TABLE `divisi`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `file_mhs_indivs`
+--
+ALTER TABLE `file_mhs_indivs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `file_penelitian`
+--
+ALTER TABLE `file_penelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `file_smk_indivs`
+--
+ALTER TABLE `file_smk_indivs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `forum`
+--
+ALTER TABLE `forum`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `foto_i_d_mhs`
+--
+ALTER TABLE `foto_i_d_mhs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `foto_i_d_penelitian`
+--
+ALTER TABLE `foto_i_d_penelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `foto_i_d_smks`
+--
+ALTER TABLE `foto_i_d_smks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `foto_mhs_models`
+--
+ALTER TABLE `foto_mhs_models`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `foto_penelitian_models`
+--
+ALTER TABLE `foto_penelitian_models`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `foto_smk_models`
+--
+ALTER TABLE `foto_smk_models`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `interview`
+--
+ALTER TABLE `interview`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `interview_smk`
+--
+ALTER TABLE `interview_smk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `jadwal_sertifikasi`
+--
+ALTER TABLE `jadwal_sertifikasi`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `jumlah_asesor`
+--
+ALTER TABLE `jumlah_asesor`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `komentar`
+--
+ALTER TABLE `komentar`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `kuota`
+--
+ALTER TABLE `kuota`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `laporans`
+--
+ALTER TABLE `laporans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `laporans_smk`
+--
+ALTER TABLE `laporans_smk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `laporan_penelitian`
+--
+ALTER TABLE `laporan_penelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT untuk tabel `mulai_dan_selesai_mhs`
+--
+ALTER TABLE `mulai_dan_selesai_mhs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `mulai_dan_selesai_penelitian`
+--
+ALTER TABLE `mulai_dan_selesai_penelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `mulai_dan_selesai_smk`
+--
+ALTER TABLE `mulai_dan_selesai_smk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `peminjaman_ruangan`
+--
+ALTER TABLE `peminjaman_ruangan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `penilaians`
+--
+ALTER TABLE `penilaians`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `penilaians_smk`
+--
+ALTER TABLE `penilaians_smk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `rekapabsenmhs`
+--
+ALTER TABLE `rekapabsenmhs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `rekapabsenpenelitian`
+--
+ALTER TABLE `rekapabsenpenelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `rekapabsensmk`
+--
+ALTER TABLE `rekapabsensmk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `rekapmhs`
+--
+ALTER TABLE `rekapmhs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `rekappenelitian`
+--
+ALTER TABLE `rekappenelitian`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `rekapsmk`
+--
+ALTER TABLE `rekapsmk`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `skema_bnsp`
+--
+ALTER TABLE `skema_bnsp`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `training`
+--
+ALTER TABLE `training`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `unit_kerja`
+--
+ALTER TABLE `unit_kerja`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -70,13 +70,7 @@
                 </div>
             </div>
         </div>
-
-    @endforeach
-
-
-
-    @foreach ($users as $penilaian)
-        <div style="border:1px solid;">
+        <div style="border:1px solid;margin-bottom:18px;">
             <div class="card-body">
 
                 <table class="table table-bordered">
@@ -93,67 +87,67 @@
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">1</th>
                             <td>Kerjasama</td>
-                            <td>{{ $penilaian->kerjasama }}</td>
+                            <td>{{ $sertif->kerjasama }}</td>
 
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">2</th>
                             <td>Motivasi & Percaya Diri</td>
-                            <td>{{ $penilaian->MotivasiPercayaDiri }}</td>
+                            <td>{{ $sertif->MotivasiPercayaDiri }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">3</th>
                             <td>Inisiatif & Tanggung Jawab Kerja</td>
-                            <td>{{ $penilaian->InisiatifTanggungJawabKerja }}</td>
+                            <td>{{ $sertif->InisiatifTanggungJawabKerja }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">4</th>
                             <td>Loyalitas</td>
-                            <td>{{ $penilaian->Loyalitas }}</td>
+                            <td>{{ $sertif->Loyalitas }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">5</th>
                             <td>Etika & Sopan Santun</td>
-                            <td>{{ $penilaian->EtikaSopanSantun }}</td>
+                            <td>{{ $sertif->EtikaSopanSantun }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">6</th>
                             <td>Disiplin</td>
-                            <td>{{ $penilaian->disiplin }}</td>
+                            <td>{{ $sertif->disiplin }}</td>
                         </tr>
 
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">7</th>
                             <td>Kemampuan dan Pemahaman Kerja</td>
-                            <td>{{ $penilaian->PemahamanKemampuan }}</td>
+                            <td>{{ $sertif->PemahamanKemampuan }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">8</th>
                             <td>Kesehatan dan Keselamatan Kerja</td>
-                            <td>{{ $penilaian->KesehatanKeselamatanKerja }}</td>
+                            <td>{{ $sertif->KesehatanKeselamatanKerja }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">9</th>
                             <td>Laporan Kerja</td>
-                            <td>{{ $penilaian->laporankerja }}</td>
+                            <td>{{ $sertif->laporankerja }}</td>
                         </tr>
 
                         <tr style="width: 10px;font-size:15px;">
                             <th scope="row">10</th>
                             <td>Kehadiran</td>
-                            <td>{{ $penilaian->kehadiran }}</td>
+                            <td>{{ $sertif->kehadiran }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <td colspan="2" class="text-center">RATA-RATA</td>
-                            <td>{{ $penilaian->average }}</td>
+                            <td>{{ $sertif->average }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <td colspan="2" class="text-center">KETERANGAN NILAI</td>
-                            <td>{{ $penilaian->keterangan }}</td>
+                            <td>{{ $sertif->keterangan }}</td>
                         </tr>
                         <tr style="width: 10px;font-size:15px;">
                             <td colspan="2" class="text-center">NILAI HURUF</td>
-                            <td>{{ $penilaian->nilai_huruf }}</td>
+                            <td>{{ $sertif->nilai_huruf }}</td>
                         </tr>
 
                     </tbody>

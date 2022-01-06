@@ -29,7 +29,7 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="alert alert-danger" role="alert">
-                                                <p>Kirim File dengan Format JPG/PNG</p>
+                                                <p>Kirim File dengan Format JPG/JPEG/PNG</p>
                                             </div>
                                             <div class="form-group mt-4">
                                                 <label>KTP <small style="color: red">*Max

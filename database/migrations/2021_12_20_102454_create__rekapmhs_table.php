@@ -24,7 +24,7 @@ class CreateRekapmhsTable extends Migration
             $table->string('no_hp');
             $table->string('divisi')->nullable();
             $table->string('departemen')->nullable();
-            $table->integer('nim');
+            $table->string('nim');
             $table->string('status_penerimaan')->nullable();
             $table->string('status_user')->nullable();
             $table->date('mulai')->nullable();
