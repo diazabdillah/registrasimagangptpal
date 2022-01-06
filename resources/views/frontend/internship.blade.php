@@ -75,8 +75,7 @@
     </div>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
-            <img src="{{URL::asset('frontend')}}/img/Page_111.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
-            <img src="{{URL::asset('frontend')}}/img/Page_22.jpg" class="rounded float-right mb-2" alt="..." style="width: 100%; display:inline-block">
+            <img src="{{URL::asset('frontend')}}/img/Alur-Magang.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
         </div>
         <div class="tab-pane fade" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
             <h4>Format Laporan Hasil Pemagangan</h4>

@@ -167,33 +167,33 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-					<h6>Home concepts</h6>
+					<h6>Product & Solution</h6>
 					<ul style="color: black" class="list-style">
-						<li><a style="color: black" href="digital-agency.html">Digital Agency</a></li>
-						<li><a style="color: black" href="design-studio.html">Design Studio</a></li>
-						<li><a style="color: black" href="app-landing.html">App Landing</a></li>
-						<li><a style="color: black" href="personal-portfolio.html">Personal Portfolio</a></li>
-						<li><a style="color: black" href="corporate.html">Home Corporate</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3 mt-4 mt-md-0">
-					<h6>Picked Pages</h6>
-					<ul style="color: black" class="list-style">
-						<li><a style="color: black" href="portfolio-grid-3col.html">Portfolio Grid</a></li>
-						<li><a style="color: black" href="portfolio-masonry-3col.html">Portfolio Masonry</a></li>
-						<li><a style="color: black" href="blog-grid.html">Blog Grid</a></li>
-						<li><a style="color: black" href="careers-listing.html">Careers Listing</a></li>
-						<li><a style="color: black" href="contact-map.html">Contact Map</a></li>
+						<li><a style="color: black" href="ship-building">Ship Building</a></li>
+						<li><a style="color: black" href="rekayasa-umum">Rekayasa Umum</a></li>
+						<li><a style="color: black" href="maintenance-repair-overhaul">Perbaikan & Pemeliharaan</a></li>
+						<li><a style="color: black" href="fasilitas">Fasilitas</a></li>
+						<li><a style="color: black" href="penyedia-solusi">Penyedia Solusi</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 mt-4 mt-md-0">
 					<h6>About Us</h6>
 					<ul style="color: black" class="list-style">
-						<li><a style="color: black" href="about-company.html">About</a></li>
-						<li><a style="color: black" href="services.html">Services</a></li>
-						<li><a style="color: black" href="contact-modern.html">Contact</a></li>
-						<li><a style="color: black" href="shop-grid-sidebar.html">Internship</a></li>
-						<li><a style="color: black" href="create-account.html">Create Account</a></li>
+						<li><a style="color: black" href="profile">Divisi HCM</a></li>
+						<li><a style="color: black" href="human-capital-services">Departemen HCS</a></li>
+						<li><a style="color: black" href="human-capital-development">Departemen HCD</a></li>
+						<li><a style="color: black" href="organization-development-and-command-media">Departemen ODCM</a></li>
+						<li><a style="color: black" href="lembaga-sertifikasi-profesi">Departemen LSP</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 mt-4 mt-md-0">
+					<h6>Others</h6>
+					<ul style="color: black" class="list-style">
+						<li><a style="color: black" href="news">News</a></li>
+						<li><a style="color: black" href="services">Services</a></li>
+						<li><a style="color: black" href="contact">Contact Us</a></li>
+						<li><a style="color: black" href="internship">Internship</a></li>
+						<li><a style="color: black" href="auth">Create Account</a></li>
 					</ul>
 				</div>
 				<div style="color: black" class="col-md-3 mt-4 mt-md-0 logo-footer-100">
