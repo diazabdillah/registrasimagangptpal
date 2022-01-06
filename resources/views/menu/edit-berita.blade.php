@@ -18,44 +18,42 @@
 
 
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card shadow mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title mt-2">Edit Data</h5>
+                    <div class="card shadow mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mt-2">Edit Data</h5>
 
 
-                                    <form method="POST" action="/edit-berita/{{ $data->id }}" enctype="multipart/form-data">
-                                        @method('put')
-                                        @csrf
-                                        <!-- Input Judul -->
-                                        <div class="form-group">
-                                            <small class="ml-2">Judul</small>
-                                            <textarea type="text" class="form-control" id="judul" name="judul"
-                                                >{{ $data->judul }}</textarea>
-                                        </div>
-                                        <!-- Input Headline -->
-                                        <div class="form-group">
-                                            <small class="ml-2">Headline</small>
-                                            <textarea type="text" class="form-control" id="headline" name="headline"
-                                                >{{ $data->headline }}</textarea>
-                                        </div>                                        
-                                        <!-- Input Kontent -->
-                                        <div class="form-group">
-                                            <small class="ml-2">Konten</small>
-                                            <textarea type="text" class="form-control" id="news-textarea" name="konten"
-                                                >{{ $data->konten }}</textarea>
-                                        </div>
-                                        <!-- Input Foto -->
-                                        <div class="form-group">
-                                            <small class="ml-2">Foto</small>
-                                            <input type="file" class="form-control" id="foto" name="foto">
-                                        </div>
+                                <form method="POST" action="/edit-berita/{{ $data->id }}" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <!-- Input Judul -->
+                                    <div class="form-group">
+                                        <small class="ml-2">Judul</small>
+                                        <textarea type="text" class="form-control" id="judul" name="judul"
+                                            >{{ $data->judul }}</textarea>
+                                    </div>
+                                    <!-- Input Headline -->
+                                    <div class="form-group">
+                                        <small class="ml-2">Headline</small>
+                                        <textarea type="text" class="form-control" id="headline" name="headline"
+                                            >{{ $data->headline }}</textarea>
+                                    </div>                                        
+                                    <!-- Input Kontent -->
+                                    <div class="form-group">
+                                        <small class="ml-2">Konten</small>
+                                        <textarea type="text" class="form-control" id="news-textarea" name="konten"
+                                            >{{ $data->konten }}</textarea>
+                                    </div>
+                                    <!-- Input Foto -->
+                                    <div class="form-group">
+                                        <small class="ml-2">Foto</small>
+                                        <input type="file" class="form-control" id="foto" name="foto">
+                                    </div>
 
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i
-                                                class="fas fa-paper-plane"></i></button>
-                                    </form>
-                                </div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i
+                                            class="fas fa-paper-plane"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>

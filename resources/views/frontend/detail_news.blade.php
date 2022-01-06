@@ -64,7 +64,7 @@
                 @foreach ($detail as $d)
                     <h1 style="font-size: 40px" align="center">{{ $d->judul }}</h1>
                     <img src="{{ asset('/berita/' . $d->foto) }}" class="img-fluid center" alt="Responsive image">
-                    <h6>{!! $d->konten !!}</h6>
+                    <p>{!! $d->konten !!}</p>
             </div>
             <div class="col-md-2">
                 <h3 class="justify-content-center" sytle="color: blue" align="center">Berita Terkini</h3>

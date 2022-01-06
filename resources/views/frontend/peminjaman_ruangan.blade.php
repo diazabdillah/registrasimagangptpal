@@ -28,7 +28,7 @@
                 </div>
                 <h5 style="color: rgb(208, 208, 208)">
                     <a style="text-decoration:none; color:white" href="{{URL('/')}}">Home</a> /
-                    <a style="text-decoration:none; color:white" href="{{URL('services')}}">Services</a> / 
+                    <a style="text-decoration:none; color:white" href="{{URL('/')}}">Services</a> / 
                     Peminjaman Ruangan
                 </h5>
             </div>
@@ -73,7 +73,11 @@
                                         <!-- Input Pilih Ruangan -->
                                         <div class="form-group">
                                             <small class="ml-2">Pilih Ruangan</small>
-                                            <input type="text" class="form-control" id="pilih_ruangan" name="pilih_ruangan">
+                                            <select class="form-control" name="pilih_ruangan" id="pilih_ruangan">
+                                            @foreach ($ruangan as $r)
+                                                <option selected value="{{ $r->nama_ruangan }}">{{ $r->nama_ruangan }}</option>
+                                            @endforeach
+                                            </select>
                                         </div>
                                         <!-- Input Nama Peminjaman -->
                                         <div class="form-group">
@@ -83,12 +87,20 @@
                                         <!-- Input Nama Divisi -->
                                         <div class="form-group">
                                             <small class="ml-2">Divisi</small>
-                                            <input type="text" class="form-control" id="divisi" name="divisi">
+                                            <select class="form-control" name="divisi" id="divisi">
+                                            @foreach ($divisi as $di)
+                                                <option selected value="{{ $di->nama_divisi }}">{{ $di->nama_divisi }}</option>
+                                            @endforeach
+                                            </select>
                                         </div>
                                         <!-- Input Nama Departemen -->
                                         <div class="form-group">
                                             <small class="ml-2">Departemen</small>
-                                            <input type="text" class="form-control" id="departemen" name="departemen">
+                                            <select class="form-control" name="departemen" id="departemen">
+                                            @foreach ($departemen as $de)
+                                                <option selected value="{{ $de->nama_departemen }}">{{ $de->nama_departemen }}</option>
+                                            @endforeach
+                                            </select>
                                         </div>     
                                         <!-- Input Nomor Telpon -->
                                         <div class="form-group">

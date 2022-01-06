@@ -2369,8 +2369,8 @@ body.royal_preloader {
 	padding-bottom: 56.25%;
 	padding-top: 0;
 	height: 0;
-	overflow: hidden;
-}	
+	overflow: visible;
+}
 .video-wrapper iframe {
 	position: absolute;
 	top: 0;
@@ -3195,7 +3195,7 @@ figure.vimeo a img, figure.youtube a img {
 	width:100%;
 }
 .over-hide{
-	overflow:hidden;
+	overflow:scroll;
 }
 .full-height {
 	height:100vh;

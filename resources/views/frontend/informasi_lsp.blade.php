@@ -32,7 +32,7 @@
                 </div>
                 <h5 style="color: rgb(208, 208, 208)">
                     <a style="text-decoration:none; color:white" href="{{URL('/')}}">Home</a> /
-                    <a style="text-decoration:none; color:white" href="{{URL('services')}}">Services</a> / 
+                    <a style="text-decoration:none; color:white" href="{{URL('/')}}">Services</a> / 
                     Informasi LSP
                 </h5>
             </div>
