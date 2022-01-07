@@ -121,6 +121,11 @@
                                     <i class="fa fa-calendar"></i> {{ $t->tanggal_mulai }} - {{ $t->tanggal_selesai }} <br>
                                     <i class="fas fa-user-friends"></i> Peserta Hadir : {{ $t->peserta_hadir }} <br>
                                 </p>
+                                @if ($t->fileTraining == "-")
+                                    -
+                                @else
+                                    <a href="{{ asset('/DokumenTraining/' . $t->fileTraining) }}">Download File</a>
+                                @endif
                                 <button type="button">Read More</button>
                             </div>
                         </div>

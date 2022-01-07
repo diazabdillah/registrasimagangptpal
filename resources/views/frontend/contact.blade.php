@@ -66,8 +66,8 @@
 
                 <!--Grid column-->
                 <div class="col-md-9 mb-md-0 mb-5">
-                    <form id="contact-form" name="contact-form" action="" method="POST">
-
+                    <form method="POST" action="{{ route('upload') }}">
+                        @csrf
                         <!--Grid row-->
                         <div class="row">
 
@@ -119,7 +119,7 @@
                         <!--Grid row-->
 
                         <div class="text-center text-md-left">
-                            <a style="color: white" class="btn btn-primary">Send</a>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Send<i class="fas fa-paper-plane"></i></button>
                         </div>
                     </form>
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\AuthhController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\MagangController;
 use App\Http\Controllers\MenuController;
@@ -71,6 +72,7 @@ Route::get('/internship', function () {
 Route::get('/contact', function () {
     return view('frontend.contact');
 });
+Route::post('/uploadMessage', [WebController::class, 'uploadContactUs'])->name('upload');
 
 Route::get('/services', function () {
     return view('frontend.services');
@@ -138,6 +140,11 @@ Route::get('/edit-galeri/{id}', [MenuController::class, 'editGaleri']);
 Route::put('/edit-galeri/{id}', [MenuController::class, 'updateGaleri']);
 Route::get('delete-galeri/{user_id}', [MenuController::class, 'deleteGaleri']);
 // Bagian Galeri ================================
+
+// Bagian Contact Us ================================
+Route::get('/show-contact-us', [ContactUsController::class, 'showContactUs']);
+Route::get('delete-contact-us/{id}', [ContactUsController::class, 'deleteContactUs']);
+// Bagian Contact Us ================================
 
 // Bagian Info Beasiswa ================================
 Route::get('/show-info-beasiswa', [ServiceController::class, 'showInfoBeasiswa']);

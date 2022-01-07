@@ -12,6 +12,8 @@ use App\Models\Divisi;
 use App\Models\UnitKerja;
 use App\Models\SkemaBNSP;
 use App\Models\JumlahAsesor;
+use App\Models\Kuota;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -103,6 +105,31 @@ class WebController extends Controller
         $getGalleries = Gallery::orderBy('id','DESC')->simplePaginate(6);
 
         return view('frontend.gallery', ['gallery' => $getGalleries]);
+    }
+
+    public function showInternship(){
+        $getKuota = Kuota::orderBy('id','DESC')->simplePaginate(15);
+
+        return view('frontend.internship', ['kuota' => $getKuota])->with('i');
+    }
+
+    public function uploadContactUs(Request $request){
+        $request->validate([
+            'name' =>'required',
+            'email' =>'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        ContactUs::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        session()->flash('succes', 'Pesan berhasil dikirim!');
+        return redirect('/contact');
     }
 
     public function showInfoBeasiswa(){

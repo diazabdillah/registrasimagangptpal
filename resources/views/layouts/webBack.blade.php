@@ -140,6 +140,11 @@
                     <i class="fas fa-fw fa-folder-open"></i>
                     <span>Galeri</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Contact Us Managemen' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/show-contact-us">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Contact Us</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'Info Beasiswa Managemen' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/show-info-beasiswa">
                     <i class="fas fa-fw fa-folder-open"></i>
