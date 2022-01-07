@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2022 pada 13.22
+-- Waktu pembuatan: 06 Jan 2022 pada 10.17
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.7
 
@@ -282,27 +282,29 @@ CREATE TABLE `divisi` (
 --
 
 INSERT INTO `divisi` (`id`, `nama_divisi`, `created_at`, `updated_at`) VALUES
-(1, 'Sekretaris Perusahaan', '2021-09-28 05:24:18', '2021-09-28 05:24:18'),
-(2, 'Satuan Pengawasan Intern', '2021-09-28 05:25:15', '2021-09-28 05:25:15'),
-(3, 'Naval Technology', '2021-09-28 05:25:32', '2021-09-28 05:25:32'),
-(4, 'Pemasaran dan Penjualan Kapal', '2021-09-28 05:25:44', '2021-09-28 05:25:44'),
-(5, 'Penjualan REKUMHAR', '2021-09-28 05:25:56', '2021-09-28 05:25:56'),
-(6, 'Desain', '2021-09-28 05:26:03', '2021-09-28 05:26:03'),
-(7, 'Jaminan Kualitas', '2021-09-28 05:26:11', '2021-09-28 05:26:11'),
-(8, 'Supply Chain', '2021-09-28 05:26:18', '2021-09-28 05:26:18'),
-(9, 'Kapal Perang', '2021-09-28 05:26:25', '2021-09-28 05:26:25'),
-(10, 'Kapal Selam', '2021-09-28 05:26:33', '2021-09-28 05:26:33'),
-(11, 'Kapal Niaga', '2021-09-28 05:26:44', '2021-09-28 05:26:44'),
-(12, 'Rekayasa Umum', '2021-09-28 05:26:52', '2021-09-28 05:26:52'),
-(13, 'Pemeliharaan dan Perbaikan', '2021-09-28 05:27:20', '2021-09-28 05:27:20'),
-(14, 'Akuntansi', '2021-09-28 05:27:28', '2021-09-28 05:27:28'),
-(15, 'Perencanaan Strategis Perusahaan & Manajemen Risiko', '2021-09-28 05:27:39', '2021-09-28 05:27:39'),
-(16, 'Perbendaharaan', '2021-09-28 05:27:49', '2021-09-28 05:27:49'),
-(17, 'Teknologi Informasi', '2021-09-28 05:27:58', '2021-09-28 05:27:58'),
-(18, 'Human Capital Management', '2021-09-28 05:28:14', '2021-09-28 05:28:14'),
-(19, 'Kawasan', '2021-09-28 05:28:20', '2021-09-28 05:28:20'),
-(20, 'Kemanan & K3LH', '2021-09-28 05:28:35', '2021-09-28 05:28:35'),
-(21, 'Unit Tanggung Jawab Sosial & Lingkungan', '2021-09-28 05:28:53', '2021-09-28 05:28:53');
+(17, 'Teknologi Informasi', '2021-09-27 22:27:58', '2021-09-27 22:27:58'),
+(16, 'Perbendaharaan', '2021-09-27 22:27:49', '2021-09-27 22:27:49'),
+(15, 'Perencanaan Strategis Perusahaan & Manajemen Risiko', '2021-09-27 22:27:39', '2021-09-27 22:27:39'),
+(14, 'Akuntansi', '2021-09-27 22:27:28', '2021-09-27 22:27:28'),
+(13, 'Pemeliharaan dan Perbaikan', '2021-09-27 22:27:20', '2021-09-27 22:27:20'),
+(12, 'Rekayasa Umum', '2021-09-27 22:26:52', '2021-09-27 22:26:52'),
+(11, 'Kapal Niaga', '2021-09-27 22:26:44', '2021-09-27 22:26:44'),
+(10, 'Kapal Selam', '2021-09-27 22:26:33', '2021-09-27 22:26:33'),
+(9, 'Kapal Perang', '2021-09-27 22:26:25', '2021-09-27 22:26:25'),
+(8, 'Supply Chain', '2021-09-27 22:26:18', '2021-09-27 22:26:18'),
+(7, 'Jaminan Kualitas', '2021-09-27 22:26:11', '2021-09-27 22:26:11'),
+(6, 'Desain', '2021-09-27 22:26:03', '2021-09-27 22:26:03'),
+(5, 'Penjualan REKUMHAR', '2021-09-27 22:25:56', '2021-09-27 22:25:56'),
+(4, 'Pemasaran dan Penjualan Kapal', '2021-09-27 22:25:44', '2021-09-27 22:25:44'),
+(3, 'Naval Technology', '2021-09-27 22:25:32', '2021-09-27 22:25:32'),
+(2, 'Satuan Pengawasan Intern', '2021-09-27 22:25:15', '2021-09-27 22:25:15'),
+(1, 'Sekretaris Perusahaan', '2021-09-27 22:24:18', '2021-09-27 22:24:18'),
+(18, 'Human Capital Management', '2021-09-27 22:28:14', '2021-09-27 22:28:14'),
+(19, 'Kawasan', '2021-09-27 22:28:20', '2021-09-27 22:28:20'),
+(20, 'Kemanan & K3LH', '2021-09-27 22:28:35', '2021-09-27 22:28:35'),
+(21, 'Unit Tanggung Jawab Sosial & Lingkungan', '2021-09-27 22:28:53', '2021-09-27 22:28:53'),
+(22, 'Office Of The Board', '2022-01-05 20:10:13', '2022-01-05 20:10:13'),
+(23, 'Legal', '2022-01-05 20:10:25', '2022-01-05 20:10:25');
 
 -- --------------------------------------------------------
 
@@ -1512,7 +1514,7 @@ ALTER TABLE `departemen`
 -- AUTO_INCREMENT untuk tabel `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`

@@ -23,7 +23,8 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Magang <span class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Magang <span
+                                        class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -41,9 +42,12 @@
                                             <tr>
                                                 <td class="text-center">{{ ++$i }}.</td>
                                                 <td class="text-center">{{ $u->name }}</td>
-                                                <td class="text-center"><span class="badge badge-primary p-2">{{ $u->status_user }}</span></td>
+                                                <td class="text-center"><span class="badge badge-primary p-2">{{
+                                                        $u->status_user }}</span></td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses_penerimaan/' . $u->id) }}">Detail <i class="fas fa-info-circle ml-1"></i></a>
+                                                    <a class="badge badge-success p-2"
+                                                        href="{{ url('proses_penerimaan/' . $u->id) }}">Detail <i
+                                                            class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -59,7 +63,8 @@
                     <div class="card shadow mb-4">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Magang <span class="badge badge-warning ml-2 p-1">SMK</span></h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Magang <span
+                                        class="badge badge-warning ml-2 p-1">SMK</span></h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -80,9 +85,12 @@
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $us->name }}</td>
-                                                <td class="text-center"><span class="badge badge-warning p-2">{{ $us->status_user }}</span></td>
+                                                <td class="text-center"><span class="badge badge-warning p-2">{{
+                                                        $us->status_user }}</span></td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses-penerimaan-smk/' . $us->id) }}">Detail <i class="fas fa-info-circle ml-1"></i></a>
+                                                    <a class="badge badge-success p-2"
+                                                        href="{{ url('proses-penerimaan-smk/' . $us->id) }}">Detail <i
+                                                            class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

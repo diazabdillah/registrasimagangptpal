@@ -18,36 +18,38 @@
 
 
                 <div class="row">
-                    <div class="card shadow mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title mt-2">Data</h5>
-                                <form method="POST" action="{{ route('uploadBerita') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <!-- Input Judul Berita -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Judul</small>
-                                        <textarea type="text" class="form-control" id="judul" name="judul"></textarea>
-                                    </div>
-                                    <!-- Input Headline Berita -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Headline</small>
-                                        <textarea type="text" class="form-control" id="headline" name="headline"></textarea>
-                                    </div>                                        
-                                    <!-- Input Konten Beria -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Konten</small>
-                                        <textarea type="longText" class="form-control" id="news-textarea" name="konten"></textarea>
-                                    </div>
-                                    <!-- Input Foto Beritta -->
-                                    <div class="form-group">
-                                        <small class="ml-2">Foto</small>
-                                        <input type="file" name="foto" class="form-control">
-                                    </div>
+                    <div class="col-sm-6">
+                        <div class="card shadow mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mt-2">Data</h5>
+                                    <form method="POST" action="{{ route('uploadBerita') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <!-- Input Judul Berita -->
+                                        <div class="form-group">
+                                            <small class="ml-2">Judul</small>
+                                            <textarea type="text" class="form-control" id="judul" name="judul"></textarea>
+                                        </div>
+                                        <!-- Input Headline Berita -->
+                                        <div class="form-group">
+                                            <small class="ml-2">Headline</small>
+                                            <textarea type="text" class="form-control" id="headline" name="headline"></textarea>
+                                        </div>                                        
+                                        <!-- Input Konten Beria -->
+                                        <div class="form-group">
+                                            <small class="ml-2">Konten</small>
+                                            <textarea type="longText" class="form-control" id="news-textarea" name="konten"></textarea>
+                                        </div>
+                                        <!-- Input Foto Beritta -->
+                                        <div class="form-group">
+                                            <small class="ml-2">Foto</small>
+                                            <input type="file" name="foto" class="form-control">
+                                        </div>
 
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
-                                            class="fas fa-paper-plane"></i></button>
-                                </form>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
+                                                class="fas fa-paper-plane"></i></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

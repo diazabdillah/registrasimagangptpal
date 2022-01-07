@@ -28,7 +28,7 @@
                 </div>
                 <h5 style="color: rgb(208, 208, 208)">
                     <a style="text-decoration:none; color:white" href="{{URL('/')}}">Home</a> /
-                    <a style="text-decoration:none; color:white" href="{{URL('/')}}">Services</a> / 
+                    <a style="text-decoration:none; color:white" href="{{URL('services')}}">Services</a> / 
                     Unit Kerja
                 </h5>
             </div>
@@ -56,7 +56,7 @@
 
 <!-- Logos Block
 	================================================== -->
-<div class="container-fluid">
+    <div class="container-fluid">
     <div class="card-1 Menu mb-4">
         <div class="card-1 shadow">
             <div class="card-header-1 py-3">

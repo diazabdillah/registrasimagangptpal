@@ -226,6 +226,21 @@
 
 <!-- Modal Foto -->
 @foreach ($gallery as $g)
+<!-- <div class="modal" id="staticBackdrop{{$g->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-xl">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img style="width: 100%" class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
+            </div>
+        </div>
+    </div>
+</div> -->
 <div class="modal fade default search-modal" id="staticBackdrop{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -236,12 +251,12 @@
 			</div>
 			<div class="modal-body">
 				<div class="hero-center-wrap move-top">
-					<div class="container-fluid">
+					<div class="container">
 						<div class="row justify-content-center">
 							<div class="col-md-12">
 								<div class="video-section">
 									<figure class="vimeo rounded-2 over-hide">
-											<img class="rounded-2 over-hide center-modal" src="{{ asset('/galeri/' . $g->foto) }}" alt="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>
+											<img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
 									</figure>
 								</div>
 							</div>
@@ -254,7 +269,7 @@
 </div>
 @endforeach
 
-<!-- Modal Video -->
+<!-- Modal Foto -->
 @foreach ($gallery as $g)
 <div class="modal fade default search-modal" id="Modal-video{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -422,6 +437,127 @@
 					<div class="separator-wrap">	
 						<span class="separator"><span class="separator-line dashed"></span></span>
 					</div>
+				</div>
+			</div>
+		</div>		
+	</div> --}}
+
+<!-- Blog Block
+	================================================== -->
+
+{{-- <div class="section padding-top-bottom background-white over-hide">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-4">	
+					<div class="main-title text-left">
+						<div class="main-subtitle-top mb-4">latest news</div>
+						<h4>Add your creation to<br>our collections.</h4>
+						<div class="main-subtitle-bottom smaller mt-3">you inspired me</div>	
+					</div>
+				</div>
+				<div class="col-xl-8">
+					<div class="blog-box-2">
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>May 4, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>We want to share with you our mood after selection.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>May 1, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Sleep, code, eat, travel. Repeat.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>April 28, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Don’t get lost quoting your next projects.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>April 23, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Don´t give up, keep on focus.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>April 15, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Moments from a life. Day of photography.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>March 26, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>The golden rule of modern webdesign. Moments from a life.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>March 17, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Design is the method of putting form and content together.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>March 13, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Design is so simple, that's why it is so complicated.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>March 05, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>How you look at it is pretty much how you'll see it.</h5></a>
+						</div>
+						<div class="post-link-box mb-2" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>March 04, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>Don’t get lost quoting your next projects.</h5></a>
+						</div>
+						<div class="post-link-box" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+							<p>March 03, 2017</p>
+							<a href="post.html" class="tipped" data-title="by <em>Marco Kulis</em>" data-tipper-options='{"direction":"top","follow":"true","margin":30}'><h5>The golden rule of modern webdesign. Moments from a life.</h5></a>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>		
+	</div> --}}
+
+<!-- Subscribe Block
+	================================================== -->
+
+{{-- <div id="contact" class="section padding-top-bottom background-dark">
+		<div  class="container">	
+			<div class="row justify-content-center">
+				<div class="col-md-12 text-center">
+					<h4 class="mb-5 color-white">Contacts</h4>
+					<div class="subscribe-box-1 dark">
+                        <div class="row justify-content-center">
+				<div class="col-md-4">	
+					<div class="subscribe-box-1">
+						<input type="text" value="" placeholder="Your Name *" class="form-control" />
+					</div>		
+				</div>
+				<div class="col-md-4 mt-4 mt-md-0">	
+					<div class="subscribe-box-1">
+						<input type="text" value="" placeholder="Company" class="form-control" />
+					</div>		
+				</div>
+				<div class="clear"></div>
+				<div class="col-md-4 mt-4">	
+					<div class="subscribe-box-1">
+						<input type="text" value="" placeholder="Phone" class="form-control" />
+					</div>		
+				</div>
+				<div class="col-md-4 mt-4">	
+					<div class="subscribe-box-1">
+						<input type="text" value="" placeholder="Email *" class="form-control" />
+					</div>		
+				</div>
+				<div class="clear"></div>
+				<div class="col-md-8 mt-4">	
+					<div class="subscribe-box-1">
+						<textarea style="color: white" name="message"  placeholder="Tell Us Everything *" class="for-textarea form-control" ></textarea>
+					</div>		
+				</div>
+				<div class="clear"></div>
+				<div class="col-md-12 text-center pt-5">	
+					<div class="checkbox primary line-icon on-light">
+						<input id="checkboxForm" type="checkbox">
+						<label for="checkboxForm">
+							I'm not a robot
+						</label>
+					</div>
+				</div>
+				<div class="col-md-12 mt-5 text-center">
+					<button class="btn btn-primary btn-round btn-long" type="button">submit</button>		
+				</div>
+			</div>		
+					</div>	
 				</div>
 			</div>
 		</div>		

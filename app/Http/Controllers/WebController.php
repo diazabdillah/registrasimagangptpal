@@ -7,8 +7,6 @@ use App\Models\Gallery;
 use App\Models\Beasiswa;
 use App\Models\Training;
 use App\Models\DaftarRuangan;
-use App\Models\Departemen;
-use App\Models\Divisi;
 use App\Models\UnitKerja;
 use App\Models\SkemaBNSP;
 use App\Models\JumlahAsesor;
@@ -151,16 +149,10 @@ class WebController extends Controller
     public function showDaftarRuangan(){
         $ti = 'Form Peminjaman Ruangan';
         $getDaftarRuangan = DaftarRuangan::orderBy('id','DESC')->simplePaginate(6);
-        $ruangan = DaftarRuangan::all();
-        $divisi = Divisi::all();
-        $departemen = Departemen::all();
 
         return view('frontend.peminjaman_ruangan', [
             'ti' => $ti,
-            'dataRuangan' => $getDaftarRuangan,
-            'ruangan' => $ruangan,
-            'divisi' => $divisi,
-            'departemen' => $departemen
+            'dataRuangan' => $getDaftarRuangan
         ])->with('i');
     }
 
