@@ -54,41 +54,40 @@
 
 {{-- list gallery --}}
 <div class="section padding-top-bottom-small background-white over-hide">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="work-slider-wrap mb-4">
-				<div id="owl-work" class="owl-carousel owl-theme">
-					@foreach($gallery as $g)
-						@if ($g->url == '0')
-						<div class="item">
-							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
-								<div class="portfolio-box-1 dark rounded">
-									<div class="embed-responsive embed-responsive-16by9" width="30">
-                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
-                                    </div> 
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ $g->judul }}</h5>
-								</div>
-							</a>
-						</div>
-						@elseif ($g->foto == '0')
-						<div class="item">
-							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
-								<div class="portfolio-box-1 dark rounded">
-									<div class="embed-responsive embed-responsive-16by9" width="30">
+    <div class="container">
+        <div class="row">
+            @foreach ($gallery as $g)
+                @if ($g->url == '0')
+                    <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+                        <div class="item">
+                            <div class="team-box-1 background-white drop-shadow text-center">
+                                <a style="text-decoration:none; color: black">
+                                    <img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" width="30" />
+                                    {{ $g->judul }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @elseif ($g->foto == '0')
+                    <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+                        <div class="item">
+                            <div class="team-box-1 background-white drop-shadow text-center">
+                                    
                                         <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
-                                    </div> 
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ $g->judul }}</h5>
-								</div>
-							</a>
-						</div>
-						@endif
-					@endforeach
-				</div>
-			</div>
-		</div>
-	</div>
+                                    
+                                    {{ $g->judul }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+            <nav aria-label="Page navigation example">
+                {{ $gallery->links() }}
+            </nav>
+        </div>
+    </div>
 </div>
 <!-- Separator Line
 	================================================== -->
@@ -107,6 +106,7 @@
     </div>
 </div>
 
+
 <!-- Modal Foto -->
 @foreach ($gallery as $g)
 <div class="modal fade default search-modal" id="staticBackdrop{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -119,12 +119,12 @@
 			</div>
 			<div class="modal-body">
 				<div class="hero-center-wrap move-top">
-					<div class="container-fluid">
+					<div class="container">
 						<div class="row justify-content-center">
-							<div class="col-md-12">
+							<div class="col-md-8">
 								<div class="video-section">
 									<figure class="vimeo rounded-2 over-hide">
-											<img class="rounded-2 over-hide center-modal" src="{{ asset('/galeri/' . $g->foto) }}" alt="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>
+											<img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
 									</figure>
 								</div>
 							</div>

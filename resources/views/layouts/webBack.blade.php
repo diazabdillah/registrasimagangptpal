@@ -214,7 +214,7 @@
                     <span>Laporan Akhir Revisi</span></a>
             </li>
             <li class="nav-item {{ $ti === 'Penilaian' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/penilaian">
+                <a class="nav-link pb-0" href="/penilaian-magang">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>Form Penilaian</span></a>
             </li>

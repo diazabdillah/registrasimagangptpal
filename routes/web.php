@@ -314,11 +314,11 @@ Route::put('proseseditlaporansmk/{id}', [DivisiController::class, 'proseseditlap
 Route::get('delete-laporan-smk/{id}', [DivisiController::class, 'delete_laporan_smk']);
 
 Route::get('delete-laporan-penelitian/{id}', [DivisiController::class, 'delete_laporan_penelitian']);
-Route::get('/penilaian', [DivisiController::class, 'penilaian']);
-Route::get('/isi_penilaian/{id}', [DivisiController::class, 'isi_penilaian']);
-Route::post('/proses_penilaian/{id}', [DivisiController::class, 'proses_penilaian'])->name('tambahnilai');
-Route::get('/isi_penilaian_smk/{id}', [DivisiController::class, 'isi_penilaian_smk']);
-Route::post('/proses_penilaian_smk/{id}', [DivisiController::class, 'proses_penilaian_smk'])->name('tambahnilaismk');
+Route::get('/penilaian-magang', [DivisiController::class, 'penilaian']);
+Route::get('/isi-penilaian-magang/{id}', [DivisiController::class, 'isi_penilaian']);
+Route::post('/proses-penilaian-magang/{id}', [DivisiController::class, 'proses_penilaian'])->name('tambahnilai');
+Route::get('/isi-penilaian-magang-smk/{id}', [DivisiController::class, 'isi_penilaian_smk']);
+Route::post('/proses-penilaian-magang-smk/{id}', [DivisiController::class, 'proses_penilaian_smk'])->name('tambahnilaismk');
 Route::get('isi_penilaian_divisi/{id}', [DivisiController::class, 'isi_penilaian_divisi']);
 Route::post('/proses_penilaian_divisi/{id}', [DivisiController::class, 'proses_penilaian_divisi'])->name('tambahnilaidivisi');
 Route::get('isi_penilaian_smk_divisi/{id}', [DivisiController::class, 'isi_penilaian_smk_divisi']);

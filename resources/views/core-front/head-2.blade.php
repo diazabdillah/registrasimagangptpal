@@ -197,7 +197,7 @@
 					<h6>Others</h6>
 					<ul style="color: black" class="list-style">
 						<li><a style="color: black" href="news">News</a></li>
-						<li><a style="color: black" href="gallery">Gallery</a></li>
+						<li><a style="color: black" href="services">Services</a></li>
 						<li><a style="color: black" href="contact">Contact Us</a></li>
 						<li><a style="color: black" href="internship">Internship</a></li>
 						<li><a style="color: black" href="auth">Create Account</a></li>

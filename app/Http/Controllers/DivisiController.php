@@ -1037,7 +1037,7 @@ class DivisiController extends Controller
                 'keterangan' => $keterangan,
             ]);
 
-        return redirect('/penilaian');
+        return redirect('/penilaian-magang');
     }
 
     public function proses_penilaian_smk($id, Request $request)
@@ -1090,7 +1090,7 @@ class DivisiController extends Controller
                 'keterangan' => $keterangan,
             ]);
 
-        return redirect('/penilaian');
+        return redirect('/penilaian-magang');
     }
 
     public function Absen()
@@ -2601,9 +2601,13 @@ class DivisiController extends Controller
             $user = User::find($id);
 
             if ($user->status_user == "Mahasiswa") {
-                File::deleteDirectories('file/berkas-mahasiswa/' . $user->id);
+                if (DB::table('file_mhs_indivs')->where('user_id', $id)->first()) {
+                    File::deleteDirectories('file/berkas-mahasiswa/' . $user->id);
+                }
             } else {
-                File::deleteDirectories('file/berkas-mhs-kel/' . $user->id);
+                if (DB::table('file_mhs_indivs')->where('user_id', $id)->first()) {
+                    File::deleteDirectories('file/berkas-mhs-kel/' . $user->id);
+                }
             }
 
             DB::table('file_mhs_indivs')
@@ -2662,9 +2666,13 @@ class DivisiController extends Controller
             $user = User::find($id);
 
             if ($user->status_user == "SMK") {
-                File::deleteDirectories('file/berkas-smk/' . $user->id);
+                if (DB::table('file_smk_indivs')->where('user_id', $id)->first()) {
+                    File::deleteDirectories('file/berkas-smk/' . $user->id);
+                }
             } else {
-                File::deleteDirectories('file/berkas-smk-kel/' . $user->id);
+                if (DB::table('file_smk_indivs')->where('user_id', $id)->first()) {
+                    File::deleteDirectories('file/berkas-smk-kel/' . $user->id);
+                }
             }
 
             DB::table('file_smk_indivs')
@@ -2721,8 +2729,9 @@ class DivisiController extends Controller
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
 
             $user = User::find($id);
-
-            File::deleteDirectories('file/berkas-penelitian/' . $user->id);
+            if (DB::table('file_penelitian')->where('user_id', $id)->first()) {
+                File::deleteDirectories('file/berkas-penelitian/' . $user->id);
+            }
 
             DB::table('file_penelitian')
                 ->where('user_id', '=', $id)

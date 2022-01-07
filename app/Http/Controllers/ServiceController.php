@@ -46,8 +46,8 @@ class ServiceController extends Controller
     public function prosesInputInfoBeasiswa(Request $request)
     {
         $request->validate([
-            'nama_beasiswa' =>'required',
-            'institusi' =>'required',
+            'nama_beasiswa' => 'required',
+            'institusi' => 'required',
             'url' => 'required'
         ]);
 
@@ -69,7 +69,7 @@ class ServiceController extends Controller
             $data = DB::table('beasiswa')->where('id', $id)->first();
 
             return view('services.edit-info_beasiswa', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -93,7 +93,7 @@ class ServiceController extends Controller
     public function deleteInfoBeasiswa($id)
     {
         DB::table('beasiswa')->where('id', $id)->delete();
-         return redirect('/show-info-beasiswa')->with('succes', 'Info Beasiswa Anda Berhasil DiHapus');
+        return redirect('/show-info-beasiswa')->with('succes', 'Info Beasiswa Anda Berhasil DiHapus');
     }
 
     public function showTraining()
@@ -126,8 +126,8 @@ class ServiceController extends Controller
     public function prosesInputTraining(Request $request)
     {
         $request->validate([
-            'nama_training' =>'required',
-            'penyelenggara' =>'required',
+            'nama_training' => 'required',
+            'penyelenggara' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
             'tempat' => 'required',
@@ -136,7 +136,7 @@ class ServiceController extends Controller
         ]);
 
         $file = $request->file('fileTraining');
-        if($file == null) {
+        if ($file == null) {
             $nama_file = "-";
         } else {
             $nama_file = $file->getClientOriginalName();
@@ -170,7 +170,7 @@ class ServiceController extends Controller
             $data = DB::table('training')->where('id', $id)->first();
 
             return view('services.edit-training', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -181,21 +181,21 @@ class ServiceController extends Controller
     public function updateTraining(Request $request, $id)
     {
         $trainingLama = Training::find($id);
-        if($request->file('fileTraining') == null) {
+        if ($request->file('fileTraining') == null) {
             $fileLama = $trainingLama->fileTraining;
 
             DB::table('training')->where('id', $id)
-            ->update([
-                'nama_training' => $request->nama_training,
-                'penyelenggara' => $request->penyelenggara,
-                'tanggal_mulai' => $request->tanggal_mulai,
-                'tanggal_selesai' => $request->tanggal_selesai,
-                'tempat' => $request->tempat,
-                'peserta_sprint' => $request->peserta_sprint,
-                'peserta_hadir' => $request->peserta_hadir,
-                'fileTraining' => $fileLama,
-                'status' => $request->status,
-            ]);
+                ->update([
+                    'nama_training' => $request->nama_training,
+                    'penyelenggara' => $request->penyelenggara,
+                    'tanggal_mulai' => $request->tanggal_mulai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'tempat' => $request->tempat,
+                    'peserta_sprint' => $request->peserta_sprint,
+                    'peserta_hadir' => $request->peserta_hadir,
+                    'fileTraining' => $fileLama,
+                    'status' => $request->status,
+                ]);
         } else {
             $file = $request->file('fileTraining');
             $nama_file = $file->getClientOriginalName();
@@ -203,18 +203,18 @@ class ServiceController extends Controller
             $file->move($tujuan_upload, $nama_file);
 
             DB::table('training')->where('id', $id)
-            ->update([
-                'nama_training' => $request->nama_training,
-                'penyelenggara' => $request->penyelenggara,
-                'tanggal_mulai' => $request->tanggal_mulai,
-                'tanggal_selesai' => $request->tanggal_selesai,
-                'tempat' => $request->tempat,
-                'peserta_sprint' => $request->peserta_sprint,
-                'peserta_hadir' => $request->peserta_hadir,
-                'fileTraining' => $nama_file,
-                'status' => $request->status,
-            ]);
-        }      
+                ->update([
+                    'nama_training' => $request->nama_training,
+                    'penyelenggara' => $request->penyelenggara,
+                    'tanggal_mulai' => $request->tanggal_mulai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'tempat' => $request->tempat,
+                    'peserta_sprint' => $request->peserta_sprint,
+                    'peserta_hadir' => $request->peserta_hadir,
+                    'fileTraining' => $nama_file,
+                    'status' => $request->status,
+                ]);
+        }
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/show-training');
@@ -223,7 +223,7 @@ class ServiceController extends Controller
     public function deleteTraining($id)
     {
         DB::table('training')->where('id', $id)->delete();
-         return redirect('/show-training')->with('succes', 'Data Training Anda Berhasil DiHapus');
+        return redirect('/show-training')->with('succes', 'Data Training Anda Berhasil DiHapus');
     }
 
     public function showPeminjamanRuangan()
@@ -258,8 +258,8 @@ class ServiceController extends Controller
     public function prosesInputDaftarRuangan(Request $request)
     {
         $request->validate([
-            'nama_ruangan' =>'required',
-            'fasilitas' =>'required',
+            'nama_ruangan' => 'required',
+            'fasilitas' => 'required',
             'kapasitas' => 'required',
             'foto_ruangan' => 'required'
         ]);
@@ -287,9 +287,9 @@ class ServiceController extends Controller
         $available = "Available";
 
         DB::table('daftar_ruangan')->where('id', $id)
-        ->update([
-            'status' => $available,
-        ]);
+            ->update([
+                'status' => $available,
+            ]);
         return redirect('/show-peminjaman-ruangan');
     }
 
@@ -298,9 +298,9 @@ class ServiceController extends Controller
         $unavailable = "Unavailable";
 
         DB::table('daftar_ruangan')->where('id', $id)
-        ->update([
-            'status' => $unavailable,
-        ]);
+            ->update([
+                'status' => $unavailable,
+            ]);
         return redirect('/show-peminjaman-ruangan');
     }
 
@@ -312,7 +312,7 @@ class ServiceController extends Controller
             $data = DB::table('daftar_ruangan')->where('id', $id)->first();
 
             return view('services.edit-daftar_ruangan', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -325,7 +325,7 @@ class ServiceController extends Controller
         $file = $request->file('foto_ruangan');
         $nama_file = $file->getClientOriginalName();
         $tujuan_upload = 'Foto Ruangan';
-        $file->move($tujuan_upload, $nama_file);      
+        $file->move($tujuan_upload, $nama_file);
 
         DB::table('daftar_ruangan')->where('id', $id)
             ->update([
@@ -342,14 +342,14 @@ class ServiceController extends Controller
     public function deleteDaftarRuangan($id)
     {
         DB::table('daftar_ruangan')->where('id', $id)->delete();
-         return redirect('/show-peminjaman-ruangan')->with('succes', 'Data Daftar Ruangan Anda Berhasil DiHapus');
+        return redirect('/show-peminjaman-ruangan')->with('succes', 'Data Daftar Ruangan Anda Berhasil DiHapus');
     }
 
     public function prosesInputPeminjamanRuangan(Request $request)
     {
         $request->validate([
-            'pilih_ruangan' =>'required',
-            'nama_peminjam' =>'required',
+            'pilih_ruangan' => 'required',
+            'nama_peminjam' => 'required',
             'divisi' => 'required',
             'departemen' => 'required',
             'no_telp' => 'required',
@@ -388,7 +388,7 @@ class ServiceController extends Controller
             $data = DB::table('peminjaman_ruangan')->where('id', $id)->first();
 
             return view('services.edit-peminjaman_ruangan', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -420,7 +420,7 @@ class ServiceController extends Controller
     public function deletePeminjamanRuangan($id)
     {
         DB::table('peminjaman_ruangan')->where('id', $id)->delete();
-         return redirect('/show-peminjaman-ruangan')->with('succes', 'Data Peminjaman Ruangan Anda Berhasil DiHapus');
+        return redirect('/show-peminjaman-ruangan')->with('succes', 'Data Peminjaman Ruangan Anda Berhasil DiHapus');
     }
 
     public function showUnitKerja()
@@ -453,8 +453,8 @@ class ServiceController extends Controller
     public function prosesInputUnitKerja(Request $request)
     {
         $request->validate([
-            'kode_divisi' =>'required',
-            'divisi' =>'required',
+            'kode_divisi' => 'required',
+            'divisi' => 'required',
             'file' => 'required'
         ]);
 
@@ -481,7 +481,7 @@ class ServiceController extends Controller
             $data = DB::table('unit_kerja')->where('id', $id)->first();
 
             return view('services.edit-unit_kerja', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -494,7 +494,7 @@ class ServiceController extends Controller
         $file = $request->file('file');
         $nama_file = $file->getClientOriginalName();
         $tujuan_upload = 'File Unit Kerja';
-        $file->move($tujuan_upload, $nama_file);       
+        $file->move($tujuan_upload, $nama_file);
 
         DB::table('unit_kerja')->where('id', $id)
             ->update([
@@ -510,7 +510,7 @@ class ServiceController extends Controller
     public function deleteUnitKerja($id)
     {
         DB::table('unit_kerja')->where('id', $id)->delete();
-         return redirect('/show-unit-kerja')->with('succes', 'Data Informasi Unit Kerja Anda Berhasil DiHapus');
+        return redirect('/show-unit-kerja')->with('succes', 'Data Informasi Unit Kerja Anda Berhasil DiHapus');
     }
 
     public function showInformasiLSP()
@@ -547,8 +547,8 @@ class ServiceController extends Controller
     public function prosesInputJadwalSertifikasi(Request $request)
     {
         $request->validate([
-            'nama_training' =>'required',
-            'penyelenggara' =>'required',
+            'nama_training' => 'required',
+            'penyelenggara' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
             'tempat' => 'required',
@@ -587,7 +587,7 @@ class ServiceController extends Controller
             $data = DB::table('training')->where('id', $id)->first();
 
             return view('services.edit-jadwal_sertifikasi', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -600,7 +600,7 @@ class ServiceController extends Controller
         $file = $request->file('fileSertifikasi');
         $nama_file = $file->getClientOriginalName();
         $tujuan_upload = 'Dokumen Sertifikat Training';
-        $file->move($tujuan_upload, $nama_file);        
+        $file->move($tujuan_upload, $nama_file);
 
         DB::table('training')->where('id', $id)
             ->update([
@@ -634,10 +634,10 @@ class ServiceController extends Controller
     public function prosesInputSkemaBNSP(Request $request)
     {
         $request->validate([
-            'kode_skema' =>'required',
-            'nama_skema' =>'required',
-            'level' =>'required',
-            'bidang' =>'required'
+            'kode_skema' => 'required',
+            'nama_skema' => 'required',
+            'level' => 'required',
+            'bidang' => 'required'
         ]);
 
         SkemaBNSP::create([
@@ -659,7 +659,7 @@ class ServiceController extends Controller
             $data = DB::table('skema_bnsp')->where('id', $id)->first();
 
             return view('services.edit-skema_bnsp', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -684,7 +684,7 @@ class ServiceController extends Controller
     public function deleteSkemaBNSP($id)
     {
         DB::table('skema_bnsp')->where('id', $id)->delete();
-         return redirect('/show-informasi-lsp')->with('succes', 'Skema BNSP Anda Berhasil DiHapus');
+        return redirect('/show-informasi-lsp')->with('succes', 'Skema BNSP Anda Berhasil DiHapus');
     }
 
     public function inputJumlahAsesor()
@@ -702,8 +702,8 @@ class ServiceController extends Controller
     public function prosesInputJumlahAsesor(Request $request)
     {
         $request->validate([
-            'nomor_registrasi' =>'required',
-            'nama_assessor' =>'required'
+            'nomor_registrasi' => 'required',
+            'nama_assessor' => 'required'
         ]);
 
         JumlahAsesor::create([
@@ -723,7 +723,7 @@ class ServiceController extends Controller
             $data = DB::table('jumlah_asesor')->where('id', $id)->first();
 
             return view('services.edit-jumlah_asesor', [
-                'ti' => $ti, 
+                'ti' => $ti,
                 'data' => $data
             ]);
         } else {
@@ -746,6 +746,6 @@ class ServiceController extends Controller
     public function deleteJumlahAssesor($id)
     {
         DB::table('jumlah_asesor')->where('id', $id)->delete();
-         return redirect('/show-informasi-lsp')->with('succes', 'Data Asesor Anda Berhasil DiHapus');
+        return redirect('/show-informasi-lsp')->with('succes', 'Data Asesor Anda Berhasil DiHapus');
     }
 }

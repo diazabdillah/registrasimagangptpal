@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rekappenelitian extends Model
 {
     use HasFactory;
-    protected $table = 'Rekappenelitian';
+    protected $table = 'rekappenelitian';
     protected $fillable = [
         'user_id',
         'nama',
