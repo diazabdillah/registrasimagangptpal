@@ -116,6 +116,11 @@
                     <i class="fas fa-database"></i>
                     <span>Rekap Penelitian</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Kelola Akun Divisi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/kelola-akun-divisi">
+                    <i class="fas fa-building"></i>
+                    <span>Kelola Akun Divisi</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/forum-mhs">
                     <i class="fas fa-comments"></i>

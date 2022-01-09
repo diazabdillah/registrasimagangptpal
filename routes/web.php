@@ -233,7 +233,12 @@ Route::get('cetakRekapSmkEXCEL', [AdminController::class, 'cetak_rekapsmkexcel']
 Route::get('/cetakRekapMhsEXCEL', [AdminController::class, 'cetak_rekapmhsexcel']);
 Route::get('/cetakRekapSmkKelEXCEL', [AdminController::class, 'cetak_rekapsmkkelexcel']);
 Route::get('/cetakRekapPenelitianEXCEL', [AdminController::class, 'cetak_rekappenelitianexcel']);
-
+Route::get('/kelola-akun-divisi', [AdminController::class, 'kelola_akun_divisi']);
+Route::get('/tambah-akun-divisi', [AdminController::class, 'tambah_akun_divisi']);
+Route::post('/proses-tambah-akun-divisi', [AdminController::class, 'proses_tambah_akun_divisi']);
+Route::get('/edit-akun-divisi/{id}', [AdminController::class, 'edit_akun_divisi']);
+Route::put('/proses-edit-akun-divisi/{id}', [AdminController::class, 'proses_edit_akun_divisi']);
+Route::get('/delete-akun-divisi/{id}', [AdminController::class, 'delete_akun_divisi']);
 // End Halaman administrasi ========================
 
 // Halaman Divisi ========================

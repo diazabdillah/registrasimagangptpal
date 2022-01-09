@@ -713,6 +713,36 @@
                                             @endif
                                             @endforeach
                                             @endif
+                                            @if (Auth::user()->status_user == 'Admin Legal')
+                                            @foreach ($smk as $s)
+                                            @if ($s->divisi == 'Legal')
+                                            <tr>
+                                                <td>{{ $s->nama }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary p-1"
+                                                        href="{{ url('/lihat_absensmk/' . $s->id) }}"
+                                                        role="button">Lihat Absen</a>
+
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @if (Auth::user()->status_user == 'Admin Office Of The Board')
+                                            @foreach ($smk as $s)
+                                            @if ($s->divisi == 'Office Of The Board')
+                                            <tr>
+                                                <td>{{ $s->nama }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary p-1"
+                                                        href="{{ url('/lihat_absensmk/' . $s->id) }}"
+                                                        role="button">Lihat Absen</a>
+
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

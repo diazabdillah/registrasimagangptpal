@@ -7,6 +7,7 @@ use Illuminate\Support\str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Hash;
 
 class AuthhController extends Controller
 {
@@ -119,7 +120,7 @@ class AuthhController extends Controller
     public function postRegMhsKel(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:50|string',
+            'name' => 'required|min:3|max:50|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
@@ -127,7 +128,7 @@ class AuthhController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role_id' => 6,
             'status_user' => 'Mahasiswa Kelompok',
             'rememberToken' => str::random(60)
@@ -157,7 +158,7 @@ class AuthhController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role_id' => 8,
             'status_user' => 'Mahasiswa',
             'rememberToken' => str::random(60)
@@ -179,7 +180,7 @@ class AuthhController extends Controller
     public function postRegSmkKel(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:50|string',
+            'name' => 'required|min:3|max:50|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
@@ -187,7 +188,7 @@ class AuthhController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role_id' => 7,
             'status_user' => 'SMK Kelompok',
             'rememberToken' => str::random(60)
@@ -224,7 +225,7 @@ class AuthhController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role_id' => 9,
             'status_user' => 'SMK',
             'rememberToken' => str::random(60)
@@ -254,7 +255,7 @@ class AuthhController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role_id' => 21,
             'status_user' => 'Penelitian',
             'rememberToken' => str::random(60)
@@ -263,5 +264,6 @@ class AuthhController extends Controller
         session()->flash('succes', 'Terimakasih telah mendaftar, login sekarang!');
         return redirect('/login');
     }
+
     // Registrasi Penelitian Mahasiswa ====== |||
 }

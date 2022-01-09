@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Jan 2022 pada 10.17
+-- Waktu pembuatan: 07 Jan 2022 pada 15.53
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.7
 
@@ -86,6 +86,42 @@ CREATE TABLE `beasiswa` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `beasiswa`
+--
+
+INSERT INTO `beasiswa` (`id`, `nama_beasiswa`, `institusi`, `url`, `created_at`, `updated_at`) VALUES
+(1, 'beasiswa s1', 'mendikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:22:55', '2022-01-07 04:22:55'),
+(2, 'beasiswa s2', 'mendikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:23:11', '2022-01-07 04:23:11'),
+(3, 'beasiswa s3', 'kemdikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:23:32', '2022-01-07 04:23:32'),
+(4, 'beasiswa s4', 'kemdikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:23:48', '2022-01-07 04:23:48'),
+(5, 'beasiswa s5', 'kemdikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:24:01', '2022-01-07 04:24:01'),
+(6, 'beasiswa s6', 'kemdikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:24:13', '2022-01-07 04:24:13'),
+(7, 'beasiswa s7', 'kemdikbud', 'https://beasiswa.kemdikbud.go.id/', '2022-01-07 04:24:30', '2022-01-07 04:24:30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `contact_us`
+--
+
+CREATE TABLE `contact_us` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` longtext NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `contact_us`
+--
+
+INSERT INTO `contact_us` (`id`, `name`, `email`, `subject`, `message`, `created_at`, `updated_at`) VALUES
+(1, 'Made Rahano Satryani Widhi', 'calorilin12@gmail.com', 'jdflkasjklfjas', 'sxdcfvgbhunjipmoktfvgybhnjmk', '2022-01-07 08:32:14', '2022-01-07 08:32:14');
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +138,19 @@ CREATE TABLE `daftar_ruangan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `daftar_ruangan`
+--
+
+INSERT INTO `daftar_ruangan` (`id`, `nama_ruangan`, `fasilitas`, `kapasitas`, `foto_ruangan`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Ruangan Rapat', 'AC KIPAS LCD MEJA KURSI', 20, 'navy.png', 'Available', '2022-01-07 06:01:26', '2022-01-07 06:01:26'),
+(2, 'Ruangan kamar mandi', 'wc air', 30, 'WhatsApp Image 2021-12-14 at 13.56.45.jpeg', 'Available', '2022-01-07 06:03:56', '2022-01-07 06:03:56'),
+(3, 'ruang meeting', 'ember sabun tisu', 40, 'WhatsApp Image 2022-01-06 at 16.08.17 (2).jpeg', 'Available', '2022-01-07 06:06:01', '2022-01-07 06:06:01'),
+(4, 'Ruangan Rapat1', 'AC KIPAS LCD MEJA KURSI', 69, 'WhatsApp Image 2022-01-06 at 16.08.15 (1).jpeg', 'Available', '2022-01-07 06:06:23', '2022-01-07 06:06:23'),
+(5, 'Ruangan Rapat hcm', 'AC KIPAS LCD MEJA KURSI', 50, 'WhatsApp Image 2021-11-10 at 08.05.53.jpeg', 'Available', '2022-01-07 06:06:45', '2022-01-07 06:06:45'),
+(6, 'Ruangan kamar mandi hcm', 'wc air', 30, 'WhatsApp Image 2022-01-06 at 16.08.17 (1).jpeg', 'Unavailable', '2022-01-07 06:09:15', '2022-01-07 06:09:15'),
+(7, 'Ruangan kamar mandi pal', 'AC KIPAS LCD MEJA KURSI', 50, 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', 'Available', '2022-01-07 06:12:12', '2022-01-07 06:12:12');
 
 -- --------------------------------------------------------
 
@@ -493,6 +542,13 @@ CREATE TABLE `gallery` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `judul`, `foto`, `url`, `created_at`, `updated_at`) VALUES
+(1, 'lomba divsi hcm', 'WhatsApp Image 2022-01-06 at 16.08.16 (2).jpeg', '0', '2022-01-07 02:49:51', '2022-01-07 02:49:51');
+
 -- --------------------------------------------------------
 
 --
@@ -803,6 +859,20 @@ CREATE TABLE `news` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `news`
+--
+
+INSERT INTO `news` (`id`, `judul`, `headline`, `konten`, `foto`, `created_at`, `updated_at`) VALUES
+(1, 'Divisi HCM Mendapatkan Juara Harapan 1', 'Juara Harapan 1', '<p>memenangkan juara 1&nbsp;</p>', 'WhatsApp Image 2022-01-06 at 16.08.16 (2).jpeg', '2022-01-07 03:04:23', '2022-01-07 03:04:23'),
+(2, 'juara yel-yel harapan 2', 'juara harapan 2 yel-yel', '<p>juara harapan 2</p>', 'WhatsApp Image 2022-01-06 at 16.08.15 (2).jpeg', '2022-01-07 03:05:11', '2022-01-07 03:05:11'),
+(3, 'Registrasi Magang Online PT PAL', 'Pendaftaran Online di PT PAL', '<p>registrasi online</p>', 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', '2022-01-07 03:06:30', '2022-01-07 03:06:30'),
+(4, 'kegiatan hari kartini', 'Hari kartini', '<p>divisi hcm menyambut hari kartini di pt pal&nbsp;</p>', 'WhatsApp Image 2022-01-06 at 16.08.17 (2).jpeg', '2022-01-07 03:08:58', '2022-01-07 03:08:58'),
+(5, 'PT PAL Mengadakan Ulang Tahun', 'Ulang Tahun', '<p>ulang tahun 2021</p>', 'WhatsApp Image 2022-01-06 at 16.08.17.jpeg', '2022-01-07 03:13:19', '2022-01-07 03:13:19'),
+(6, 'Kegiatan sumpah pemuda', 'sumpah pemuda', '<p>sumpah pemuda</p>', 'WhatsApp Image 2021-11-10 at 08.05.53.jpeg', '2022-01-07 03:32:34', '2022-01-07 03:32:34'),
+(7, 'divisi hcm kegiatan', 'coba', '<p>coba</p>', 'WhatsApp Image 2022-01-06 at 16.08.16 (1).jpeg', '2022-01-07 04:19:09', '2022-01-07 04:19:09'),
+(8, 'test', 'test', '<p>test</p>', 'WhatsApp Image 2022-01-06 at 16.08.17.jpeg', '2022-01-07 04:19:45', '2022-01-07 04:19:45');
+
 -- --------------------------------------------------------
 
 --
@@ -838,6 +908,13 @@ CREATE TABLE `peminjaman_ruangan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `peminjaman_ruangan`
+--
+
+INSERT INTO `peminjaman_ruangan` (`id`, `pilih_ruangan`, `nama_peminjam`, `divisi`, `departemen`, `no_telp`, `tanggal_mulai`, `tanggal_selesai`, `jam_mulai`, `jam_selesai`, `keperluan`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'ruangan kamar mandi', 'zaid', 'HCM', 'ODC', '081331913558', '2022-01-07', '2022-01-07', '13:26:00', '19:26:00', 'mau buat beol', 'Proses', '2022-01-07 06:26:35', '2022-01-07 06:26:35');
+
 -- --------------------------------------------------------
 
 --
@@ -865,6 +942,13 @@ CREATE TABLE `penilaians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `penilaians`
+--
+
+INSERT INTO `penilaians` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 2, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2022-01-06 09:39:51', '2022-01-06 09:39:51');
 
 -- --------------------------------------------------------
 
@@ -989,6 +1073,13 @@ CREATE TABLE `rekapmhs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `rekapmhs`
+--
+
+INSERT INTO `rekapmhs` (`id`, `user_id`, `nama`, `univ`, `jurusan`, `strata`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nim`, `status_penerimaan`, `status_user`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
+(2, 23, 'zaid', 'Politeknik Elektronika Surabaya', 'Teknik Informatika', 'D4', 'Wiyung', '08xxx', NULL, NULL, '2110191015', NULL, 'Mahasiswa', NULL, NULL, '2022-01-06 09:39:51', '2022-01-06 09:39:51');
+
 -- --------------------------------------------------------
 
 --
@@ -1077,6 +1168,19 @@ CREATE TABLE `training` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `training`
+--
+
+INSERT INTO `training` (`id`, `nama_training`, `penyelenggara`, `tanggal_mulai`, `tanggal_selesai`, `tempat`, `peserta_sprint`, `peserta_hadir`, `fileTraining`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'pelatihan kemandirian pribadi', 'pal', '2022-01-07 11:25:00', '2022-01-07 11:25:00', 'hcm', 1, 2, 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', 'Proses', '2022-01-07 04:26:05', '2022-01-07 04:26:05'),
+(2, 'pelatihan soft skill', 'pens', '2022-01-07 11:26:00', '2022-01-22 11:26:00', 'Pens', 2, 2, 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', 'Proses', '2022-01-07 04:26:56', '2022-01-07 04:26:56'),
+(3, 'pelatihan hard skill', 'ppns', '2022-01-07 11:27:00', '2022-01-29 11:27:00', 'ppns', 4, 3, 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', 'Proses', '2022-01-07 04:27:48', '2022-01-07 04:27:48'),
+(4, 'pelatihan kemandirian sejati', 'pal', '2022-01-07 12:55:00', '2022-01-29 12:55:00', 'its', 3, 4, 'WhatsApp Image 2022-01-06 at 16.08.16 (2).jpeg', 'Proses', '2022-01-07 05:55:32', '2022-01-07 05:55:32'),
+(5, 'pelatihan kemandirian', 'unair', '2022-01-07 12:56:00', '2022-01-29 12:56:00', 'unair', 4, 4, 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', 'Proses', '2022-01-07 05:56:38', '2022-01-07 05:56:38'),
+(6, 'pelatihan soft skill pribadi', 'pal', '2022-01-07 12:57:00', '2022-01-29 12:57:00', 'unesa', 3, 3, 'WhatsApp Image 2022-01-06 at 16.08.15 (2).jpeg', 'Proses', '2022-01-07 05:57:30', '2022-01-07 05:57:30'),
+(7, 'pelatihan kemandirian', 'pal', '2022-01-07 12:58:00', '2022-01-29 12:58:00', 'ppns', 2, 4, 'WhatsApp Image 2022-01-06 at 16.08.16.jpeg', 'Proses', '2022-01-07 05:58:47', '2022-01-07 05:58:47');
+
 -- --------------------------------------------------------
 
 --
@@ -1164,6 +1268,12 @@ ALTER TABLE `absensmk`
 -- Indeks untuk tabel `beasiswa`
 --
 ALTER TABLE `beasiswa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `contact_us`
+--
+ALTER TABLE `contact_us`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1478,19 +1588,25 @@ ALTER TABLE `absensmk`
 -- AUTO_INCREMENT untuk tabel `beasiswa`
 --
 ALTER TABLE `beasiswa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `contact_us`
+--
+ALTER TABLE `contact_us`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `daftar_ruangan`
 --
 ALTER TABLE `daftar_ruangan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_mhs_indivs`
 --
 ALTER TABLE `data_mhs_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_penelitian`
@@ -1586,7 +1702,7 @@ ALTER TABLE `foto_smk_models`
 -- AUTO_INCREMENT untuk tabel `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `interview`
@@ -1670,19 +1786,19 @@ ALTER TABLE `mulai_dan_selesai_smk`
 -- AUTO_INCREMENT untuk tabel `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman_ruangan`
 --
 ALTER TABLE `peminjaman_ruangan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaians`
 --
 ALTER TABLE `penilaians`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaians_smk`
@@ -1718,7 +1834,7 @@ ALTER TABLE `rekapabsensmk`
 -- AUTO_INCREMENT untuk tabel `rekapmhs`
 --
 ALTER TABLE `rekapmhs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `rekappenelitian`
@@ -1742,7 +1858,7 @@ ALTER TABLE `skema_bnsp`
 -- AUTO_INCREMENT untuk tabel `training`
 --
 ALTER TABLE `training`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `unit_kerja`
@@ -1754,7 +1870,7 @@ ALTER TABLE `unit_kerja`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

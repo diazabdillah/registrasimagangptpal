@@ -340,6 +340,36 @@
                                             @endif
                                             @endforeach
                                             @endif
+                                            @if(Auth::user()->status_user=='Admin Office Of The Board')
+                                            @foreach ($penelitian as $absen)
+                                            @if ($absen->divisi=='Office Of The Board')
+                                            <tr>
+                                                <td>{{ $absen->nama }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary p-1"
+                                                        href="{{ url('/lihat-absenpenelitian/' . $absen->id) }}"
+                                                        role="button">Lihat Absen</a>
+
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @if(Auth::user()->status_user=='Admin Legal')
+                                            @foreach ($penelitian as $absen)
+                                            @if ($absen->divisi=='Legal')
+                                            <tr>
+                                                <td>{{ $absen->nama }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary p-1"
+                                                        href="{{ url('/lihat-absenpenelitian/' . $absen->id) }}"
+                                                        role="button">Lihat Absen</a>
+
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
