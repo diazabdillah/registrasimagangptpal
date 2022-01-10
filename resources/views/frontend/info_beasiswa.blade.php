@@ -60,8 +60,8 @@
 {{-- list info beasiswa --}}
 <div class="section padding-top-bottom-small background-white over-hide">
     <div class="container">
+        @foreach ($beasiswa as $b)
         <div class="row">
-            @foreach ($beasiswa as $b)
             <div class="section_our_solution">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
