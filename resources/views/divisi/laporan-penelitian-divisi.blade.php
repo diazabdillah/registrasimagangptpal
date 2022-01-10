@@ -454,6 +454,48 @@
                                     @endif
                                     @endforeach
                                     @endif
+                                    @if(Auth::user()->status_user=='Admin Legal')
+                                    @foreach ($user as $u)
+                                    @if ($u->divisi == 'Legal')
+                                    <tr>
+                                        <td class="text-center">{{ ++$i }}.</td>
+                                        <td class="text-center">{{ $u->nama }}</td>
+                                        <td class="text-center">{{ $u->judul }}</td>
+                                        <td class="text-center">{{ $u->path }}</td>
+                                        <td>
+                                            @if ($u->path != null)
+                                            <a class="btn btn-warning"
+                                                href="{{ asset('file/laporan-penelitian/' . $u->path) }}">Download</a>
+                                            <a class="btn btn-danger"
+                                                href="{{ asset('delete-laporan-penelitian/' . $u->id) }}">Delete</a>
+
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    @if(Auth::user()->status_user=='Admin Office Of The Board')
+                                    @foreach ($user as $u)
+                                    @if ($u->divisi == 'Office Of The Board')
+                                    <tr>
+                                        <td class="text-center">{{ ++$i }}.</td>
+                                        <td class="text-center">{{ $u->nama }}</td>
+                                        <td class="text-center">{{ $u->judul }}</td>
+                                        <td class="text-center">{{ $u->path }}</td>
+                                        <td>
+                                            @if ($u->path != null)
+                                            <a class="btn btn-warning"
+                                                href="{{ asset('file/laporan-penelitian/' . $u->path) }}">Download</a>
+                                            <a class="btn btn-danger"
+                                                href="{{ asset('delete-laporan-penelitian/' . $u->id) }}">Delete</a>
+
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Hash;
 use Excel;
 use PDF;
 use App\Models\Divisi;
+use App\Models\User;
 use App\Exports\RekapExport;
 use App\Exports\RekapKelompokExport;
 use App\Exports\RekapSmkExport;
 use App\Exports\RekapSmkKelExport;
 use App\Exports\RekapPenelitianExport;
+
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -419,5 +423,89 @@ class AdminController extends Controller
     public function cetak_rekapmhskelexcel()
     {
         return Excel::download(new RekapKelompokExport, 'Rekap Magang Mahasiswa Kelompok PT PAL INDONESIA.xlsx');
+    }
+    public function kelola_akun_divisi()
+    {
+        if (auth()->user()->role_id == 1) {
+            $ti = 'Kelola Akun Divisi';
+            $users = DB::table('users')->get();
+            return view('admin.kelola-akun-divisi', [
+                'ti' => $ti,
+                'users' => $users
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function tambah_akun_divisi()
+    {
+        if (auth()->user()->role_id == 1) {
+            $ti = 'Tambah Akun Divisi';
+
+            return view('admin.tambah-akun-divisi', [
+                'ti' => $ti,
+
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_tambah_akun_divisi(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users',
+            'password' => 'min:6|required|confirmed',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => 18,
+            'status_user' => $request->status_user,
+        ]);
+
+        session()->flash('succes', 'Terimakasih telah mendaftar, login sekarang!');
+        return redirect('/kelola-akun-divisi');
+    }
+    public function edit_akun_divisi($id)
+    {
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
+            $data = DB::table('users')->where('id', $id)->first();
+            $ti = 'Edit Akun Divisi';
+            return view('admin.edit-akun-divisi', ['ti' => $ti, 'data' => $data]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_edit_akun_divisi($id, Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users',
+            'password' => 'min:6|required',
+
+        ]);
+
+        DB::table('users')->where('id', $id)
+            ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'status_user' => $request->status_user,
+            ]);
+
+        session()->flash('succes', 'Data anda berhasil di update');
+        return redirect('/kelola-akun-divisi');
+    }
+    public function delete_akun_divisi($id)
+    {
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+        session()->flash('succes', 'Akun berhasil dihapus');
+        return redirect()->back();
     }
 }
