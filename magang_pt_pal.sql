@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 11, 2022 at 02:58 AM
+-- Generation Time: Jan 11, 2022 at 05:06 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -123,14 +123,7 @@ CREATE TABLE IF NOT EXISTS `contact_us` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `contact_us`
---
-
-INSERT INTO `contact_us` (`id`, `name`, `email`, `subject`, `message`, `created_at`, `updated_at`) VALUES
-(1, 'Made Rahano Satryani Widhi', 'calorilin12@gmail.com', 'jdflkasjklfjas', 'sxdcfvgbhunjipmoktfvgybhnjmk', '2022-01-07 08:32:14', '2022-01-07 08:32:14');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -149,20 +142,7 @@ CREATE TABLE IF NOT EXISTS `daftar_ruangan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `daftar_ruangan`
---
-
-INSERT INTO `daftar_ruangan` (`id`, `nama_ruangan`, `fasilitas`, `kapasitas`, `foto_ruangan`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Ruangan Rapat', 'AC KIPAS LCD MEJA KURSI', 20, 'navy.png', 'Available', '2022-01-07 06:01:26', '2022-01-07 06:01:26'),
-(2, 'Ruangan kamar mandi', 'wc air', 30, 'WhatsApp Image 2021-12-14 at 13.56.45.jpeg', 'Available', '2022-01-07 06:03:56', '2022-01-07 06:03:56'),
-(3, 'ruang meeting', 'ember sabun tisu', 40, 'WhatsApp Image 2022-01-06 at 16.08.17 (2).jpeg', 'Available', '2022-01-07 06:06:01', '2022-01-07 06:06:01'),
-(4, 'Ruangan Rapat1', 'AC KIPAS LCD MEJA KURSI', 69, 'WhatsApp Image 2022-01-06 at 16.08.15 (1).jpeg', 'Available', '2022-01-07 06:06:23', '2022-01-07 06:06:23'),
-(5, 'Ruangan Rapat hcm', 'AC KIPAS LCD MEJA KURSI', 50, 'WhatsApp Image 2021-11-10 at 08.05.53.jpeg', 'Available', '2022-01-07 06:06:45', '2022-01-07 06:06:45'),
-(6, 'Ruangan kamar mandi hcm', 'wc air', 30, 'WhatsApp Image 2022-01-06 at 16.08.17 (1).jpeg', 'Unavailable', '2022-01-07 06:09:15', '2022-01-07 06:09:15'),
-(7, 'Ruangan kamar mandi pal', 'AC KIPAS LCD MEJA KURSI', 50, 'WhatsApp Image 2021-12-16 at 10.35.41.jpeg', 'Available', '2022-01-07 06:12:12', '2022-01-07 06:12:12');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
