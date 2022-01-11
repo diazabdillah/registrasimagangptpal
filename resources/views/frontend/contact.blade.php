@@ -16,7 +16,7 @@
 	================================================== -->
 
 <div class="section padding-top-bottom over-hide">
-    <div class="parallax-1" style="background-image: url('{{URL::asset('frontend')}}/img/FASILITAS-KAPAL-SELAM-3.jpg')">
+    <div class="parallax-1" style="background-image: url('frontend/img/FASILITAS-KAPAL-SELAM-3.jpg')">
     </div>
     <div class="grey-fade-over"></div>
     <div class="container z-bigger">
