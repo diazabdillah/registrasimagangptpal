@@ -17,7 +17,6 @@ class JadwalSertifikasi extends Model
         'tempat',
         'peserta_sprint',
         'peserta_hadir',
-        'fileSertifikasi',
-        'status'
+        'fileSertifikasi'
      ];
 }

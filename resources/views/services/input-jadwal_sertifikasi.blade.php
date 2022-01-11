@@ -25,9 +25,9 @@
                                     <h5 class="card-title mt-2">Data</h5>
                                     <form method="POST" action="{{ route('uploadSertifikasi') }}" enctype="multipart/form-data">
                                         @csrf
-                                        <!-- Input Nama Training -->
+                                        <!-- Input Nama Sertifikasi -->
                                         <div class="form-group">
-                                            <small class="ml-2">Nama Training</small>
+                                            <small class="ml-2">Nama Sertifikasi</small>
                                             <input type="text" class="form-control" id="nama_training" name="nama_training">
                                         </div>
                                         <!-- Input Penyelenggara -->

@@ -82,8 +82,8 @@
                 <div class="box-isi">
                     <h3 style="text-align:center">Jadwal Sertifikasi Berlangsung</h3> <br>
                     <ul class="simple-news-list" style="border-bottom: 1px solid dashed;">
-                        @foreach ($training as $t)
-                        <div class="section_our_solution" data-toggle="modal" data-target="#detail{{ $t->id }}" style="cursor: pointer;">
+                        @foreach ($sertifikasi as $s)
+                        <div class="section_our_solution" data-toggle="modal" data-target="#detail{{ $s->id }}" style="cursor: pointer;">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="our_solution_category">
@@ -136,15 +136,19 @@
                                                                 </g>
                                                             </svg>
                                                         </div>
-                                                        <div class="solu_title"><h1>&ensp;{{ $t->nama_training }}</h1></div>
+                                                        <div class="solu_title"><h1>&ensp;{{ $s->nama_training }}</h1></div>
                                                 </div>
                                                 <div class="solu_description"> 
                                                     <p style="font-size: 20px;">
-                                                        <i class="fas fa-building"></i> Penyelenggara : {{ $t->penyelenggara }} <br>
-                                                        <i class="fa fa-calendar"></i> {{ $t->tanggal_mulai }} - {{ $t->tanggal_selesai }} <br>
-                                                        <i class="fas fa-user-friends"></i> Peserta Hadir : {{ $t->peserta_hadir }} <br>
+                                                        <i class="fas fa-building"></i> Penyelenggara : {{ $s->penyelenggara }} <br>
+                                                        <i class="fa fa-calendar"></i> {{ $s->tanggal_mulai }} - {{ $s->tanggal_selesai }} <br>
+                                                        <i class="fas fa-user-friends"></i> Peserta Hadir : {{ $s->peserta_hadir }} <br>
                                                     </p>
-                                                    <button type="button" class="button-progress">Read More</button>
+                                                    @if ($s->status == "Proses")
+                                                        <button class="button-progress" type="button">Proses</button>
+                                                    @else if ($s->status == "Selesai")
+                                                        <button class="button-done" type="button">Proses</button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -152,14 +156,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="detail{{ $t->id }}" style="display: none;">
+                        <div class="modal fade" id="detail{{ $s->id }}" style="display: none;">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true"></span>
                                         </button>
-                                        <h4 class="modal-title">Detail Informasi Training</h4>
+                                        <h4 class="modal-title">Detail Informasi Jadwal Sertifikasi</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row" style="padding: 10px 30px;">
@@ -168,47 +172,47 @@
                                                     <tr>
                                                         <td>Nama Training</td>
                                                         <td width="25" align="center">:</td>
-                                                        <td style="font-weight: bold;">{{ $t->nama_training }}</td>
+                                                        <td style="font-weight: bold;">{{ $s->nama_training }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Penyelenggara</td>
                                                         <td width="25" align="center">:</td>
-                                                        <td style="font-weight: bold;">{{ $t->penyelenggara }}</td>
+                                                        <td style="font-weight: bold;">{{ $s->penyelenggara }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Waktu</td>
                                                         <td width="25" align="center">:</td>
-                                                        <td style="font-weight: bold;">{{ date('D, d F Y h:i A', strtotime($t->tanggal_mulai)) }} - {{ date('D, d F Y h:i A', strtotime($t->tanggal_selesai)) }}</td>
+                                                        <td style="font-weight: bold;">{{ date('D, d F Y h:i A', strtotime($s->tanggal_mulai)) }} - {{ date('D, d F Y h:i A', strtotime($s->tanggal_selesai)) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tempat</td>
                                                         <td width="25" align="center">:</td>
-                                                        <td style="font-weight: bold;">{{ $t->tempat }}</td>
+                                                        <td style="font-weight: bold;">{{ $s->tempat }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Peserta Sprint</td>
                                                         <td width="25" align="center">:</td>
-                                                        <td style="font-weight: bold;">{{ $t->peserta_sprint }}</td>
+                                                        <td style="font-weight: bold;">{{ $s->peserta_sprint }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Peserta Hadir</td>
                                                         <td width="25" align="center">:</td>
-                                                        <td style="font-weight: bold;">{{ $t->peserta_hadir }}</td>
+                                                        <td style="font-weight: bold;">{{ $s->peserta_hadir }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Dokumen</td>
                                                         <td width="25" align="center">:</td>
                                                         <td style="font-weight: bold;">
-                                                            @if ($t->fileTraining == "-")
+                                                            @if ($s->fileTraining == "-")
                                                                 -
                                                             @else
-                                                                <a href="{{ asset('/DokumenTraining/' . $t->fileTraining) }}">Download File</a>
+                                                                <a href="{{ asset('/DokumenTraining/' . $s->fileTraining) }}">Download File</a>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <embed type="application/pdf" src="{{ asset('/DokumenTraining/' . $t->fileTraining) }}" width="100%" height="700"> 												
+                                            <embed type="application/pdf" src="{{ asset('/DokumenTraining/' . $s->fileTraining) }}" width="100%" height="700"> 												
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +223,7 @@
                 </div>
                 <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
                     <nav aria-label="Page navigation example">
-                        {{ $training->links() }}
+                        {{ $sertifikasi->links() }}
                     </nav>
                 </div>
             </div>

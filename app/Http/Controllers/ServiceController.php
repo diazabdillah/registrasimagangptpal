@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
 use App\Models\DaftarRuangan;
+use App\Models\JadwalSertifikasi;
 use App\Models\PeminjamanRuangan;
 use App\Models\Training;
 use App\Models\UnitKerja;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ServiceController extends Controller
 {
@@ -561,9 +563,8 @@ class ServiceController extends Controller
         $nama_file = $file->getClientOriginalName();
         $tujuan_upload = 'Dokumen Sertifikat Training';
         $file->move($tujuan_upload, $nama_file);
-        $status = "Proses";
 
-        Training::create([
+        JadwalSertifikasi::create([
             'nama_training' => $request->nama_training,
             'penyelenggara' => $request->penyelenggara,
             'tanggal_mulai' => $request->tanggal_mulai,
@@ -571,8 +572,7 @@ class ServiceController extends Controller
             'tempat' => $request->tempat,
             'peserta_sprint' => $request->peserta_sprint,
             'peserta_hadir' => $request->peserta_hadir,
-            'fileTraining' => $nama_file,
-            'status' => $status,
+            'fileSertifikasi' => $nama_file,
         ]);
 
         session()->flash('succes', 'Training sudah di upload!');
@@ -584,7 +584,7 @@ class ServiceController extends Controller
         if (auth()->user()->role_id == 1) {
 
             $ti = 'Data Sertifikat Training';
-            $data = DB::table('training')->where('id', $id)->first();
+            $data = DB::table('jadwal_sertifikasi')->where('id', $id)->first();
 
             return view('services.edit-jadwal_sertifikasi', [
                 'ti' => $ti,
@@ -597,12 +597,20 @@ class ServiceController extends Controller
 
     public function updateJadwalSertifikasi(Request $request, $id)
     {
-        $file = $request->file('fileSertifikasi');
-        $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'Dokumen Sertifikat Training';
-        $file->move($tujuan_upload, $nama_file);
+        if ($request->file('fileSertifikasi') == null){
+            $sertifLama = JadwalSertifikasi::find($id)->select('fileSertifikasi')->first();
+            $nama_file = $sertifLama->fileSertifikasi;
+        } else {
+            $sertifLama = JadwalSertifikasi::find($id)->select('fileSertifikasi')->first();
+            File::delete('Dokumen Sertifikat Training/' . $sertifLama->fileSertifikasi);
 
-        DB::table('training')->where('id', $id)
+            $file = $request->file('fileSertifikasi');
+            $nama_file = $file->getClientOriginalName();
+            $tujuan_upload = 'Dokumen Sertifikat Training';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        DB::table('jadwal_sertifikasi')->where('id', $id)
             ->update([
                 'nama_training' => $request->nama_training,
                 'penyelenggara' => $request->penyelenggara,
@@ -612,11 +620,16 @@ class ServiceController extends Controller
                 'peserta_sprint' => $request->peserta_sprint,
                 'peserta_hadir' => $request->peserta_hadir,
                 'fileSertifikat' => $nama_file,
-                'status' => $request->status,
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/show-informasi-lsp');
+    }
+
+    public function deleteJadwalSertifikasi($id)
+    {
+        DB::table('jadwal_sertifikasi')->where('id', $id)->delete();
+        return redirect('/show-informasi-lsp')->with('succes', 'Data Jadwal Sertifikasi Anda Berhasil DiHapus');
     }
 
     public function inputSkemaBNSP()

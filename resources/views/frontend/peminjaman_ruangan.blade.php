@@ -221,16 +221,16 @@
 			</div>
 			<div class="modal-body">
 				<div class="hero-center-wrap move-top">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-md-12">
-								<div class="video-section">
-									<figure class="vimeo rounded-2 over-hide">
-											<img src="{{ asset('/Foto Ruangan/' . $dr->foto_ruangan) }}" alt="" />
-									</figure>
-								</div>
-							</div>
-						</div>
+					<div class="container-fluid">
+                        <div class="row justify-content-center">
+							<div class="col-md-8">
+                                <div class="video-section">
+                                    <figure class="vimeo rounded-2 over-hide">
+                                            <img class="center" src="{{ asset('/Foto Ruangan/' . $dr->foto_ruangan) }}" alt="" />
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>

@@ -231,21 +231,6 @@ The   Best   Maritime   Industry</p>
 
 <!-- Modal Foto -->
 @foreach ($gallery as $g)
-<!-- <div class="modal" id="staticBackdrop{{$g->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-xl">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="false">x</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img style="width: 100%" class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="modal fade default search-modal" id="staticBackdrop{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -256,16 +241,16 @@ The   Best   Maritime   Industry</p>
 			</div>
 			<div class="modal-body">
 				<div class="hero-center-wrap move-top">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-md-12">
-								<div class="video-section">
-									<figure class="vimeo rounded-2 over-hide">
-											<img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
-									</figure>
-								</div>
-							</div>
-						</div>
+					<div class="container-fluid">
+                        <div class="row justify-content-center">
+							<div class="col-md-8">
+                                <div class="video-section">
+                                    <figure class="vimeo rounded-2 over-hide">
+                                            <img class="center" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -274,7 +259,7 @@ The   Best   Maritime   Industry</p>
 </div>
 @endforeach
 
-<!-- Modal Foto -->
+<!-- Modal Video -->
 @foreach ($gallery as $g)
 <div class="modal fade default search-modal" id="Modal-video{{$g->id}}" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">

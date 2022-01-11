@@ -59,30 +59,28 @@
 
 {{-- list info beasiswa --}}
 <div class="section padding-top-bottom-small background-white over-hide">
-    <div class="container">
-        <div class="row">
-            @foreach ($beasiswa as $b)
-            <div class="section_our_solution">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="container-fluid">
+        <div class="section_our_solution">
+            <div class="row">
+                @foreach ($beasiswa as $b)
+                    <div class="col-sm-4">
                         <div class="our_solution_category">
                             <div class="solution_cards_box">
                                 <div class="solution_card">
                                     <div class="hover_color_bubble"></div>
-                                    <div class="solu_title"><h3>{{ $b->nama_beasiswa }}</h3></div>
-                                    <div class="solu_description" style="font-size: 13px;"> 
-                                        <p>
+                                    <div class="solu_title" align="center"><h1>{{ $b->nama_beasiswa }}</h1></div>
+                                    <div class="solu_description" align="center" style="font-size: 18px;"> 
+                                        <p style="font-size: 24px;">
                                             Institusi : {{ $b->institusi }} <br>
                                         </p>
-                                        <button type="button" href="{{ $b->url }}" class="read_more_btn">More Information</button>
+                                        <a class="button-scholarship" type="button" href="{{ $b->url }}">More Information</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                 @endforeach
             </div>
-            @endforeach
         </div>
         <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
             <nav aria-label="Page navigation example">
@@ -91,31 +89,6 @@
         </div>
     </div>
 </div>
-<!-- <div class="section padding-top-bottom-small background-white over-hide">
-    <div class="container">
-        <div class="row">
-            @foreach ($beasiswa as $b)
-            <div class="col-sm-4">
-                <div class="item">
-                    <div class="team-box-1 all-padding background-white drop-shadow text-center mt-5">
-                        <a style="text-decoration:none; color: black" href="{{ $b->url }}">
-                            <h6 class="mb-4">{{ $b->nama_beasiswa }}</h6>
-                            Institusi : {{ $b->institusi }}
-                        </a>
-                        <p></p>
-                        <a href="{{ $b->url }}" style="color: white" style="color: white" type="button" class="btn btn-outline-info">More</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-            <nav aria-label="Page navigation example">
-                {{ $beasiswa->links() }}
-            </nav>
-        </div>
-    </div>
-</div> -->
 
 <!-- Separator Line
 	================================================== -->

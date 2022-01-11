@@ -121,12 +121,11 @@
                                     <i class="fa fa-calendar"></i> {{ $t->tanggal_mulai }} - {{ $t->tanggal_selesai }} <br>
                                     <i class="fas fa-user-friends"></i> Peserta Hadir : {{ $t->peserta_hadir }} <br>
                                 </p>
-                                @if ($t->fileTraining == "-")
-                                    -
-                                @else
-                                    <a href="{{ asset('/DokumenTraining/' . $t->fileTraining) }}">Download File</a>
+                                @if ($t->status == "Proses")
+                                    <button class="button-progress" type="button">Proses</button>
+                                @else if ($t->status == "Selesai")
+                                    <button class="button-done" type="button">Proses</button>
                                 @endif
-                                <button type="button">Read More</button>
                             </div>
                         </div>
                     </div>
@@ -138,10 +137,10 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title">Detail Informasi Training</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </button>
-                    <h4 class="modal-title">Detail Informasi Training</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row" style="padding: 10px 30px;">
@@ -203,99 +202,6 @@
         </nav>
     </div>
 </div>
-<!-- <div class="section padding-top-bottom-small background-white over-hide">
-    <div class="container">
-        <div class="col-md-8 box-isi">
-        <h3>Jadwal Training Berlangsung</h3> <br>
-            <ul class="simple-news-list" style="border-bottom: 1px solid dashed;">
-                @foreach ($training as $t)
-                <li class="col-md-6" style="padding: 20px; width: 100%;border-bottom: 1px dashed #848383;">
-					<div class="news-info col-md-7">
-						<h4 style="padding-top: 12px;"><a data-toggle="modal" data-target="#det26" style="cursor: pointer;"> {{ $t->nama_training }}</a></h4>
-						<div class="news-meta" style="font-size: 13px;"> Penyelenggara : {{ $t->penyelenggara }} </div>
-						    <div class="news-meta" style="font-size: 13px;">
-							    <i class="fa fa-calendar"></i> 
-                                $t->tanggal_mulai - $t->tanggal_selesai						
-                            </div>
-					    </div>
-						<div class="news-image col-md-4 pull-right">
-						    <div class="img-thumbnail pull-right" style="border: transparent;">
-                                <p style="background: red; padding: 8px; color: #fff; border-radius: 30px;">Selesai</p>								
-						    </div>
-						    <div class="news-meta col-md-12 pull-right" style="font-size: 13px;text-align: right;"> 
-                                Peserta Hadir : {{ $t->peserta_hadir }}							
-                            </div>
-						</div>
-                    </div>
-				</li>
-                <div class="modal fade" id="det26" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">×</span>
-                                </button>
-								<h4 class="modal-title text-center">Detail Informasi Training</h4>
-							</div>
-							<div class="modal-body">
-								<div class="row" style="padding: 10px 30px;">
-									<table style="color: #4e4e4e; font-size: 15px; line-height: 1.5;">
-										<tbody>
-                                            <tr>
-                                                <td>Nama Training</td>
-                                                <td width="25" align="center">:</td>
-                                                <td style="font-weight: bold;">{{ $t->nama_training }}</td>
-										    </tr>
-											<tr>
-												<td>Penyelenggara</td>
-												<td width="25" align="center">:</td>
-												<td style="font-weight: bold;">{{ $t->penyelenggara }}</td>
-											</tr>
-											<tr>
-												<td>Waktu</td>
-												<td width="25" align="center">:</td>
-												<td style="font-weight: bold;">{{ date('D, d F Y', strtotime($t->tanggal_mulai)) }} - {{ date('D, d F Y', strtotime($t->tanggal_selesai)) }}</td>
-											</tr>
-											<tr>
-												<td>Tempat</td>
-												<td width="25" align="center">:</td>
-												<td style="font-weight: bold;">{{ $t->tempat }}</td>
-											</tr>
-											<tr>
-												<td>Peserta sesuai Sprint</td>
-												<td width="25" align="center">:</td>
-												<td style="font-weight: bold;">{{ $t->peserta_sprint }}</td>
-											</tr>
-											<tr>
-												<td>Peserta Hadir</td>
-												<td width="25" align="center">:</td>
-												<td style="font-weight: bold;">{{ $t->peserta_hadir }}</td>
-											</tr>
-											<tr>
-												<td>Dokumen</td>
-												<td width="25" align="center">:</td>
-												<td style="font-weight: bold;">
-                                                    <a href="{{ asset('/Dokumen Training/' . $t->fileTraining) }}">Download File</a>
-                                                </td>
-											</tr>
-										</tbody>
-                                    </table>
-                                    <embed src="{{ asset('/Dokumen Training/' . $t->dokumen) }}" width="100%" height="700"> 												
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </ul>
-        </div>
-        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-            <nav aria-label="Page navigation example">
-                {{ $training->links() }}
-            </nav>
-        </div>
-    </div>
-</div> -->
     
 <!-- Separator Line
 	================================================== -->

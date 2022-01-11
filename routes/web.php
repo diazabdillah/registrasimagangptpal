@@ -193,7 +193,7 @@ Route::get('delete-unit-kerja/{user_id}', [ServiceController::class, 'deleteUnit
 Route::get('/show-informasi-lsp', [ServiceController::class, 'showInformasiLSP']);
 
 Route::get('/input-jadwal-sertifikat', [ServiceController::class, 'inputJadwalSertifikasi']);
-Route::post('/input-jadwal-sertifikat', [ServiceController::class, 'prosesJadwalSertifikasi'])->name('uploadSertifikasi');
+Route::post('/input-jadwal-sertifikat', [ServiceController::class, 'prosesInputJadwalSertifikasi'])->name('uploadSertifikasi');
 Route::get('/edit-jadwal-sertifikat/{id}', [ServiceController::class, 'editJadwalSertifikasi']);
 Route::put('/edit-jadwal-sertifikat/{id}', [ServiceController::class, 'updateJadwalSertifikasi']);
 Route::get('delete-jadwal-sertifikat/{user_id}', [ServiceController::class, 'deleteJadwalSertifikasi']);
