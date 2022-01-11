@@ -51,13 +51,11 @@
 
 	<div style="background-color: #000B31;" id="menu-wrap" class="cbp-af-header black-menu-background-1st-trans menu-fixed-padding-small menu-shadow">
 		<div class="container nav-top-bar">
-			<div class="row">
-				<div class="col-md-8">
-					<p> 
-						<img style="width:35%" src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png">
-						<i class="fa fa-phone ml-2 mr-1"></i> +62 31-3292275 (Hunting) ext. 2243 
-					</p>
-				</div>
+			<div class="d-flex flex-row justify-content-between" style="align-items:center">		
+				<img style="width:20%" src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png">
+				<p>
+					<i class="fa fa-phone ml-2 mr-1"></i> +62 31-3292275 (Hunting) ext. 2243
+				</p>
 			</div>
 		</div>
 		<div class="container">
