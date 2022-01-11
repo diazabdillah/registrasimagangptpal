@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use App\Models\MenuModel;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -55,10 +52,14 @@ class MenuController extends Controller
             'foto' => 'required'
         ]);
 
-        $file = $request->file('foto');
-        $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'berita';
-        $file->move($tujuan_upload, $nama_file);
+        if ($request->file('foto') != null){
+            $file = $request->file('foto');
+            $nama_file = $file->getClientOriginalName();
+            $tujuan_upload = 'berita';
+            $file->move($tujuan_upload, $nama_file);
+        } else {
+            $nama_file = null;
+        }
 
         News::create([
             'judul' => $request->judul,
@@ -91,13 +92,7 @@ class MenuController extends Controller
     {
         if ($request->file('foto') == null){
             $fotoLama = News::find($id)->select('foto')->first();
-            DB::table('news')->where('id', $id)
-            ->update([
-                'judul' => $request->judul,
-                'headline' => $request->headline,
-                'konten' => $request->konten,
-                'foto' => $fotoLama->foto,
-            ]);
+            $nama_file = $fotoLama->foto;
         } else {
             $fotoLama = News::find($id)->select('foto')->first();
             File::delete('news/' . $fotoLama->foto);
@@ -106,15 +101,14 @@ class MenuController extends Controller
             $nama_file = $file->getClientOriginalName();
             $tujuan_upload = 'berita';
             $file->move($tujuan_upload, $nama_file);
-    
-            DB::table('news')->where('id', $id)
-                ->update([
-                    'judul' => $request->judul,
-                    'headline' => $request->headline,
-                    'konten' => $request->konten,
-                    'foto' => $nama_file
-                ]);
         }
+
+        DB::table('news')->where('id', $id)->update([
+            'judul' => $request->judul,
+            'headline' => $request->headline,
+            'konten' => $request->konten,
+            'foto' => $nama_file
+        ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/show-berita');

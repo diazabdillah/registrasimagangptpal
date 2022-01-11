@@ -1,7 +1,7 @@
 @extends('core-front.head-2')
 @section('title','HCM PT. PAL Indonesia (Persero)')
 @section('body')
-<link rel="stylesheet" href="{{URL::asset('frontend')}}/diagram.css">
+<link rel="stylesheet" href="{{asset('frontend/diagram.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 <!-- Services Block
@@ -16,7 +16,7 @@
 	================================================== -->
 
 <div class="section padding-top-bottom over-hide">
-    <div class="parallax-1" style="background-image: url('frontend/img/FASILITAS-KAPAL-SELAM-3.jpg')">
+    <div class="parallax-1" style="background-image: url('{{URL::asset('frontend')}}/img/FASILITAS-KAPAL-SELAM-3.jpg')">
     </div>
     <div class="grey-fade-over"></div>
     <div class="container z-bigger">
@@ -119,7 +119,7 @@
                         <!--Grid row-->
 
                         <div class="text-center text-md-left">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Send<i class="fas fa-paper-plane"></i></button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Send <i class="fas fa-paper-plane"></i></button>
                         </div>
                     </form>
 
@@ -180,7 +180,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img style="width: 100%" class="mb-4" src="{{URL::asset('frontend')}}/img/kunjungan.jpeg" alt="" />
+                <img style="width: 100%" class="mb-4" src="{{asset('frontend/img/kunjungan.jpeg')}}" alt="" />
             </div>
         </div>
     </div>

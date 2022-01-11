@@ -16,7 +16,7 @@
 	================================================== -->
 
 <div class="section padding-top-bottom over-hide">
-    <div class="parallax-1" style="background-image: url('/img/FASILITAS-KAPAL-SELAM-3.jpg')">
+<div class="parallax-1" style="background-image: url('{{URL::asset('frontend')}}/img/FASILITAS-KAPAL-SELAM-3.jpg')">
     </div>
     <div class="grey-fade-over"></div>
     <div class="container z-bigger">
@@ -170,7 +170,7 @@
         <div class="row enter bottom move 40px over 0.8s after 0.2s">
             <div class="col text-center"><br>
                 <h3>Informasi Jabatan</h3>
-                <img style="width: 10%;" src="{{URL::asset('frontend')}}/img/profile/Bagan-Dep. LSP.png" class="rounded float-center animate__animated animate__bounce" alt="...">
+                <img style="width: 70%;" src="{{URL::asset('frontend')}}/img/profile/Bagan-Dep. LSP.png" class="rounded float-center animate__animated animate__bounce" alt="...">
             </div>
         </div>
     </div>
@@ -205,28 +205,28 @@
             <div class="clear"></div>
             <div class="col-md-3" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
                 <a href="/human-capital-services" style="text-decoration:none">
-                    <div class="pricing p-xl-5 background-image-cover text-center" style="background-image: url('frontend/img/pricing.jpg')">
+                    <div class="pricing p-xl-5 background-image-cover text-center" style="background-image: url('{{URL::asset('frontend')}}/img/pricing.jpg')">
                         <h5 class="color-white">Departemen Human Capital Services</h5>
                     </div>
                 </a>
             </div>
             <div class="col-md-3 mt-3 mt-md-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
                 <a href="/human-capital-development" style="text-decoration:none">
-                    <div class="pricing p-xl-5 text-center background-image-cover" style="background-image: url('frontend/img/pricing.jpg')">
+                    <div class="pricing p-xl-5 text-center background-image-cover" style="background-image: url('{{URL::asset('frontend')}}/img/pricing.jpg')">
                         <h5 class="color-white">Departemen Human Capital Development</h5>
                     </div>
                 </a>
             </div>
             <div class="col-md-3 mt-3 mt-md-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
                 <a href="/organization-development-and-command-media" style="text-decoration:none">
-                    <div class="pricing p-xl-5 background-image-cover text-center" style="background-image: url('frontend/img/pricing.jpg')">
+                    <div class="pricing p-xl-5 background-image-cover text-center" style="background-image: url('{{URL::asset('frontend')}}/img/pricing.jpg')">
                         <h5 class="color-white">Departemen Organization Development</h5>
                     </div>
                 </a>
             </div>
             <div class="col-md-3 mt-3 mt-md-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
                 <a href="/lembaga-sertifikasi-profesi" style="text-decoration:none">
-                    <div class="pricing p-xl-5 background-image-cover text-center" style="background-image: url('frontend/img/pricing.jpg')">
+                    <div class="pricing p-xl-5 background-image-cover text-center" style="background-image: url('{{URL::asset('frontend')}}/img/pricing.jpg')">
                         <h5 class="color-white">Departemen Organization LSP</h5>
                     </div>
                 </a>
