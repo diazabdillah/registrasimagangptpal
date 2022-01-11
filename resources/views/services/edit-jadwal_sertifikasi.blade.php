@@ -25,12 +25,12 @@
                                     <h5 class="card-title mt-2">Edit Data</h5>
 
 
-                                    <form method="POST" action="/edit-jadwal_sertifikat/{{ $data->id }}" enctype="multipart/form-data">
+                                    <form method="POST" action="/edit-jadwal-sertifikat/{{ $data->id }}" enctype="multipart/form-data">
                                         @method('put')
                                         @csrf
-                                        <!-- Input Nama Training -->
+                                        <!-- Input Nama Sertifikasi -->
                                         <div class="form-group">
-                                            <small class="ml-2">Nama Training</small>
+                                            <small class="ml-2">Nama Sertifikasi</small>
                                             <input type="text" class="form-control" id="nama_training" name="nama_training"
                                                 value="{{ $data->nama_training }}">
                                         </div>
@@ -44,13 +44,13 @@
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Mulai</small>
                                             <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai"
-                                                value="{{ $data->tanggal_mulai }}">
+                                                value="{{ date('Y-m-d', strtotime($data->tanggal_mulai)) }}">
                                         </div>
                                         <!-- Input Tanggal Selesai -->
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Selesai</small>
                                             <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai"
-                                                value="{{ $data->tanggal_selesai }}">
+                                                value="{{ now() }}">
                                         </div>
                                         <!-- Input Tempat -->
                                         <div class="form-group">
@@ -73,8 +73,8 @@
                                         <!-- Input Dokumen -->
                                         <div class="form-group">
                                             <small class="ml-2">Dokumen</small>
-                                            <input type="file" class="form-control" id="fileSertifikat" name="fileSertifikat"
-                                                value="{{ $data->fileSertifikat }}">
+                                            <input type="file" class="form-control" id="fileSertifikasi" name="fileSertifikasi"
+                                                value="{{ $data->fileSertifikasi }}">
                                         </div>  
                                         <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Update <i
                                                 class="fas fa-paper-plane"></i></button>

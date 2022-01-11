@@ -12,6 +12,7 @@ use App\Models\SkemaBNSP;
 use App\Models\JumlahAsesor;
 use App\Models\Kuota;
 use App\Models\ContactUs;
+use App\Models\JadwalSertifikasi;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -163,12 +164,12 @@ class WebController extends Controller
     }
 
     public function showInformasiLSP(){
-        $getTraining = Training::orderBy('id','DESC')->simplePaginate(10);
+        $getSertifikasi = JadwalSertifikasi::orderBy('id','DESC')->simplePaginate(10);
         $getSkema = SkemaBNSP::orderBy('id','DESC')->simplePaginate(10);
         $getAsesor = JumlahAsesor::orderBy('id','DESC')->simplePaginate(10);
 
         return view('frontend.informasi_lsp',[
-            'training' => $getTraining,
+            'sertifikasi' => $getSertifikasi,
             'skema' => $getSkema,
             'asesor' => $getAsesor
         ]);

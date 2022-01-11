@@ -53,31 +53,37 @@
 </div>
 
 {{-- list gallery --}}
-<div class="section padding-top-bottom-small background-white over-hide">
-    <div class="container">
-        <div class="row">
+<div class="section padding-top background-white over-hide">
+    <div class="container-fluid">
+		<div class="row transform-y-120 transform-on-mob">
             @foreach ($gallery as $g)
                 @if ($g->url == '0')
-                    <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+                    <div class="col-sm-4 mb-5">
                         <div class="item">
-                            <div class="team-box-1 background-white drop-shadow text-center">
-                                <a style="text-decoration:none; color: black">
-                                    <img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" width="30" />
-                                    {{ $g->judul }}
-                                </a>
-                            </div>
-                        </div>
+							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
+                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
                     </div>
                 @elseif ($g->foto == '0')
-                    <div class="col-sm-4 mb-5" data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+                    <div class="col-sm-4 mb-5">
                         <div class="item">
-                            <div class="team-box-1 background-white drop-shadow text-center">
-                                    
+							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
+								<div class="portfolio-box-1 dark rounded">
+									<div class="embed-responsive embed-responsive-16by9" width="30">
                                         <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
-                                    
-                                    {{ $g->judul }}
-                            </div>
-                        </div>
+                                    </div> 
+									<div class="portfolio-mask-2 rounded"></div>
+									<h5 class="on-center text-center">{{ $g->judul }}</h5>
+								</div>
+							</a>
+						</div>
                     </div>
                 @endif
             @endforeach
@@ -119,16 +125,16 @@
 			</div>
 			<div class="modal-body">
 				<div class="hero-center-wrap move-top">
-					<div class="container">
-						<div class="row justify-content-center">
+					<div class="container-fluid">
+                        <div class="row justify-content-center">
 							<div class="col-md-8">
-								<div class="video-section">
-									<figure class="vimeo rounded-2 over-hide">
-											<img class="mb-4" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
-									</figure>
-								</div>
-							</div>
-						</div>
+                                <div class="video-section">
+                                    <figure class="vimeo rounded-2 over-hide">
+                                            <img class="center" src="{{ asset('/galeri/' . $g->foto) }}" alt="" />
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>

@@ -23,7 +23,6 @@ class CreateJadwalSertifikasi extends Migration
             $table->integer('peserta_sprint');
             $table->integer('peserta_hadir');
             $table->string('fileSertifikasi');
-            $table->string('status');
             $table->timestamps();
         });
     }

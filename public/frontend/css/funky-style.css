@@ -2369,7 +2369,7 @@ body.royal_preloader {
 	padding-bottom: 56.25%;
 	padding-top: 0;
 	height: 0;
-	overflow: hidden;
+	overflow: visible;
 }	
 .video-wrapper iframe {
 	position: absolute;

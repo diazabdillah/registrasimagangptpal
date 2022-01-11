@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MenuModel;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
@@ -98,6 +99,9 @@ class MenuController extends Controller
                 'foto' => $fotoLama->foto,
             ]);
         } else {
+            $fotoLama = News::find($id)->select('foto')->first();
+            File::delete('news/' . $fotoLama->foto);
+
             $file = $request->file('foto');
             $nama_file = $file->getClientOriginalName();
             $tujuan_upload = 'berita';
@@ -222,6 +226,9 @@ class MenuController extends Controller
     public function updateGaleri(Request $request, $id)
     {
         if ($request->file('foto') != null) {
+            $fotoLama = Gallery::find($id)->select('foto')->first();
+            File::delete('galeri/' . $fotoLama->foto);
+
             $file = $request->file('foto');
             $nama_file = $file->getClientOriginalName();
             $tujuan_upload = 'galeri';
