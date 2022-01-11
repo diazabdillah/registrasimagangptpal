@@ -16,7 +16,7 @@
                     - Absen Pulang dibuka pukul 16:30 - 19.00 <br>
                     - Absen izin dibuka pukul 06:00 - 07:30 <br> (Absen Izin Jika Para Praktikan <b> Sakit </b>, Selain
                     Itu
-                    <b>Tidak Boleh Harus Konfirmasi ke Pembimbing Magang Melalui Chat Whatsapp Apabila Hendak Izin Ada
+                    <b>Tidak Boleh, Harus Konfirmasi ke Pembimbing Magang Melalui Chat Whatsapp Apabila Hendak Izin Ada
                         Keperluan
                         Lain</b>).
                 </p>

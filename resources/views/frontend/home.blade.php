@@ -5,20 +5,25 @@
 	================================================== -->
 
 <div class="section full-height-2 over-hide">
-	<div class="parallax" style="background-image: url('{{URL::asset('frontend')}}/img/bg-1.jpg')"></div>
+	<div class="parallax" style="background-image: url('frontend/img/bg-1.jpeg')"></div>
 	<div class="grey-fade-over"></div>
 	<div class="hero-center-wrap move-top-on-mob z-bigger">
 		<div class="container parallax-fade-top">
-			<div class="row">
-				<div class="col-lg-7">
-					<div class="quote-box-2 text-right">
-						<h4 class="color-white">Management is doing things right, leadership is doing right things</h4>
-						<p class="mt-5">"Peter F. Drucker".</p>
-					</div>
-				</div>
-				<div class="col-lg-5">
-					<button data-toggle="modal" data-target="#Modal-video" type="button" class="video-button on-dark float-right float-lg-left ml-4 mt-4"><i class="fa fa-play"></i></button>
-				</div>
+			<div class="d-flex justify-content-center">
+				<h1 class="color-white" style="text-align: center;">Welcome To <br> Divisi Human Capital Management</h1>
+			</div>
+			<br><br>
+			<div class="d-flex justify-content-center">
+				<img width="40%" src="{{asset('frontend/img/industri-maritim.png')}}">
+			</div>
+				<br>
+			<div class="d-flex justify-content-center">
+				<img width="20%" src="{{asset('frontend/img/logo.png')}}">
+			</div>
+			<br>
+			<div class="d-flex justify-content-center">
+				<p style="color: white;text-align:center;">PT .	PAL	INDONESIA<br>
+The   Best   Maritime   Industry</p>
 			</div>
 		</div>
 	</div>
@@ -62,7 +67,7 @@
 		<div class="row">
 			<div class="col-md-12 transform-y-120 transform-on-mob">
 				<div class="grid-wraper background-dark rounded-2 drop-shadow over-hide">
-					<div class=" float-inline height-50-block background-image-cover" style="background-image: url('{{URL::asset('frontend')}}/img/BLOCK-BERJALAN.MP4_snapshot_02.26_2021.08.24_10.06.27.jpg')">
+					<div class=" float-inline height-50-block background-image-cover" style="background-image: url('frontend/img/BLOCK-BERJALAN.MP4_snapshot_02.26_2021.08.24_10.06.27.jpg')">
 					</div>
 				</div>
 			</div>
@@ -114,7 +119,7 @@
 	================================================== -->
 
 <div class="section padding-top-bottom over-hide">
-	<div class="parallax-1" style="background-image: url('{{URL::asset('frontend')}}/img/FASILITAS-KAPAL-SELAM-3.jpg')"></div>
+	<div class="parallax-1" style="background-image: url('frontend/img/FASILITAS-KAPAL-SELAM-3.jpg')"></div>
 	<div class="grey-fade-over"></div>
 	<div class="container z-bigger">
 		<div class="row justify-content-center">

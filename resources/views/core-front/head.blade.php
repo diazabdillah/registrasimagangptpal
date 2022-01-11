@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 <head>
 
 	<!-- Basic Page Needs
@@ -12,35 +13,36 @@
 	<!-- Mobile Specific Metas
 	================================================== -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="theme-color" content="#212121"/>
-    <meta name="msapplication-navbutton-color" content="#212121"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="#212121"/>
+	<meta name="theme-color" content="#212121" />
+	<meta name="msapplication-navbutton-color" content="#212121" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="#212121" />
 
 	<!-- Web Fonts
 	================================================== -->
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet" />
 
 	<!-- CSS
 	================================================== -->
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/bootstrap.min.css" />
 	{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/mind-icons-line.css"/>
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/funky-style.css"/>
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/owl.carousel.css"/>
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/owl.transitions.css"/>
-	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/colors/color-green.css"/>
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/mind-icons-line.css" />
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/funky-style.css" />
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/owl.carousel.css" />
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/owl.transitions.css" />
+	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/colors/color-green.css" />
 
 	<!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" type="image/png" href="{{URL::asset('frontend')}}/img/pal.jpg"/>
+	<link rel="shortcut icon" type="image/png" href="{{URL::asset('frontend')}}/img/pal.jpg" />
 	<link rel="icon" type="image/png" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="72x72" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="114x114" href="{{URL::asset('frontend')}}/img/pal.jpg">
 </head>
+
 <body class="royal_preloader">
 
 	<div id="royal_preloader"></div>
@@ -51,10 +53,11 @@
 
 	<div style="background-color: #000B31;" id="menu-wrap" class="cbp-af-header black-menu-background-1st-trans menu-fixed-padding-small menu-shadow">
 		<div class="container nav-top-bar">
-			<div class="row">
-				<div class="col-md-7">
-					<p> <i class="fa fa-phone ml-2 mr-1"></i> +62 31-3292275 (Hunting) ext. 2243 <i class="fa fa-comment-o ml-2 mr-1"></i> <a href="mailto:hcm@pal.co.id">hcm@pal.co.id</a></p>
-				</div>
+			<div class="d-flex flex-row justify-content-between" style="align-items:center">		
+				<img style="width:20%" src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png">
+				<p>
+					<i class="fa fa-phone ml-2 mr-1"></i> +62 31-3292275 (Hunting) ext. 2243
+				</p>
 			</div>
 		</div>
 		<div class="container">
@@ -64,10 +67,7 @@
 						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavMenuMain" aria-controls="navbarNavMenuMain" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						<a class="navbar-brand" href="{{('/')}}">
-							<img src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png" alt="" class="">
-						</a>
-						<div class="collapse navbar-collapse justify-content-end" id="navbarNavMenuMain">
+						<div class="collapse navbar-collapse justify-content-center" id="navbarNavMenuMain">
 							<ul class="navbar-nav">
 								<li class="nav-item dropdown mega-menu {{ Request::is('/')? "active":"" }}">
 									<a class="nav-link" href="{{('/')}}">
@@ -157,13 +157,13 @@
 		</div>
 	</div>
 
-@yield('body')
+	@yield('body')
 
 
 	<!-- Footer Light Block
 	================================================== -->
 
-	<div class="section padding-top background-image-cover-top over-hide footer-1" style="padding-bottom:0px !important;background-image: url('{{URL::asset('frontend')}}/img/footer-7.png')">
+	<div class="section padding-top background-image-cover-top over-hide footer-1" style="padding-bottom:0px !important;background-image: url('frontend/img/footer-7.png')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
@@ -198,7 +198,7 @@
 				</div>
 				<div style="color: black" class="col-md-3 mt-4 mt-md-0 logo-footer-100">
 					<img style="width: 250px" src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png" alt="" class="mb-5">
-					<div  class="separator-wrap">
+					<div class="separator-wrap">
 						<span class="separator"><span class="separator-line dashed"></span></span>
 					</div>
 					<ul class="list-style mt-3 mb-3">
@@ -216,13 +216,13 @@
 			<div class="row">
 				<div style="color: black" class="col-md-6">
 					<?php
-						$tgl = date('Y');
-						echo "<p>Copyright " . $tgl . " Anak PENS</p>";
+					$tgl = date('Y');
+					echo "<p>Copyright " . $tgl . " Anak PENS</p>";
 					?>
 					{{-- <p>© 2021 . Powerd with <i class="fa fa-heart"></i> by <a href="https://themeforest.net/user/ig_design/portfolio?ref=IG_design" target="_blank">Anak PENS</a>!</p> --}}
 				</div>
 				<div class="col-md-6">
-					<ul  class="footer-social">
+					<ul class="footer-social">
 						<li style="color: black" class="twitter">
 							<a href="https://twitter.com/PTPAL_INDONESIA">Tw</a>
 						</li>

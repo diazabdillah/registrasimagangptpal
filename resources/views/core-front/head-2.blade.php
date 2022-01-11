@@ -40,27 +40,23 @@
 	<link rel="apple-touch-icon" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="72x72" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="114x114" href="{{URL::asset('frontend')}}/img/pal.jpg">
-
-	<!-- Custom fonts for this template-->
-	<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    {{-- Fonts Poppins --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<body >
+<body class="royal_preloader">
 
-	{{-- <div id="royal_preloader"></div> --}}
+	<div id="royal_preloader"></div>
 
 
 	<!-- Nav and Logo
 	================================================== -->
 
-	<div style="background-color: #000B31;" id="menu-wrap" class="cbp-af-header menu-fixed-padding-small menu-shadow">
+	<div style="background-color: #000B31;" id="menu-wrap" class="cbp-af-header black-menu-background-1st-trans menu-fixed-padding-small menu-shadow">
 		<div class="container nav-top-bar">
 			<div class="row">
-				<div class="col-md-7">
-					<p> <i class="fa fa-phone ml-2 mr-1"></i> +62 31-3292275 (Hunting) ext. 2243 <i class="fa fa-comment-o ml-2 mr-1"></i> <a href="mailto:hcm@pal.co.id">hcm@pal.co.id</a></p>
+				<div class="col-md-8">
+					<p> 
+						<img style="width:35%" src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png">
+						<i class="fa fa-phone ml-2 mr-1"></i> +62 31-3292275 (Hunting) ext. 2243 
+					</p>
 				</div>
 			</div>
 		</div>
@@ -71,10 +67,7 @@
 						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavMenuMain" aria-controls="navbarNavMenuMain" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						<a class="navbar-brand" href="{{('/')}}">
-							<img src="{{URL::asset('frontend')}}/img/BUMN-PAL-R1.png" alt="" class="">
-						</a>
-						<div class="collapse navbar-collapse justify-content-end" id="navbarNavMenuMain">
+						<div class="collapse navbar-collapse justify-content-center" id="navbarNavMenuMain">
 							<ul class="navbar-nav">
 								<li class="nav-item dropdown mega-menu {{ Request::is('/')? "active":"" }}">
 									<a class="nav-link" href="{{('/')}}">
@@ -82,17 +75,17 @@
 									</a>
 								</li>
 								<li class="nav-item dropdown {{ Request::is('profile')? "active":"" }}">
-									<a class="nav-link" href="{{URL('profile')}}">
+									<a class="nav-link" href="{{('profile')}}">
 										Profile
 									</a>
 								</li>
 								<li class="nav-item dropdown mega-menu {{ Request::is('news')? "active":"" }}">
-									<a class="nav-link" href="{{URL('news')}}">
+									<a class="nav-link" href="{{('news')}}">
 										News
 									</a>
 								</li>
 								<li class="nav-item dropdown mega-menu {{ Request::is('gallery')? "active":"" }}">
-									<a class="nav-link" href="{{URL('gallery')}}">
+									<a class="nav-link" href="{{('gallery')}}">
 										Gallery
 									</a>
 								</li>
@@ -110,7 +103,7 @@
 										<a class="dropdown-item" href="{{('informasi_lsp')}}">Informasi LSP PAL</a>
 									</div>
 								</li>
-								<li class="nav-item dropdown {{ Request::is('/contact')? "active":"" }}">
+								<li class="nav-item dropdown {{ Request::is('contact')? "active":"" }}">
 									<a class="nav-link" href="{{URL('contact')}}">
 										Contact Us
 									</a>
@@ -170,7 +163,7 @@
 	<!-- Footer Light Block
 	================================================== -->
 
-	<div class="section padding-top background-image-cover-top over-hide footer-1" style="padding-bottom:0px !important;background-image: url('{{URL::asset('frontend')}}/img/footer-7.png')">
+	<div class="section padding-top background-image-cover-top over-hide footer-1" style="padding-bottom:0px !important;background-image: url('frontend/img/footer-7.png')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
@@ -223,21 +216,21 @@
 			<div class="row">
 				<div style="color: black" class="col-md-6">
 					<?php
-                $tgl = date('Y');
-                echo "<p>Copyright " . $tgl . " Anak PENS</p>";
-                ?>
+						$tgl = date('Y');
+						echo "<p>Copyright " . $tgl . " Anak PENS</p>";
+					?>
 					{{-- <p>© 2021 . Powerd with <i class="fa fa-heart"></i> by <a href="https://themeforest.net/user/ig_design/portfolio?ref=IG_design" target="_blank">Anak PENS</a>!</p> --}}
 				</div>
 				<div class="col-md-6">
 					<ul  class="footer-social">
 						<li style="color: black" class="twitter">
-							<a src="https://twitter.com/PTPAL_INDONESIA">Tw</a>
+							<a href="https://twitter.com/PTPAL_INDONESIA">Tw</a>
 						</li>
 						<li style="color: black" class="facebook">
-							<a src="https://web.facebook.com/PenataranAngkatanLaut">Fb</a>
+							<a href="https://web.facebook.com/PenataranAngkatanLaut">Fb</a>
 						</li>
 						<li style="color: black" class="instagram">
-							<a src="https://www.instagram.com/ptpal_indonesia/">Ig</a>
+							<a href="https://www.instagram.com/ptpal_indonesia/">Ig</a>
 						</li>
 					</ul>
 				</div>
