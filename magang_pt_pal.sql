@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2022 at 05:44 AM
+-- Generation Time: Jan 12, 2022 at 10:56 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -166,13 +166,6 @@ CREATE TABLE `data_penelitian` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `data_penelitian`
---
-
-INSERT INTO `data_penelitian` (`id`, `user_id`, `nama`, `asal_instansi`, `strata`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `judul_penelitian`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 23, 'penelitian', 'pens', 'D3', 'Teknik Informatika', 'Sdr 1', '08155787869', NULL, NULL, 'kapal auto pilot', NULL, '2022-01-12 03:17:56', '2022-01-12 03:17:56');
-
 -- --------------------------------------------------------
 
 --
@@ -194,13 +187,6 @@ CREATE TABLE `data_smk_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `data_smk_indivs`
---
-
-INSERT INTO `data_smk_indivs` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nis`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(1, 22, 'SMK Sahaje La', 'SMK PAL', 'Teknik Informatika', 'Sdr 1', '08155787869', NULL, NULL, '11729', NULL, '2022-01-12 02:40:34', '2022-01-12 02:40:34');
 
 -- --------------------------------------------------------
 
@@ -524,13 +510,6 @@ CREATE TABLE `gallery` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id`, `judul`, `foto`, `url`, `created_at`, `updated_at`) VALUES
-(1, 'Lomba Gerakan AKHLAK', '0', 'https://www.youtube.com/embed/SjYPe9tn71Q', '2022-01-12 02:23:08', '2022-01-12 02:23:08');
-
 -- --------------------------------------------------------
 
 --
@@ -815,13 +794,6 @@ CREATE TABLE `mulai_dan_selesai_smk` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `mulai_dan_selesai_smk`
---
-
-INSERT INTO `mulai_dan_selesai_smk` (`id`, `user_id`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
-(1, 22, '2022-01-12', '2022-03-12', '2022-01-12 03:27:28', '2022-01-12 03:27:28');
-
 -- --------------------------------------------------------
 
 --
@@ -928,13 +900,6 @@ CREATE TABLE `penilaians_smk` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `penilaians_smk`
---
-
-INSERT INTO `penilaians_smk` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2022-01-12 02:40:34', '2022-01-12 02:40:34');
 
 -- --------------------------------------------------------
 
@@ -1057,13 +1022,6 @@ CREATE TABLE `rekappenelitian` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rekappenelitian`
---
-
-INSERT INTO `rekappenelitian` (`id`, `user_id`, `nama`, `asal_instansi`, `strata`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `judul_penelitian`, `status_penerimaan`, `status_user`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
-(1, 23, 'penelitian', 'pens', 'D3', 'Teknik Informatika', 'Sdr 1', '08155787869', NULL, NULL, 'kapal auto pilot', NULL, 'Penelitian', NULL, NULL, '2022-01-12 03:17:56', '2022-01-12 03:17:56');
-
 -- --------------------------------------------------------
 
 --
@@ -1088,13 +1046,6 @@ CREATE TABLE `rekapsmk` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rekapsmk`
---
-
-INSERT INTO `rekapsmk` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nis`, `status_penerimaan`, `status_user`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
-(1, 22, 'SMK Sahaje La', 'SMK PAL', 'Teknik Informatika', 'Sdr 1', '08155787869', NULL, NULL, '11729', NULL, 'SMK', '2022-01-12', '2022-03-12', '2022-01-12 02:40:34', '2022-01-12 02:40:34');
 
 -- --------------------------------------------------------
 
@@ -1132,13 +1083,6 @@ CREATE TABLE `training` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `training`
---
-
-INSERT INTO `training` (`id`, `nama_training`, `penyelenggara`, `tanggal_mulai`, `tanggal_selesai`, `tempat`, `peserta_sprint`, `peserta_hadir`, `fileTraining`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'training', 'pt pal', '2022-01-13 10:55:00', '2022-01-14 12:53:00', 'surabaya', 2, 0, 'muhammad zaid.pdf', 'Proses', '2022-01-12 02:50:45', '2022-01-12 02:50:45');
 
 -- --------------------------------------------------------
 
@@ -1200,8 +1144,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (19, 'Admin Teknologi Informasi', 'adminti@gmail.com', NULL, '$2y$10$LvvWI1ZUX6zwe/znxxAB.uQasETDM.Wt7o6ZpJui9pjGCfeKlbSkK', 18, 'Admin Teknologi Informasi', NULL, '2021-12-28 19:12:29', '2021-12-28 19:12:29'),
 (20, 'Admin Kawasan', 'adminkawasan@gmail.com', NULL, '$2y$10$sKCPXM97G0lnuqlx2hDF7eDjFBnwoCb9f7q.1/pE/CzdY0YXSIXY6', 18, 'Admin Kawasan', NULL, '2021-12-28 19:12:53', '2021-12-28 19:12:53'),
 (21, 'Admin Keamanan & K3LH', 'adminkeamanan@gmail.com', NULL, '$2y$10$2CNpGdyvzEYtAlkfCa0L3.eDDIPgeWG0/5CR58JxgFq9KA7VboyKi', 18, 'Admin Keamanan & K3LH', NULL, '2021-12-28 19:13:17', '2021-12-28 19:13:17'),
-(22, 'SMK Sahaje La', 'smk@gmail.com', NULL, '$2y$10$ijc5SBH3pneug3PCx7U.b.XrjTTZWUlau8ACaRCDzgNesuYvL.h56', 17, 'SMK', NULL, '2022-01-12 02:39:48', '2022-01-12 02:39:48'),
-(23, 'penelitian', 'penelitian@gmail.com', NULL, '$2y$10$PVNKYdViJS5f24sumxLx0ugA4hAJSGQ/awPfhHsdONlo4YZsGHZhe', 23, 'Penelitian', NULL, '2022-01-12 03:17:03', '2022-01-12 03:17:03');
+(22, 'Admin Legal', 'legal@gmail.com', NULL, '$2y$10$SU0bLOJRvE9ziixY8SE9refqnSqfJzROI2aVDszJcGcccoNPICL8K', 18, 'Admin Legal', NULL, '2022-01-12 08:51:30', '2022-01-12 08:51:30'),
+(23, 'Admin Office of The Board', 'office@gmail.com', NULL, '$2y$10$XPaQPG.raMqflHS65osF/eqDUlUTi4Rs6dEK1aWuGnCQ2I92exVSa', 18, 'Admin Office Of The Board', NULL, '2022-01-12 09:33:38', '2022-01-12 09:33:38');
 
 --
 -- Indexes for dumped tables
@@ -1579,13 +1523,13 @@ ALTER TABLE `data_mhs_indivs`
 -- AUTO_INCREMENT for table `data_penelitian`
 --
 ALTER TABLE `data_penelitian`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `data_smk_indivs`
 --
 ALTER TABLE `data_smk_indivs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `departemen`
@@ -1669,7 +1613,7 @@ ALTER TABLE `foto_smk_models`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `huruf`
@@ -1753,7 +1697,7 @@ ALTER TABLE `mulai_dan_selesai_penelitian`
 -- AUTO_INCREMENT for table `mulai_dan_selesai_smk`
 --
 ALTER TABLE `mulai_dan_selesai_smk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -1777,7 +1721,7 @@ ALTER TABLE `penilaians`
 -- AUTO_INCREMENT for table `penilaians_smk`
 --
 ALTER TABLE `penilaians_smk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1813,13 +1757,13 @@ ALTER TABLE `rekapmhs`
 -- AUTO_INCREMENT for table `rekappenelitian`
 --
 ALTER TABLE `rekappenelitian`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rekapsmk`
 --
 ALTER TABLE `rekapsmk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `skema_bnsp`
@@ -1831,7 +1775,7 @@ ALTER TABLE `skema_bnsp`
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `unit_kerja`

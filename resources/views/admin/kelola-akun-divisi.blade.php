@@ -38,6 +38,8 @@
                                 <tbody>
 
                                     @foreach ($users as $akun)
+@if($akun->role_id == 1 || $akun->role_id == 18)
+    
 
                                     <tr>
                                         <td>{{ ++$i }}</td>
@@ -51,7 +53,7 @@
                                             @endif
                                         </td>
                                     </tr>
-
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>

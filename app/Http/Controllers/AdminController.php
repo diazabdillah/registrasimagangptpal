@@ -455,7 +455,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:users',
-            'password' => 'min:6|required|confirmed',
+            'password' => 'min:6|required',
         ]);
 
         User::create([
@@ -481,13 +481,6 @@ class AdminController extends Controller
     }
     public function proses_edit_akun_divisi($id, Request $request)
     {
-        $request->validate([
-            'name' => 'required|min:3|max:50',
-            'email' => 'required|email|unique:users',
-            'password' => 'min:6|required',
-
-        ]);
-
         DB::table('users')->where('id', $id)
             ->update([
                 'name' => $request->name,

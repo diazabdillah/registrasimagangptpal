@@ -24,16 +24,16 @@
                             @csrf
                             <div class="form-group">
                                 <small class="ml-2">Nama</small>
-                                <input type="text" class="form-control" name="name" placeholder="cth: Admin HCM">
+                                <input type="text" class="form-control" name="name" value="{{$data->name}}">
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Email</small>
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" name="email" value="{{$data->email}}">
                             </div>
 
                             <div class="form-group">
                                 <small class="ml-2">Password</small>
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password" value="{{$data->password}}">
                             </div>
                             <div class=" form-group">
                                 <small class="ml-2">Status User</small>
@@ -44,7 +44,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4">Tambah Akun</button>
+                            <button type="submit" class="btn btn-primary mt-4">Edit Akun</button>
                         </form>
                     </div>
                 </div>

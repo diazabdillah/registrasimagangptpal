@@ -18,11 +18,11 @@
                         Tambah Akun Divisi
                     </div>
                     <div class="card-body">
-                        <form action="/proses-tambah-akun-divisi" method="POST" enctype="multipart/form-data">
+                        <form action="/proses-tambah-akun-divisi" method="POST">
                             @csrf
                             <div class="form-group">
                                 <small class="ml-2">Nama</small>
-                                <input type="text" class="form-control" name="name" placeholder="cth: Admin HCM">
+                                <input type="text" class="form-control" name="name" placeholder="contoh : Human Capital  Management">
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Email</small>
