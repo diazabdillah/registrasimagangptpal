@@ -4,7 +4,7 @@
 @section('kontenAuth')
 
     <div class="container">
-        <a href="/auth_smk" class="btn btn-dark mt-5"><i class="fas fa-chevron-left"></i> Back</a>
+        <a href="/auth_mhs" class="btn btn-dark mt-5"><i class="fas fa-chevron-left"></i> Back</a>
 
         <div class="card o-hidden border-0 shadow-lg my-2">
             <div class="card-body p-0">

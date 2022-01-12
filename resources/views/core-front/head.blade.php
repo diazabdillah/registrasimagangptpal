@@ -163,7 +163,7 @@
 	<!-- Footer Light Block
 	================================================== -->
 
-	<div class="section padding-top background-image-cover-top over-hide footer-1" style="padding-bottom:0px !important;background-image: url('frontend/img/footer-7.png')">
+	<div class="section padding-top background-image-cover-top over-hide footer-1" style="padding-bottom:0px !important;background-image: url('{{URL::asset('frontend')}}/img/footer-7.png')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">

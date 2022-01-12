@@ -103,8 +103,8 @@
                 {{ date('d-F-Y', strtotime($datas[0]->selesai)) }} </p>
             <p style="margin-top: -20px;margin-left:500px;"> PT PAL Indonesia (Persero)</p>
 
-            <hr style="margin-left:500px;width:280px;weight:200px;margin-top: 150px;border:1px solid;">
-
+            <img style="margin-left:500px;"  src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
+                                        
         </div>
 
     </div>

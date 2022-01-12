@@ -602,12 +602,22 @@
                     <i class="fas fa-fw fa-medal"></i>
                     <span>Sertifikat Mahasiswa</span> </a>
             </li>
+            <li class="nav-item {{ $ti === 'Surat Keterangan Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-keterangan-mhs">
+                    <i class="fas fa-scroll"></i>
+                    <span>Surat Keterangan Mahasiswa</span> </a>
+            </li>
             @endif
             @if (auth()->user()->role_id == 15)
             <li class="nav-item {{ $ti === 'Sertifikat SMK' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/sertifikat_smk">
                     <i class="fas fa-fw fa-medal"></i>
                     <span>Sertifikat SMK</span> </a>
+            </li>
+            <li class="nav-item {{ $ti === 'Surat Keterangan SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-keterangan-smk">
+                    <i class="fas fa-scroll"></i>
+                    <span>Surat Keterangan SMK</span> </a>
             </li>
             @endif
 
