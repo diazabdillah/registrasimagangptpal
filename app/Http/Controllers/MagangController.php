@@ -266,7 +266,7 @@ class MagangController extends Controller
                 ->select('users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'interview.fileinterview')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
-            $ti = 'Interview';
+            $ti = 'Tes Kepribadian Mahasiswa';
             return view('magang.interview-mhs', [
                 'ti' => $ti,
                 'users' => $users
@@ -295,17 +295,6 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
             'fileinterview' => 'required|mimes:jpg,bmp,png|max:2048',
         ]);
 
@@ -316,17 +305,6 @@ class MagangController extends Controller
 
         Interview::create([
             'id_individu' => $individu->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -1202,17 +1180,7 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
+
             'fileinterview' => 'required',
         ]);
 
@@ -1223,17 +1191,6 @@ class MagangController extends Controller
 
         Interview::create([
             'id_individu' => $individu->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -2362,17 +2319,7 @@ class MagangController extends Controller
     {
         $interviewsmk = DataSmkIndivs::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
+
             'fileinterview' => 'required',
         ]);
 
@@ -2383,17 +2330,6 @@ class MagangController extends Controller
 
         InterviewSmk::create([
             'id_individu' => $interviewsmk->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -2865,7 +2801,7 @@ class MagangController extends Controller
                 ->select('users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.id', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'interview_smk.fileinterview')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
-            $ti = 'Interview SMK';
+            $ti = 'Tes Kepribadian SMK';
             return view('magang.interview-smk', [
                 'ti' => $ti,
                 'users' => $users
@@ -2880,7 +2816,7 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 17) {
 
             $user = DataSmkIndivs::find($id);
-            $ti = 'Upload Hasil Interview';
+            $ti = 'Upload Hasil Tes Kepribadian';
             return view('magang.interview-smk-upload', [
                 'ti' => $ti,
                 'user' => $user
@@ -2894,17 +2830,7 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
+         
             'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -2915,17 +2841,6 @@ class MagangController extends Controller
 
         InterviewSmk::create([
             'id_individu' => $individusmk->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 

@@ -629,10 +629,10 @@
             <!-- smk selesai -->
             @endif
             @if (auth()->user()->role_id == 16)
-            <li class="nav-item {{ $ti === 'Interview' ? 'active' : '' }}">
+            <li class="nav-item {{ $ti === 'Tes Kepribadian Mahasiswa' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/interview-mhs">
                     <i class="fas fa-fw fa-medal"></i>
-                    <span>Interview</span></a>
+                    <span>Tes Kepribadian Mahasiswa</span></a>
             </li>
             <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/forum-mhs">
@@ -641,10 +641,10 @@
             </li>
             @endif
             @if (auth()->user()->role_id == 17)
-            <li class="nav-item {{ $ti === 'Interview SMK' ? 'active' : '' }}">
+            <li class="nav-item {{ $ti === 'Tes Kepribadian SMK' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/interview-smk">
                     <i class="fas fa-fw fa-medal"></i>
-                    <span>Interview</span></a>
+                    <span>Tes Kepribadian SMK</span></a>
             </li>
             <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/forum-mhs">
