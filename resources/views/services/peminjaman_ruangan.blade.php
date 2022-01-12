@@ -77,7 +77,10 @@
                                     <td>{{ $dr->nama_ruangan }}</td>
                                     <td>{{ $dr->fasilitas }}</td>
                                     <td>{{ $dr->kapasitas }}</td>
-                                    <td>{{ $dr->foto_ruangan }}</td>
+                                    <td>
+                                        <a class="btn btn-primary p-1"
+                                            data-toggle="modal" data-target="#staticBackdrop{{$dr->id}}">Lihat</a>
+                                    </td>
                                     <td>
                                         @if ( $dr->status == 'Available')
                                             <div class="btn btn-success p-1">Available</div>
@@ -111,6 +114,20 @@
                 </div>
             </div>
         </div>
+
+        @foreach ($dataRuangan as $dr)
+        <div class="modal fade" id="staticBackdrop{{ $dr->id }}" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row" style="padding: 10px 30px;">
+                            <img class="center" src="{{ asset('/Foto Ruangan/' . $dr->foto_ruangan) }}" alt="" /> 												
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
 
         <div class="card Menu mb-4">
             <div class="card shadow">

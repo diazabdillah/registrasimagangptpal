@@ -104,6 +104,27 @@ class ServiceController extends Controller
             $ti = 'Training Managemen';
             $data = DB::table('training')->orderByDesc('id')->simplePaginate(10);
 
+            $training = DB::table('training')->get();
+
+            foreach ($training as $t){
+                if (now() < $t->tanggal_mulai){
+                    $status = "Segera Akan Datang";
+                    DB::table('training')->where('id', $t->id)->update([
+                        'status' => $status
+                    ]);
+                } else if ((now() >= $t->tanggal_mulai) && (now() < $t->tanggal_selesai)) {
+                    $status = "Sedang Berlangsung";
+                    DB::table('training')->where('id', $t->id)->update([
+                        'status' => $status
+                    ]);
+                } else {
+                    $status = "Selesai";
+                    DB::table('training')->where('id', $t->id)->update([
+                        'status' => $status
+                    ]);
+                }
+            }
+
             return view('services.training', [
                 'ti' => $ti,
                 'data' => $data
@@ -182,8 +203,8 @@ class ServiceController extends Controller
 
     public function updateTraining(Request $request, $id)
     {
-        $trainingLama = Training::find($id);
         if ($request->file('fileTraining') == null) {
+            $trainingLama = Training::find($id);
             $fileLama = $trainingLama->fileTraining;
 
             DB::table('training')->where('id', $id)
@@ -196,9 +217,11 @@ class ServiceController extends Controller
                     'peserta_sprint' => $request->peserta_sprint,
                     'peserta_hadir' => $request->peserta_hadir,
                     'fileTraining' => $fileLama,
-                    'status' => $request->status,
                 ]);
         } else {
+            $trainingLama = Training::find($id);
+            File::delete('DokumenTraining/' . $trainingLama->fileTraining);
+
             $file = $request->file('fileTraining');
             $nama_file = $file->getClientOriginalName();
             $tujuan_upload = 'DokumenTraining';
@@ -214,7 +237,6 @@ class ServiceController extends Controller
                     'peserta_sprint' => $request->peserta_sprint,
                     'peserta_hadir' => $request->peserta_hadir,
                     'fileTraining' => $nama_file,
-                    'status' => $request->status,
                 ]);
         }
 
@@ -224,6 +246,9 @@ class ServiceController extends Controller
 
     public function deleteTraining($id)
     {
+        $trainingLama = Training::find($id);
+        File::delete('DokumenTraining/' . $trainingLama->fileTraining);
+
         DB::table('training')->where('id', $id)->delete();
         return redirect('/show-training')->with('succes', 'Data Training Anda Berhasil DiHapus');
     }
@@ -324,6 +349,9 @@ class ServiceController extends Controller
 
     public function updateDaftarRuangan(Request $request, $id)
     {
+        $ruangan = DaftarRuangan::find($id);
+        File::delete('Foto Ruangan/' . $ruangan->foto_ruangan);
+
         $file = $request->file('foto_ruangan');
         $nama_file = $file->getClientOriginalName();
         $tujuan_upload = 'Foto Ruangan';
@@ -343,6 +371,9 @@ class ServiceController extends Controller
 
     public function deleteDaftarRuangan($id)
     {
+        $ruangan = DaftarRuangan::find($id);
+        File::delete('Foto Ruangan/' . $ruangan->foto_ruangan);
+
         DB::table('daftar_ruangan')->where('id', $id)->delete();
         return redirect('/show-peminjaman-ruangan')->with('succes', 'Data Daftar Ruangan Anda Berhasil DiHapus');
     }
@@ -598,10 +629,10 @@ class ServiceController extends Controller
     public function updateJadwalSertifikasi(Request $request, $id)
     {
         if ($request->file('fileSertifikasi') == null){
-            $sertifLama = JadwalSertifikasi::find($id)->select('fileSertifikasi')->first();
+            $sertifLama = JadwalSertifikasi::find($id);
             $nama_file = $sertifLama->fileSertifikasi;
         } else {
-            $sertifLama = JadwalSertifikasi::find($id)->select('fileSertifikasi')->first();
+            $sertifLama = JadwalSertifikasi::find($id);
             File::delete('DokumenSertifikatTraining/' . $sertifLama->fileSertifikasi);
 
             $file = $request->file('fileSertifikasi');
@@ -619,7 +650,7 @@ class ServiceController extends Controller
                 'tempat' => $request->tempat,
                 'peserta_sprint' => $request->peserta_sprint,
                 'peserta_hadir' => $request->peserta_hadir,
-                'fileSertifikat' => $nama_file,
+                'fileSertifikasi' => $nama_file,
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
@@ -628,6 +659,9 @@ class ServiceController extends Controller
 
     public function deleteJadwalSertifikasi($id)
     {
+        $sertifLama = JadwalSertifikasi::find($id);
+        File::delete('DokumenSertifikatTraining/' . $sertifLama->fileSertifikasi);
+
         DB::table('jadwal_sertifikasi')->where('id', $id)->delete();
         return redirect('/show-informasi-lsp')->with('succes', 'Data Jadwal Sertifikasi Anda Berhasil DiHapus');
     }

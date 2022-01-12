@@ -38,12 +38,12 @@
                                         <!-- Input Tanggal Mulai -->
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Mulai</small>
-                                            <input type="datetime-local" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
+                                            <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
                                         </div>
                                         <!-- Input Tanggal Selesai -->
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Selesai</small>
-                                            <input type="datetime-local" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+                                            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
                                         </div>  
                                          <!-- Input Tempat Training -->
                                          <div class="form-group">

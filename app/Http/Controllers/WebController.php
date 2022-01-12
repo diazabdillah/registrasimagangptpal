@@ -22,6 +22,27 @@ class WebController extends Controller
     public function index(){
         $getNews = News::orderBy('id','DESC')->paginate(3);
         $getGalleries = Gallery::orderBy('id','DESC')->paginate(3);
+
+        $training = DB::table('training')->get();
+
+        foreach ($training as $t){
+            if (now() < $t->tanggal_mulai){
+                $status = "Segera Akan Datang";
+                DB::table('training')->where('id', $t->id)->update([
+                    'status' => $status
+                ]);
+            } else if ((now() >= $t->tanggal_mulai) && (now() < $t->tanggal_selesai)) {
+                $status = "Sedang Berlangsung";
+                DB::table('training')->where('id', $t->id)->update([
+                    'status' => $status
+                ]);
+            } else {
+                $status = "Selesai";
+                DB::table('training')->where('id', $t->id)->update([
+                    'status' => $status
+                ]);
+            }
+        }
         
         return view('frontend.home', ['news' => $getNews, 'gallery' => $getGalleries]);
     }
@@ -151,9 +172,16 @@ class WebController extends Controller
         $ti = 'Form Peminjaman Ruangan';
         $getDaftarRuangan = DaftarRuangan::orderBy('id','DESC')->simplePaginate(6);
 
+        $ruangan = DB::table('daftar_ruangan')->select('nama_ruangan')->get();
+        $divisi = DB::table('divisi')->select('nama_divisi')->get();
+        $departemen = DB::table('departemen')->select('nama_departemen')->get();
+
         return view('frontend.peminjaman_ruangan', [
             'ti' => $ti,
-            'dataRuangan' => $getDaftarRuangan
+            'dataRuangan' => $getDaftarRuangan,
+            'ruangan' => $ruangan,
+            'divisi' => $divisi,
+            'departemen' => $departemen,
         ])->with('i');
     }
 

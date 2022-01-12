@@ -91,11 +91,11 @@ class MenuController extends Controller
     public function updateBerita(Request $request, $id)
     {
         if ($request->file('foto') == null){
-            $fotoLama = News::find($id)->select('foto')->first();
+            $fotoLama = News::find($id);
             $nama_file = $fotoLama->foto;
         } else {
-            $fotoLama = News::find($id)->select('foto')->first();
-            File::delete('news/' . $fotoLama->foto);
+            $fotoLama = News::find($id);
+            File::delete('berita/' . $fotoLama->foto);
 
             $file = $request->file('foto');
             $nama_file = $file->getClientOriginalName();
@@ -116,6 +116,9 @@ class MenuController extends Controller
 
     public function deleteBerita($id)
     {
+        $fotoLama = News::find($id);
+        File::delete('berita/' . $fotoLama->foto);
+
         DB::table('news')->where('id', $id)->delete();
          return redirect('/show-berita')->with('succes', 'Berita Anda Berhasil DiHapus');
     }
@@ -220,7 +223,7 @@ class MenuController extends Controller
     public function updateGaleri(Request $request, $id)
     {
         if ($request->file('foto') != null) {
-            $fotoLama = Gallery::find($id)->first();
+            $fotoLama = Gallery::find($id);
             File::delete('galeri/' . $fotoLama->foto);
 
             $file = $request->file('foto');
@@ -254,8 +257,11 @@ class MenuController extends Controller
 
     public function deleteGaleri($id)
     {
-        $fotoLama = Gallery::find($id)->first();
-        File::delete('galeri/' . $fotoLama->foto);
+        $galeri = Gallery::find($id);
+        if ($galeri->foto != null){
+            $fotoLama = Gallery::find($id);
+            File::delete('galeri/' . $fotoLama->foto);
+        }
         
         DB::table('gallery')->where('id', $id)->delete();
          return redirect('/show-galeri')->with('succes', 'Galeri Anda Berhasil DiHapus');

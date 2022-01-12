@@ -73,7 +73,11 @@
                                         <!-- Input Pilih Ruangan -->
                                         <div class="form-group">
                                             <small class="ml-2">Pilih Ruangan</small>
-                                            <input type="text" class="form-control" id="pilih_ruangan" name="pilih_ruangan">
+                                            <select class="form-control" id="pilih_ruangan" name="pilih_ruangan">
+                                                @foreach ($ruangan as $r)
+                                                    <option value="{{ $r->nama_ruangan }}">{{ $r->nama_ruangan }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- Input Nama Peminjaman -->
                                         <div class="form-group">
@@ -83,12 +87,20 @@
                                         <!-- Input Nama Divisi -->
                                         <div class="form-group">
                                             <small class="ml-2">Divisi</small>
-                                            <input type="text" class="form-control" id="divisi" name="divisi">
+                                            <select class="form-control" id="divisi" name="divisi">
+                                                @foreach ($divisi as $d)
+                                                    <option value="{{ $d->nama_divisi }}">{{ $d->nama_divisi }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- Input Nama Departemen -->
                                         <div class="form-group">
                                             <small class="ml-2">Departemen</small>
-                                            <input type="text" class="form-control" id="departemen" name="departemen">
+                                            <select class="form-control" id="departemen" name="departemen">
+                                                @foreach ($departemen as $dep)
+                                                    <option value="{{ $dep->nama_departemen }}">{{ $dep->nama_departemen }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>     
                                         <!-- Input Nomor Telpon -->
                                         <div class="form-group">

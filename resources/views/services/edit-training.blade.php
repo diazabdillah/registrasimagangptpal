@@ -69,16 +69,7 @@
                                             <small class="ml-2">Peserta Hadir</small>
                                             <input type="number" class="form-control" id="peserta_hadir" name="peserta_hadir"
                                                 value="{{ $data->peserta_hadir }}">
-                                        </div>   
-                                        <!-- Input Status -->
-                                        <div class="form-group">
-                                            <small class="ml-2">Status</small>
-                                            <select class="form-control custom-select" id="status" name="status" value="{{ $data->status }}">
-                                                <option value="Segera Akan Datang">Segera Akan Datang</option>
-                                                <option value="Sedang Berlangsung">Sedang Berlangsung</option>
-                                                <option value="Selesai">Selesai</option>
-                                            </select>
-                                        </div>  
+                                        </div>    
                                         <!-- Input Dokumen -->
                                         <div class="form-group">
                                             <small class="ml-2">Dokumen</small>

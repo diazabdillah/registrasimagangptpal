@@ -102,7 +102,7 @@
                                         <a class="btn btn-warning p-1"
                                             href="{{ url('edit-jadwal-sertifikat/' . $d->id) }}"  onclick="return confirm('yakin Edit?');">Edit</a>
                                         <a class="btn btn-danger p-1"
-                                            href="{{ url('delete-jadwal-sertifikasi/' . $d->id) }}"  onclick="return confirm('yakin Hapus?');">Hapus</a>
+                                            href="{{ url('delete-jadwal-sertifikat/' . $d->id) }}"  onclick="return confirm('yakin Hapus?');">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach
