@@ -22,9 +22,8 @@
                         <div class="card shadow mb-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title mt-2">Form Interview</h5>
                                     <p class="card-text"><small>Setelah melakukan tes kepribadian mohon di isi data
-                                            form pengumpulan dan kirim file hasil tes pribadian dibawah ini
+                                            form pengumpulan dan kirim file screenshot hasil tes pribadian dibawah ini
                                             sesuai dengan hasil tes kepribadian dimasing-masing peserta</small></p>
 
 
@@ -35,51 +34,7 @@
                                             <p>Kirim File dengan Format JPG/PNG</p>
                                         </div>
                                         <div class="form-group">
-                                            <small class="ml-2">Tipe Kepribadian</small>
-                                            <input type="text" class="form-control" id="" name="tipe_kepribadian">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Extrovert</small>
-                                            <input type="text" class="form-control" id="" name="ekstrovet">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Introvert</small>
-                                            <input type="text" class="form-control" id="" name="introvet">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Visioner</small>
-                                            <input type="text" class="form-control" id="" name="visioner">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Realistik</small>
-                                            <input type="text" class="form-control" id="" name="realistik">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Emosional</small>
-                                            <input type="text" class="form-control" id="" name="emosional">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Rasional</small>
-                                            <input type="text" class="form-control" id="" name="rasional">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Perencanaan</small>
-                                            <input type="text" class="form-control" id="" name="perencanaan">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Improvisasi</small>
-                                            <input type="text" class="form-control" id="" name="improvisasi">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Tegas</small>
-                                            <input type="text" class="form-control" id="" name="tegas">
-                                        </div>
-                                        <div class="form-group">
-                                            <small class="ml-2">Waspada</small>
-                                            <input type="text" class="form-control" id="" name="waspada">
-                                        </div>
-                                        <div class="form-group">
-                                            <small>File Interview <span style="color: red">*Max
+                                            <small>File Tes Kepribadian <span style="color: red">*Max
                                                     2MB</span></small><br>
                                             <small style="color: blue">Contoh :</small>
                                             <br><img style="margin-bottom: 10px" width="100%"

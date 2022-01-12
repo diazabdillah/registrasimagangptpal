@@ -266,7 +266,7 @@ class MagangController extends Controller
                 ->select('users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.id', 'data_mhs_indivs.nim', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'interview.fileinterview')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
-            $ti = 'Interview';
+            $ti = 'Tes Kepribadian Mahasiswa';
             return view('magang.interview-mhs', [
                 'ti' => $ti,
                 'users' => $users
@@ -295,17 +295,6 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
             'fileinterview' => 'required|mimes:jpg,bmp,png|max:2048',
         ]);
 
@@ -316,17 +305,6 @@ class MagangController extends Controller
 
         Interview::create([
             'id_individu' => $individu->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -1202,17 +1180,7 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
+
             'fileinterview' => 'required',
         ]);
 
@@ -1223,17 +1191,6 @@ class MagangController extends Controller
 
         Interview::create([
             'id_individu' => $individu->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -2362,17 +2319,7 @@ class MagangController extends Controller
     {
         $interviewsmk = DataSmkIndivs::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
+
             'fileinterview' => 'required',
         ]);
 
@@ -2383,17 +2330,6 @@ class MagangController extends Controller
 
         InterviewSmk::create([
             'id_individu' => $interviewsmk->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -2679,6 +2615,50 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
+    public function surat_keterangan_mhs()
+    {
+        if (auth()->user()->role_id == 14) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->where('data_mhs_indivs.user_id', '=', $id)
+                ->get();
+            $ti = 'Surat Keterangan Mahasiswa';
+            return view('magang.surat-keterangan-mhs', [
+                'ti' => $ti,
+                'datas' => $datas,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function surat_keterangan_mhs_pdf()
+    {
+        if (auth()->user()->role_id == 14) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->where('data_mhs_indivs.user_id', '=', $id)
+                ->get();
+            $ti = 'Surat Keterangan Mahasiswa';
+            $pdf = PDF::loadview('magang.surat-keterangan-mhs-pdf', [
+                'ti' => $ti,
+                'datas' => $datas,
+            ])->setPaper('a4', 'portrait');
+
+            return $pdf->download('Surat Keterangan Mahasiswa.pdf');
+        } else {
+            return redirect()->back();
+        }
+    }
     // Menu Magang Mahasiswa =============
 
     // Menu Magang SMK ===================
@@ -2821,7 +2801,7 @@ class MagangController extends Controller
                 ->select('users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.id', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'interview_smk.fileinterview')
                 ->where('data_smk_indivs.user_id', '=', $id)
                 ->get();
-            $ti = 'Interview SMK';
+            $ti = 'Tes Kepribadian SMK';
             return view('magang.interview-smk', [
                 'ti' => $ti,
                 'users' => $users
@@ -2836,7 +2816,7 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 17) {
 
             $user = DataSmkIndivs::find($id);
-            $ti = 'Upload Hasil Interview';
+            $ti = 'Upload Hasil Tes Kepribadian';
             return view('magang.interview-smk-upload', [
                 'ti' => $ti,
                 'user' => $user
@@ -2850,17 +2830,7 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-            'tipe_kepribadian' => 'required',
-            'introvet' => 'required',
-            'ekstrovet' => 'required',
-            'visioner' => 'required',
-            'realistik' => 'required',
-            'emosional' => 'required',
-            'rasional' => 'required',
-            'perencanaan' => 'required',
-            'improvisasi' => 'required',
-            'tegas' => 'required',
-            'waspada' => 'required',
+         
             'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -2871,17 +2841,6 @@ class MagangController extends Controller
 
         InterviewSmk::create([
             'id_individu' => $individusmk->id,
-            'tipe_kepribadian' => $request->tipe_kepribadian,
-            'ekstrovet' => $request->ekstrovet,
-            'introvet' => $request->introvet,
-            'visioner' => $request->visioner,
-            'realistik' => $request->realistik,
-            'emosional' => $request->emosional,
-            'rasional' => $request->rasional,
-            'perencanaan' => $request->perencanaan,
-            'improvisasi' => $request->improvisasi,
-            'tegas' => $request->tegas,
-            'waspada' => $request->waspada,
             'fileinterview' => $nama_file,
         ]);
 
@@ -3028,6 +2987,7 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+
     public function sertif_smk_pdf()
     {
         if (auth()->user()->role_id == 15) {
@@ -3056,6 +3016,52 @@ class MagangController extends Controller
             ])->setPaper('a4', 'landscape');
 
             return $pdf->download('sertifikat SMK.pdf');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function surat_keterangan_smk()
+    {
+        if (auth()->user()->role_id == 15) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('penilaians_smk.nilai_huruf', 'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'penilaians_smk.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis',  'data_smk_indivs.departemen', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->get();
+
+            $ti = 'Surat Keterangan SMK';
+            return view('magang.surat-keterangan-smk', [
+                'ti' => $ti,
+                'datas' => $datas,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function surat_keterangan_smk_pdf()
+    {
+        if (auth()->user()->role_id == 15) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('penilaians_smk', 'data_smk_indivs.id', '=', 'penilaians_smk.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('penilaians_smk.nilai_huruf', 'penilaians_smk.laporankerja', 'penilaians_smk.kehadiran', 'penilaians_smk.keterangan', 'penilaians_smk.pembimbing', 'penilaians_smk.nilai_huruf', 'penilaians_smk.average', 'penilaians_smk.kerjasama', 'penilaians_smk.InisiatifTanggungJawabKerja', 'penilaians_smk.Loyalitas', 'penilaians_smk.MotivasiPercayaDiri', 'penilaians_smk.EtikaSopanSantun', 'penilaians_smk.KesehatanKeselamatanKerja', 'penilaians_smk.disiplin',  'penilaians_smk.PemahamanKemampuan', 'penilaians_smk.keterangan', 'users.name', 'users.id', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis',  'data_smk_indivs.departemen', 'data_smk_indivs.divisi', 'data_smk_indivs.nama', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan')
+                ->where('data_smk_indivs.user_id', '=', $id)
+                ->get();
+
+            $ti = 'Surat Keterangan SMK';
+            $pdf = PDF::loadview('magang.surat-keterangan-smk-pdf', [
+                'ti' => $ti,
+                'datas' => $datas,
+            ])->setPaper('a4', 'portrait');
+
+            return $pdf->download('Surat Keterangan SMK.pdf');
         } else {
             return redirect()->back();
         }

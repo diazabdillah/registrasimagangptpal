@@ -33,8 +33,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                     aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" target="_blank" href="/sertif-penelitian-cetak">Cetak Surat
-                                        Pengantar</a>
+                                    <a class="dropdown-item" target="_blank" href="/surat-keterangan-mhs-pdf">Cetak Surat
+                                        Keterangan</a>
 
                                 </div>
                             </div>
@@ -58,20 +58,20 @@
 
                                     </div>
                                     <div class="justify-content-center" style="margin-left:130px;margin-top:20px;">
-                                        <span>Surat keterangan ini diberikan kepada para praktikan yang telah menyelesaikan
-                                            penelitian,<br> Berikut data Praktikan Penelitian:</span>
+                                        <span>Surat keterangan ini diberikan kepada para Praktikan / OJT yang telah menyelesaikan
+                                            magang,<br> Berikut data Praktikan / OJT :</span>
                                     </div>
                                     <div style="margin-left:300px;margin-top:20px">
 
                                         <h6>Nama&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: <b>{{ $sertif->name }}</b></h6>
-                                        <h6>Fakultas&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->asal_instansi }}
+                                        <h6>Universitas&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->asal_instansi }}
                                         </h6>
                                         <h6>Jurusan&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->jurusan }}</h6>
-                                        <h6>Judul Penelitian&emsp;&nbsp;:"{{ $sertif->judul_penelitian }}"</h6>
+                                        <h6>Nilai&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->nilai_huruf }} ({{$sertif->keterangan}})</h6>
                                     </div>
 
                                     <div class="justify-content-center" style="margin-left:130px;margin-top: 20px">
-                                        <p>Yang bersangkutan ini telah melaksanakan Penelitian di <b>PT PAL INDONESIA
+                                        <p>Yang bersangkutan ini telah melaksanakan magang di <b>PT PAL INDONESIA
                                                 (PERSERO)</b> <br>
                                         <p style="margin-left:150px;" class="justify-content-center"> Pada Tanggal
                                             <b>{{ date('d-m-Y', strtotime($sertif->mulai)) }}</b> s/d

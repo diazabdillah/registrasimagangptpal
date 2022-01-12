@@ -32,7 +32,7 @@
                                 <br>
                                 <br>
                                 <a class="btn btn-primary" href="https://www.16personalities.com/id/tes-kepribadian"
-                                    target="_blank">Test Interview</a>
+                                    target="_blank">Tes Kepribadian</a>
 
                             </p>
 
@@ -40,7 +40,7 @@
                             <div class="card shadow mb-3">
                                 <div class="card">
                                     <div class="card-header">
-                                        Upload Interview
+                                        Upload Tes Kepribadian
                                     </div>
                                     <table class="table table-bordered" id="dataTable" width="100%">
                                         <thead>
@@ -67,7 +67,7 @@
                                                             @if ($interview->fileinterview == null)
                                                                 <a class="btn btn-warning"
                                                                     href="/interview-smk/{{ $interview->id }}"
-                                                                    role="button">Upload Hasil Interview</a>
+                                                                    role="button">Upload Hasil Tes Kepribadian</a>
                                                             @else
                                                                 <button type="button" disabled
                                                                     class="btn btn-success">Berhasil
@@ -84,7 +84,7 @@
                                                             @if ($interview->fileinterview == null)
                                                                 <a class="btn btn-warning"
                                                                     href="/interview-smk-kel/{{ $interview->id }}"
-                                                                    role="button">Upload Hasil Interview</a>
+                                                                    role="button">Upload Hasil Tes Kepribadian</a>
                                                             @else
                                                                 <button type="button" disabled
                                                                     class="btn btn-success">Berhasil
@@ -107,9 +107,9 @@
                             </div>
                             <div class="alert alert-danger">
                                 <span>Note :</span>
-                                <p>Apabila sudah Melakukan upload file interview namun button <b>Berhasil Upload</b> kembali
+                                <p>Apabila sudah Melakukan upload file tes kepribadian namun button <b>Berhasil Upload</b> kembali
                                     menjadi <b> Upload File
-                                        Interview</b>, mohon para praktikan upload kembali file interview yang sesuai.
+                                        Tes Kepribadian</b>, mohon para praktikan upload kembali file tes kepribadian yang sesuai.
                                 </p>
                             </div>
                         </div>

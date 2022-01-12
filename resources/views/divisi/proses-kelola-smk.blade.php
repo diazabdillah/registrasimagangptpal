@@ -162,7 +162,7 @@
                                     </div>
                                     <div class="card-body">
                                         <form method="POST"
-                                            action="/update-magang-departemen-penelitian/{{ $user->id }}">
+                                            action="/update-magang-departemen-smk/{{ $user->id }}">
                                             @method('put')
                                             @csrf
                                             <div class="form-group">

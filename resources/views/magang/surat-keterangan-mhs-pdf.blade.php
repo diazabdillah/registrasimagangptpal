@@ -47,10 +47,10 @@
                 <div style="margin-left:300px;margin-top:20px">
 
                     <h6>Nama&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: <b>{{ $sertif->name }}</b></h6>
-                    <h6>Fakultas&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->asal_instansi }}
+                    <h6>Universitas&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->asal_instansi }}
                     </h6>
                     <h6>Jurusan&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->jurusan }}</h6>
-                    <h6>Judul Penelitian&emsp;&nbsp;:"{{ $sertif->judul_penelitian }}"</h6>
+                    <h6>Nilai&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: {{ $sertif->nilai_huruf }} ({{$sertif->keterangan}})</h6>
                 </div>
 
                 <div class="justify-content-center" style="margin-left:130px;margin-top: 20px">

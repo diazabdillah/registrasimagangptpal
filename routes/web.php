@@ -13,7 +13,6 @@ use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\WelcomeController;
-use App\Models\Divisi;
 
 // Web Landing =================================
 Route::get('/', [WebController::class, 'index']);
@@ -489,6 +488,11 @@ Route::post('/upload-mhs-kel/{id}', [MagangController::class, 'upload_mhs_kel'])
 Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
 Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);
 Route::get('/sertif-smk-pdf', [MagangController::class, 'sertif_smk_pdf']);
+Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);
+Route::get('/surat-keterangan-mhs', [MagangController::class, 'surat_keterangan_mhs']);
+Route::get('/surat-keterangan-smk', [MagangController::class, 'surat_keterangan_smk']);
+Route::get('/surat-keterangan-mhs-pdf', [MagangController::class, 'surat_keterangan_mhs_pdf']);
+Route::get('/surat-keterangan-smk-pdf', [MagangController::class, 'surat_keterangan_smk_pdf']);
 // Halaman Magang Mahasiswa Kelompok ==================
 
 
@@ -629,6 +633,3 @@ Route::get('/hapus-komentar/{id}', [ForumController::class, 'hapus_komentar']);
 // end halaman forum mahasiswa ====
 
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
-
-
-Route::get('/sertif-mhs-pdf', [MagangController::class, 'sertifikatmhspdf']);
