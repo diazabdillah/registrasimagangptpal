@@ -43,13 +43,13 @@
                                         <!-- Input Tanggal Mulai -->
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Mulai</small>
-                                            <input type="datetime-local" class="form-control" id="tanggal_mulai" name="tanggal_mulai"
+                                            <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai"
                                                 value="{{ $data->tanggal_mulai }}">
                                         </div>
                                         <!-- Input Tanggal Selesai -->
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Selesai</small>
-                                            <input type="datetime-local" class="form-control" id="tanggal_selesai" name="tanggal_selesai"
+                                            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai"
                                                 value="{{ $data->tanggal_selesai }}">
                                         </div>
                                         <!-- Input Tempat -->
@@ -74,7 +74,8 @@
                                         <div class="form-group">
                                             <small class="ml-2">Status</small>
                                             <select class="form-control custom-select" id="status" name="status" value="{{ $data->status }}">
-                                                <option value="Proses">Proses</option>
+                                                <option value="Segera Akan Datang">Segera Akan Datang</option>
+                                                <option value="Sedang Berlangsung">Sedang Berlangsung</option>
                                                 <option value="Selesai">Selesai</option>
                                             </select>
                                         </div>  

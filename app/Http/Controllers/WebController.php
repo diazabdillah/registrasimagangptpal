@@ -108,7 +108,7 @@ class WebController extends Controller
 
     public function showInternship(){
         $getKuota = Kuota::orderBy('id','DESC')->simplePaginate(15);
-
+        
         return view('frontend.internship', ['kuota' => $getKuota])->with('i');
     }
 

@@ -44,13 +44,13 @@
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Mulai</small>
                                             <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai"
-                                                value="{{ date('Y-m-d', strtotime($data->tanggal_mulai)) }}">
+                                                value="{{ $data->tanggal_mulai }}">
                                         </div>
                                         <!-- Input Tanggal Selesai -->
                                         <div class="form-group">
                                             <small class="ml-2">Tanggal Selesai</small>
                                             <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai"
-                                                value="{{ now() }}">
+                                                value="{{ $data->tanggal_selesai }}">
                                         </div>
                                         <!-- Input Tempat -->
                                         <div class="form-group">

@@ -220,7 +220,7 @@ class MenuController extends Controller
     public function updateGaleri(Request $request, $id)
     {
         if ($request->file('foto') != null) {
-            $fotoLama = Gallery::find($id)->select('foto')->first();
+            $fotoLama = Gallery::find($id)->first();
             File::delete('galeri/' . $fotoLama->foto);
 
             $file = $request->file('foto');
@@ -254,6 +254,9 @@ class MenuController extends Controller
 
     public function deleteGaleri($id)
     {
+        $fotoLama = Gallery::find($id)->first();
+        File::delete('galeri/' . $fotoLama->foto);
+        
         DB::table('gallery')->where('id', $id)->delete();
          return redirect('/show-galeri')->with('succes', 'Galeri Anda Berhasil DiHapus');
     }

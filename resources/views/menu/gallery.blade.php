@@ -88,6 +88,13 @@
                                     <td>{{ $d->created_at }}</td>
                                     <td>{{ $d->updated_at }}</td>
                                     <td>
+                                        @if ($d->url == '0')
+                                        <a class="btn btn-primary p-1"
+                                            data-toggle="modal" data-target="#staticBackdrop{{$d->id}}">Lihat</a>
+                                        @elseif ($d->foto == '0')
+                                        <a class="btn btn-primary p-1"
+                                            href="{{ $d->url }}" target="_blank">Lihat</a>
+                                        @endif
                                         <a class="btn btn-warning p-1"
                                             href="{{ url('edit-galeri/' . $d->id) }}"  onclick="return confirm('yakin Edit?');">Edit</a>
                                         <a class="btn btn-danger p-1"
@@ -109,30 +116,20 @@
     <!-- /.container-fluid -->
 
 
-    <!-- Modal Add New Menu -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Modal Foto -->
+    @foreach ($data as $d)
+    <div class="modal fade" id="staticBackdrop{{ $d->id }}" style="display: none;">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Add New Menu</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-body">
+                    <div class="row" style="padding: 10px 30px;">
+                        <img class="center" src="{{ asset('/galeri/' . $d->foto) }}" alt="" /> 												
+                    </div>
                 </div>
-                <form>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="menu" name="menu" placeholder="Input Nama Menu">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
+    @endforeach
 
 
     <!-- Modal Delete -->

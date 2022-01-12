@@ -145,7 +145,7 @@ class ServiceController extends Controller
             $tujuan_upload = 'DokumenTraining';
             $file->move($tujuan_upload, $nama_file);
         }
-        $status = "Proses";
+        $status = "Segera Akan Datang";
 
 
         Training::create([
@@ -561,7 +561,7 @@ class ServiceController extends Controller
 
         $file = $request->file('fileSertifikasi');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'Dokumen Sertifikat Training';
+        $tujuan_upload = 'DokumenSertifikatTraining';
         $file->move($tujuan_upload, $nama_file);
 
         JadwalSertifikasi::create([
@@ -602,11 +602,11 @@ class ServiceController extends Controller
             $nama_file = $sertifLama->fileSertifikasi;
         } else {
             $sertifLama = JadwalSertifikasi::find($id)->select('fileSertifikasi')->first();
-            File::delete('Dokumen Sertifikat Training/' . $sertifLama->fileSertifikasi);
+            File::delete('DokumenSertifikatTraining/' . $sertifLama->fileSertifikasi);
 
             $file = $request->file('fileSertifikasi');
             $nama_file = $file->getClientOriginalName();
-            $tujuan_upload = 'Dokumen Sertifikat Training';
+            $tujuan_upload = 'DokumenSertifikatTraining';
             $file->move($tujuan_upload, $nama_file);
         }
 

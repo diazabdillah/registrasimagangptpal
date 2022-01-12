@@ -17,8 +17,8 @@ class CreateTrainingTable extends Migration
             $table->id();
             $table->string('nama_training');
             $table->string('penyelenggara');
-            $table->dateTime('tanggal_mulai');
-            $table->dateTime('tanggal_selesai');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
             $table->string('tempat');
             $table->integer('peserta_sprint');
             $table->integer('peserta_hadir');

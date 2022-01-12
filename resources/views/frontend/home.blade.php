@@ -169,60 +169,6 @@ The   Best   Maritime   Industry</p>
 						</div>
 						@endif
 					@endforeach
-					@foreach($gallery as $g)
-						@if ($g->url == '0')
-						<div class="item">
-							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
-								<div class="portfolio-box-1 dark rounded">
-									<div class="embed-responsive embed-responsive-16by9" width="30">
-                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
-                                    </div> 
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ $g->judul }}</h5>
-								</div>
-							</a>
-						</div>
-						@elseif ($g->foto == '0')
-						<div class="item">
-							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
-								<div class="portfolio-box-1 dark rounded">
-									<div class="embed-responsive embed-responsive-16by9" width="30">
-                                        <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
-                                    </div> 
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ $g->judul }}</h5>
-								</div>
-							</a>
-						</div>
-						@endif
-					@endforeach
-					@foreach($gallery as $g)
-						@if ($g->url == '0')
-						<div class="item">
-							<a data-toggle="modal" data-target="#staticBackdrop{{$g->id}}">
-								<div class="portfolio-box-1 dark rounded">
-									<div class="embed-responsive embed-responsive-16by9" width="30">
-                                    	<img class="mb-4 embed-responsive-item" src="{{ asset('/galeri/' . $g->foto) }}" alt=""/>
-                                    </div> 
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ $g->judul }}</h5>
-								</div>
-							</a>
-						</div>
-						@elseif ($g->foto == '0')
-						<div class="item">
-							<a data-toggle="modal" data-target="#Modal-video{{$g->id}}">
-								<div class="portfolio-box-1 dark rounded">
-									<div class="embed-responsive embed-responsive-16by9" width="30">
-                                        <iframe class="mb-4 embed-responsive-item" src="{{ $g->url }}" frameborder="0" allowfullscreen></iframe>
-                                    </div> 
-									<div class="portfolio-mask-2 rounded"></div>
-									<h5 class="on-center text-center">{{ $g->judul }}</h5>
-								</div>
-							</a>
-						</div>
-						@endif
-					@endforeach
 				</div>
 			</div>
 		</div>

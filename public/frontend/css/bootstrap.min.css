@@ -10894,21 +10894,6 @@ a.text-gray-dark:hover {
     margin-bottom: 15px;
 }
 
-.solution_card .solu_description .button-on-progress {
-    border: 0;
-    border-radius: 15px;
-    background: linear-gradient(
-        140deg,
-        #ed213a 0%,
-        #ed213a 50%,
-        #93291e 75%
-    ) !important;
-    color: #fff;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 5px 16px;
-}
-
 .solution_card .solu_description .button-scholarship {
     border: 0;
     border-radius: 15px;
@@ -10924,14 +10909,14 @@ a.text-gray-dark:hover {
     padding: 5px 16px;
 }
 
-.solution_card .solu_description .button-progress {
+.solution_card .solu_description .button-done {
     border: 0;
     border-radius: 15px;
     background: linear-gradient(
         140deg,
-        #cac531 0%,
-        #cac531 50%,
-        #f3f9a7 75%
+        #ed213a 0%,
+        #ed213a 50%,
+        #93291e 75%
     ) !important;
     color: #fff;
     font-weight: 500;
@@ -10939,14 +10924,29 @@ a.text-gray-dark:hover {
     padding: 5px 16px;
 }
 
-.solution_card .solu_description .button-done {
+.solution_card .solu_description .button-progress {
     border: 0;
     border-radius: 15px;
     background: linear-gradient(
         140deg,
-        #11998e 0%,
-        #11998e 50%,
-        #38ef7d 75%
+        #f7cd2e 0%,
+        #f7cd2e 50%,
+        #ddd101 75%
+    ) !important;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px 16px;
+}
+
+.solution_card .solu_description .button-on-progress {
+    border: 0;
+    border-radius: 15px;
+    background: linear-gradient(
+        140deg,
+        #38ef7d 0%,
+        #38ef7d 50%,
+        #11998e 75%
     ) !important;
     color: #fff;
     font-weight: 500;

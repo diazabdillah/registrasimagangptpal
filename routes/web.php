@@ -65,9 +65,7 @@ Route::get('/toGallery', function () {
     return view('frontend.gallery');
 });
 
-Route::get('/internship', function () {
-    return view('frontend.internship');
-});
+Route::get('/internship', [WebController::class, 'showInternship']);
 
 Route::get('/contact', function () {
     return view('frontend.contact');

@@ -96,7 +96,9 @@
                                     <td>{{ $d->tempat }}</td>
                                     <td>{{ $d->peserta_sprint }}</td>
                                     <td>{{ $d->peserta_hadir }}</td>
-                                    <td>{{ $d->fileTraining }}</td>
+                                    <td>                                        
+                                        <a class="btn btn-primary p-1" data-toggle="modal" data-target="#detail{{$d->id}}">Lihat</a>
+                                    </td>
                                     <td>{{ $d->status }}</td>
                                     <td>
                                         <a class="btn btn-warning p-1"
@@ -115,9 +117,22 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
+
+    @foreach ($data as $d)
+    <div class="modal fade" id="detail{{ $d->id }}" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row" style="padding: 10px 30px;">
+                        <embed type="application/pdf" src="{{ asset('/DokumenTraining/' . $d->fileTraining) }}" width="100%" height="700"> 												
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
 
     <!-- Modal Add New Menu -->

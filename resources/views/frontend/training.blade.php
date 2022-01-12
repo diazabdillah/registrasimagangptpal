@@ -121,10 +121,12 @@
                                     <i class="fa fa-calendar"></i> {{ $t->tanggal_mulai }} - {{ $t->tanggal_selesai }} <br>
                                     <i class="fas fa-user-friends"></i> Peserta Hadir : {{ $t->peserta_hadir }} <br>
                                 </p>
-                                @if ($t->status == "Proses")
-                                    <button class="button-progress" type="button">Proses</button>
-                                @else if ($t->status == "Selesai")
-                                    <button class="button-done" type="button">Proses</button>
+                                @if ($t->status == "Segera Akan Datang")
+                                    <button class="button-on-progress" type="button">{{ $t->status }}</button>
+                                @elseif ($t->status == "Sedang Berlangsung")
+                                    <button class="button-progress" type="button">{{ $t->status }}</button>
+                                @elseif ($t->status == "Selesai")
+                                    <button class="button-done" type="button">{{ $t->status }}</button>
                                 @endif
                             </div>
                         </div>

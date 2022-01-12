@@ -139,16 +139,11 @@
                                                         <div class="solu_title"><h1>&ensp;{{ $s->nama_training }}</h1></div>
                                                 </div>
                                                 <div class="solu_description"> 
-                                                    <p style="font-size: 20px;">
+                                                    <p style="font-size: 28px;">
                                                         <i class="fas fa-building"></i> Penyelenggara : {{ $s->penyelenggara }} <br>
                                                         <i class="fa fa-calendar"></i> {{ $s->tanggal_mulai }} - {{ $s->tanggal_selesai }} <br>
                                                         <i class="fas fa-user-friends"></i> Peserta Hadir : {{ $s->peserta_hadir }} <br>
                                                     </p>
-                                                    @if ($s->status == "Proses")
-                                                        <button class="button-progress" type="button">Proses</button>
-                                                    @else if ($s->status == "Selesai")
-                                                        <button class="button-done" type="button">Proses</button>
-                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -160,10 +155,10 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
+                                        <h4 class="modal-title">Detail Informasi Jadwal Sertifikasi</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true"></span>
                                         </button>
-                                        <h4 class="modal-title">Detail Informasi Jadwal Sertifikasi</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row" style="padding: 10px 30px;">
@@ -206,13 +201,13 @@
                                                             @if ($s->fileTraining == "-")
                                                                 -
                                                             @else
-                                                                <a href="{{ asset('/DokumenTraining/' . $s->fileTraining) }}">Download File</a>
+                                                                <a href="{{ asset('/DokumenSertifikatTraining/' . $s->fileSertifikasi) }}">Download File</a>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <embed type="application/pdf" src="{{ asset('/DokumenTraining/' . $s->fileTraining) }}" width="100%" height="700"> 												
+                                            <embed type="application/pdf" src="{{ asset('/DokumenSertifikatTraining/' . $s->fileSertifikasi) }}" width="100%" height="700"> 												
                                         </div>
                                     </div>
                                 </div>

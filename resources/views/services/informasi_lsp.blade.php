@@ -95,7 +95,9 @@
                                     <td>{{ $d->tempat }}</td>
                                     <td>{{ $d->peserta_sprint }}</td>
                                     <td>{{ $d->peserta_hadir }}</td>
-                                    <td>{{ $d->fileSertifikasi }}</td>
+                                    <td>
+                                        <a class="btn btn-primary p-1" data-toggle="modal" data-target="#detail{{$d->id}}">Lihat</a>
+                                    </td>
                                     <td>
                                         <a class="btn btn-warning p-1"
                                             href="{{ url('edit-jadwal-sertifikat/' . $d->id) }}"  onclick="return confirm('yakin Edit?');">Edit</a>
@@ -113,6 +115,20 @@
                 </div>
             </div>
         </div>
+
+        @foreach ($data_js as $d)
+        <div class="modal fade" id="detail{{ $d->id }}" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row" style="padding: 10px 30px;">
+                            <embed type="application/pdf" src="{{ asset('/DokumenSertifikatTraining/' . $d->fileSertifikasi) }}" width="100%" height="700"> 												
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
 
         <!-- Informasi Skema BNSP -->
         
