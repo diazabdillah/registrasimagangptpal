@@ -19,9 +19,9 @@ Route::get('/', [WebController::class, 'index']);
 // Web Landing =================================
 Route::get('/home', [WebController::class, 'index']);
 
-Route::get('/materi', [WebController::class, 'toMateri']);
-Route::get('/prosedur', [WebController::class, 'toProsedur']);
-Route::get('/formatLaporan', [WebController::class, 'toFormatLaporan']);
+Route::get('/prosedur', [WebController::class, 'showInternshipProsedure']);
+Route::get('/formatLaporan', [WebController::class, 'showInternshipFormatLaporan']);
+Route::get('/kuotas', [WebController::class, 'showInternshipKuota']);
 
 Route::get('/ship-building', [WebController::class, 'toShipBuilding']);
 Route::get('/naval-shipbuilding', [WebController::class, 'toNavalShipbuilding']);
@@ -64,7 +64,7 @@ Route::get('/toGallery', function () {
     return view('frontend.gallery');
 });
 
-Route::get('/internship', [WebController::class, 'showInternship']);
+Route::get('/internship', [WebController::class, 'showInternshipProsedure']);
 
 Route::get('/contact', function () {
     return view('frontend.contact');

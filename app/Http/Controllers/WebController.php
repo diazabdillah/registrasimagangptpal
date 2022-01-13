@@ -46,18 +46,6 @@ class WebController extends Controller
         
         return view('frontend.home', ['news' => $getNews, 'gallery' => $getGalleries]);
     }
-    
-    public function toMateri(){
-        return view('/internship');
-    }
-
-    public function toProsedur(){
-        return redirect('/internship');
-    }
-
-    public function toFormatLaporan(){
-        return redirect('/internship');
-    }
 
     public function toShipBuilding(){
         return view('info_kapal/ship_building');
@@ -127,11 +115,25 @@ class WebController extends Controller
         return view('frontend.gallery', ['gallery' => $getGalleries]);
     }
 
-    public function showInternship(){
+    public function showInternshipProsedure(){
         $getKuota = Kuota::orderBy('id','DESC')->simplePaginate(15);
         
-        return view('frontend.internship', ['kuota' => $getKuota])->with('i');
+        return view('frontend.internship_prosedure', ['kuota' => $getKuota])->with('i');
     }
+
+    public function showInternshipFormatLaporan(){
+        $getKuota = Kuota::orderBy('id','DESC')->simplePaginate(15);
+        
+        return view('frontend.internship_format_laporan', ['kuota' => $getKuota])->with('i');
+    }
+
+
+    public function showInternshipKuota(){
+        $getKuota = Kuota::orderBy('id','DESC')->simplePaginate(15);
+        
+        return view('frontend.internship_kuota', ['kuota' => $getKuota])->with('i');
+    }
+
 
     public function uploadContactUs(Request $request){
         $request->validate([

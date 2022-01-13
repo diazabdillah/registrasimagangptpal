@@ -83,21 +83,11 @@ The   Best   Maritime   Industry</p>
 		<div class="main-title on-light text-center">
 			<h3>Internship</h3>
 			<div class="row">
-				<div class="col-md-4" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
-					<a href="/internship#materi" class="btn-link btn-primary">
-						<div class="services-box-1 border-on-light text-center">
-							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Monitor-phone"></i></div>
-							<h5 class="mt-4">Materi</h5>
-							{{-- <p class="mt-3 mb-4">Above all good design must primarily serve people.</p>	 --}}
-						</div>
-					</a>
-				</div>
 				<div class="col-md-4 mt-4 mt-md-0" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
 					<a href="prosedur" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Support"></i></div>
 							<h5 class="mt-4">Prosedur</h5>
-							{{-- <p class="mt-3 mb-4">Above all good design must primarily serve people.</p> --}}
 						</div>
 					</a>
 				</div>
@@ -106,7 +96,14 @@ The   Best   Maritime   Industry</p>
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Split-FourSquareWindow"></i></div>
 							<h5 class="mt-4">Format Laporan</h5>
-							{{-- <p class="mt-3 mb-4">Above all good design must primarily serve people.</p> --}}
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4" data-scroll-reveal="enter bottom move 40px over 0.8s after 0.2s">
+					<a href="kuotas" class="btn-link btn-primary">
+						<div class="services-box-1 border-on-light text-center">
+							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Monitor-phone"></i></div>
+							<h5 class="mt-4">Kuota</h5>
 						</div>
 					</a>
 				</div>
