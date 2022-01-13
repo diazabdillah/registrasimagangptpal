@@ -398,6 +398,42 @@
                                             @endif
                                             @endforeach
                                             @endif
+                                            @if (Auth::user()->status_user == 'Admin Legal')
+                                            @foreach ($users as $u)
+                                            @if ($u->divisi == 'Legal')
+                                            <tr>
+                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $u->name }}</td>
+                                                <td class="text-center"><span class="badge badge-primary p-2">{{
+                                                        $u->status_user }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-success p-2"
+                                                        href="/proses-kelola-mhs/{{ $u->id }}">Detail
+                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @if (Auth::user()->status_user == 'Admin Office of The Board')
+                                            @foreach ($users as $u)
+                                            @if ($u->divisi == 'Office of The Board')
+                                            <tr>
+                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $u->name }}</td>
+                                                <td class="text-center"><span class="badge badge-primary p-2">{{
+                                                        $u->status_user }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-success p-2"
+                                                        href="/proses-kelola-mhs/{{ $u->id }}">Detail
+                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
                                            
                                         </tbody>
                                     </table>
@@ -786,7 +822,42 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                           
+                                            @if (Auth::user()->status_user == 'Admin Legal')
+                                            @foreach ($usersSmk as $dsmk)
+                                            @if ($dsmk->divisi == 'Legal')
+                                            <tr>
+                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $dsmk->name }}</td>
+                                                <td class="text-center"><span class="badge badge-warning p-2">{{
+                                                        $dsmk->status_user }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-success p-2"
+                                                        href="/proses-kelola-smk/{{ $dsmk->id }}">Detail
+                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @if (Auth::user()->status_user == 'Admin Office of The Board')
+                                            @foreach ($usersSmk as $dsmk)
+                                            @if ($dsmk->divisi == 'Office of The Board')
+                                            <tr>
+                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $dsmk->name }}</td>
+                                                <td class="text-center"><span class="badge badge-warning p-2">{{
+                                                        $dsmk->status_user }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-success p-2"
+                                                        href="/proses-kelola-smk/{{ $dsmk->id }}">Detail
+                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -1161,6 +1232,42 @@
                                             @if (Auth::user()->status_user == 'Admin Keamanan & K3LH')
                                             @foreach ($userspenelitian as $dpenelitian)
                                             @if ($dpenelitian->divisi == 'Keamanan & K3LH')
+                                            <tr>
+                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $dpenelitian->name }}</td>
+                                                <td class="text-center"><span class="badge badge-danger p-2">{{
+                                                        $dpenelitian->status_user }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-success p-2"
+                                                        href="/proses-kelola-penelitian/{{ $dpenelitian->id }}">Detail
+                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @if (Auth::user()->status_user == 'Admin Legal')
+                                            @foreach ($userspenelitian as $dpenelitian)
+                                            @if ($dpenelitian->divisi == 'Legal')
+                                            <tr>
+                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $dpenelitian->name }}</td>
+                                                <td class="text-center"><span class="badge badge-danger p-2">{{
+                                                        $dpenelitian->status_user }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-success p-2"
+                                                        href="/proses-kelola-penelitian/{{ $dpenelitian->id }}">Detail
+                                                        <i class="fas fa-info-circle ml-1"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @if (Auth::user()->status_user == 'Admin Office of The Board')
+                                            @foreach ($userspenelitian as $dpenelitian)
+                                            @if ($dpenelitian->divisi == 'Office of The Board')
                                             <tr>
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $dpenelitian->name }}</td>
