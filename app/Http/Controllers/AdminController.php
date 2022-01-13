@@ -134,7 +134,14 @@ class AdminController extends Controller
             $tjlsmk = DB::table('data_smk_indivs')->where('divisi', '=', 'Unit Tanggung Jawab Sosial & Lingkungan')->count();
             $tjlpenelitian = DB::table('data_penelitian')->where('divisi', '=', 'Unit Tanggung Jawab Sosial & Lingkungan')->count();
             $tjltotal = $tjlmhs + $tjlsmk + $tjlpenelitian;
-
+            $legalmhs = DB::table('data_mhs_indivs')->where('divisi', '=', 'Legal')->count();
+            $legalsmk = DB::table('data_smk_indivs')->where('divisi', '=', 'Legal')->count();
+            $legalpenelitian = DB::table('data_penelitian')->where('divisi', '=', 'Legal')->count();
+            $legaltotal = $legalmhs + $legalsmk + $legalpenelitian;
+            $officemhs = DB::table('data_mhs_indivs')->where('divisi', '=', 'Office of The Board')->count();
+            $officesmk = DB::table('data_smk_indivs')->where('divisi', '=', 'Office of The Board')->count();
+            $officepenelitian = DB::table('data_penelitian')->where('divisi', '=', 'Office of The Board')->count();
+            $officetotal = $officemhs + $officesmk + $officepenelitian;
             return view('admin.admin_dash', [
                 'ti' => $ti,
                 'i' => $i,
@@ -227,6 +234,14 @@ class AdminController extends Controller
                 'tjlsmk' => $tjlsmk,
                 'tjlpenelitian' => $tjlpenelitian,
                 'tjltotal' => $tjltotal,
+                'legalmhs' => $legalmhs,
+                'legalsmk' => $legalsmk,
+                'legalpenelitian' => $legalpenelitian,
+                'legaltotal' => $legaltotal,
+                'officemhs' => $officemhs,
+                'officesmk' => $officesmk,
+                'officepenelitian' => $officepenelitian,
+                'officetotal' => $officetotal,
             ]);
         } else {
             return redirect()->back();
