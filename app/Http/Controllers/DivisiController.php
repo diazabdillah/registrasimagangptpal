@@ -1729,22 +1729,22 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18) {
 
-            $users = DB::table('data_mhs_indivs')
-                ->leftJoin('users', 'data_mhs_indivs.user_id', '=', 'users.id')
+            $users = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.user_id', '=', 'users.id')
                 ->select('users.id', 'users.name','data_mhs_indivs.divisi', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 6)
                 ->orWhere('users.role_id', '=', 8)
                 ->get();
 
-            $usersSmk = DB::table('data_smk_indivs')
-                ->leftJoin('users', 'data_smk_indivs.user_id', '=', 'users.id')
+            $usersSmk = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'data_smk_indivs.user_id', '=', 'users.id')
                 ->select('users.id', 'users.name','data_smk_indivs.divisi', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 7)
                 ->orWhere('users.role_id', '=', 9)
                 ->get();
 
-            $userspenelitian = DB::table('data_penelitian')
-                ->leftJoin('users', 'data_penelitian.user_id', '=', 'users.id')
+            $userspenelitian = DB::table('users')
+                ->leftJoin('data_penelitian', 'data_penelitian.user_id', '=', 'users.id')
                 ->select('users.id', 'users.name', 'users.email', 'data_penelitian.divisi','users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 21)
                 ->get();

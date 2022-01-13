@@ -281,7 +281,7 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 16) {
 
             $user = DataMhsIndiv::find($id);
-            $ti = 'Upload Hasil Interview';
+            $ti = 'Upload Hasil Tes';
             return view('magang.interview-mhs-upload', [
                 'ti' => $ti,
                 'user' => $user
@@ -1166,7 +1166,7 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 16) {
 
             $user = DataMhsIndiv::find($id);
-            $ti = 'Upload Hasil Interview';
+            $ti = 'Upload Hasil Tes';
             return view('magang.interview-mhs-kel-upload', [
                 'ti' => $ti,
                 'user' => $user
@@ -1189,11 +1189,11 @@ class MagangController extends Controller
         $tujuan_upload = 'file/interview-mhs-kel/' . $individu->id;
         $file->move($tujuan_upload, $nama_file);
 
-        Interview::create([
+        DB::table('interview')->insert([
             'id_individu' => $individu->id,
             'fileinterview' => $nama_file,
         ]);
-
+        
         session()->flash('succes', 'Terimakasih telah mengirimkan berkas interview Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi berkas interview. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
         return redirect('/interview-mhs');
     }
@@ -2305,7 +2305,7 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 17) {
 
             $user = DataSmkIndivs::find($id);
-            $ti = 'Upload Hasil Interview';
+            $ti = 'Upload Hasil Tes';
             return view('magang.interview-smk-kel-upload', [
                 'ti' => $ti,
                 'user' => $user
