@@ -106,12 +106,10 @@
                                     </div>
                                     <div>
                                         <p style="font-size: 15px"> PT PAL INDONESIA (PERSERO)</p>
+                                        <img width="35%"  src="{{asset('frontend/img/TTD-KADEP-HCD.png')}}">
+                                        
                                     </div>
-
-                                    <div>
-                                        <hr
-                                            style="width:250px;weight:150px;margin-top: 100px;margin-bottom: 5px;border:1px solid;">
-                                    </div>
+<br>                     
                                 </div>
                                 <div class="footerIdCard bg-gradient-primary d-flex justify-content-center">
                                     <small class="text-white"><b>PT.PAL INDONESIA</b></small>

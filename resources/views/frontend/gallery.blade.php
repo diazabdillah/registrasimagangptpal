@@ -88,7 +88,7 @@
                 @endif
             @endforeach
         </div>
-        <div class="btn-toolbar padding-top-small justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
             <nav aria-label="Page navigation example">
                 {{ $gallery->links() }}
             </nav>

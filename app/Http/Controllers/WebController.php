@@ -21,7 +21,7 @@ class WebController extends Controller
 {
     public function index(){
         $getNews = News::orderBy('id','DESC')->paginate(3);
-        $getGalleries = Gallery::orderBy('id','DESC')->paginate(3);
+        $getGalleries = Gallery::orderBy('id','DESC')->paginate(6);
 
         $training = DB::table('training')->get();
 
