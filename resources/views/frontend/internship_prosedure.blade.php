@@ -76,7 +76,7 @@
         </div>
         <div class="tab-pane fade" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
             <h4>Materi Pendukung Internship</h4>
-            <p>Hasi sobat Praktikan PT PAL...</p>
+            <p>Hai sobat Praktikan PT PAL...</p>
             <br>
             <p style="text-align:justify;">Sebagai informasi, bagi para Praktikan yang telah berstatus <b>magang aktif</b> dapat men-download materi - materi pendukung untuk kelengkapan selama melakukan internship. Sebelum men-download para Praktikan agar berkoordinasi terlebih dahulu dengan kordinator internship PT PAL. Link materi dapat diakses melalui tombol di bawah ini.</p>
             <a class="btn btn-danger p-1" target="_blank" href="https://drive.google.com/drive/folders/1XaPe2jTLaQzy0UasLZ0pWFHA3SSChYan?usp=sharing">Materi</a>

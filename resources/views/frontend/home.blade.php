@@ -95,7 +95,7 @@ The   Best   Maritime   Industry</p>
 					<a href="formatLaporan" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Split-FourSquareWindow"></i></div>
-							<h5 class="mt-4">Format Laporan</h5>
+							<h5 class="mt-4">Materi Pendukun Internship</h5>
 						</div>
 					</a>
 				</div>
