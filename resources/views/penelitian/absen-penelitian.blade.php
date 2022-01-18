@@ -12,11 +12,11 @@
             <div class="alert alert-info" role="alert">
                 <p class="card-text">
                     <b>Peraturan Absensi:</b><br>
-                    - Absen Datang dibuka pukul 06.00 - 08.00<br>
+                    - Absen Datang dibuka pukul 06.00 - 08.00 (<b> Absen Datang diperbolehkan ketika para penelitian sudah di dalam area PT PAL </b>)</b> <br>
                     - Absen Pulang dibuka pukul 16:30 - 19.00 <br>
-                    - Absen izin dibuka pukul 06:00 - 07:30 <br> (Absen Izin Jika Para Praktikan <b> Sakit </b>, Selain
+                    - Absen izin dibuka pukul 06:00 - 07:30 <br> (Absen Izin Jika Para Penelitian <b> Sakit </b>, Selain
                     Itu
-                    <b>Tidak Boleh, Harus Konfirmasi ke Pembimbing Penelitian Melalui Chat WA Apabila Hendak Izin Ada
+                    <b>Tidak Boleh, Harus Konfirmasi ke Pembimbing Penelitian Melalui Whatsapp Apabila Hendak Izin Ada
                         Keperluan
                         Lain</b>).
                 </p>
@@ -44,8 +44,7 @@
                                     <th>{{ $ap->nama }}</th>
                                     <th>Datang</th>
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now()))
-                                    <= '08:00' && date('d-m-Y', strtotime(now()))>= date('d-m-Y',
-                                        strtotime($ap->mulai)) && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
+                                    <= '08:00'  && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
                                             strtotime($ap->selesai)) ) <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-masuk-penelitian/{{ $ap->id }}"
@@ -61,8 +60,7 @@
                                     <th>{{ $ap->nama }}</th>
                                     <th>Pulang</th>
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
-                                    <= '19:00' && date('d-m-Y', strtotime(now()))>= date('d-m-Y',
-                                        strtotime($ap->mulai)) && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
+                                    <= '19:00' && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
                                             strtotime($ap->selesai))) <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-pulang-penelitian/{{ $ap->id }}"
@@ -79,8 +77,7 @@
                                     <th>Izin</th>
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
                                     strtotime(now()))
-                                    <= '07:30' && date('d-m-Y', strtotime(now()))>= date('d-m-Y',
-                                        strtotime($ap->mulai)) && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
+                                    <= '07:30' && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
                                             strtotime($ap->selesai)) )
                                             <th>
                                                 <div>
@@ -177,7 +174,9 @@
                         <b> Note :</b> <br>
                         - Mohon tekan tombol titik 3 di tabel rekap absen untuk mencetak absen. <br>
                         - Mohon Absen di cetak setiap 5 hari kerja agar bisa di tandatangani oleh pembimbing
-                        lapangan.
+                        lapangan.<br>
+                        -Mohon Para Penelitian mengikuti peraturan absen jika melanggar/tidak jujur akan diberikan sanksi. 
+    
                     </p>
                 </div>
             </div>

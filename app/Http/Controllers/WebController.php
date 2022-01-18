@@ -110,9 +110,9 @@ class WebController extends Controller
 
 
     public function showGalleries(){
-        $getGalleries = Gallery::orderBy('id','DESC')->simplePaginate(6);
+        $gallery = Gallery::orderBy('id','DESC')->simplePaginate(6);
 
-        return view('frontend.gallery', ['gallery' => $getGalleries]);
+        return view('frontend.gallery', ['gallery' => $gallery]);
     }
 
     public function showInternshipProsedure(){
