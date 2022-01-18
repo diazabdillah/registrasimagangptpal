@@ -47,12 +47,12 @@
 
                 <div class="card-body">
 
-                    <h5 style="font-size:30px;"><b>{{ $data->nama }}</b></h5>
+                    <h5 style="font-size:20px;"><b>{{ $data->nama }}</b></h5>
 
                     <table>
                         <tr>
                             <td><b>
-                                    <h6 style="font-size:20px;"> ID</h6>
+                                    <h6 style="font-size:15px;"> ID</h6>
                                 </b></td>
                             <td class="pl-4" style="font-size:15px;">: <span>
                                     {{ $data->id }}</span>
@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                             <td><b>
-                                    <h6 style="font-size:20px;"> Nim</h6>
+                                    <h6 style="font-size:15px;"> Nim</h6>
                                 </b></td>
                             <td class="pl-4" style="font-size:15px;">: <span>
                                     {{ $data->nim }}</span>
@@ -69,20 +69,20 @@
 
                         <tr>
                             <td><b>
-                                    <h6 style="font-size:20px;">Universitas</h6>
+                                    <h6 style="font-size:15px;">Universitas</h6>
                                 </b></td>
                             <td class="pl-4" style="font-size:15px;">: <span>{{ $data->univ }}</span>
                             </td>
                         </tr>
                         <tr>
                             <td><b>
-                                    <h6 style="font-size:20px;">Divisi</h6>
+                                    <h6 style="font-size:15px;">Divisi</h6>
                                 </b></td>
                             <td class="pl-4" style="font-size:15px;">: {{ $data->divisi }}</td>
                         </tr>
                         <tr>
                             <td><b>
-                                    <h6 style="font-size:20px;">Departemen</h6>
+                                    <h6 style="font-size:15px;">Departemen</h6>
                                 </b></td>
                             <td class="pl-4" style="font-size:15px;">: {{ $data->departemen }}</td>
                         </tr>
@@ -130,8 +130,9 @@
 
                     <p style="font-size: 15px"> PT PAL INDONESIA (PERSERO)</p>
 
-                    <hr style="width:250px;weight:150px;margin-top: 100px;margin-bottom: 5px;border:1px solid;">
-
+                    <img width="35%"  src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
+                        
+            
                 </div>
                 <div class="footerIdCard bg-gradient-primary d-flex justify-content-center">
                     <small class="text-white"><b>PT.PAL INDONESIA</b></small>
