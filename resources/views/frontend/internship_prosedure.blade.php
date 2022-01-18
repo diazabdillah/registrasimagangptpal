@@ -62,7 +62,7 @@
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#prosedure" role="tab" aria-controls="home" aria-selected="true">Prosedure</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#laporan" role="tab" aria-controls="profile" aria-selected="false">Format Laporan</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#laporan" role="tab" aria-controls="profile" aria-selected="false">Materi Pendukung Internship</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#kuota" role="tab" aria-controls="contact" aria-selected="false">Kuota</a>
@@ -75,30 +75,14 @@
             <img src="{{URL::asset('frontend')}}/img/Alur-Magang.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
         </div>
         <div class="tab-pane fade" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
-            <h4>Format Laporan Hasil Pemagangan</h4>
-            <ol>
-                <li>Lembar Pengesahan
-                    <ul>
-                        <li>Kadep HC Development</li>
-                        <li>Pembimbing OJT (Kadep)</li>
-                        <li>Kaprodi/Dosen Pembimbing</li>
-                    </ul>
-                </li>
-                <li>Kata Pengantar</li>
-                <li>Daftar Isi</li>
-                <li>Daftar Gambar</li>
-                <li>BAB I - Pedahuluan</li>
-                <li>BAB II - Profile Perusahaan</li>
-                <li>BAB III - Landasan Teori (Teori sesuai dengan bidang)</li>
-                <li>BAB IV - Pembahasan (Hasil Pemagang)</li>
-                <li>Daftar Pustaka</li>
-                <li>Lampiran
-                    <ul>
-                        <li>Daftar Hadir</li>
-                        <li>Laporan Kerja Mingguan dan Foto Dokumentasi</li>
-                    </ul>
-                </li>
-            </ol>
+            <h4>Materi Pendukung Internship</h4>
+            <p>Hasi sobat Praktikan PT PAL...</p>
+            <br>
+            <p style="text-align:justify;">Sebagai informasi, bagi para Praktikan yang telah berstatus <b>magang aktif</b> dapat men-download materi - materi pendukung untuk kelengkapan selama melakukan internship. Sebelum men-download para Praktikan agar berkoordinasi terlebih dahulu dengan kordinator internship PT PAL. Link materi dapat diakses melalui tombol di bawah ini.</p>
+            <a class="btn btn-danger p-1" target="_blank" href="https://drive.google.com/drive/folders/1XaPe2jTLaQzy0UasLZ0pWFHA3SSChYan?usp=sharing">Materi</a>
+            <br>
+            <br>
+            <p style="text-align:justify;"> <a style="color: red;">Note :</a> Materi yang telah di download hanya untuk praktikan yang berstatus <b>magang aktif</b> dan materi ini diharapkan tidak disalahgunakan di luar kepentingan internship. Dan apabila terdapat pelanggaran yang dilakukan oleh para praktikan yang sengaja menyalahgunakan materi - materi tersebut. Koordinator internship nantinya akan menindaklanjuti sesuai dengan pelanggaran yang dilakukan. Terima kasih.</p>
         </div>
         <div class="tab-pane fade" id="kuota" role="tabpanel" aria-labelledby="contact-tab">
             <div class="container-fluid">
