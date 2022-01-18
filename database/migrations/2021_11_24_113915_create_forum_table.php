@@ -20,7 +20,7 @@ class CreateForumTable extends Migration
             $table->string('status_user');
             $table->string('judul');
             $table->string('slug');
-            $table->string('konten');
+            $table->longText('konten');
             $table->timestamps();
         });
     }

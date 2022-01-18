@@ -20,7 +20,7 @@ class CreateKomentarTable extends Migration
             $table->string('name');
             $table->string('status_user');
             $table->bigInteger('parent');
-            $table->string('konten');
+            $table->longText('konten');
             $table->timestamps();
         });
     }
