@@ -36,22 +36,22 @@
         </div>
 
         <div>
-            <p style="font-size:18px;" class="ml-4"> <b> Nomor :</b>
+            <p style="font-size:14px;" class="ml-4"> <b> Nomor :</b>
                 PKL/{{ $datas[0]->id }}/51200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
             </p>
-            <p style="margin-top: -20px;font-size:18px;" class="ml-4"> <b> Perihal :</b>
+            <p style="margin-top: -20px;font-size:14px;" class="ml-4"> <b> Perihal :</b>
                 Praktek Kerja Lapangan </p>
 
-            <p style="margin-bottom:50px;font-size:18px;" class="ml-4"><b>Kepada Yth: </b> <br>
+            <p style="margin-bottom:50px;font-size:14px;" class="ml-4"><b>Kepada Yth: </b> <br>
                 {{ $datas[0]->jabatan }} <br>
                 {{ $datas[0]->sekolah }} <br>
                 di Tempat
             </p>
         </div>
 
-        <div style="font-size: 17px;" class="justify-content-center ml-4">
+        <div style="font-size: 14px;" class="justify-content-center ml-4">
             <p>Dengan Hormat,</p>
-            <p>1. Memperhatikan Surat Nomor
+            <p style="text-align:justify;">1. Memperhatikan Surat Nomor
                 {{ $datas[0]->nomorsurat }}
                 Tanggal {{ date('d F Y', strtotime($datas[0]->mulai)) }}
                 s.d {{ date('d F Y', strtotime($datas[0]->selesai)) }} pada dasarnya PT PAL
@@ -60,7 +60,7 @@
                 Praktikan OJT/PKL dari {{ $datas[0]->sekolah }} untuk melaksanakan praktek kerja lapangan, berikut
                 data
                 Praktikan
-                dibawah ini : </p>
+                dibawah ini:</p>
             <table class="table">
                 <thead>
                     <tr>
@@ -90,7 +90,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <p style="font-size: 17px;">2. Surat balasan ini sebagai dasar bahwa para
+            <p style="font-size: 14px;">2. Surat balasan ini sebagai dasar bahwa para
                 Praktikan
                 telah resmi <b><u>Diterima</u></b> PKL/OJT di PT PAL Indonesia (Persero) dan surat ini mohon
                 agar
@@ -98,12 +98,12 @@
         </div>
 
 
-        <div style="font-size: 17px;">
+        <div style="font-size: 14px;">
             <p style="margin-left:500px;">Surabaya,
                 {{ date('d-F-Y', strtotime($datas[0]->selesai)) }} </p>
             <p style="margin-top: -20px;margin-left:500px;"> PT PAL Indonesia (Persero)</p>
 
-            <img style="margin-left:500px;" src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
+            <img style="margin-left:500px; width:20%;" src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
                                         
         </div>
 
