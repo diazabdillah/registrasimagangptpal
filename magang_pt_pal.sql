@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 18, 2022 at 12:46 AM
+-- Generation Time: Jan 18, 2022 at 11:35 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -167,7 +167,16 @@ CREATE TABLE IF NOT EXISTS `data_mhs_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `data_mhs_indivs`
+--
+
+INSERT INTO `data_mhs_indivs` (`id`, `user_id`, `nama`, `univ`, `jurusan`, `strata`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nim`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
+(3, 25, 'Muhammad Zaid Abdillah', 'PENS', 'Teknik Informatika', 'D4', 'Sdr 1', '08xxx', 'Teknologi Informasi', 'lnfrastruktur dan Hardware', '2110191013', 'Diterima', '2022-01-18 01:52:43', '2022-01-18 01:52:43'),
+(4, 25, 'Fabyan Kindarya', 'PENS', 'Teknik Informatika', 'D4', 'Semambung', '08xxx', 'Teknologi Informasi', 'lnfrastruktur dan Hardware', '2110191024', 'Diterima', '2022-01-18 01:53:18', '2022-01-18 01:53:18'),
+(5, 25, 'Made Rahano Satriyani Widhi', 'PENS', 'Teknik Informatika', 'D4', 'Gubeng', '08xxx', 'Teknologi Informasi', 'lnfrastruktur dan Hardware', '2110191028', 'Diterima', '2022-01-18 01:53:38', '2022-01-18 01:53:38');
 
 -- --------------------------------------------------------
 
@@ -580,19 +589,6 @@ CREATE TABLE IF NOT EXISTS `interview` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_individu` bigint NOT NULL,
   `fileinterview` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipe_kepribadian` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ekstrovet` int NOT NULL,
-  `introvet` int NOT NULL,
-  `visioner` int NOT NULL,
-  `realistik` int NOT NULL,
-  `emosional` int NOT NULL,
-  `rasional` int NOT NULL,
-  `perencanaan` int NOT NULL,
-  `improvisasi` int NOT NULL,
-  `tegas` int NOT NULL,
-  `waspada` int NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -607,19 +603,6 @@ CREATE TABLE IF NOT EXISTS `interview_smk` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_individu` bigint NOT NULL,
   `fileinterview` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipe_kepribadian` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ekstrovet` int NOT NULL,
-  `introvet` int NOT NULL,
-  `visioner` int NOT NULL,
-  `realistik` int NOT NULL,
-  `emosional` int NOT NULL,
-  `rasional` int NOT NULL,
-  `perencanaan` int NOT NULL,
-  `improvisasi` int NOT NULL,
-  `tegas` int NOT NULL,
-  `waspada` int NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -853,7 +836,14 @@ CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_mhs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mulai_dan_selesai_mhs`
+--
+
+INSERT INTO `mulai_dan_selesai_mhs` (`id`, `user_id`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
+(1, 25, '2021-10-01', '2022-01-31', '2022-01-18 11:26:46', '2022-01-18 11:26:46');
 
 -- --------------------------------------------------------
 
@@ -1246,7 +1236,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`

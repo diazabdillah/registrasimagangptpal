@@ -37,7 +37,7 @@
 
         <div>
             <p style="font-size:14px;" class="ml-4"> <b> Nomor :</b>
-                PKL/{{ $datas[0]->id }}/51200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
+                PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
             </p>
             <p style="margin-top: -20px;font-size:14px;" class="ml-4"> <b> Perihal :</b>
                 Praktek Kerja Lapangan </p>
