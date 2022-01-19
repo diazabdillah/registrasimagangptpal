@@ -127,7 +127,7 @@
                                 <div class="d-flex justify-content-end mr-4" style="margin-top:40px;">
                                     <div>
                                         <p>Surabaya,
-                                            {{ date('d-F-Y', strtotime($datas[0]->selesai)) }} </p>
+                                            {{ date('d-F-Y', strtotime(now())) }} </p>
                                         <p style="margin-top: -20px"> PT PAL Indonesia (Persero)</p>
                                         <img  src="{{asset('frontend/img/TTD-KADEP-HCD.png')}}">
                                         

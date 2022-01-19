@@ -100,7 +100,7 @@
 
         <div style="font-size: 14px;">
             <p style="margin-left:500px;">Surabaya,
-                {{ date('d-F-Y', strtotime($datas[0]->selesai)) }} </p>
+                {{ date('d-F-Y', strtotime(now())) }} </p>
             <p style="margin-top: -20px;margin-left:500px;"> PT PAL Indonesia (Persero)</p>
 
             <img style="margin-left:500px; width:20%;" src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
