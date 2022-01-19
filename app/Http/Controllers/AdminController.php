@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Hash;
 use Excel;
 use PDF;
-use App\Models\Divisi;
 use App\Models\User;
 use App\Exports\RekapExport;
 use App\Exports\RekapKelompokExport;

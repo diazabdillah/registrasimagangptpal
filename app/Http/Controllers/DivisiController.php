@@ -26,7 +26,6 @@ use App\Models\AbsenPenelitianTabel;
 use App\Models\MulaiDanSelesaiPenelitian;
 use App\Models\Divisi;
 use App\Models\Departemen;
-use App\Models\FotoIDSmks as ModelsFotoIDSmks;
 use App\Models\FotoMhsModels;
 use App\Models\FotoPenelitianModels;
 use App\Models\FotoSmkModels;
@@ -38,7 +37,6 @@ use App\Models\RekapAbsensmk;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Unique;
 
 class DivisiController extends Controller
 {

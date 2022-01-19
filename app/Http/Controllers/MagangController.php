@@ -18,17 +18,13 @@ use App\Models\PenilaianSmk;
 use App\Models\FileSmkIndivs;
 use App\Models\FotoIDMhs;
 use App\Models\FotoIDSmks;
-use App\Models\MulaiDanSelesaiMhs;
-use App\models\Interview;
 use App\Models\Absenmhs;
 use App\Models\RekapAbsenmhs;
 use App\Models\AbsenSmk;
-use App\Models\InterviewSmk;
 use App\Models\LaporanSmk;
 use App\Models\RekapAbsensmk;
 use App\Models\Rekapsmk;
 use Carbon\Carbon;
-use FotoIDSmks as GlobalFotoIDSmks;
 use Illuminate\Support\Facades\File;
 
 class MagangController extends Controller

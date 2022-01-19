@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\DataPenelitian;
 use App\Models\FilePenelitian;
 use App\Models\FotoPenelitianModels;
 use App\Models\FotoIDPenelitian;
 use App\Models\AbsenPenelitian;
-use App\Models\AbsenPenelitianTabel;
-use App\Models\Divisi;
 use App\Models\LaporanPenelitian;
 use App\Models\RekapAbsenpenelitian;
 use App\Models\Rekappenelitian;
