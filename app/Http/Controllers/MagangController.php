@@ -303,7 +303,7 @@ class MagangController extends Controller
         $tujuan_upload = 'file/interview-mhs/' . $individu->id;
         $file->move($tujuan_upload, $nama_file);
 
-        Interview::create([
+        DB::table('interview')->insert([
             'id_individu' => $individu->id,
             'fileinterview' => $nama_file,
         ]);
@@ -1180,7 +1180,6 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-
             'fileinterview' => 'required',
         ]);
 
@@ -2328,7 +2327,7 @@ class MagangController extends Controller
         $tujuan_upload = 'file/interview-smk-kel/' . $interviewsmk->id;
         $file->move($tujuan_upload, $nama_file);
 
-        InterviewSmk::create([
+        DB::table('interview_smk')->insert([
             'id_individu' => $interviewsmk->id,
             'fileinterview' => $nama_file,
         ]);
@@ -2839,7 +2838,7 @@ class MagangController extends Controller
         $tujuan_upload = 'file/interview-smk/' . $individusmk->id;
         $file->move($tujuan_upload, $nama_file);
 
-        InterviewSmk::create([
+        DB::table('interview')->insert([
             'id_individu' => $individusmk->id,
             'fileinterview' => $nama_file,
         ]);
