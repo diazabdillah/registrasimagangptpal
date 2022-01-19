@@ -122,20 +122,30 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Rekap Absen SMK</h6>
+                   
                     <div class="dropdown no-arrow">
-                        @foreach ($absensmkk as $ass)
-                        @if($ass->id != null)
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
+                        @if(Auth::user()->status_user=='SMK Kelompok')
+                            @if(!empty($absensmkk[0]->id))
+                            
+                            <a class="btn btn-primary" href="/cetak-absen-mhs-pdf" target="_blank">Cetak Absen</a>
+            
+                            @else
+                           
+                                <button class="btn btn-secondary" href="#" disabled>Cetak Absen</button>
+                         
+                            @endif
+                        @else
+                            @foreach($absensmkk as $ass)
+                            @if(!empty($ass->id))
+                            <a class="btn btn-primary" href="/cetak-absen-mhs-pdf" target="_blank">Cetak Absen</a>
+            
+                            @else
+                           
+                                <button class="btn btn-secondary" href="#" disabled>Cetak Absen</button>
+                         
+                            @endif
+                            @endforeach
                         @endif
-                        @endforeach
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/cetak-absen-smk-pdf" target="_blank">Cetak Absen</a>
-
-                        </div>
                     </div>
 
 
