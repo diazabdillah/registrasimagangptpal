@@ -127,7 +127,7 @@
                         @if(Auth::user()->status_user=='SMK Kelompok')
                             @if(!empty($absensmkk[0]->id))
                             
-                            <a class="btn btn-primary" href="/cetak-absen-mhs-pdf" target="_blank">Cetak Absen</a>
+                            <a class="btn btn-primary" href="/cetak-absen-smk-pdf" target="_blank">Cetak Absen</a>
             
                             @else
                            
@@ -137,7 +137,7 @@
                         @else
                             @foreach($absensmkk as $ass)
                             @if(!empty($ass->id))
-                            <a class="btn btn-primary" href="/cetak-absen-mhs-pdf" target="_blank">Cetak Absen</a>
+                            <a class="btn btn-primary" href="/cetak-absen-smk-pdf" target="_blank">Cetak Absen</a>
             
                             @else
                            
