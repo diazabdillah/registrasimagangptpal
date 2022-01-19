@@ -44,15 +44,18 @@
                                     <th>{{ $am->nama }}</th>
                                     <th>Datang</th>
 
-
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
-                                    strtotime(now())) <= '08:00' && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
-                                            strtotime($am->selesai)) ) <th>
+                                    strtotime(now())) <= '08:00') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-masuk-mhs/{{ $am->id }}"
                                                     role="button">Presensi</a>
                                             </th>
-
+                                            @else
+                                            <th>
+                                                <button class="btn btn-secondary" disabled>Presensi</button>
+                                            </th>
+                                            @endif
                                             @else
                                             <th>
                                                 <button class="btn btn-secondary" disabled>Presensi</button>
@@ -63,9 +66,9 @@
                                 <tr>
                                     <th>{{ $am->nama }}</th>
                                     <th>Pulang</th>
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
-                                    <= '19:00' && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
-                                            strtotime($am->selesai)) ) <th>
+                                    <= '23:59') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-pulang-mhs/{{ $am->id }}"
                                                     role="button">Presensi</a>
@@ -74,15 +77,21 @@
                                             <th>
                                                 <button class="btn btn-secondary" disabled>Presensi</button>
                                             </th>
+                                              @endif
+                                            @else 
+                                            <th>
+                                                <button class="btn btn-secondary" disabled>Presensi</button>
+                                            </th>
                                             @endif
+                                          
                                 </tr>
                                 <tr>
                                     <th>{{ $am->nama }}</th>
                                     <th>Izin</th>
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
                                     strtotime(now()))
-                                    <= '07:30' && date('d-m-Y', strtotime(now())) <= date('d-m-Y',
-                                            strtotime($am->selesai)) )
+                                    <= '07:30')
                                             <th>
                                                 <div>
                                                     <form enctype="multipart/form-data"
@@ -109,6 +118,11 @@
                                                 </form>
 
                                             </th>
+                                            @else
+                                            <th>
+                                                <button class="btn btn-secondary" disabled>Izin</button>
+                                            </th>
+                                            @endif
                                             @else
                                             <th>
                                                 <button class="btn btn-secondary" disabled>Izin</button>
@@ -188,10 +202,12 @@
             <div class="alert alert-danger" role="alert">
                 <p class="card-text">
                     <b> Note :</b> <br>
-                    - Mohon tekan tombol titik 3 di tabel rekap absen untuk mencetak absen. <br>
+                    - Mohon para Praktikan Absen setiap hari ketika magang anda berlangsung jika para Praktikan tidak hadir magang karena sakit silahkan absen izin. <br>
+                    - Mohon para Praktikan Kelompok tidak boleh tekan button "prensensi" punya nama temannya hanya diperbolehkan punya nama sendiri. <br>
+                    - Mohon tekan button "cetak absen" di tabel rekap absen untuk mencetak absen. <br>
                     - Mohon Absen di cetak setiap 5 hari kerja agar bisa di tandatangani oleh pembimbing
                     lapangan. <br>
-                    -Mohon Para Praktikan mengikuti peraturan absen jika melanggar/tidak jujur akan diberikan sanksi. 
+                    - Mohon Para Praktikan mengikuti peraturan absen jika melanggar/tidak jujur akan diberikan sanksi. 
 
                 </p>
             </div>

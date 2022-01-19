@@ -13,17 +13,18 @@
                 <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
                 <div class="alert alert-success">
                     <span>
-                        Sebelum laporan dikumpulkan, harap ke departemen hcd untuk menemui koordinator internship
-                        untuk melakukan presentasi singkat (laporan akhir).Jika sudah melakukan Presentasi mohon
-                        klik button
-                        upload laporan.
+                        <b>Peraturan Laporan Akhir:</b><br>
+                        - Sebelum laporan akhir dikumpulkan, harap ke Divisi Human Capital Management (Departemen Human Capital Development) untuk menemui koordinator internship
+                        untuk melakukan presentasi singkat laporan akhir sewaktu para praktikan hampir selesai magangnya. <br>
+                        - Jika sudah melakukan Presentasi mohon klik button "upload laporan" untuk softfile laporan akhir diupload.
+                        - Jika Laporan Akhir Anda terdapat revisi Mohon segera upload kembali file lapran akhir di button "edit" laporan yang sudah di perbaiki atau di revisi
                     </span>
                     <br>
                     <br>
-                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan-penelitian" role="button"><i
-                            class="fas fa-plus"></i>
+                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan" role="button"><i class="fas fa-plus"></i>
                         upload laporan</a>
                 </div>
+              
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -193,7 +194,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="alert alert-danger" role="alert">
+                    <p class="card-text">
+                        <b> Note :</b> <br>
+                        - Mohon para Penelitian bisa mencari refrensi format laporan akhir di perpustakaan ini dan bisa ke halaman depan bagian menu "Info Intership" <br>
+                        - Mohon para Penelitian mengupload berkas laporan akhir berupa pdf dan tidak boleh isi laporan akhir sama dengan orang lain atau copy paste laporan akhir orang lain <br>
+                        - Mohon Para Penelitian mengikuti peraturan laporan akhir jika melanggar/tidak jujur akan diberikan sanksi. 
+    
+                    </p>
+                </div>
             </div>
             <!-- /.container-fluid -->
 
