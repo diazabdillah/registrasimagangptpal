@@ -139,8 +139,8 @@
                          
                             @endif
                         @else
-                            @foreach($absenmhss as $ams)
-                            @if(!empty($ams->id))
+                         
+                            @if(!empty($absenmhss[0]->id))
                             <a class="btn btn-primary" href="/cetak-absen-mhs-pdf" target="_blank">Cetak Absen</a>
             
                             @else
@@ -148,7 +148,7 @@
                                 <button class="btn btn-secondary" href="#" disabled>Cetak Absen</button>
                          
                             @endif
-                            @endforeach
+                         
                         @endif
                     </div>
 
