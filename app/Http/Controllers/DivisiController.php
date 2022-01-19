@@ -38,6 +38,7 @@ use App\Models\RekapAbsensmk;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Unique;
 
 class DivisiController extends Controller
 {
@@ -1734,6 +1735,7 @@ class DivisiController extends Controller
                 ->select('users.id', 'users.name','data_mhs_indivs.divisi', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 6)
                 ->orWhere('users.role_id', '=', 8)
+                ->distinct()
                 ->get();
 
             $usersSmk = DB::table('users')
@@ -1741,6 +1743,7 @@ class DivisiController extends Controller
                 ->select('users.id', 'users.name','data_smk_indivs.divisi', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 7)
                 ->orWhere('users.role_id', '=', 9)
+                ->distinct()
                 ->get();
 
             $userspenelitian = DB::table('users')

@@ -41,6 +41,7 @@
                                             @if (Auth::user()->status_user == 'Admin HCM')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Human Capital Management')
+                                            
                                             <tr>
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $u->name }}</td>
@@ -464,7 +465,7 @@
                                         <tbody>
                                             @if (Auth::user()->status_user == 'Admin HCM')
                                             @foreach ($usersSmk as $dsmk)
-                                            @if ($dsmk->divisi == 'Human Capital Managemen')
+                                            @if ($dsmk->divisi == 'Human Capital Management')
                                             <tr>
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $dsmk->name }}</td>
