@@ -148,14 +148,16 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="container-fluid">
 
+                <div class="row">
+                    <div class="col-lg">
                 <!-- Area Chart -->
 
                 <div class="card shadow mb-4">
                     <div class="card-body">
 
-
+                        <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -356,11 +358,12 @@
 
                             </tbody>
                         </table>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
         <!-- End of Main Content -->
 
     @endsection

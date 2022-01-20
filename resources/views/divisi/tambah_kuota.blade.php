@@ -37,10 +37,10 @@
                                 <small class="ml-2">Divisi</small>
                                 <div class="input-group mb-3">
                                     <select class="custom-select" name="divisi">
-                                        @foreach ($divisi as $divisis)
-                                        <option value="{{ $divisis->nama_divisi }}" selected>{{
-                                            $divisis->nama_divisi }}</option>
-                                        @endforeach
+                                   
+                                        <option value="{{ $user->status_user }}" selected>{{
+                                            $user->status_user }}</option>
+                          
                                     </select>
                                 </div>
                             </div>

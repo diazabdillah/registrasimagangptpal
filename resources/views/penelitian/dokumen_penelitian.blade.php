@@ -55,6 +55,7 @@
                                 <div class="card-header">
                                     Upload Dokumen
                                 </div>
+                                <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%">
                                     <thead>
                                         <tr>
@@ -104,7 +105,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,6 +115,7 @@
                                 <div class="card-header">
                                     Hasil Foto 3X4
                                 </div>
+                                <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -146,7 +148,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
+                                </div>
                             </div>
                         </div>
 
@@ -157,6 +159,7 @@
                                 <div class="card-header">
                                     Hasil Dokumen Lainnya
                                 </div>
+                                <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -189,7 +192,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
+                                </div>
                             </div>
                         </div>
 
