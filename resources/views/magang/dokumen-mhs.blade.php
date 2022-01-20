@@ -29,18 +29,18 @@
                                     <div class="alert alert-info" role="alert">
                                         <p><b>Langkah 1:</b></p>
                                         <p class="card-text"><b>Klik "Foto 3x4"</b>
-                                            <br>Silahkan upload foto 3x4 di button foto3x4 dengan ketentuan yang sudah
+                                            <br>Silahkan upload foto 3x4 di button "Foto 3x4" dengan ketentuan yang sudah
                                             diberikan.
                                         </p>
                                         <p><b>Langkah 2:</b></p>
-                                        <p class="card-text"><b>Klik "Berkas Lainnya"</b>
-                                            <br>Silahkan upload file magang di button berkas lainnya dengan ketentuan yang
+                                        <p class="card-text"><b>Klik Button "Berkas Lainnya"</b>
+                                            <br>Silahkan upload file magang (KTP, Kartu Mahasiswa, dan BPJS Ketenagakerjaan) di button "Berkas Lainnya" dengan ketentuan yang
                                             sudah diberikan.
                                         </p>
                                         <b>Kirim data tersebut dengan ketentuan :</b>
                                         <ol>
-                                            <li>Ukuran file dan foto max 2 MB</li>
-                                            <li>Format file bisa berupa PDF</li>
+                                            <li>Ukuran file KTP, Kartu Mahasiswa, dan BPJS dan foto 3x4 max 2 MB</li>
+                                            <li>Format file KTP, Kartu Mahasiswa, dan BPJS berupa JPG / JPEG / PNG</li>
                                             <li>Format foto 3x4 bisa berupa JPG / JPEG / PNG</li>
                                         </ol>
                                     </div>
