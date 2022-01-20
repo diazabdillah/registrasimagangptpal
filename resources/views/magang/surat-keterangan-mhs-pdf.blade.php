@@ -41,8 +41,7 @@
                 </div>
                 <div class="justify-content-center" style="margin-left:130px;margin-top:20px;">
                     <span>Surat keterangan ini diberikan kepada para praktikan yang telah
-                        menyelesaikan
-                        penelitian, berikut data Praktikan Penelitian:</span>
+                        menyelesaikan magang, berikut data Praktikan magang:</span>
                 </div>
                 <div style="margin-left:300px;margin-top:20px">
 
@@ -54,7 +53,7 @@
                 </div>
 
                 <div class="justify-content-center" style="margin-left:130px;margin-top: 20px">
-                    <p>Yang bersangkutan ini telah melaksanakan Penelitian di <b>PT PAL INDONESIA
+                    <p>Yang bersangkutan ini telah melaksanakan magang di <b>PT PAL INDONESIA
                             (PERSERO)</b>. Pada Tanggal
                         <b>{{ date('d-m-Y', strtotime($sertif->mulai)) }}</b> s/d
                         <b>{{ date('d-m-Y', strtotime($sertif->selesai)) }}</b>

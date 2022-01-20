@@ -17,10 +17,8 @@
             </div>
             @endif
             <div class="alert alert-success">
-                <span>Silahkan sertifikat untuk di download filenya yang terdapat di button titik tiga
-                    dan file pdfnya
-                    di cetak kembali untuk hardcopynya di serahkan ke departemen hcd agar di tandatangani oleh
-                    kepala departemen. Segera di download Sertifikat anda sebelum akun Anda di Nonakktifkan</span>
+                <span>Silahkan sertifikat untuk di download filenya yang terdapat di button titik tiga dan untuk hardcopynya di serahkan ke Human Capital Management (Dept. HCD) agar di tandatangani oleh
+                    kepala departemen. Segera di download file pdf Sertifikat anda sebelum akun Anda di Nonakktifkan.</span>
                 <!-- Card -->
             </div>
         </div>
