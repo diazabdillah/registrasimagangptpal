@@ -60,9 +60,9 @@ class AuthhController extends Controller
             } elseif (auth()->user()->role_id == 13) {
                 return redirect('/Dokumen_mhskel')->with('succes', 'Selamat Anda lolos pada tahap Tes Kepribadian online. Mohon segera lengkapi data dokumen magang Anda di bawah ini dan baca pentunjuk yang sudah diberikan. Kami beri waktu 1 hari kerja untuk mengisi berkas dokumen ini, jika tidak mengumpulkan berkas dokumen anda admin akan menghapus akun Anda secara otomatis.');
             } elseif (auth()->user()->role_id == 14) {
-                return redirect('/sertifikat_mhs')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.Mohon segera mencetak sertifikat anda.Akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+                return redirect('/sertifikat_mhs')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas. Mohon segera mencetak sertifikat anda.Akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
             } elseif (auth()->user()->role_id == 15) {
-                return redirect('/sertifikat_smk')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas.Mohon segera mencetak sertifikat anda.Akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
+                return redirect('/sertifikat_smk')->with('succes', 'Selamat Anda sudah menyelesaikan magang dengan tuntas. Mohon segera mencetak sertifikat anda.Akun anda akan di nonaktifkan 1 minggu setelah penerimaan sertifikat ini.');
             } elseif (auth()->user()->role_id == 16) {
                 return redirect('/interview-mhs')->with('succes', 'Selamat Anda lolos pada tahap Pendaftaran. Mohon segera melakukan Test Kepribadian online serta mengupload hasil test kepribadian Anda dengan mengikuti pentunjuk yang sudah di berikan. Kami beri waktu 1 hari kerja untuk melengkapi dokumen test kepribadian online tersebut ,jika tidak mengumpulkan hasil test kepribadian anda Admin akan menghapus akun Anda secara otomatis.');
             } elseif (auth()->user()->role_id == 17) {
