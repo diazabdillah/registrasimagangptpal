@@ -68,7 +68,7 @@
                                     <th>Pulang</th>
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
-                                    <= '23:59') <th>
+                                    <= '19:00') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-pulang-mhs/{{ $am->id }}"
                                                     role="button">Presensi</a>
