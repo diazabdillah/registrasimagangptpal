@@ -22,9 +22,8 @@
                         <div class="card shadow mb-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-text"><small>Setelah melakukan tes kepribadian mohon di isi data
-                                            form pengumpulan dan kirim file screenshot hasil tes pribadian dibawah ini
-                                            sesuai dengan hasil tes kepribadian dimasing-masing peserta</small></p>
+                                    <p class="card-text">Setelah melakukan tes kepribadian mohon mengupload file screenshot hasil tes kepribadian dibawah ini
+                                        sesuai dengan hasil tes kepribadian dimasing-masing peserta.</p>
 
 
                                     <form method="POST" action="/interview-smk/{{ $user->id }}"

@@ -22,12 +22,11 @@
 
                         <div class="card-body">
                             <h5 class="card-title mt-2">Test Kepribadian</h5>
-                            <p class="alert alert-info card-text"><small>Lakukan Tes Kepribadian dengan klik tombol
-                                    dibawah ini, tes ini dilakukan untuk menilai kepribadian pendaftar sehingga kami
+                            <p class="alert alert-info card-text">Lakukan Tes Kepribadian dengan klik tombol "Tes Kepribadian", Tes ini dilakukan untuk menilai kepribadian pendaftar sehingga kami
                                     dapat
-                                    menempatkan sesuai dengan kepribadian pendaftar.Mohon pendaftar magang mengupload
+                                    menempatkan sesuai dengan kepribadian pendaftar. Mohon pendaftar magang mengupload
                                     hasil tes kepribadian di tabel bawah sesuai kolom nama peserta magang dan berikan
-                                    hasil tes kepribadian paling terbaru</small>
+                                    hasil tes kepribadian paling terbaru.
                                 <br>
                                 <br>
                                 <a class="btn btn-primary" href="https://www.16personalities.com/id/tes-kepribadian"
