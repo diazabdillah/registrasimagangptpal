@@ -63,7 +63,7 @@
                                 <h1 style="font-family:Lucida Sans;">SERTIFIKAT</h1>
                             </u>
                             <p>Nomor :
-                                <b> PKL/{{ $datas[0]->id }}/51200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{
+                                <b> PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{
                                     date('Y', strtotime($datas[0]->selesai)) }}
                                 </b>
                             </p>
@@ -78,7 +78,7 @@
                                     </h1>
                                 </u>
                             </b>
-                            <p style="margin-top: -25px">Nim : <b>{{ $sertif->nis }}</b> </p>
+                            <p style="margin-top: -25px">Nis : <b>{{ $sertif->nis }}</b> </p>
                             <div class="text-center">
                                 <h5 style="font-family:Comic Sans MS;font-weight: bold;">
                                     {{ strtoupper($sertif->sekolah) }}
@@ -117,7 +117,7 @@
                                 <h6>Nama : {{ $sertif->nama }}</h6>
                             </div>
                             <div>
-                                <h6>Nim : {{ $sertif->nis }}</h6>
+                                <h6>Nis : {{ $sertif->nis }}</h6>
                             </div>
                             <div>
                                 <h6>Waktu Pelaksanaan :{{ date('d-m-Y', strtotime($sertif->mulai)) }}
