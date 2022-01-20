@@ -1176,7 +1176,7 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'fileinterview' => 'required',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $file = $request->file('fileinterview');
@@ -2315,7 +2315,7 @@ class MagangController extends Controller
         $interviewsmk = DataSmkIndivs::find($id);
         $request->validate([
 
-            'fileinterview' => 'required',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $file = $request->file('fileinterview');
