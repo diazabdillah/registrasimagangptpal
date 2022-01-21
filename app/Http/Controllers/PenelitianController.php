@@ -135,6 +135,29 @@ class PenelitianController extends Controller
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan
                 ]);
+
+                $id = Auth::user()->id;
+                $exist = DB::table('mulai_dan_selesai_penelitian')->where('user_id', $id)->first();
+                if ($exist) {
+                    DB::table('mulai_dan_selesai_penelitian')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekappenelitian')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                } else {
+                    DB::table('mulai_dan_selesai_penelitian')->insert([
+                        'user_id' => $id,
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekappenelitian')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                }
             }
 
             session()->flash('succes', 'Terimakasih telah mengirimkan berkas Penelitian Anda. Selanjutnya akan kami proses terlebih dahulu, Mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi data magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');

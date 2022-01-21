@@ -44,7 +44,7 @@ class MagangController extends Controller
             $id = Auth::user()->id;
             $data = DB::table('data_mhs_indivs')
                 ->leftJoin('rekapmhs', 'rekapmhs.nama', '=', 'data_mhs_indivs.nama')
-                ->select('rekapmhs.id as id_rekap', 'data_mhs_indivs.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp')
+                ->select('rekapmhs.id as id_rekap', 'data_mhs_indivs.user_id', 'data_mhs_indivs.id', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp')
                 ->where('data_mhs_indivs.user_id', $id)
                 ->where('rekapmhs.user_id', $id)
                 ->get();
@@ -205,13 +205,36 @@ class MagangController extends Controller
                 $file->move($tujuan_upload, $NamaFile);
 
                 FileMhsIndiv::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => $id,
                     'path' => $NamaFile,
                     'size' => $size,
                     'nomorsurat' => $request->nomorsurat,
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan
                 ]);
+
+                $id = Auth::user()->id;
+                $exist = DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->first();
+                if ($exist) {
+                    DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapmhs')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                } else {
+                    DB::table('mulai_dan_selesai_mhs')->insert([
+                        'user_id' => $id,
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapmhs')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                }
             }
 
             session()->flash('succes', 'Terimakasih telah mengirimkan berkas magang Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi data magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
@@ -1101,6 +1124,29 @@ class MagangController extends Controller
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan
                 ]);
+
+                $id = Auth::user()->id;
+                $exist = DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->first();
+                if ($exist) {
+                    DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapmhs')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                } else {
+                    DB::table('mulai_dan_selesai_mhs')->insert([
+                        'user_id' => $id,
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapmhs')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                }
             }
 
             session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data kelompok anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
@@ -1188,7 +1234,7 @@ class MagangController extends Controller
             'id_individu' => $individu->id,
             'fileinterview' => $nama_file,
         ]);
-        
+
         session()->flash('succes', 'Terimakasih telah mengirimkan berkas interview Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi berkas interview. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
         return redirect('/interview-mhs');
     }
@@ -2239,6 +2285,29 @@ class MagangController extends Controller
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan
                 ]);
+
+                $id = Auth::user()->id;
+                $exist = DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->first();
+                if ($exist) {
+                    DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapsmk')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                } else {
+                    DB::table('mulai_dan_selesai_smk')->insert([
+                        'user_id' => $id,
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapsmk')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                }
             }
 
             session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data kelompok anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
@@ -2619,7 +2688,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.jurusan')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.jurusan')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             $ti = 'Surat Keterangan Mahasiswa';
@@ -2640,7 +2709,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.jurusan')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.jurusan')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             $ti = 'Surat Keterangan Mahasiswa';
@@ -2746,6 +2815,29 @@ class MagangController extends Controller
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan
                 ]);
+
+                $id = Auth::user()->id;
+                $exist = DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->first();
+                if ($exist) {
+                    DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapsmk')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                } else {
+                    DB::table('mulai_dan_selesai_smk')->insert([
+                        'user_id' => $id,
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                    DB::table('rekapsmk')->where('user_id', $id)->update([
+                        'mulai' => $request->mulai,
+                        'selesai' => $request->selesai
+                    ]);
+                }
             }
 
             session()->flash('succes', 'Terimakasih telah mengirimkan file magang dan mengisi data anda. Selanjutnya akan kami proses telebih dahulu, mohon tunggu selama 5 hari kerja. Kalian akan dipindahkan ke halaman selanjutnya secara otomatis jika terkonfirmasi lolos. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
@@ -2825,7 +2917,7 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-         
+
             'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 

@@ -59,7 +59,28 @@
                                                 </div>
                                             @enderror
                                         </div>
+                                        <div class="form-group">
+                                            <small class="ml-2">Tanggal Mulai</small>
+                                            <input type="date" name="mulai"
+                                                class="form-control @error('mulai') is-invalid @enderror">
 
+                                            @error('berkas')
+                                                <div class="invalid-feedback mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <small class="ml-2">Tanggal Selesai</small>
+                                            <input type="date" name="selesai"
+                                                class="form-control @error('selesai') is-invalid @enderror">
+
+                                            @error('berkas')
+                                                <div class="invalid-feedback mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                         <!-- Upload Proposal dan surat pengajuan -->
                                         <div class="form-group">
                                             <small class="ml-2">Proposal <small style="color: red">*Max
