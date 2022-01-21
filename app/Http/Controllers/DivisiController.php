@@ -1495,7 +1495,7 @@ class DivisiController extends Controller
 
     public function deleteselesaimhskel($id)
     {
-        $data = DB::table('data_mhs_indivs')->where('user_id', $id)->select('data_mhs_indivs.id')->get();
+        $data = DB::table('data_mhs_indivs')->where('user_id', $id)->select('data_mhs_indivs.id', 'data_mhs_indivs.user_id')->get();
         //delete user
         DB::table('users')->where('id', $id)->delete();
         //delete file
@@ -1503,7 +1503,7 @@ class DivisiController extends Controller
         //mulai dan selesai
         DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->delete();
         foreach ($data as $d) {
-            File::deleteDirectory('file/berkas-mhs-kel/' . $d->id);
+            File::deleteDirectory('file/berkas-mhs-kel/' . $d->user_id);
             DB::table('interview')->where('id_individu', $d->id)->delete();
             File::deleteDirectory('file/interview-mhs-kel/' . $d->id);
             DB::table('foto_i_d_mhs')->where('id_individu', $d->id)->delete();
@@ -1551,7 +1551,7 @@ class DivisiController extends Controller
 
     public function deleteselesaismkkel($id)
     {
-        $data = DB::table('data_smk_indivs')->where('user_id', $id)->select('data_smk_indivs.id')->get();
+        $data = DB::table('data_smk_indivs')->where('user_id', $id)->select('data_smk_indivs.id', 'data_smk_indivs.user_id')->get();
         //delete user
         DB::table('users')->where('id', $id)->delete();
         //delete file
@@ -1559,7 +1559,7 @@ class DivisiController extends Controller
         //mulai dan selesai
         DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
         foreach ($data as $d) {
-            File::deleteDirectory('file/berkas-smk-kel/' . $d->id);
+            File::deleteDirectory('file/berkas-smk-kel/' . $d->user_id);
             DB::table('interview_smk')->where('id_individu', $d->id)->delete();
             DB::table('interview_smk')->where('id_individu', $d->id)->delete();
             File::deleteDirectory('file/interview-smk-kel/' . $d->id);
