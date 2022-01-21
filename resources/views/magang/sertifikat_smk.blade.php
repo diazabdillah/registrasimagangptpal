@@ -97,7 +97,7 @@
                             <div style="float: right;margin-right:60px;margin-top:40px;">
                                 <div>
                                     <p class="text-center">Surabaya,
-                                        {{ date('d-F-Y', strtotime($sertif->created_at)) }} </p>
+                                        {{ date('d-F-Y', strtotime($sertif->selesai)) }} </p>
                                 </div>
                                 <div style="margin-top: -20px">
                                     <p> PT PAL Indonesia (Persero)</p>
