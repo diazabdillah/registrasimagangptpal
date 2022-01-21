@@ -25,6 +25,7 @@ use App\Models\FotoMhsModels;
 use App\Models\FotoPenelitianModels;
 use App\Models\FotoSmkModels;
 use App\Models\Interview;
+use App\Models\Laporan;
 use App\Models\InterviewSmk;
 use App\Models\RekapAbsenmhs;
 use App\Models\RekapAbsenpenelitian;
@@ -873,8 +874,16 @@ class DivisiController extends Controller
 
     public function proseseditlaporan($id, Request $request)
     {
+        $lama = Laporan::find($id);
+        File::delete('file/laporan-mhs/' . $lama->path);
+        $file = $request->file('path');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-mhs/';
+        $file->move($tujuan_upload, $nama_file);
         DB::table('laporans')->where('id', $id)
             ->update([
+                'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
+                'path'=> $request->nama_file,
                 'revisi' => $request->revisi
             ]);
 
@@ -2823,6 +2832,8 @@ class DivisiController extends Controller
     {
         DB::table('laporans')->where('id', $id)
             ->update([
+                'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
+                'path'=> $request->path,
                 'revisi' => $request->revisi
             ]);
 
