@@ -59,19 +59,19 @@
         <div class="col">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#prosedure" role="tab" aria-controls="home" aria-selected="true">Prosedure</a>
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#prosedure" role="tab" aria-controls="home" aria-selected="true">Prosedure</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#laporan" role="tab" aria-controls="profile" aria-selected="false">Materi Pendukung Internship</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#kuota" role="tab" aria-controls="contact" aria-selected="false">Kuota</a>
+                    <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#kuota" role="tab" aria-controls="contact" aria-selected="false">Kuota</a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
             <img src="{{URL::asset('frontend')}}/img/Alur-Magang.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
         </div>
         <div class="tab-pane fade" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
@@ -84,7 +84,7 @@
             <br>
             <p style="text-align:justify;"> <a style="color: red;">Note :</a> Materi yang telah di download hanya untuk praktikan yang berstatus <b>magang aktif</b> dan materi ini diharapkan tidak disalahgunakan di luar kepentingan internship. Dan apabila terdapat pelanggaran yang dilakukan oleh para praktikan yang sengaja menyalahgunakan materi - materi tersebut. Koordinator internship nantinya akan menindaklanjuti sesuai dengan pelanggaran yang dilakukan. Terima kasih.</p>
         </div>
-        <div class="tab-pane fade" id="kuota" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="tab-pane fade show active" id="kuota" role="tabpanel" aria-labelledby="contact-tab">
             <div class="container-fluid">
                 <div class="card-1 Menu mb-4">
                     <div class="card-1 shadow">

@@ -59,10 +59,10 @@
         <div class="col">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#prosedure" role="tab" aria-controls="home" aria-selected="true">Prosedure</a>
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#prosedure" role="tab" aria-controls="home" aria-selected="true">Prosedure</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#laporan" role="tab" aria-controls="profile" aria-selected="false">Materi Pendukung Internship</a>
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#laporan" role="tab" aria-controls="profile" aria-selected="false">Materi Pendukung Internship</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#kuota" role="tab" aria-controls="contact" aria-selected="false">Kuota</a>
@@ -71,10 +71,10 @@
         </div>
     </div>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
             <img src="{{URL::asset('frontend')}}/img/Alur-Magang.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
         </div>
-        <div class="tab-pane fade" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade show active" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
             <h4>Materi Pendukung Internship</h4>
             <p>Hai sobat Praktikan PT PAL...</p>
             <br>
