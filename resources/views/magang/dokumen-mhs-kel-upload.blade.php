@@ -35,21 +35,21 @@
                                                 <label>KTP <small style="color: red">*Max
                                                         2MB</small></label>
                                                 <br><small style="color: blue">Contoh :</small>
-                                                <br> <img width="50%" src="{{ asset('img/contoh-ktp.png') }}" alt="">
+                                                <br> <img width="30%" src="{{ asset('img/contoh-ktp.png') }}" alt="">
                                                 <input type="file" class="form-control" id="ktp" name="foto[]">
                                             </div>
                                             <div class="form-group mt-4">
                                                 <label>KTM <small style="color: red">*Max
                                                         2MB</small></label>
                                                 <br><small style="color: blue">Contoh :</small>
-                                                <br><img width="35%" src="{{ asset('img/student-card.png') }}" alt="">
+                                                <br><img width="20%" src="{{ asset('img/student-card.png') }}" alt="">
                                                 <input type="file" class="form-control" id="ktm" name="foto[]">
                                             </div>
                                             <div class="form-group mt-4">
                                                 <label>Kartu BPJS Ketenagakerjaan <small style="color: red">*Max
                                                         2MB</small></label>
                                                 <br><small style="color: blue">Contoh :</small>
-                                                <br><img width="35%" src="{{ asset('img/contoh-bpjs.png') }}" alt="">
+                                                <br><img width="20%" src="{{ asset('img/contoh-bpjs.png') }}" alt="">
                                                 <input type="file" class="form-control" id="asuransi" name="foto[]">
                                             </div>
                                             <button type="submit" class="btn btn-primary mt-5">Upload Foto <i
