@@ -2830,6 +2830,12 @@ class DivisiController extends Controller
 
     public function proseseditlaporan_divisi($id, Request $request)
     {
+        $lama = Laporan::find($id);
+        File::delete('file/laporan-mhs/' . $lama->path);
+        $file = $request->file('path');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-mhs/';
+        $file->move($tujuan_upload, $nama_file);
         DB::table('laporans')->where('id', $id)
             ->update([
                 'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
