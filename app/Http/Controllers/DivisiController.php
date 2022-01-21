@@ -745,7 +745,8 @@ class DivisiController extends Controller
             $users = DB::table('kuota')->get();
             return view('divisi.Kuota', [
                 'ti' => $ti,
-                'users' => $users
+                'users' => $users,
+
             ]);
         } else {
             return redirect()->back();
@@ -756,6 +757,7 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18) {
             $ti = 'Kuota';
+            // $users= DB::table('users')->first();
             $user = DB::table('users')
             ->where('id', Auth::user()->id)
             ->first();
@@ -765,7 +767,7 @@ class DivisiController extends Controller
         }
     }
 
-    public function proses_kuota(Request $request)
+    public function proses_kuota(Request $request,$id)
     {
 
         $request->validate([
@@ -777,12 +779,13 @@ class DivisiController extends Controller
         ]);
 
         Kuota::create([
+            'user_id' => $id,
             'tanggal_buka' => $request->tanggal_buka,
             'tanggal_tutup' => $request->tanggal_tutup,
             'kuota' => $request->kuota,
             'divisi' => $request->divisi,
             'status_kuota' => $request->status_kuota,
-
+            'jenis_kuota'=>$request->jenis_kuota,
         ]);
         return redirect('/kuota');
     }

@@ -31,6 +31,7 @@
                                     <th>Tanggal Tutup</th>
                                     <th>Kuota</th>
                                     <th>Divisi</th>
+                                    <th>Jenis Kuota</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -44,16 +45,20 @@
                                     <td>{{ $kuota->tanggal_tutup }}</td>
                                     <td>{{ $kuota->kuota }}</td>
                                     <td>{{ $kuota->divisi }}</td>
+                                    <td>{{$kuota->jenis_kuota}}</td>
                                     @if ($kuota->status_kuota=='Tersedia')
                                     <td> <span class="badge badge-success p-1">{{ $kuota->status_kuota }}</span></td>
                                     @else
                                     <td> <span class="badge badge-danger p-1">{{ $kuota->status_kuota }}</span></td>
                                     @endif
                                     <td>
+                                        @if(Auth::user()->id == $kuota->user_id)
                                         <a class="btn btn-warning p-1" href="/edit-kuota/{{ $kuota->id }}"
                                             role="button">Edit</a>
                                         <a class="btn btn-danger p-1" href="/hapus-kuota/{{$kuota->id}}" role="button">Hapus</a>
+                                        @endif
                                     </td>
+                                   
                                 </tr>
 
                                 @endforeach

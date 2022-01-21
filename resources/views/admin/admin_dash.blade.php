@@ -377,7 +377,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Kuota Magang</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Kuota Magang/Penelitian</h6>
                         </div>
                         <div class="card-body">
         
@@ -391,6 +391,7 @@
                                             <th>Tanggal Tutup</th>
                                             <th>Kuota</th>
                                             <th>Divisi</th>
+                                            <th>Jenis Kuota</th>
                                             <th>Status</th>
                                            
                                         </tr>
@@ -404,6 +405,7 @@
                                             <td>{{ $kuota->tanggal_tutup }}</td>
                                             <td>{{ $kuota->kuota }}</td>
                                             <td>{{ $kuota->divisi }}</td>
+                                            <td>{{ $kuota->jenis_kuota }}</td>
                                             @if ($kuota->status_kuota=='Tersedia')
                                             <td> <span class="badge badge-success p-1">{{ $kuota->status_kuota }}</span></td>
                                             @else

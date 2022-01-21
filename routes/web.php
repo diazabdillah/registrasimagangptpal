@@ -269,7 +269,7 @@ Route::post('/proses_absensmk/{id}', [DivisiController::class, 'proses_absensmk'
 Route::get('/magang-aktif', [DivisiController::class, 'showMagangAktif']);
 Route::get('/kuota', [DivisiController::class, 'Kuota']);
 Route::get('/tambah-kuota', [DivisiController::class, 'tambah_kuota']);
-Route::post('/proses-kuota', [DivisiController::class, 'proses_kuota'])->name('proseskuota');
+Route::post('/proses-kuota/{id}', [DivisiController::class, 'proses_kuota'])->name('proseskuota');
 Route::get('/edit-kuota/{id}', [DivisiController::class, 'edit_kuota']);
 Route::put('/update-kuota/{id}', [DivisiController::class, 'update_kuota']);
 Route::get('/hapus-kuota/{id}',[DivisiController::class,'hapus_kuota']);

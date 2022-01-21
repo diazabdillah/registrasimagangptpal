@@ -10,10 +10,12 @@ class Kuota extends Model
     use HasFactory;
     protected $table = 'kuota';
     protected $fillable = [
+        'user_id',
         'tanggal_buka',
         'tanggal_tutup',
         'kuota',
         'divisi',
+        'jenis_kuota',
         'status_kuota'
     ];
 }

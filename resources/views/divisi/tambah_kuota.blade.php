@@ -18,7 +18,7 @@
                         Kuota
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('proseskuota') }}" method="POST">
+                        <form action="/proses-kuota/{{$user->id}}" method="POST">
                             @csrf
 
                             <div class="form-group">
@@ -44,7 +44,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <small class="ml-2">Jenis Kuota</small>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" name="jenis_kuota">
+                                        <option value="Magang">Magang</option>
+                                        <option value="Penelitian">Penelitian</option>
 
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <small class="ml-2">Status Kuota</small>
                                 <div class="input-group mb-3">
@@ -55,6 +64,7 @@
                                     </select>
                                 </div>
                             </div>
+                           
 
                             <button type="submit" class="btn btn-primary mt-4">Tambah Kuota</button>
                         </form>
