@@ -26,7 +26,7 @@
 
                                         <div class="card-body">
                                             <h3 class="card-title"><b>Nama :</b> {{ $user->nama }}</h3>
-                                            <h5 class="card-title"> {{ $user->nim }}</h5>
+                                            <h5 class="card-title"> {{ $user->nis }}</h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>

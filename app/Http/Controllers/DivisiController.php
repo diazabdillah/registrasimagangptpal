@@ -1475,7 +1475,7 @@ class DivisiController extends Controller
         DB::table('users')->where('id', $id)->delete();
         //delete file
         DB::table('file_mhs_indivs')->where('user_id', $id)->delete();
-        File::deleteDirectory('file/berkas-mahasiswa/' . $data->id);
+        File::deleteDirectory('file/berkas-mahasiswa/' . $data->user_id);
         //delete interview
         DB::table('interview')->where('id_individu', $data->id)->delete();
         File::deleteDirectory('file/interview-mhs/' . $data->id);
@@ -1531,7 +1531,7 @@ class DivisiController extends Controller
         DB::table('users')->where('id', $id)->delete();
         //delete file
         DB::table('file_smk_indivs')->where('user_id', $id)->delete();
-        File::deleteDirectory('file/berkas-smk/' . $data->id);
+        File::deleteDirectory('file/berkas-smk/' . $data->user_id);
         //delete interview
         DB::table('interview_smk')->where('id_individu', $data->id)->delete();
         File::deleteDirectory('file/interview-smk/' . $data->id);
@@ -2751,7 +2751,7 @@ class DivisiController extends Controller
 
             $user = User::find($id);
             if (DB::table('file_penelitian')->where('user_id', $id)->first()) {
-                File::deleteDirectories('file/berkas-penelitian/' . $user->id);
+                File::deleteDirectories('file/berkas-penelitian/' . $user->user_id);
             }
 
             DB::table('file_penelitian')
