@@ -237,7 +237,6 @@
 
                                             <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
                                                 <option value="20">Magang Selesai</option>
-                                                <option value="15">Magang Sertifikat</option>
                                                 <option value="4">Magang Aktif</option>
 
                                             </select>
