@@ -43,7 +43,7 @@
                                 <tr>
                                     <th>{{ $ap->nama }}</th>
                                     <th>Datang</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($ap->selesai), Carbon\Carbon::parse($ap->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now()))
                                     <= '08:00') <th>
                                                 <a class="btn btn-primary p-1"
@@ -64,7 +64,7 @@
                                 <tr>
                                     <th>{{ $ap->nama }}</th>
                                     <th>Pulang</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($ap->selesai), Carbon\Carbon::parse($ap->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
                                     <= '19:00') <th>
                                                 <a class="btn btn-primary p-1"
@@ -85,7 +85,7 @@
                                 <tr>
                                     <th>{{ $ap->nama }}</th>
                                     <th>Izin</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($ap->selesai), Carbon\Carbon::parse($ap->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
                                     strtotime(now()))
                                     <= '07:30')

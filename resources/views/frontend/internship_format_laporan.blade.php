@@ -108,7 +108,12 @@
                                             </th>
                                             <th>
                                                 <div class="d-flex justify-content-center">
-                                                    Kuota Magang
+                                                    Kuota
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div class="d-flex justify-content-center">
+                                                    Jenis Kuota
                                                 </div>
                                             </th>
                                             <th>
@@ -134,6 +139,7 @@
                                             <td>{{ $kuota->firstItem() + ++$i - 1 }}.</td>
                                             <td>{{ $k->divisi }}</td>
                                             <td>{{ $k->kuota }}</td>
+                                            <td>{{ $k->jenis_kuota }}</td>
                                             <td>{{ $k->status_kuota }}</td>
                                             <td>{{ $k->tanggal_buka }}</td>
                                             <td>{{ $k->tanggal_tutup }}</td>
