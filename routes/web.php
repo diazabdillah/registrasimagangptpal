@@ -236,6 +236,7 @@ Route::post('/proses-tambah-akun-divisi', [AdminController::class, 'proses_tamba
 Route::get('/edit-akun-divisi/{id}', [AdminController::class, 'edit_akun_divisi']);
 Route::put('/proses-edit-akun-divisi/{id}', [AdminController::class, 'proses_edit_akun_divisi']);
 Route::get('/delete-akun-divisi/{id}', [AdminController::class, 'delete_akun_divisi']);
+Route::get('/lihat_kuota',[AdminController::class,'kuota']);
 // End Halaman administrasi ========================
 
 // Halaman Divisi ========================
@@ -271,6 +272,7 @@ Route::get('/tambah-kuota', [DivisiController::class, 'tambah_kuota']);
 Route::post('/proses-kuota', [DivisiController::class, 'proses_kuota'])->name('proseskuota');
 Route::get('/edit-kuota/{id}', [DivisiController::class, 'edit_kuota']);
 Route::put('/update-kuota/{id}', [DivisiController::class, 'update_kuota']);
+Route::get('/hapus-kuota/{id}',[DivisiController::class,'hapus_kuota']);
 
 Route::get('/proses_penerimaan/{user_id}', [DivisiController::class, 'proses_penerimaan']);
 Route::get('/proses-penerimaan-smk/{user_id}', [DivisiController::class, 'proses_penerimaan_smk']);

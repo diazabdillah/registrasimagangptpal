@@ -24,44 +24,44 @@
                             <!-- Input Univ -->
                             <div class="form-group">
                                 <small class="ml-2">Kerjasama</small>
-                                <input type="text" class="form-control" id="" name="Kerjasama" placeholder="nilai angka">
+                                <input type="text" class="form-control" id="" name="Kerjasama" placeholder="contoh: 80" required>
                             </div>
                             <!-- Input Strata (S1/d3) -->
                             <div class="form-group">
                                 <small>Motivasi & Percaya Diri</small>
-                                <input type="text" name="MotivasiPercayaDiri" class="form-control">
+                                <input type="text" name="MotivasiPercayaDiri" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Inisiatif & Tanggung Jawab Kerja</small>
-                                <input type="text" class="form-control" id="nilai" name="InisiatifTanggungJawabKerja">
+                                <input type="text" class="form-control" id="nilai" name="InisiatifTanggungJawabKerja" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Loyalitas</small>
-                                <input type="text" class="form-control" id="nilai" name="Loyalitas">
+                                <input type="text" class="form-control" id="nilai" name="Loyalitas" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Etika & Sopan Santun</small>
-                                <input type="text" class="form-control" id="nilai" name="EtikaSopanSantun">
+                                <input type="text" class="form-control" id="nilai" name="EtikaSopanSantun" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Disiplin</small>
-                                <input type="text" class="form-control" id="nilai" name="Disiplin">
+                                <input type="text" class="form-control" id="nilai" name="Disiplin" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Pemahaman dan Kemampuan</small>
-                                <input type="text" class="form-control" id="nilai" name="PemahamanKemampuan">
+                                <input type="text" class="form-control" id="nilai" name="PemahamanKemampuan" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Kesehatan dan Keselamatan Kerja</small>
-                                <input type="text" class="form-control" id="nilai" name="KesehatanKeselamatanKerja">
+                                <input type="text" class="form-control" id="nilai" name="KesehatanKeselamatanKerja" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Laporan Kerja</small>
-                                <input type="text" class="form-control" id="nilai" name="laporankerja">
+                                <input type="text" class="form-control" id="nilai" name="laporankerja" required>
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Kehadiran</small>
-                                <input type="text" class="form-control" id="nilai" name="kehadiran">
+                                <input type="text" class="form-control" id="nilai" name="kehadiran" required>
                             </div>
 
 

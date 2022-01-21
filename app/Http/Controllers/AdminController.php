@@ -141,7 +141,13 @@ class AdminController extends Controller
             $officesmk = DB::table('data_smk_indivs')->where('divisi', '=', 'Office of The Board')->count();
             $officepenelitian = DB::table('data_penelitian')->where('divisi', '=', 'Office of The Board')->count();
             $officetotal = $officemhs + $officesmk + $officepenelitian;
+
+         
+
+                $users = DB::table('kuota')->get();
+       
             return view('admin.admin_dash', [
+                'users' =>$users,
                 'ti' => $ti,
                 'i' => $i,
                 'data' => $data,

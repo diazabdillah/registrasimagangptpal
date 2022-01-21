@@ -38,6 +38,7 @@
                                     <div class="card-header">
                                         Upload Tes Kepribadian
                                     </div>
+                                    <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%">
                                         <thead>
                                             <tr>
@@ -97,7 +98,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-
+                                    </div>
                                 </div>
                             </div>
                             <div class="alert alert-danger">

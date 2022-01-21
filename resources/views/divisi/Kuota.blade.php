@@ -44,7 +44,7 @@
                                     <td>{{ $kuota->tanggal_tutup }}</td>
                                     <td>{{ $kuota->kuota }}</td>
                                     <td>{{ $kuota->divisi }}</td>
-                                    @if ($kuota->status_kuota=='tersedia')
+                                    @if ($kuota->status_kuota=='Tersedia')
                                     <td> <span class="badge badge-success p-1">{{ $kuota->status_kuota }}</span></td>
                                     @else
                                     <td> <span class="badge badge-danger p-1">{{ $kuota->status_kuota }}</span></td>
@@ -52,7 +52,7 @@
                                     <td>
                                         <a class="btn btn-warning p-1" href="/edit-kuota/{{ $kuota->id }}"
                                             role="button">Edit</a>
-                                        <a class="btn btn-secondary p-1" href="#" role="button">Hapus</a>
+                                        <a class="btn btn-danger p-1" href="/hapus-kuota/{{$kuota->id}}" role="button">Hapus</a>
                                     </td>
                                 </tr>
 

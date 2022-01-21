@@ -756,8 +756,10 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18) {
             $ti = 'Kuota';
-            $divisi = Divisi::all();
-            return view('divisi.tambah_kuota', ['ti' => $ti, 'divisi' => $divisi]);
+            $user = DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->first();
+            return view('divisi.tambah_kuota', ['ti' => $ti,'user'=> $user]);
         } else {
             return redirect()->back();
         }
@@ -795,6 +797,14 @@ class DivisiController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+    public function hapus_kuota($id){
+        $kuota = DB::table('kuota')->find($id);
+      
+        DB::table('kuota')
+            ->where('id', $kuota->id)
+            ->delete();
+        return redirect()->back();
     }
 
     public function rekam_jejak_magang()
