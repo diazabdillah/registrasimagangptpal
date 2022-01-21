@@ -1915,7 +1915,7 @@ class MagangController extends Controller
                 'dates' => $dates
             ]);
 
-            return $pdf->download('id-card-mhs.pdf');
+            return $pdf->download('id-card-smk.pdf');
         } else {
             return redirect()->back();
         }
