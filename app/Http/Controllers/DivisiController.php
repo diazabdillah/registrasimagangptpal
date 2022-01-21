@@ -2618,7 +2618,7 @@ class DivisiController extends Controller
                 }
             } else {
                 if (DB::table('file_mhs_indivs')->where('user_id', $id)->first()) {
-                    File::deleteDirectories('file/berkas-mhs-kel/' . $user->id);
+                    File::deleteDirectories('file/berkas-mhs-kel/' . $user->user_id);
                 }
             }
 
@@ -2683,7 +2683,7 @@ class DivisiController extends Controller
                 }
             } else {
                 if (DB::table('file_smk_indivs')->where('user_id', $id)->first()) {
-                    File::deleteDirectories('file/berkas-smk-kel/' . $user->id);
+                    File::deleteDirectories('file/berkas-smk-kel/' . $user->user_id);
                 }
             }
 
