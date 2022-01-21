@@ -155,6 +155,9 @@
                 <!-- Area Chart -->
 
                 <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Magang Aktif Setiap Divisi di PT PAL Indonesia</h6>
+                    </div>
                     <div class="card-body">
 
                         <div class="table-responsive">
@@ -365,7 +368,64 @@
         </div>
     </div>
         <!-- End of Main Content -->
+        <div class="container-fluid">
 
+            <div class="row">
+                <div class="col-lg">
+        
+        
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Kuota Magang</h6>
+                        </div>
+                        <div class="card-body">
+        
+        
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Tanggal Buka</th>
+                                            <th>Tanggal Tutup</th>
+                                            <th>Kuota</th>
+                                            <th>Divisi</th>
+                                            <th>Status</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($users as $kuota)
+        
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{{ $kuota->tanggal_buka }}</td>
+                                            <td>{{ $kuota->tanggal_tutup }}</td>
+                                            <td>{{ $kuota->kuota }}</td>
+                                            <td>{{ $kuota->divisi }}</td>
+                                            @if ($kuota->status_kuota=='Tersedia')
+                                            <td> <span class="badge badge-success p-1">{{ $kuota->status_kuota }}</span></td>
+                                            @else
+                                            <td> <span class="badge badge-danger p-1">{{ $kuota->status_kuota }}</span></td>
+                                            @endif
+                                           
+                                        </tr>
+        
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+                <!-- /.container-fluid -->
+        
+        
+            </div>
+        </div>
+        
     @endsection
     @section('footer')
         <script src="https://code.highcharts.com/highcharts.src.js"></script>

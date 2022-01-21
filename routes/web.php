@@ -236,6 +236,7 @@ Route::post('/proses-tambah-akun-divisi', [AdminController::class, 'proses_tamba
 Route::get('/edit-akun-divisi/{id}', [AdminController::class, 'edit_akun_divisi']);
 Route::put('/proses-edit-akun-divisi/{id}', [AdminController::class, 'proses_edit_akun_divisi']);
 Route::get('/delete-akun-divisi/{id}', [AdminController::class, 'delete_akun_divisi']);
+Route::get('/lihat_kuota',[AdminController::class,'kuota']);
 // End Halaman administrasi ========================
 
 // Halaman Divisi ========================
