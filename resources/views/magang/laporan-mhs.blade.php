@@ -46,13 +46,16 @@
                                                 <div class="card-body" style="margin-left:15px;">
                                                     <h5 class="card-title"><b>{{ $laporans->judul }}</b></h5>
                                                     <p class="card-text">{{ $laporans->divisi }}</p>
+                                                    <p class="card-text">Nama Pembimbing Lapangan : {{ $laporans->revisi }}</p>
                                                     <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
-                                                    <p class="card-text"><small class="text-muted">Diposting
+                                                    <p class="card-text">Nama Pembimbing Dept. HCD : {{ $laporans->revisi }}</p>
+                                                    <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
+                                                  <p class="card-text"><small class="text-muted">Diposting :
                                                             {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
                                                     </p>
                                                     @if ($laporans->path != null)
                                                         <a class="btn btn-primary"
-                                                            href="/lihat-laporan-mhs/{{ $laporans->id }}">lihat</a>
+                                                            href="/lihat-laporan-mhs/{{ $laporans->id }}">Lihat Laporan</a>
 
                                                         <a class="btn btn-warning"
                                                             href="/edit-laporan-mhs/{{ $laporans->id }}">Edit</a>
@@ -91,10 +94,10 @@
                                 <form method="GET" action="/mhs/cari">
 
                                     @csrf
-                                    <label for="">Kategori:</label>
+                                    <label for="">Kategori Jurusan:</label>
                                     <div class="input-group" style="width:200px;">
                                         <select class="custom-select" name="kategori" required>
-
+                                           
                                             <option value="Informatika">
                                                 Informatika
                                             </option>
@@ -140,7 +143,28 @@
                                             <option value="Lingkungan">
                                                 Lingkungan
                                             </option>
-
+                                            <option value="Perkapalan">
+                                                Perkapalan
+                                            </option>
+                                            <option value="Hubungan Internasional">
+                                                Hubungan Internasional
+                                            </option>
+                                            <option value="Adminstrasi Perkantoran">
+                                                Adminstrasi Perkantoran
+                                            </option>
+                                          
+                                            <option value="Listrik">
+                                            Listrik
+                                            </option>
+                                            <option value="Bahasa Inggris">
+                                                Bahasa Inggris
+                                            </option>
+                                            <option value="Psikologi">
+                                                Psikologi
+                                            </option>
+                                            <option value="Bisnis dan Manajemen">
+                                                Bisnis dan Manajemen
+                                            </option>
                                         </select>
 
                                         <button class="btn btn-primary" type="submit">Sort</button>
@@ -177,7 +201,7 @@
                                                     {{-- <a class="btn btn-primary"
                                                             href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
                                                     <a class="mr-4 mt-4 btn btn-primary"
-                                                        href="/lihat-laporan-mhs/{{ $laporan->id }}">lihat</a>
+                                                        href="/lihat-laporan-mhs/{{ $laporan->id }}">Lihat Laporan</a>
 
                                                 @endif
                                             </div>
