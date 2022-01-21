@@ -197,7 +197,7 @@
                 <div class="alert alert-danger" role="alert">
                     <p class="card-text">
                         <b> Note :</b> <br>
-                        - Mohon para Penelitian bisa mencari refrensi format laporan akhir di perpustakaan ini dan bisa ke halaman depan bagian menu "Info Intership" <br>
+                        - Mohon para Penelitian bisa mencari refrensi format laporan akhir di perpustakaan ini dan bisa ke halaman depan bagian menu "Info Internship" <br>
                         - Mohon para Penelitian mengupload berkas laporan akhir berupa pdf dan tidak boleh isi laporan akhir sama dengan orang lain atau copy paste laporan akhir orang lain <br>
                         - Mohon Para Penelitian mengikuti peraturan laporan akhir jika melanggar/tidak jujur akan diberikan sanksi. 
     

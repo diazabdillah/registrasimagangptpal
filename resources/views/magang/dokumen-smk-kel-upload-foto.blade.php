@@ -31,7 +31,7 @@
                                         <label>Foto 3x4 <small style="color: red">*Max
                                                 2MB</small></label>
                                         <br><small style="color: blue">Contoh :</small>
-                                        <br><img width="30%" src="{{ asset('img/contoh-foto.png') }}" alt="">
+                                        <br><img width="15%" src="{{ asset('img/contoh-foto.png') }}" alt="">
                                         <input type="file" class="form-control" id="foto" name="fotoid[]">
                                         <button type="submit" class="btn btn-primary mt-3">Upload Foto <i
                                                 class="fas fa-upload"></i></button>

@@ -43,7 +43,7 @@
                                 <tr>
                                     <th>{{ $as->nama }}</th>
                                     <th>Datang</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($as->selesai), Carbon\Carbon::parse($as->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now()))
                                     <= '08:00')
                                             <th>
@@ -65,7 +65,7 @@
                                 <tr>
                                     <th>{{ $as->nama }}</th>
                                     <th>Pulang</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($as->selesai), Carbon\Carbon::parse($as->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
                                     <= '19:00')
                                             <th>
@@ -87,7 +87,7 @@
                                 <tr>
                                     <th>{{ $as->nama }}</th>
                                     <th>Izin</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($as->selesai), Carbon\Carbon::parse($as->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
                                     strtotime(now()))
                                     <= '07:30')
