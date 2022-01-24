@@ -13,11 +13,6 @@ class LaporanPenelitian extends Model
         'nama',
         'judul',
         'path',
-        'path_revisi',
-        'nama_pembimbing_lapangan',
-        'nama_pembimbing_hcd',
-        'revisi',
-        'revisi_divisi',
         'divisi',
         'jurusan',
     ];

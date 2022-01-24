@@ -47,17 +47,14 @@
                                                 <div class="card-body" style="margin-left:15px;">
                                                     <h5 class="card-title"><b>{{ $laporans->judul }}</b></h5>
                                                     <p class="card-text">{{ $laporans->divisi }}</p>
-                                                    <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
-                                                    <p class="card-text"><small class="text-muted">Diposting
-                                                            {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
+                                                   <p class="card-text"><small class="text-muted">Diposting
+                                                            {{ date('d-m-Y', strtotime($laporans->created_at)) }}</small>
                                                     </p>
                                                     @if ($laporans->path != null)
                                                         <a class="btn btn-primary"
                                                             href="/lihat-laporan-penelitian/{{ $laporans->id }}">lihat</a>
 
-                                                        <a class="btn btn-warning"
-                                                            href="/edit-laporan-penelitian/{{ $laporans->id }}">Edit</a>
-
+                                                       
                                                     @endif
                                                 </div>
                                             </div>
@@ -140,6 +137,46 @@
                                             </option>
                                             <option value="Lingkungan">
                                                 Lingkungan
+                                            </option>
+                                            <option value="Perkapalan">
+                                                Perkapalan
+                                            </option>
+                                            <option value="Hubungan Internasional">
+                                                Hubungan Internasional
+                                            </option>
+                                            <option value="Adminstrasi Perkantoran">
+                                                Adminstrasi Perkantoran
+                                            </option>
+                                          
+                                            <option value="Listrik">
+                                            Listrik
+                                            </option>
+                                            <option value="Bahasa Inggris">
+                                                Bahasa Inggris
+                                            </option>
+                                            <option value="Psikologi">
+                                                Psikologi
+                                            </option>
+                                            <option value="Bisnis dan Manajemen">
+                                                Bisnis dan Manajemen
+                                            </option>
+                                            <option value="Bisnis dan Manajemen">
+                                                Bisnis dan Manajemen
+                                            </option>
+                                            <option value="Ilmu Komputer">
+                                                Ilmu Komputer
+                                            </option>
+                                            <option value="Kimia">
+                                                Kimia
+                                            </option>
+                                            <option value="Fisika">
+                                                Fisika
+                                            </option>
+                                            <option value="Statistik">
+                                                Statistik
+                                            </option>
+                                            <option value="Kelautan">
+                                                Kelautan
                                             </option>
 
                                         </select>
