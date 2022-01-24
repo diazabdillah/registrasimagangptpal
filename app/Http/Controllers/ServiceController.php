@@ -584,14 +584,18 @@ class ServiceController extends Controller
             'tanggal_selesai' => 'required',
             'tempat' => 'required',
             'peserta_sprint' => 'required',
-            'peserta_hadir' => 'required',
-            'fileSertifikasi' => 'required'
+            'peserta_hadir' => 'required'
         ]);
 
         $file = $request->file('fileSertifikasi');
-        $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'DokumenSertifikatTraining';
-        $file->move($tujuan_upload, $nama_file);
+        if ($file == null) {
+            $nama_file = "-";
+        } else {
+            $nama_file = $file->getClientOriginalName();
+            $tujuan_upload = 'DokumenSertifikatTraining';
+            $file->move($tujuan_upload, $nama_file);
+    
+        }
 
         JadwalSertifikasi::create([
             'nama_training' => $request->nama_training,
@@ -788,7 +792,7 @@ class ServiceController extends Controller
         return redirect('/show-informasi-lsp');
     }
 
-    public function deleteJumlahAssesor($id)
+    public function deleteJumlahAsesor($id)
     {
         DB::table('jumlah_asesor')->where('id', $id)->delete();
         return redirect('/show-informasi-lsp')->with('succes', 'Data Asesor Anda Berhasil DiHapus');

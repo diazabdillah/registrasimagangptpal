@@ -243,7 +243,7 @@
                             <tbody>
                                 @foreach ($data_ja as $dp)
                                 <tr class="text-center">
-                                    <td>{{ $data_ja->firstItem() + ++$j - 1 }}.</td>
+                                    <td>{{ $data_ja->firstItem() + ++$k - 1 }}.</td>
                                     <td>{{ $dp->nomor_registrasi }}</td>
                                     <td>{{ $dp->nama_assessor }}</td>
                                     <td>

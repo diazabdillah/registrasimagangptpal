@@ -60,6 +60,7 @@
 
             <!--Section heading-->
             <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+            <p style="text-align: center;">*Form Contact Us hanya digunakan untuk memberi masukan dan saran</p>
             <!--Section description-->
 
             <div class="row">
