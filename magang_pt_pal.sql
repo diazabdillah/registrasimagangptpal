@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 24, 2022 at 02:28 AM
+-- Generation Time: Jan 24, 2022 at 02:53 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -739,11 +739,6 @@ CREATE TABLE IF NOT EXISTS `laporan_penelitian` (
   `nama` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path_revisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_pembimbing_lapangan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_pembimbing_hcd` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `revisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `revisi_divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `divisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
