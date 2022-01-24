@@ -324,7 +324,7 @@
                                     <td>{{ $kmhs }}</td>
                                     <td>{{ $ksmk }}</td>
                                     <td>{{ $kpenelitian }}</td>
-                                    <td class="text-center"><b>{{ $kptotal }}</b></td>
+                                    <td class="text-center"><b>{{ $ktotal }}</b></td>
                                 </tr>
                                 <tr style="width: 10px;font-size:15px;">
                                     <th scope="row">{{ $i++ }}</th>
@@ -386,14 +386,15 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Tanggal Buka</th>
-                                            <th>Tanggal Tutup</th>
-                                            <th>Kuota</th>
-                                            <th>Divisi</th>
-                                            <th>Jenis Kuota</th>
-                                            <th>Status</th>
-                                           
+                                            <th scope="col">No</th>
+                                            <th scope="col">Tanggal Buka</th>
+                                            <th scope="col">Tanggal Tutup</th>
+                                            <th scope="col">Divisi</th>
+                                            <th scope="col">Jenis Kuota</th>   
+                                           <th scope="col">Kuota TW 1</th>
+                                           <th scope="col">Kuota TW 2</th>
+                                           <th scope="col">Kuota TW 3</th>
+                                           <th scope="col">Kuota TW 4</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -403,15 +404,13 @@
                                             <td>1</td>
                                             <td>{{ $kuota->tanggal_buka }}</td>
                                             <td>{{ $kuota->tanggal_tutup }}</td>
-                                            <td>{{ $kuota->kuota }}</td>
+                                        
                                             <td>{{ $kuota->divisi }}</td>
                                             <td>{{ $kuota->jenis_kuota }}</td>
-                                            @if ($kuota->status_kuota=='Tersedia')
-                                            <td> <span class="badge badge-success p-1">{{ $kuota->status_kuota }}</span></td>
-                                            @else
-                                            <td> <span class="badge badge-danger p-1">{{ $kuota->status_kuota }}</span></td>
-                                            @endif
-                                           
+                                            <td>{{$kuota->tw1}}</td>
+                                            <td>{{$kuota->tw2}}</td>
+                                            <td>{{$kuota->tw3}}</td>
+                                            <td>{{$kuota->tw4}}</td>
                                         </tr>
         
                                         @endforeach

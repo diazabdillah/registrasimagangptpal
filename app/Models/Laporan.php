@@ -13,10 +13,13 @@ class Laporan extends Model
         'user_id',
         'nama',
         'judul',
-        'tanggal_kumpul',
         'divisi',
+        'nama_pembimbing_lapangan',
+        'nama_pembimbing_hcd',
         'jurusan',
         'revisi',
-        'path'
+        'revisi_divisi',
+        'path',
+        'path_revisi'
     ];
 }

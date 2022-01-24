@@ -29,6 +29,7 @@
                                                 <th>Nama</th>
                                                 <th>Judul</th>
                                                 <th>File</th>
+                                                <th>Revisi</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -41,6 +42,8 @@
                                                 <td class="text-center">{{ $u->nama }}</td>
                                                 <td class="text-center">{{ $u->judul }}</td>
                                                 <td class="text-center">{{ $u->path }}</td>
+                                                <td class="text-center">{{ $u->revisi }}</td>
+                                             
                                                 <td>
                                                     @if ($u->path != null)
                                                     <a class="btn btn-warning"
@@ -78,6 +81,7 @@
                                                 <th>Nama</th>
                                                 <th>Judul</th>
                                                 <th>File</th>
+                                                <th>Revisi</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -90,6 +94,8 @@
                                                 <td class="text-center">{{ $us->nama }}</td>
                                                 <td class="text-center">{{ $us->judul }}</td>
                                                 <td class="text-center">{{ $us->path }}</td>
+                                                <td class="text-center">{{ $us->revisi }}</td>
+                                              
                                                 <td>
                                                     @if ($us->path != null)
                                                     <a class="btn btn-warning"

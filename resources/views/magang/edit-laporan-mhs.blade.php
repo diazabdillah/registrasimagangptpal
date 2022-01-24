@@ -23,8 +23,12 @@
                                 @csrf
 
                                 <div class="form-group">
+                                    <small class="ml-2">Judul Laporan</small>
+                                    <input type="text" class="form-control" name="judul" value="{{$data->judul}}" required>
+                                </div>
+                                <div class="form-group">
                                     <span>File Laporan</span><br>
-                                    <input type="file" name="path">
+                                    <input type="file" name="path" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mt-4">Upload Laporan</button>

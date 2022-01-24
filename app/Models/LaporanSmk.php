@@ -14,9 +14,11 @@ class LaporanSmk extends Model
         'nama',
         'judul',
         'jurusan',
-        'tanggal_kumpul',
+        'nama_pembimbing_lapangan',
+        'nama_pembimbing_hcd',
         'divisi',
-        'revisi',
-        'path'
+        'revisi_divisi',
+        'path',
+        'path_revisi'
     ];
 }

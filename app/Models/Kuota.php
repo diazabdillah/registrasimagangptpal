@@ -13,9 +13,12 @@ class Kuota extends Model
         'user_id',
         'tanggal_buka',
         'tanggal_tutup',
-        'kuota',
         'divisi',
         'jenis_kuota',
+        'tw1',
+        'tw2',
+        'tw3',
+        'tw4',
         'status_kuota'
     ];
 }

@@ -16,12 +16,12 @@
                         <b>Peraturan Laporan Akhir:</b><br>
                         - Sebelum laporan akhir dikumpulkan, harap ke Divisi Human Capital Management (Departemen Human Capital Development) untuk menemui koordinator internship
                         untuk melakukan presentasi singkat laporan akhir sewaktu para praktikan hampir selesai magangnya. <br>
-                        - Jika sudah melakukan Presentasi mohon klik button "upload laporan" untuk softfile laporan akhir diupload.
+                        - Jika sudah melakukan Presentasi mohon klik button "upload laporan" untuk softfile laporan akhir diupload. <br>
                         - Jika Laporan Akhir Anda terdapat revisi Mohon segera upload kembali file lapran akhir di button "edit" laporan yang sudah di perbaiki atau di revisi
                     </span>
                     <br>
                     <br>
-                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan" role="button"><i class="fas fa-plus"></i>
+                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan-smk" role="button"><i class="fas fa-plus"></i>
                         upload laporan</a>
                 </div>
                 <!-- DataTales Example -->
@@ -43,22 +43,26 @@
                                                     src="{{ asset('img/book.png') }}" class="gambar1" alt="pt pal">
                                             </div>
                                             <div class="col-md-8">
-                                                <div class="card-body" style="margin-left:15px;">
+                                                <div class="card-body" style="margin-left:20px;">
                                                     <h5 class="card-title"><b>{{ $laporans->judul }}</b></h5>
                                                     <p class="card-text">{{ $laporans->divisi }}</p>
+                                                    <p class="card-text">Nama Pembimbing Lapangan : {{ $laporans->nama_pembimbing_lapangan }}</p>
+                                                    <p class="card-text">Revisi : {{ $laporans->revisi_divisi }}</p>
+                                                    <p class="card-text">Nama Pembimbing Dept. HCD : {{ $laporans->nama_pembimbing_hcd }}</p>
                                                     <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
                                                     <p class="card-text"><small class="text-muted">Diposting
-                                                            {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
+                                                            {{ date('d-m-Y', strtotime($laporans->created_at)) }}</small>
                                                     </p>
                                                     @if ($laporans->path != null)
                                                         <a class="btn btn-primary"
-                                                            href="/lihat-laporan-smk/{{ $laporans->id }}">lihat</a>
-                                                        @if ($laporans->revisi != null)
+                                                            href="/lihat-laporan-smk/{{ $laporans->id }}">Lihat Laporan</a>
+                                                
                                                             <a class="btn btn-warning"
                                                                 href="/edit-laporan-smk/{{ $laporans->id }}">Edit</a>
-
+                                                                <a class="btn btn-danger"
+                                                                href="/lihat-laporan-smk-revisi/{{ $laporans->id }}">Lihat Revisi</a>
                                                         @endif
-                                                    @endif
+                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +145,47 @@
                                             <option value="Lingkungan">
                                                 Lingkungan
                                             </option>
-
+                                            <option value="Perkapalan">
+                                                Perkapalan
+                                            </option>
+                                            <option value="Hubungan Internasional">
+                                                Hubungan Internasional
+                                            </option>
+                                            <option value="Adminstrasi Perkantoran">
+                                                Adminstrasi Perkantoran
+                                            </option>
+                                          
+                                            <option value="Listrik">
+                                            Listrik
+                                            </option>
+                                            <option value="Bahasa Inggris">
+                                                Bahasa Inggris
+                                            </option>
+                                            <option value="Psikologi">
+                                                Psikologi
+                                            </option>
+                                            <option value="Bisnis dan Manajemen">
+                                                Bisnis dan Manajemen
+                                            </option>
+                                            <option value="Bisnis dan Manajemen">
+                                                Bisnis dan Manajemen
+                                            </option>
+                                            <option value="Ilmu Komputer">
+                                                Ilmu Komputer
+                                            </option>
+                                            <option value="Kimia">
+                                                Kimia
+                                            </option>
+                                            <option value="Fisika">
+                                                Fisika
+                                            </option>
+                                            <option value="Statistik">
+                                                Statistik
+                                            </option>
+                                            <option value="Kelautan">
+                                                Kelautan
+                                            </option>
+ 
                                         </select>
 
                                         <button class="btn btn-primary" type="submit">Sort</button>
@@ -178,7 +222,7 @@
                                                     {{-- <a class="btn btn-primary"
                                                             href="{{ asset('file/laporan-mhs/isi/' . $laporan->path) }}">Download</a> --}}
                                                     <a class="mr-4 mt-4 btn btn-primary"
-                                                        href="/lihat-laporan-smk/{{ $laporan->id }}">lihat</a>
+                                                        href="/lihat-laporan-smk/{{ $laporan->id }}">Lihat Laporan</a>
 
                                                 @endif
                                             </div>

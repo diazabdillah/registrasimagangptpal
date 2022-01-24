@@ -18,9 +18,12 @@ class CreateKuotaTabel extends Migration
             $table->integer('user_id');
             $table->date('tanggal_buka');
             $table->date('tanggal_tutup');
-            $table->integer('kuota');
             $table->string('divisi');
             $table->string('jenis_kuota');
+            $table->string('tw1')->nullable();
+            $table->string('tw2')->nullable();
+            $table->string('tw3')->nullable();
+            $table->string('tw4')->nullable();
             $table->string('status_kuota');
             $table->timestamps();
         });

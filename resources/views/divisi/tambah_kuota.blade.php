@@ -30,8 +30,23 @@
                                 <input type="date" class="form-control" id="tanggal" name="tanggal_tutup">
                             </div>
                             <div class="form-group">
-                                <small class="ml-2">Jumlah Kuota</small>
-                                <input type="text" class="form-control" id="kuota" name="kuota">
+                                <small class="ml-2">Tw 1 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw1">
+                            </div>
+
+                            <div class="form-group">
+                                <small class="ml-2">Tw 2 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw2">
+                            </div>
+                            
+                            <div class="form-group">
+                                <small class="ml-2">Tw 3 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw3">
+                            </div>
+                            
+                            <div class="form-group">
+                                <small class="ml-2">Tw 4 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw4">
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Divisi</small>
@@ -54,6 +69,7 @@
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <small class="ml-2">Status Kuota</small>
                                 <div class="input-group mb-3">

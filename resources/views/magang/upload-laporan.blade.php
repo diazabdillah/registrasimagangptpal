@@ -30,11 +30,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <small class="ml-2">Tanggal Kumpul</small>
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal_kumpul"
-                                        value={{ now() }}>
-                                </div>
-                                <div class="form-group">
                                     <small class="ml-2">Divisi</small>
                                     <div class="input-group mb-3">
                                         <select class="custom-select" name="divisi">

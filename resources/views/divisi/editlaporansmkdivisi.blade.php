@@ -24,8 +24,16 @@
                                 @csrf
 
                                 <div class="form-group">
+                                    <small class="ml-2">Nama Pembimbing Lapangan</small>
+                                    <input type="text" class="form-control" id="nama_pembimbing_lapangan" name="nama_pembimbing_lapangan" required>
+                                </div>
+                                <div class="form-group">
                                     <small class="ml-2">Revisi Laporan</small>
-                                    <textarea class="form-control" rows="10" name="revisi"></textarea>
+                                    <textarea class="form-control" rows="10" name="revisi_divisi" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <small class="ml-2">File Revisi Laporan</small>
+                                    <input type="file" class="form-control" id="path" name="path_revisi" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mt-4">Upload Laporan</button>

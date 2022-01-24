@@ -21,6 +21,10 @@
 
                         <form method="POST" action="{{ route('tambahnilaismk', [$user->id]) }}">
                             @csrf
+                            <div class="form-group">
+                                <small class="ml-2">Nama Pembimbing</small>
+                                <input type="text" class="form-control" id="" name="pembimbing" required>
+                            </div>
                             <!-- Input Univ -->
                             <div class="form-group">
                                 <small class="ml-2">Kerjasama</small>

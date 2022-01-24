@@ -43,22 +43,24 @@
                                                     src="{{ asset('img/book.png') }}" class="gambar1" alt="pt pal">
                                             </div>
                                             <div class="col-md-8">
-                                                <div class="card-body" style="margin-left:15px;">
+                                                <div class="card-body" style="margin-left:20px;">
                                                     <h5 class="card-title"><b>{{ $laporans->judul }}</b></h5>
                                                     <p class="card-text">{{ $laporans->divisi }}</p>
-                                                    <p class="card-text">Nama Pembimbing Lapangan : {{ $laporans->revisi }}</p>
-                                                    <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
-                                                    <p class="card-text">Nama Pembimbing Dept. HCD : {{ $laporans->revisi }}</p>
+                                                    <p class="card-text">Nama Pembimbing Lapangan : {{ $laporans->nama_pembimbing_lapangan }}</p>
+                                                    <p class="card-text">Revisi : {{ $laporans->revisi_divisi }}</p>
+                                                    <p class="card-text">Nama Pembimbing Dept. HCD : {{ $laporans->nama_pembimbing_hcd }}</p>
                                                     <p class="card-text">Revisi : {{ $laporans->revisi }}</p>
                                                   <p class="card-text"><small class="text-muted">Diposting :
-                                                            {{ date('d-m-Y', strtotime($laporans->tanggal_kumpul)) }}</small>
+                                                            {{ date('d-m-Y', strtotime($laporans->created_at)) }}</small>
                                                     </p>
                                                     @if ($laporans->path != null)
                                                         <a class="btn btn-primary"
                                                             href="/lihat-laporan-mhs/{{ $laporans->id }}">Lihat Laporan</a>
-
+                                                            <a class="btn btn-danger"
+                                                            href="/lihat-laporan-mhs-revisi/{{ $laporans->id }}">Lihat Revisi</a>
                                                         <a class="btn btn-warning"
                                                             href="/edit-laporan-mhs/{{ $laporans->id }}">Edit</a>
+                                                            
 
                                                     @endif
                                                 </div>
@@ -164,6 +166,24 @@
                                             </option>
                                             <option value="Bisnis dan Manajemen">
                                                 Bisnis dan Manajemen
+                                            </option>
+                                            <option value="Bisnis dan Manajemen">
+                                                Bisnis dan Manajemen
+                                            </option>
+                                            <option value="Ilmu Komputer">
+                                                Ilmu Komputer
+                                            </option>
+                                            <option value="Kimia">
+                                                Kimia
+                                            </option>
+                                            <option value="Fisika">
+                                                Fisika
+                                            </option>
+                                            <option value="Statistik">
+                                                Statistik
+                                            </option>
+                                            <option value="Kelautan">
+                                                Kelautan
                                             </option>
                                         </select>
 

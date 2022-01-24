@@ -18,9 +18,10 @@ class CreateLaporansSmkTable extends Migration
             $table->string('nama');
             $table->string('judul');
             $table->string('path');
+            $table->string('path_revisi')->nullable();
             $table->string('jurusan');
             $table->string('revisi')->nullable();
-            $table->date('tanggal_kumpul');
+            $table->string('revisi_divisi')->nullable();
             $table->string('divisi');
             $table->timestamps();
         });

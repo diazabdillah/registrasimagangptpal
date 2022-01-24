@@ -449,6 +449,7 @@ Route::get('/laporan-mhs', [MagangController::class, 'laporan_mhs']);
 Route::get('/upload-laporan', [MagangController::class, 'upload_laporan']);
 Route::post('/proses-laporan', [MagangController::class, 'proses_laporan']);
 Route::get('/lihat-laporan-mhs/{id}', [MagangController::class, 'lihat_laporan_mhs']);
+Route::get('/lihat-laporan-mhs-revisi/{id}', [MagangController::class, 'lihat_laporan_mhs_revisi']);
 Route::get('/edit-laporan-mhs/{id}', [MagangController::class, 'edit_laporan_mhs']);
 Route::put('/proses-edit-laporan-mhs/{id}', [MagangController::class, 'proses_edit_laporan_mhs']);
 Route::get('/mhs/cari', [MagangController::class, 'laporan_mhs']);
@@ -543,6 +544,8 @@ Route::get('/laporan-smk', [MagangController::class, 'laporan_smk']);
 Route::get('/upload-laporan-smk', [MagangController::class, 'upload_laporan_smk']);
 Route::post('/proses-laporan-smk', [MagangController::class, 'proses_laporan_smk']);
 Route::get('/lihat-laporan-smk/{id}', [MagangController::class, 'lihat_laporan_smk']);
+Route::get('/lihat-laporan-smk-revisi/{id}', [MagangController::class, 'lihat_laporan_smk_revisi']);
+
 Route::get('/edit-laporan-smk/{id}', [MagangController::class, 'edit_laporan_smk']);
 Route::put('/proses-edit-laporan-smk/{id}', [MagangController::class, 'proses_edit_laporan_smk']);
 Route::get('/surat-penerimaan-smk', [MagangController::class, 'surat_penerimaan_smk']);

@@ -17,7 +17,6 @@ use App\Models\FileSmkIndivs;
 use App\Models\DataPenelitian;
 use App\Models\FilePenelitian;
 use App\Models\AbsenPenelitian;
-use App\Models\AbsenPenelitianTabel;
 use App\Models\MulaiDanSelesaiPenelitian;
 use App\Models\Divisi;
 use App\Models\Departemen;
@@ -27,6 +26,7 @@ use App\Models\FotoSmkModels;
 use App\Models\Interview;
 use App\Models\Laporan;
 use App\Models\InterviewSmk;
+use App\Models\LaporanSmk;
 use App\Models\RekapAbsenmhs;
 use App\Models\RekapAbsenpenelitian;
 use App\Models\RekapAbsensmk;
@@ -88,13 +88,16 @@ class DivisiController extends Controller
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_mhs')
+                ->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)
+                ->get();
             return view('divisi.proses_penerimaan', [
                 'ti' => $ti,
                 'users' => $users,
                 'filepdf' => $filepdf,
                 'divisi' => $divisi,
                 'departemen' => $departemen,
+                'tgl'=> $tgl
             ]);
         } else {
             return redirect()->back();
@@ -434,13 +437,16 @@ class DivisiController extends Controller
                 ->select('interview.id_individu', 'interview.fileinterview', 'interview.id', 'users.name', 'users.status_user', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.status_penerimaan', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'users.email', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.strata', 'users.status_user', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.user_id', 'foto_i_d_mhs.fotoID', 'foto_i_d_mhs.id_individu')
                 ->where('users.id', '=', $user_id)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_mhs')
+                ->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)
+                ->get();
             return view('divisi.final-penerimaan-mhs', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
-                'fileFoto' => $fileFoto
+                'fileFoto' => $fileFoto,
+                'tgl' => $tgl
             ]);
         } else {
             return redirect()->back();
@@ -767,20 +773,24 @@ class DivisiController extends Controller
     {
 
         $request->validate([
-            'kuota' => 'required',
             'divisi' => 'required',
             'tanggal_buka' => 'required',
             'tanggal_tutup' => 'required',
             'status_kuota' => 'required',
+            'jenis_kuota' => 'required',
+          
         ]);
 
         Kuota::create([
             'user_id' => $id,
             'tanggal_buka' => $request->tanggal_buka,
             'tanggal_tutup' => $request->tanggal_tutup,
-            'kuota' => $request->kuota,
             'divisi' => $request->divisi,
             'status_kuota' => $request->status_kuota,
+            'tw1'=>$request->tw1,
+            'tw2'=> $request->tw2,
+            'tw3'=> $request->tw3,
+            'tw4'=>$request->tw4,
             'jenis_kuota'=>$request->jenis_kuota,
         ]);
         return redirect('/kuota');
@@ -875,15 +885,15 @@ class DivisiController extends Controller
     public function proseseditlaporan($id, Request $request)
     {
         $lama = Laporan::find($id);
-        File::delete('file/laporan-mhs/' . $lama->path);
+        File::delete('file/laporan-mhs-revisi/' . $lama->path);
         $file = $request->file('path');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs/';
+        $tujuan_upload = 'file/laporan-mhs-revisi/';
         $file->move($tujuan_upload, $nama_file);
         DB::table('laporans')->where('id', $id)
             ->update([
                 'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
-                'path'=> $request->nama_file,
+                'path_revisi'=> $nama_file,
                 'revisi' => $request->revisi
             ]);
 
@@ -895,6 +905,7 @@ class DivisiController extends Controller
         $laporanmhs = DB::table('laporans')->find($id);
         // Hapus di file storage
         File::delete('file/laporan-mhs/' . $laporanmhs->path);
+        File::delete('file/laporan-mhs-revisi/' . $laporanmhs->path_revisi);
         // Hapus di database
         DB::table('laporans')
             ->where('id', $laporanmhs->id)
@@ -915,8 +926,17 @@ class DivisiController extends Controller
     }
     public function proseseditlaporansmk($id, Request $request)
     {
+        $lama = LaporanSmk::find($id);
+        File::delete('file/laporan-smk-revisi/' . $lama->path);
+
+        $file = $request->file('path_revisi');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-smk-revisi/';
+        $file->move($tujuan_upload, $nama_file);
         DB::table('laporans_smk')->where('id', $id)
             ->update([
+                'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
+                'path_revisi'=> $nama_file,
                 'revisi' => $request->revisi
             ]);
 
@@ -928,6 +948,7 @@ class DivisiController extends Controller
         $laporansmk = DB::table('laporans_smk')->find($id);
         // Hapus di file storage
         File::delete('file/laporan-smk/' . $laporansmk->path);
+        File::delete('file/laporan-smk-revisi/' . $laporansmk->path_revisi);
         // Hapus di database
         DB::table('laporans_smk')
             ->where('id', $laporansmk->id)
@@ -1036,7 +1057,7 @@ class DivisiController extends Controller
 
         DB::table('penilaians')->where('user_id', $id)
             ->update([
-                'pembimbing' => Auth::user()->name,
+                'pembimbing' => $request->pembimbing,
                 'Kerjasama' => $request->Kerjasama,
                 'MotivasiPercayaDiri' => $request->MotivasiPercayaDiri,
                 'InisiatifTanggungJawabKerja' => $request->InisiatifTanggungJawabKerja,
@@ -1089,7 +1110,7 @@ class DivisiController extends Controller
 
         DB::table('penilaians_smk')->where('user_id', $id)
             ->update([
-                'pembimbing' => Auth::user()->name,
+                'pembimbing' => $request->pembimbing,
                 'Kerjasama' => $request->Kerjasama,
                 'MotivasiPercayaDiri' => $request->MotivasiPercayaDiri,
                 'InisiatifTanggungJawabKerja' => $request->InisiatifTanggungJawabKerja,
@@ -1699,12 +1720,16 @@ class DivisiController extends Controller
                 ->select('interview.id_individu', 'interview.id', 'interview.fileinterview', 'users.name', 'data_mhs_indivs.nama', 'users.email', 'users.status_user', 'data_mhs_indivs.univ', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.strata', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.status_penerimaan', 'data_mhs_indivs.user_id')
                 ->where('users.id', '=', $user_id)
                 ->get();
+                $tgl = DB::table('mulai_dan_selesai_mhs')
+                ->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)
+                ->get();
 
             return view('divisi.terima-interview-mhs', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
-                'filepengajuan' => $filepengajuan
+                'filepengajuan' => $filepengajuan,
+                'tgl'=> $tgl
             ]);
         } else {
             return redirect()->back();
@@ -2302,27 +2327,27 @@ class DivisiController extends Controller
         ]);
     }
 
-    public function proses_absenpenelitian($id, Request $request)
-    {
-        $user = DataPenelitian::where('user_id', '=', $id)->get();
+    // public function proses_absenpenelitian($id, Request $request)
+    // {
+    //     $user = DataPenelitian::where('user_id', '=', $id)->get();
 
-        $absen = new AbsenPenelitian;
-        $absen->user_id = $id;
-        $absen->waktu_awal = $request->waktu_awal;
-        $absen->waktu_akhir = $request->waktu_akhir;
-        $absen->keterangan = $request->keterangan;
-        $absen->save();
+    //     $absen = new AbsenPenelitian;
+    //     $absen->user_id = $id;
+    //     $absen->waktu_awal = $request->waktu_awal;
+    //     $absen->waktu_akhir = $request->waktu_akhir;
+    //     $absen->keterangan = $request->keterangan;
+    //     $absen->save();
 
-        foreach ($user as $u) {
-            $absen_indiv = new AbsenPenelitianTabel;
-            $absen_indiv->id_absen = $absen->id;
-            $absen_indiv->id_individu = $u->id;
-            $absen_indiv->status_absen = "Belum Absen";
-            $absen_indiv->save();
-        }
+    //     foreach ($user as $u) {
+    //         $absen_indiv = new AbsenPenelitian();
+    //         $absen_indiv->id_absen = $absen->id;
+    //         $absen_indiv->id_individu = $u->id;
+    //         $absen_indiv->status_absen = "Belum Absen";
+    //         $absen_indiv->save();
+    //     }
 
-        return redirect('/absen-pnltn');
-    }
+    //     return redirect('/absen-pnltn');
+    // }
     public function laporan_penelitian()
     {
         if (auth()->user()->role_id == 23 or auth()->user()->role_id == 1) {
@@ -2816,6 +2841,7 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
+   
 
     public function editlaporan_divisi($id)
     {
@@ -2831,16 +2857,16 @@ class DivisiController extends Controller
     public function proseseditlaporan_divisi($id, Request $request)
     {
         $lama = Laporan::find($id);
-        File::delete('file/laporan-mhs/' . $lama->path);
-        $file = $request->file('path');
+        File::delete('file/laporan-mhs-revisi/' . $lama->path);
+        $file = $request->file('path_revisi');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs/';
+        $tujuan_upload = 'file/laporan-mhs-revisi/';
         $file->move($tujuan_upload, $nama_file);
         DB::table('laporans')->where('id', $id)
             ->update([
-                'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
-                'path'=> $request->path,
-                'revisi' => $request->revisi
+                'nama_pembimbing_lapangan'=> $request->nama_pembimbing_lapangan,
+                'path_revisi'=> $nama_file,
+                'revisi_divisi' => $request->revisi_divisi
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
@@ -2858,9 +2884,19 @@ class DivisiController extends Controller
     }
     public function proseseditlaporansmk_divisi($id, Request $request)
     {
+        
+        $lama = LaporanSmk::find($id);
+        File::delete('file/laporan-smk-revisi/' . $lama->path);
+
+        $file = $request->file('path_revisi');
+        $nama_file = $file->getClientOriginalName();
+        $tujuan_upload = 'file/laporan-smk-revisi/';
+        $file->move($tujuan_upload, $nama_file);
         DB::table('laporans_smk')->where('id', $id)
             ->update([
-                'revisi' => $request->revisi
+                'nama_pembimbing_lapangan'=> $request->nama_pembimbing_lapangan,
+                'path_revisi'=> $nama_file,
+                'revisi_divisi' => $request->revisi_divisi
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
@@ -2940,7 +2976,7 @@ class DivisiController extends Controller
 
         DB::table('penilaians')->where('user_id', $id)
             ->update([
-                'pembimbing' => Auth::user()->name,
+                'pembimbing' => $request->pembimbing,
                 'Kerjasama' => $request->Kerjasama,
                 'MotivasiPercayaDiri' => $request->MotivasiPercayaDiri,
                 'InisiatifTanggungJawabKerja' => $request->InisiatifTanggungJawabKerja,
@@ -3003,7 +3039,7 @@ class DivisiController extends Controller
 
         DB::table('penilaians_smk')->where('user_id', $id)
             ->update([
-                'pembimbing' => Auth::user()->name,
+                'pembimbing' => $request->pembimbing,
                 'Kerjasama' => $request->Kerjasama,
                 'MotivasiPercayaDiri' => $request->MotivasiPercayaDiri,
                 'InisiatifTanggungJawabKerja' => $request->InisiatifTanggungJawabKerja,
