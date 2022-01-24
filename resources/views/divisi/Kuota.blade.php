@@ -41,13 +41,12 @@
                                     <td>1</td>
                                     <td>{{ $kuota->tanggal_buka }}</td>
                                     <td>{{ $kuota->tanggal_tutup }}</td>
-                                
                                     <td>{{ $kuota->divisi }}</td>
                                     <td>{{ $kuota->jenis_kuota }}</td>
-                                    <td>{{$kuota->tw1}}</td>
-                                    <td>{{$kuota->tw2}}</td>
-                                    <td>{{$kuota->tw3}}</td>
-                                    <td>{{$kuota->tw4}}</td>
+                                    <td>{{ $kuota->tw1 }}</td>
+                                    <td>{{ $kuota->tw2 }}</td>
+                                    <td>{{ $kuota->tw3 }}</td>
+                                    <td>{{ $kuota->tw4 }}</td>
                                     <td>
                                         @if(Auth::user()->id == $kuota->user_id)
                                         <a class="btn btn-warning p-1" href="/edit-kuota/{{ $kuota->id }}"

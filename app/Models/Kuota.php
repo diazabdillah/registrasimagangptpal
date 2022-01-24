@@ -19,6 +19,5 @@ class Kuota extends Model
         'tw2',
         'tw3',
         'tw4',
-        'status_kuota'
     ];
 }

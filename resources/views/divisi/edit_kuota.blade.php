@@ -25,41 +25,46 @@
 
                             <div class="form-group">
                                 <small class="ml-2">Tanggal Buka</small>
-                                <input type="date" class="form-control" id="tanggal" name="tanggal_buka" value={{
-                                    $data->tanggal_buka }}>
+                                <input type="date" class="form-control" id="tanggal" name="tanggal_buka">
                             </div>
                             <div class="form-group">
                                 <small class="ml-2">Tanggal Tutup</small>
-                                <input type="date" class="form-control" id="tanggal" name="tanggal_tutup" value={{
-                                    $data->tanggal_tutup }}>
+                                <input type="date" class="form-control" id="tanggal" name="tanggal_tutup">
                             </div>
                             <div class="form-group">
-                                <small class="ml-2">Jumlah Kuota</small>
-                                <input type="text" class="form-control" id="kuota" name="kuota" value={{ $data->kuota
-                                }}>
-                            </div>
-                            <div class="form-group">
-                                <small class="ml-2">Pilih Divisi</small>
+                                <small class="ml-2">Divisi</small>
                                 <div class="input-group mb-3">
                                     <select class="custom-select" name="divisi">
-                                        <option value="{{ $data->divisi
-                                        }}" selected>{{ $data->divisi
-                                            }}</option>
+                                        <option value="{{ $user->status_user }}" selected>{{
+                                            $user->status_user }}</option>
                                     </select>
                                 </div>
                             </div>
-
-
                             <div class="form-group">
-                                <small class="ml-2">Pilih Status</small>
+                                <small class="ml-2">Jenis Kuota</small>
                                 <div class="input-group mb-3">
-                                    <select class="custom-select" name="status_kuota">
-                                        <option value="Tersedia">Tersedia</option>
-                                        <option value="Penuh">Penuh</option>
+                                    <select class="custom-select" name="jenis_kuota">
+                                        <option value="Magang">Magang</option>
+                                        <option value="Penelitian">Penelitian</option>
                                     </select>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <small class="ml-2">Tw 1 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw1">
+                            </div>
+                            <div class="form-group">
+                                <small class="ml-2">Tw 2 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw2">
+                            </div>
+                            <div class="form-group">
+                                <small class="ml-2">Tw 3 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw3">
+                            </div>
+                            <div class="form-group">
+                                <small class="ml-2">Tw 4 Kuota</small>
+                                <input type="text" class="form-control" id="kuota" name="tw4">
+                            </div>
                             <button type="submit" class="btn btn-primary mt-4">Save</button>
                         </form>
 

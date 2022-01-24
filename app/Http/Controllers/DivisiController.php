@@ -786,12 +786,11 @@ class DivisiController extends Controller
             'tanggal_buka' => $request->tanggal_buka,
             'tanggal_tutup' => $request->tanggal_tutup,
             'divisi' => $request->divisi,
-            'status_kuota' => $request->status_kuota,
+            'jenis_kuota'=>$request->jenis_kuota,
             'tw1'=>$request->tw1,
             'tw2'=> $request->tw2,
             'tw3'=> $request->tw3,
             'tw4'=>$request->tw4,
-            'jenis_kuota'=>$request->jenis_kuota,
         ]);
         return redirect('/kuota');
     }
@@ -2033,9 +2032,12 @@ class DivisiController extends Controller
             ->update([
                 'tanggal_buka' => $request->tanggal_buka,
                 'tanggal_tutup' => $request->tanggal_tutup,
-                'kuota' => $request->kuota,
                 'divisi' => $request->divisi,
-                'status_kuota' => $request->status_kuota
+                'jenis_kuota' => $request->kuota,
+                'tw1' => $request->tw1,
+                'tw2' => $request->tw2,
+                'tw3' => $request->tw3,
+                'tw4' => $request->tw4,
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');

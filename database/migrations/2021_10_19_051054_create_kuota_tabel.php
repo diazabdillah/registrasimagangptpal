@@ -24,7 +24,6 @@ class CreateKuotaTabel extends Migration
             $table->string('tw2')->nullable();
             $table->string('tw3')->nullable();
             $table->string('tw4')->nullable();
-            $table->string('status_kuota');
             $table->timestamps();
         });
     }

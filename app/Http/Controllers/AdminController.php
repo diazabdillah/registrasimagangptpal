@@ -144,7 +144,7 @@ class AdminController extends Controller
 
          
 
-                $users = DB::table('kuota')->get();
+            $users = DB::table('kuota')->get();
        
             return view('admin.admin_dash', [
                 'users' =>$users,
