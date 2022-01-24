@@ -192,7 +192,7 @@
                             </tbody>
                         </table>
 
-                        {{ $absenmhss->links() }}
+                      
 
                     </div>
                     <br>

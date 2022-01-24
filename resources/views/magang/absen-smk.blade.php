@@ -191,7 +191,7 @@
                             </tbody>
                         </table>
 
-                        {{$absensmkk->links()}}
+                   
 
                     </div>
                     <br>

@@ -19,8 +19,11 @@ class CreateLaporanTabel extends Migration
             $table->string('judul');
             $table->string('jurusan');
             $table->string('path');
+            $table->string('path_revisi')->nullable();
+            $table->string('nama_pembimbing_lapangan')->nullable();
+            $table->string('nama_pembimbing_hcd')->nullable();
             $table->string('revisi')->nullable();
-            $table->date('tanggal_kumpul');
+            $table->string('revisi_divisi')->nullable();
             $table->string('divisi');
             $table->timestamps();
         });

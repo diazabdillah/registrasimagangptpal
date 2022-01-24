@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 21, 2022 at 02:55 AM
+-- Generation Time: Jan 24, 2022 at 02:28 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `data_mhs_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -216,15 +216,7 @@ CREATE TABLE IF NOT EXISTS `data_smk_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `data_smk_indivs`
---
-
-INSERT INTO `data_smk_indivs` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nis`, `status_penerimaan`, `created_at`, `updated_at`) VALUES
-(5, 27, 'Avirdha Savira Putri', 'SMK Negeri 10 Surabaya', 'Teknik Kuli Jawa', 'Sdr 1', '08xxx', NULL, NULL, '12998', NULL, '2022-01-21 02:48:19', '2022-01-21 02:48:19'),
-(4, 27, 'Muhammad Zaid Abdillah', 'SMK Negeri 10 Surabaya', 'Teknik Kuli Jawa', 'Sdr 1', '08xxx', NULL, NULL, '12999', NULL, '2022-01-21 02:47:56', '2022-01-21 02:47:56');
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -402,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `file_mhs_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -442,14 +434,7 @@ CREATE TABLE IF NOT EXISTS `file_smk_indivs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `file_smk_indivs`
---
-
-INSERT INTO `file_smk_indivs` (`id`, `user_id`, `path`, `size`, `nomorsurat`, `nama`, `jabatan`, `created_at`, `updated_at`) VALUES
-(4, 27, 'Surat Pengantar.pdf', '209014', '5543/PL14/TI/2021', 'M. Udin Harun,S.Kom., Phd', 'Shell', '2022-01-21 02:48:48', '2022-01-21 02:48:48');
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -485,7 +470,7 @@ CREATE TABLE IF NOT EXISTS `foto_i_d_mhs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -596,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `interview` (
   `id_individu` bigint NOT NULL,
   `fileinterview` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -610,7 +595,7 @@ CREATE TABLE IF NOT EXISTS `interview_smk` (
   `id_individu` bigint NOT NULL,
   `fileinterview` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -683,10 +668,12 @@ CREATE TABLE IF NOT EXISTS `kuota` (
   `user_id` int NOT NULL,
   `tanggal_buka` date NOT NULL,
   `tanggal_tutup` date NOT NULL,
-  `kuota` int NOT NULL,
   `divisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status_kuota` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `jenis_kuota` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tw1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tw2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tw3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tw4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -704,9 +691,12 @@ CREATE TABLE IF NOT EXISTS `laporans` (
   `nama` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `path_revisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pembimbing_lapangan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pembimbing_hcd` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tanggal_kumpul` date NOT NULL,
+  `revisi_divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `divisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -725,9 +715,12 @@ CREATE TABLE IF NOT EXISTS `laporans_smk` (
   `nama` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path_revisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `jurusan` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_pembimbing_lapangan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pembimbing_hcd` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tanggal_kumpul` date NOT NULL,
+  `revisi_divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `divisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -746,8 +739,11 @@ CREATE TABLE IF NOT EXISTS `laporan_penelitian` (
   `nama` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `judul` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path_revisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pembimbing_lapangan` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pembimbing_hcd` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tanggal_kumpul` date NOT NULL,
+  `revisi_divisi` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `divisi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -844,16 +840,7 @@ CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_mhs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mulai_dan_selesai_mhs`
---
-
-INSERT INTO `mulai_dan_selesai_mhs` (`id`, `user_id`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
-(3, 25, '2021-10-01', '2022-01-26', NULL, NULL),
-(2, 24, '2021-11-15', '2022-01-31', '2022-01-20 01:27:45', '2022-01-20 01:27:45'),
-(4, 26, '2022-01-21', '2022-01-31', NULL, NULL);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -887,14 +874,7 @@ CREATE TABLE IF NOT EXISTS `mulai_dan_selesai_smk` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `mulai_dan_selesai_smk`
---
-
-INSERT INTO `mulai_dan_selesai_smk` (`id`, `user_id`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
-(2, 27, '2022-01-21', '2022-01-31', NULL, NULL);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -981,7 +961,7 @@ CREATE TABLE IF NOT EXISTS `penilaians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1011,15 +991,7 @@ CREATE TABLE IF NOT EXISTS `penilaians_smk` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `penilaians_smk`
---
-
-INSERT INTO `penilaians_smk` (`id`, `user_id`, `pembimbing`, `Kerjasama`, `MotivasiPercayaDiri`, `InisiatifTanggungJawabKerja`, `Loyalitas`, `EtikaSopanSantun`, `Disiplin`, `PemahamanKemampuan`, `KesehatanKeselamatanKerja`, `laporankerja`, `kehadiran`, `average`, `nilai_huruf`, `status_penilaian`, `keterangan`, `created_at`, `updated_at`) VALUES
-(4, 4, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2022-01-21 02:47:56', '2022-01-21 02:47:56'),
-(5, 5, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '2022-01-21 02:48:19', '2022-01-21 02:48:19');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1181,15 +1153,7 @@ CREATE TABLE IF NOT EXISTS `rekapsmk` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rekapsmk`
---
-
-INSERT INTO `rekapsmk` (`id`, `user_id`, `nama`, `sekolah`, `jurusan`, `alamat_rumah`, `no_hp`, `divisi`, `departemen`, `nis`, `status_penerimaan`, `status_user`, `mulai`, `selesai`, `created_at`, `updated_at`) VALUES
-(1, 27, 'Muhammad Zaid Abdillah', 'SMK Negeri 10 Surabaya', 'Teknik Kuli Jawa', 'Sdr 1', '08xxx', NULL, NULL, '12999', NULL, 'SMK Kelompok', NULL, NULL, '2022-01-21 02:47:56', '2022-01-21 02:47:56'),
-(2, 27, 'Avirdha Savira Putri', 'SMK Negeri 10 Surabaya', 'Teknik Kuli Jawa', 'Sdr 1', '08xxx', NULL, NULL, '12998', NULL, 'SMK Kelompok', NULL, NULL, '2022-01-21 02:48:19', '2022-01-21 02:48:19');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1269,7 +1233,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -1298,9 +1262,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (20, 'Admin Kawasan', 'adminkawasan@gmail.com', NULL, '$2y$10$sKCPXM97G0lnuqlx2hDF7eDjFBnwoCb9f7q.1/pE/CzdY0YXSIXY6', 18, 'Admin Kawasan', NULL, '2021-12-29 02:12:53', '2021-12-29 02:12:53'),
 (21, 'Admin Keamanan & K3LH', 'adminkeamanan@gmail.com', NULL, '$2y$10$2CNpGdyvzEYtAlkfCa0L3.eDDIPgeWG0/5CR58JxgFq9KA7VboyKi', 18, 'Admin Keamanan & K3LH', NULL, '2021-12-29 02:13:17', '2021-12-29 02:13:17'),
 (22, 'Admin Legal', 'legal@gmail.com', NULL, '$2y$10$SU0bLOJRvE9ziixY8SE9refqnSqfJzROI2aVDszJcGcccoNPICL8K', 18, 'Admin Legal', NULL, '2022-01-12 01:51:30', '2022-01-12 01:51:30'),
-(23, 'Admin Office of The Board', 'office@gmail.com', NULL, '$2y$10$XPaQPG.raMqflHS65osF/eqDUlUTi4Rs6dEK1aWuGnCQ2I92exVSa', 18, 'Admin Office Of The Board', NULL, '2022-01-12 02:33:38', '2022-01-12 02:33:38'),
-(26, 'Informatika 2022', 'itpens2022@gmail.com', NULL, '$2y$10$mfWSiDa5/1A0Cg0jMvm/sO5jXkcqW5QB5SDVOHxRQeuPbwrQd3nAa', 6, 'Mahasiswa Kelompok', NULL, '2022-01-21 02:22:58', '2022-01-21 02:22:58'),
-(27, 'TKJ Individu', 'tkjindividu@gmail.com', NULL, '$2y$10$dNWggeNjT0.SpVugVE4sQu9mq/AgHoy62ZDGnbgivc6zlr44BlB/6', 7, 'SMK Kelompok', NULL, '2022-01-21 02:47:11', '2022-01-21 02:47:11');
+(23, 'Admin Office of The Board', 'office@gmail.com', NULL, '$2y$10$XPaQPG.raMqflHS65osF/eqDUlUTi4Rs6dEK1aWuGnCQ2I92exVSa', 18, 'Admin Office Of The Board', NULL, '2022-01-12 02:33:38', '2022-01-12 02:33:38');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

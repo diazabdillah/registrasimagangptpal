@@ -3,37 +3,35 @@
 
 @section('kontenWebBack')
 
-<!-- Begin Page Content -->
+
 <div class="container-fluid">
 
     <div class="row">
         <div class="col-lg">
 
-            <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800"><b>{{ $ti }}</b></h1>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Kuota</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Kuota Magang/Penelitian</h6>
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/tambah-kuota" role="button"><i
-                            class="fas fa-plus"></i> Tambah Kuota</a>
 
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Tanggal Buka</th>
-                                    <th>Tanggal Tutup</th>
-                                    <th>Kuota</th>
-                                    <th>Divisi</th>
-                                    <th>Jenis Kuota</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal Buka</th>
+                                    <th scope="col">Tanggal Tutup</th>
+                                    <th scope="col">Divisi</th>
+                                    <th scope="col">Jenis Kuota</th>   
+                                   <th scope="col">Kuota TW 1</th>
+                                   <th scope="col">Kuota TW 2</th>
+                                   <th scope="col">Kuota TW 3</th>
+                                   <th scope="col">Kuota TW 4</th>
+                                   <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,14 +41,12 @@
                                     <td>1</td>
                                     <td>{{ $kuota->tanggal_buka }}</td>
                                     <td>{{ $kuota->tanggal_tutup }}</td>
-                                    <td>{{ $kuota->kuota }}</td>
                                     <td>{{ $kuota->divisi }}</td>
-                                    <td>{{$kuota->jenis_kuota}}</td>
-                                    @if ($kuota->status_kuota=='Tersedia')
-                                    <td> <span class="badge badge-success p-1">{{ $kuota->status_kuota }}</span></td>
-                                    @else
-                                    <td> <span class="badge badge-danger p-1">{{ $kuota->status_kuota }}</span></td>
-                                    @endif
+                                    <td>{{ $kuota->jenis_kuota }}</td>
+                                    <td>{{ $kuota->tw1 }}</td>
+                                    <td>{{ $kuota->tw2 }}</td>
+                                    <td>{{ $kuota->tw3 }}</td>
+                                    <td>{{ $kuota->tw4 }}</td>
                                     <td>
                                         @if(Auth::user()->id == $kuota->user_id)
                                         <a class="btn btn-warning p-1" href="/edit-kuota/{{ $kuota->id }}"
@@ -58,7 +54,6 @@
                                         <a class="btn btn-danger p-1" href="/hapus-kuota/{{$kuota->id}}" role="button">Hapus</a>
                                         @endif
                                     </td>
-                                   
                                 </tr>
 
                                 @endforeach

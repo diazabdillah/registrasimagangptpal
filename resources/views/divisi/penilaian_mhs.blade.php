@@ -23,6 +23,10 @@
                             @csrf
                             <!-- Input Univ -->
                             <div class="form-group">
+                                <small class="ml-2">Nama Pembimbing</small>
+                                <input type="text" class="form-control" id="" name="pembimbing" required>
+                            </div>
+                            <div class="form-group">
                                 <small class="ml-2">Kerjasama</small>
                                 <input type="text" class="form-control" id="" name="Kerjasama" placeholder="contoh: 80" required>
                             </div>

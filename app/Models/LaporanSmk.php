@@ -10,13 +10,15 @@ class LaporanSmk extends Model
     use HasFactory;
     protected $table = 'laporans_smk';
     protected $fillable = [
-        'user_id',
         'nama',
         'judul',
+        'path',
+        'path_revisi',
         'jurusan',
-        'tanggal_kumpul',
-        'divisi',
+        'nama_pembimbing_lapangan',
+        'nama_pembimbing_hcd',
         'revisi',
-        'path'
+        'revisi_divisi',
+        'divisi',
     ];
 }

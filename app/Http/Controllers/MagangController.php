@@ -535,7 +535,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'absenmhs.id_individu')
                 ->select('data_mhs_indivs.nama', 'absenmhs.waktu_absen', 'absenmhs.id', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
                 ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
-                ->simplePaginate(4);
+                ->get();
 
             $ti = 'Absensi';
             return view('magang.absen-mhs', [
@@ -830,7 +830,6 @@ class MagangController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'tanggal_kumpul' => 'required',
             'path' => 'required|mimes:pdf',
             'jurusan' => 'required'
         ]);
@@ -843,7 +842,6 @@ class MagangController extends Controller
         Laporan::create([
             'nama' => Auth::user()->name,
             'judul' => $request->judul,
-            'tanggal_kumpul' => $request->tanggal_kumpul,
             'divisi' => $request->divisi,
             'jurusan' => $request->jurusan,
             'path' => $namafile
@@ -866,6 +864,19 @@ class MagangController extends Controller
         }
     }
 
+    public function lihat_laporan_mhs_revisi($id)
+    {
+        if (auth()->user()->role_id == 3) {
+            $user = Laporan::find($id);
+            $ti = 'Liat Laporan Akhir Revisi';
+            return view('magang.lihat-laporan-mhs-revisi', [
+                'ti' => $ti,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
     public function edit_laporan_mhs($id)
     {
         $ti = 'Edit Laporan';
@@ -881,10 +892,7 @@ class MagangController extends Controller
 
     public function proses_edit_laporan_mhs($id, Request $request)
     {
-        $request->validate([
-            'path' => 'required|mimes:pdf',
-
-        ]);
+      
         $lama = Laporan::find($id);
         File::delete('file/laporan-mhs/' . $lama->path);
         $file = $request->file('path');
@@ -894,6 +902,7 @@ class MagangController extends Controller
         DB::table('laporans')
             ->where('id', $id)
             ->update([
+                'judul' => $request->judul,
                 'path' => $nama_file
             ]);
 
@@ -1663,16 +1672,17 @@ class MagangController extends Controller
         if (auth()->user()->role_id == 4) {
             $absensmk = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'data_smk_indivs.user_id', '=', 'users.id')
+                ->leftJoin('absensmk', 'absensmk.id_individu', '=', 'data_smk_indivs.user_id')
                 ->leftJoin('mulai_dan_selesai_smk', 'mulai_dan_selesai_smk.user_id', '=', 'data_smk_indivs.user_id')
                 ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
-                ->select('data_smk_indivs.id', 'data_smk_indivs.nama', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai')
+                ->select('absensmk.jenis_absen','data_smk_indivs.id', 'data_smk_indivs.nama', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai')
                 ->get();
 
             $absensmkk = DB::table('absensmk')
                 ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absensmk.id_individu')
                 ->select('data_smk_indivs.nama', 'absensmk.waktu_absen', 'absensmk.id', 'absensmk.jenis_absen', 'absensmk.keterangan')
                 ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
-                ->simplePaginate(4);
+                ->get();
 
             $ti = 'Absensi';
             return view('magang.absen-smk', [
@@ -1993,7 +2003,6 @@ class MagangController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'tanggal_kumpul' => 'required',
             'path' => 'required|mimes:pdf',
             'jurusan' => 'required'
         ]);
@@ -2006,7 +2015,6 @@ class MagangController extends Controller
             'nama' => Auth::user()->name,
             'jurusan' => $request->jurusan,
             'judul' => $request->judul,
-            'tanggal_kumpul' => $request->tanggal_kumpul,
             'divisi' => $request->divisi,
             'path' => $namafile
         ]);
@@ -2030,6 +2038,18 @@ class MagangController extends Controller
             return redirect()->back();
         }
     }
+    public function lihat_laporan_smk_revisi($id){
+        if (auth()->user()->role_id == 4) {
+            $user = LaporanSmk::find($id);
+            $ti = 'Liat Laporan Akhir Revisi';
+            return view('magang.lihat-laporan-smk-revisi', [
+                'ti' => $ti,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
 
     public function edit_laporan_smk($id)
     {
@@ -2046,10 +2066,6 @@ class MagangController extends Controller
 
     public function proses_edit_laporan_smk($id, Request $request)
     {
-        $request->validate([
-            'path' => 'required|mimes:pdf',
-
-        ]);
         $lama = LaporanSmk::find($id);
         File::delete('file/laporan-smk/' . $lama->path);
 
@@ -2060,6 +2076,7 @@ class MagangController extends Controller
         DB::table('laporans_smk')
             ->where('id', $id)
             ->update([
+                'judul'=> $request->judul,
                 'path' => $nama_file
             ]);
 
