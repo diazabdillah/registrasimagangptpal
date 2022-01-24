@@ -10,13 +10,15 @@ class LaporanPenelitian extends Model
     use HasFactory;
     protected $table = 'laporan_penelitian';
     protected $fillable = [
-        'user_id',
         'nama',
         'judul',
-        'tanggal_kumpul',
+        'path',
+        'path_revisi',
+        'nama_pembimbing_lapangan',
+        'nama_pembimbing_hcd',
+        'revisi',
+        'revisi_divisi',
         'divisi',
         'jurusan',
-        'revisi',
-        'path'
     ];
 }

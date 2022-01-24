@@ -18,8 +18,11 @@ class CreateLaporanPenelitianTabel extends Migration
             $table->string('nama');
             $table->string('judul');
             $table->string('path');
+            $table->string('path_revisi')->nullable();
+            $table->string('nama_pembimbing_lapangan')->nullable();
+            $table->string('nama_pembimbing_hcd')->nullable();
             $table->string('revisi')->nullable();
-            $table->date('tanggal_kumpul');
+            $table->string('revisi_divisi')->nullable();
             $table->string('divisi');
             $table->string('jurusan');
             $table->timestamps();
