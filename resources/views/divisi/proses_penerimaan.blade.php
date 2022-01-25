@@ -209,7 +209,7 @@
                                         <div class="input-group">
 
                                             <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
-                                                <option value="16">Magang Interview</option>
+                                                <option value="16">Tes Kepribadian</option>
                                                 <option value="0">Kuota Penuh</option>
                                             </select>
 

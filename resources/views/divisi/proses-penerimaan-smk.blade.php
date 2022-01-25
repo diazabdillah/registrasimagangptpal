@@ -199,7 +199,7 @@
                                         <label class="ml-2"><b>Pilih Tindakan Penerimaan</b></label>
                                         <div class="input-group">
                                             <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
-                                                <option value="17">Magang Interview</option>
+                                                <option value="17">Tes Kepribadian</option>
                                                 <option value="0">Kuota Penuh</option>
                                             </select>
                                             <div class="input-group-append">

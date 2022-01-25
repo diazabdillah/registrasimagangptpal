@@ -102,7 +102,7 @@
                         <div class="card shadow mb-4">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6 class="m-0 font-weight-bold text-primary">File Interview Peserta Magang</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">File Tes Kepribadian Peserta Magang</h6>
                                 </div>
                                 <ul class="list-group list-group-flush">
 
