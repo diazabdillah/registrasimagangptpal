@@ -506,7 +506,7 @@ class PenelitianController extends Controller
                 ->leftJoin('data_penelitian', 'data_penelitian.id', '=', 'absenpenelitian.id_individu')
                 ->select('data_penelitian.nama', 'absenpenelitian.waktu_absen', 'absenpenelitian.id', 'absenpenelitian.jenis_absen', 'absenpenelitian.keterangan')
                 ->where('data_penelitian.user_id', '=', Auth::user()->id)
-                ->simplePaginate(4);
+                ->get();
 
             $ti = 'Absensi';
             return view('penelitian.absen-penelitian', [

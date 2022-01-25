@@ -45,7 +45,7 @@
                                     <th>Datang</th>
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($ap->selesai), Carbon\Carbon::parse($ap->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now()))
-                                    <= '08:00') <th>
+                                    <= '08:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-masuk-penelitian/{{ $ap->id }}"
                                                     role="button">Presensi</a>
@@ -66,7 +66,7 @@
                                     <th>Pulang</th>
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($ap->selesai), Carbon\Carbon::parse($ap->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
-                                    <= '19:00') <th>
+                                    <= '19:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-pulang-penelitian/{{ $ap->id }}"
                                                     role="button">Presensi</a>
@@ -88,7 +88,7 @@
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($ap->selesai), Carbon\Carbon::parse($ap->mulai)))
                                     @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
                                     strtotime(now()))
-                                    <= '07:30')
+                                    <= '07:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
                                             <th>
                                                 <div>
                                                     <form enctype="multipart/form-data"
@@ -175,7 +175,7 @@
                             </tbody>
                         </table>
 
-                        {{ $absenpenelitians->links() }}
+                    
 
                     </div>
                 </div>

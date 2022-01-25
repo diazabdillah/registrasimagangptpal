@@ -106,14 +106,10 @@
                                                     Divisi
                                                 </div>
                                             </th>
+                                           
                                             <th>
                                                 <div class="d-flex justify-content-center">
-                                                    Kuota
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div class="d-flex justify-content-center">
-                                                   Jenis Kuota
+                                                    Jenis Kuota
                                                 </div>
                                             </th>
                                             <th>
@@ -131,6 +127,27 @@
                                                     Tanggal Tutup
                                                 </div>
                                             </th>
+                                            <th>
+                                                <div class="d-flex justify-content-center">
+                                                    Kuota TW 1
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div class="d-flex justify-content-center">
+                                                    Kuota TW 2
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div class="d-flex justify-content-center">
+                                                    Kuota TW 3
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div class="d-flex justify-content-center">
+                                                    Kuota TW 4
+                                                </div>
+                                            </th>
+                                         
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -138,11 +155,14 @@
                                         <tr class="text-center">
                                             <td>{{ $kuota->firstItem() + ++$i - 1 }}.</td>
                                             <td>{{ $k->divisi }}</td>
-                                            <td>{{ $k->kuota }}</td>
                                             <td>{{ $k->jenis_kuota }}</td>
                                             <td>{{ $k->status_kuota }}</td>
                                             <td>{{ $k->tanggal_buka }}</td>
                                             <td>{{ $k->tanggal_tutup }}</td>
+                                            <td>{{ $k->tw1 }}</td>
+                                            <td>{{ $k->tw2 }}</td>
+                                            <td>{{ $k->tw3 }}</td>
+                                            <td>{{ $k->tw4 }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

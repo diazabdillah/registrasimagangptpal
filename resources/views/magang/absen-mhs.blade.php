@@ -45,8 +45,7 @@
                                     <th>Datang</th>
 
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
-                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
-                                    strtotime(now())) <= '08:00') <th>
+                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '08:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-masuk-mhs/{{ $am->id }}"
                                                     role="button">Presensi</a>
@@ -67,8 +66,7 @@
                                     <th>{{ $am->nama }}</th>
                                     <th>Pulang</th>
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
-                                    @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now()))
-                                    <= '19:00') <th>
+                                    @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-pulang-mhs/{{ $am->id }}"
                                                     role="button">Presensi</a>
@@ -89,9 +87,7 @@
                                     <th>{{ $am->nama }}</th>
                                     <th>Izin</th>
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
-                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i',
-                                    strtotime(now()))
-                                    <= '07:30')
+                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '07:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
                                             <th>
                                                 <div>
                                                     <form enctype="multipart/form-data"
