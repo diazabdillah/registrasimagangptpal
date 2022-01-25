@@ -251,7 +251,7 @@
 
                                         <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
                                             <option value="4">Magang Aktif</option>
-                                            <option value="17">Magang Interview</option>
+                                            <option value="17">Tes Kepribadian</option>
                                         </select>
 
                                         <div class="input-group-append">
