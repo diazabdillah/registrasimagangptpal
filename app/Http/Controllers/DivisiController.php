@@ -2040,7 +2040,7 @@ class DivisiController extends Controller
                 'tanggal_buka' => $request->tanggal_buka,
                 'tanggal_tutup' => $request->tanggal_tutup,
                 'divisi' => $request->divisi,
-                'jenis_kuota' => $request->kuota,
+                'jenis_kuota' => $request->jenis_kuota,
                 'tw1' => $request->tw1,
                 'tw2' => $request->tw2,
                 'tw3' => $request->tw3,
