@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 25, 2022 at 01:03 AM
+-- Generation Time: Jan 25, 2022 at 01:24 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -619,7 +619,6 @@ CREATE TABLE IF NOT EXISTS `jadwal_sertifikasi` (
   `peserta_sprint` int NOT NULL,
   `peserta_hadir` int NOT NULL,
   `fileSertifikasi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
