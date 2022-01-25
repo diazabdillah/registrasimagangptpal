@@ -31,7 +31,7 @@
                                         </thead>
                                         <tbody>
                                             @php $i = 0; @endphp
-                                            @if (Auth::user()->status_user == 'Admin HCM')
+                                            @if (Auth::user()->name == 'Admin HCM')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Human Capital Management')
                                             <tr>
@@ -52,7 +52,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Sekretaris Perusahaan')
+                                            @if (Auth::user()->name == 'Admin Sekretaris Perusahaan')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Sekretaris Perusahaan')
                                             <tr>
@@ -73,7 +73,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Satuan Pengawasan Intern')
+                                            @if (Auth::user()->name == 'Admin Satuan Pengawasan Intern')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Satuan Pengawasan Intern')
                                             <tr>
@@ -94,7 +94,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Naval Technology')
+                                            @if (Auth::user()->name == 'Admin Naval Technology')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Naval Technology')
                                             <tr>
@@ -115,7 +115,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Pemasaran dan Penjualan Kapal')
+                                            @if (Auth::user()->name == 'Admin Pemasaran dan Penjualan Kapal')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Admin Pemasaran dan Penjualan Kapal')
                                             <tr>
@@ -137,7 +137,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Penjualan REKUMHAR')
+                                            @if (Auth::user()->name == 'Admin Penjualan REKUMHAR')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Penjualan REKUMHAR')
                                             <tr>
@@ -160,7 +160,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Desain')
+                                            @if (Auth::user()->name == 'Admin Desain')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Desain')
                                             <tr>
@@ -183,7 +183,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Jaminan Kualitas')
+                                            @if (Auth::user()->name == 'Admin Jaminan Kualitas')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Jaminan Kualitas')
                                             <tr>
@@ -206,7 +206,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Supply Chain')
+                                            @if (Auth::user()->name == 'Admin Supply Chain')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Supply Chain')
                                             <tr>
@@ -229,7 +229,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kapal Perang')
+                                            @if (Auth::user()->name == 'Admin Kapal Perang')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Kapal Perang')
                                             <tr>
@@ -252,7 +252,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kapal Selam')
+                                            @if (Auth::user()->name == 'Admin Kapal Selam')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Kapal Selam')
                                             <tr>
@@ -277,7 +277,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kapal Niaga')
+                                            @if (Auth::user()->name == 'Admin Kapal Niaga')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Kapal Niaga')
                                             <tr>
@@ -302,7 +302,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Rekayasa Umum')
+                                            @if (Auth::user()->name == 'Admin Rekayasa Umum')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Rekayasa Umum')
                                             <tr>
@@ -327,7 +327,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Pemeliharaan dan Perbaikan')
+                                            @if (Auth::user()->name == 'Admin Pemeliharaan dan Perbaikan')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Pemeliharaan dan Perbaikan')
                                             <tr>
@@ -352,7 +352,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Akuntansi')
+                                            @if (Auth::user()->name == 'Admin Akuntansi')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Akuntansi')
                                             <tr>
@@ -377,7 +377,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Perencanaan Strategis Perusahaan')
+                                            @if (Auth::user()->name == 'Admin Perencanaan Strategis Perusahaan')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Perencanaan Strategis Perusahaan')
                                             <tr>
@@ -402,7 +402,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Perbendaharaan')
+                                            @if (Auth::user()->name == 'Admin Perbendaharaan')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Perbendaharaan')
                                             <tr>
@@ -427,7 +427,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Teknologi Informasi')
+                                            @if (Auth::user()->name == 'Admin Teknologi Informasi')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Teknologi Informasi')
                                             <tr>
@@ -452,7 +452,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kawasan')
+                                            @if (Auth::user()->name == 'Admin Kawasan')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Kawasan')
                                             <tr>
@@ -477,7 +477,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Keamanan & K3LH')
+                                            @if (Auth::user()->name == 'Admin Keamanan & K3LH')
                                             @foreach ($users as $u)
                                             @if ($u->divisi == 'Keamanan & K3LH')
                                             <tr>
@@ -530,7 +530,7 @@
                                         </thead>
                                         <tbody>
                                             @php $no = 0; @endphp
-                                            @if (Auth::user()->status_user == 'Admin HCM')
+                                            @if (Auth::user()->name == 'Admin HCM')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Human Capital Management')
                                             <tr>
@@ -552,7 +552,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Sekretaris Perusahaan')
+                                            @if (Auth::user()->name == 'Admin Sekretaris Perusahaan')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Sekretaris Perusahaan')
                                             <tr>
@@ -574,7 +574,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Satuan Pengawasan Intern')
+                                            @if (Auth::user()->name == 'Admin Satuan Pengawasan Intern')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Satuan Pengawasan Intern')
                                             <tr>
@@ -596,7 +596,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Naval Technology')
+                                            @if (Auth::user()->name == 'Admin Naval Technology')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Naval Technology')
                                             <tr>
@@ -618,7 +618,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Pemasaran dan Penjualan Kapal')
+                                            @if (Auth::user()->name == 'Admin Pemasaran dan Penjualan Kapal')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Pemasaran dan Penjualan Kapal')
                                             <tr>
@@ -640,7 +640,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Penjualan REKUMHAR')
+                                            @if (Auth::user()->name == 'Admin Penjualan REKUMHAR')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Penjualan REKUMHAR')
                                             <tr>
@@ -662,7 +662,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Desain')
+                                            @if (Auth::user()->name == 'Admin Desain')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Desain')
                                             <tr>
@@ -684,7 +684,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Jaminan Kualitas')
+                                            @if (Auth::user()->name == 'Admin Jaminan Kualitas')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Jaminan Kualitas')
                                             <tr>
@@ -706,7 +706,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Supply Chain')
+                                            @if (Auth::user()->name == 'Admin Supply Chain')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Supply Chain')
                                             <tr>
@@ -728,7 +728,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kapal Perang')
+                                            @if (Auth::user()->name == 'Admin Kapal Perang')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Kapal Perang')
                                             <tr>
@@ -750,7 +750,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kapal Selam')
+                                            @if (Auth::user()->name == 'Admin Kapal Selam')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Kapal Selam')
                                             <tr>
@@ -772,7 +772,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kapal Niaga')
+                                            @if (Auth::user()->name == 'Admin Kapal Niaga')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Kapal Niaga')
                                             <tr>
@@ -794,7 +794,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Rekayasa Umum')
+                                            @if (Auth::user()->name == 'Admin Rekayasa Umum')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Rekayasa Umum')
                                             <tr>
@@ -816,7 +816,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Pemeliharaan dan Perbaikan')
+                                            @if (Auth::user()->name == 'Admin Pemeliharaan dan Perbaikan')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Pemeliharaan dan Perbaikan')
                                             <tr>
@@ -838,7 +838,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Akuntansi')
+                                            @if (Auth::user()->name == 'Admin Akuntansi')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Akuntansi')
                                             <tr>
@@ -860,7 +860,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Perencanaan Strategis Perusahaan')
+                                            @if (Auth::user()->name == 'Admin Perencanaan Strategis Perusahaan')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Perencanaan Strategis Perusahaan')
                                             <tr>
@@ -882,7 +882,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Perbendaharaan')
+                                            @if (Auth::user()->name == 'Admin Perbendaharaan')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Perbendaharaan')
                                             <tr>
@@ -904,7 +904,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Teknologi Informasi')
+                                            @if (Auth::user()->name == 'Admin Teknologi Informasi')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Teknologi Informasi')
                                             <tr>
@@ -926,7 +926,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Kawasan')
+                                            @if (Auth::user()->name == 'Admin Kawasan')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Kawasan')
                                             <tr>
@@ -948,7 +948,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Keamanan & K3LH')
+                                            @if (Auth::user()->name == 'Admin Keamanan & K3LH')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Keamanan & K3LH')
                                             <tr>
@@ -970,7 +970,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Legal')
+                                            @if (Auth::user()->name == 'Admin Legal')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Legal')
                                             <tr>
@@ -992,7 +992,7 @@
                                             @endif
                                             @endforeach
                                             @endif
-                                            @if (Auth::user()->status_user == 'Admin Office Of The Board')
+                                            @if (Auth::user()->name == 'Admin Office Of The Board')
                                             @foreach ($usersSmk as $us)
                                             @if ($us->divisi == 'Office Of The Board')
                                             <tr>
