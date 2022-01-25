@@ -186,6 +186,32 @@
                             </div>
                         </div>
                     @endif
+
+                    <div class="col-sm-12">
+                        <div class="card shadow mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Tanggal Mulai dan Selesai</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form method="POST" action="/proses-magang-aktmhs/{{ $user->id }}">
+                                        @method('put')
+                                        @csrf
+                                        <label class="ml-2"><b>Tanggal Mulai</b></label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" id="mulai" name="mulai">
+                                        </div>
+                                        <label class="ml-2 mt-3"><b>Tanggal Selesai</b></label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" id="selesai" name="selesai">
+                                        </div>
+                                        <button class="btn btn-primary mt-4" type="submit">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-sm-12">
                         <div class="card shadow mb-4">
                             <div class="card">
