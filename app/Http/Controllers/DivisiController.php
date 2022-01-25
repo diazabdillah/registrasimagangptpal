@@ -776,7 +776,6 @@ class DivisiController extends Controller
             'divisi' => 'required',
             'tanggal_buka' => 'required',
             'tanggal_tutup' => 'required',
-            'status_kuota' => 'required',
             'jenis_kuota' => 'required',
           
         ]);
@@ -799,9 +798,12 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18) {
             $divisi = Divisi::all();
+            $user = DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->first();
             $data = DB::table('kuota')->where('id', $id)->first();
             $ti = 'Kuota';
-            return view('divisi.edit_kuota', ['ti' => $ti, 'data' => $data, 'divisi' => $divisi]);
+            return view('divisi.edit_kuota', ['ti' => $ti, 'data' => $data, 'divisi' => $divisi, 'user' => $user]);
         } else {
             return redirect()->back();
         }
