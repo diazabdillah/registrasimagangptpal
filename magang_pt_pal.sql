@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 24, 2022 at 02:53 AM
+-- Generation Time: Jan 25, 2022 at 01:03 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `departemen` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `departemen`
@@ -311,7 +311,12 @@ INSERT INTO `departemen` (`id`, `id_divisi`, `nama_departemen`, `created_at`, `u
 (73, 2, 'Pemeriksaan Supporting', '2021-12-16 14:02:50', '2021-12-16 14:02:50'),
 (74, 15, 'Rendal Korporasi', '2021-12-16 14:07:40', '2021-12-16 14:07:40'),
 (75, 15, 'Rendal Produksi Korporasi', '2021-12-16 14:08:11', '2021-12-16 14:08:11'),
-(76, 18, 'Lembaga Sertifikasi Profesi', '2022-01-05 04:51:55', '2022-01-05 04:51:55');
+(76, 18, 'Lembaga Sertifikasi Profesi', '2022-01-05 04:51:55', '2022-01-05 04:51:55'),
+(78, 13, 'Dukungan Produksi', '2022-01-25 01:01:49', '2022-01-25 01:01:49'),
+(79, 13, 'Perencanaan & Pengendalian', '2022-01-25 01:02:03', '2022-01-25 01:02:03'),
+(80, 13, 'Produksi', '2022-01-25 01:02:25', '2022-01-25 01:02:25'),
+(81, 13, 'Dok Gali', '2022-01-25 01:02:43', '2022-01-25 01:02:43'),
+(82, 13, 'Dok Apung', '2022-01-25 01:02:54', '2022-01-25 01:02:54');
 
 -- --------------------------------------------------------
 
