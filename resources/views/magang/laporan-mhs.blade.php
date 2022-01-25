@@ -17,7 +17,9 @@
                         - Sebelum laporan akhir dikumpulkan, harap ke Divisi Human Capital Management (Departemen Human Capital Development) untuk menemui koordinator internship
                         untuk melakukan presentasi singkat laporan akhir sewaktu para praktikan hampir selesai magangnya. <br>
                         - Jika sudah melakukan Presentasi mohon klik button "upload laporan" untuk softfile laporan akhir diupload. <br>
-                        - Jika Laporan Akhir Anda terdapat revisi Mohon segera upload kembali file lapran akhir di button "edit" laporan yang sudah di perbaiki atau di revisi
+                        - Jika Laporan Akhir Anda terdapat revisi Mohon segera upload kembali file lapran akhir di button "edit" laporan yang sudah di perbaiki atau di revisi. <br>
+                        - Jika Anda ingin melihat file revisi dari Pembimbing Divisi/Pembimbing HCM mohon tekan tombol "lihat revisi".
+                  
                     </span>
                     <br>
                     <br>
@@ -54,13 +56,16 @@
                                                             {{ date('d-m-Y', strtotime($laporans->created_at)) }}</small>
                                                     </p>
                                                     @if ($laporans->path != null)
+                                                    @if($laporans->revisi==null)
                                                         <a class="btn btn-primary"
                                                             href="/lihat-laporan-mhs/{{ $laporans->id }}">Lihat Laporan</a>
+                                                            @endif
+                                                            <a class="btn btn-warning"
+                                                            href="/edit-laporan-mhs/{{ $laporans->id }}">Edit</a>
+                                                            @if($laporans->revisi != null)
                                                             <a class="btn btn-danger"
                                                             href="/lihat-laporan-mhs-revisi/{{ $laporans->id }}">Lihat Revisi</a>
-                                                        <a class="btn btn-warning"
-                                                            href="/edit-laporan-mhs/{{ $laporans->id }}">Edit</a>
-                                                            
+                                                            @endif
 
                                                     @endif
                                                 </div>
@@ -75,7 +80,7 @@
                         </div>
                         <h3 class="text-center">Perpustakaan Laporan Akhir Mahasiswa</h3>
                         <div class="container">
-                            <div class="row">
+                            
                                 <div class="d-flex justify-content-center">
                                     <form action="/mhs/cari" method="GET">
                                         @csrf
@@ -88,7 +93,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                        
                         </div>
                         <div class="container">
                             <div class="row">
@@ -187,7 +192,7 @@
                                             </option>
                                         </select>
 
-                                        <button class="btn btn-primary" type="submit">Sort</button>
+                                        <button class="btn btn-primary" type="submit">Cari</button>
 
                                     </div>
 

@@ -36,7 +36,7 @@
                                 <div class="d-flex justify-content-between pl-4 pr-4 pt-3 pb-3 mt-3">
                                     <img src="{{ asset('img/logo_pal.png') }}" alt="image" style="width: 70px;">
 
-                                    <img src="{{ asset('img/ojt.png') }}" alt="Card image cap" style="width: 55px;">
+                                    <img src="{{ asset('img/penelitian.png') }}" alt="Card image cap" style="width: 55px;">
                                 </div>
 
                                 <div class="card-body">
@@ -82,7 +82,7 @@
                                     <div class="d-flex justify-content-between pl-4 pr-4 pt-3">
                                         <img src="{{ asset('img/logo_pal.png') }}" alt="image" style="width: 70px;">
 
-                                        <img src="{{ asset('img/ojt.png') }}" alt="Card image cap" style="width: 55px;">
+                                        <img src="{{ asset('img/penelitian.png') }}" alt="Card image cap" style="width: 55px;">
                                     </div>
                                 </div>
                                 <div class="card-body">

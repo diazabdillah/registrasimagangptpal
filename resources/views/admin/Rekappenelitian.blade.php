@@ -32,6 +32,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Nama</th>
+                                        <th>Judul Penelitian</th>
                                         <th>Asal Instansi</th>
                                         <th>Strata</th>
                                         <th>Jurusan</th>
@@ -52,6 +53,7 @@
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $rekap->nama }}</td>
+                                        <td>{{ $rekap->judul_penelitian }}</td>
                                         <td>{{ $rekap->asal_instansi }}</td>
                                         <td>{{ $rekap->strata }}</td>
                                         <td>{{ $rekap->jurusan }}</td>

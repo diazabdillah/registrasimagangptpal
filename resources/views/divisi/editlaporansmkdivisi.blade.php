@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">File Revisi Laporan</small>
-                                    <input type="file" class="form-control" id="path" name="path_revisi" required>
+                                    <input type="file" class="form-control" id="path" name="path" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mt-4">Upload Laporan</button>

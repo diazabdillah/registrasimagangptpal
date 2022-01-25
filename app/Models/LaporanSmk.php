@@ -13,7 +13,6 @@ class LaporanSmk extends Model
         'nama',
         'judul',
         'path',
-        'path_revisi',
         'jurusan',
         'nama_pembimbing_lapangan',
         'nama_pembimbing_hcd',

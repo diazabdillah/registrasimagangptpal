@@ -829,7 +829,6 @@ class DivisiController extends Controller
             'divisi' => 'required',
             'tanggal_buka' => 'required',
             'tanggal_tutup' => 'required',
-            'status_kuota' => 'required',
             'jenis_kuota' => 'required',
           
         ]);
@@ -852,9 +851,12 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18) {
             $divisi = Divisi::all();
+            $user = DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->first();
             $data = DB::table('kuota')->where('id', $id)->first();
             $ti = 'Kuota';
-            return view('divisi.edit_kuota', ['ti' => $ti, 'data' => $data, 'divisi' => $divisi]);
+            return view('divisi.edit_kuota', ['ti' => $ti, 'data' => $data, 'divisi' => $divisi, 'user' => $user]);
         } else {
             return redirect()->back();
         }
@@ -917,16 +919,20 @@ class DivisiController extends Controller
 
     public function proseseditlaporan($id, Request $request)
     {
+        if ($request->file('path') != null){
         $lama = Laporan::find($id);
-        File::delete('file/laporan-mhs-revisi/' . $lama->path);
+        File::delete('file/laporan-mhs/' . $lama->path);
         $file = $request->file('path');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs-revisi/';
+        $tujuan_upload = 'file/laporan-mhs/';
         $file->move($tujuan_upload, $nama_file);
+        }else{
+            $nama_file = null;
+        }
         DB::table('laporans')->where('id', $id)
             ->update([
                 'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
-                'path_revisi'=> $nama_file,
+                'path'=> $nama_file,
                 'revisi' => $request->revisi
             ]);
 
@@ -938,7 +944,6 @@ class DivisiController extends Controller
         $laporanmhs = DB::table('laporans')->find($id);
         // Hapus di file storage
         File::delete('file/laporan-mhs/' . $laporanmhs->path);
-        File::delete('file/laporan-mhs-revisi/' . $laporanmhs->path_revisi);
         // Hapus di database
         DB::table('laporans')
             ->where('id', $laporanmhs->id)
@@ -959,17 +964,20 @@ class DivisiController extends Controller
     }
     public function proseseditlaporansmk($id, Request $request)
     {
+        if ($request->file('path') != null){
         $lama = LaporanSmk::find($id);
         File::delete('file/laporan-smk-revisi/' . $lama->path);
-
-        $file = $request->file('path_revisi');
+        $file = $request->file('path');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-smk-revisi/';
+        $tujuan_upload = 'file/laporan-smk/';
         $file->move($tujuan_upload, $nama_file);
+        }else{
+            $nama_file = null;
+        }
         DB::table('laporans_smk')->where('id', $id)
             ->update([
                 'nama_pembimbing_hcd'=> $request->nama_pembimbing_hcd,
-                'path_revisi'=> $nama_file,
+                'path'=> $nama_file,
                 'revisi' => $request->revisi
             ]);
 
@@ -981,7 +989,6 @@ class DivisiController extends Controller
         $laporansmk = DB::table('laporans_smk')->find($id);
         // Hapus di file storage
         File::delete('file/laporan-smk/' . $laporansmk->path);
-        File::delete('file/laporan-smk-revisi/' . $laporansmk->path_revisi);
         // Hapus di database
         DB::table('laporans_smk')
             ->where('id', $laporansmk->id)
@@ -2067,7 +2074,7 @@ class DivisiController extends Controller
                 'tanggal_buka' => $request->tanggal_buka,
                 'tanggal_tutup' => $request->tanggal_tutup,
                 'divisi' => $request->divisi,
-                'jenis_kuota' => $request->kuota,
+                'jenis_kuota' => $request->jenis_kuota,
                 'tw1' => $request->tw1,
                 'tw2' => $request->tw2,
                 'tw3' => $request->tw3,
@@ -2923,19 +2930,23 @@ class DivisiController extends Controller
 
     public function proseseditlaporan_divisi($id, Request $request)
     {
+        if ($request->file('path') != null){
         $lama = Laporan::find($id);
-        File::delete('file/laporan-mhs-revisi/' . $lama->path);
-        $file = $request->file('path_revisi');
+        File::delete('file/laporan-mhs/' . $lama->path);
+        $file = $request->file('path');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-mhs-revisi/';
+        $tujuan_upload = 'file/laporan-mhs/';
         $file->move($tujuan_upload, $nama_file);
+        }else{
+        $nama_file = null;
+        }
         DB::table('laporans')->where('id', $id)
             ->update([
                 'nama_pembimbing_lapangan'=> $request->nama_pembimbing_lapangan,
-                'path_revisi'=> $nama_file,
+                'path'=> $nama_file,
                 'revisi_divisi' => $request->revisi_divisi
             ]);
-
+       
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/laporan-divisi');
     }
@@ -2951,18 +2962,20 @@ class DivisiController extends Controller
     }
     public function proseseditlaporansmk_divisi($id, Request $request)
     {
-        
+        if ($request->file('path') != null){
         $lama = LaporanSmk::find($id);
-        File::delete('file/laporan-smk-revisi/' . $lama->path);
-
-        $file = $request->file('path_revisi');
+        File::delete('file/laporan-smk/' . $lama->path);
+        $file = $request->file('path');
         $nama_file = $file->getClientOriginalName();
-        $tujuan_upload = 'file/laporan-smk-revisi/';
+        $tujuan_upload = 'file/laporan-smk';
         $file->move($tujuan_upload, $nama_file);
+        }else{
+            $nama_file = null;
+        }
         DB::table('laporans_smk')->where('id', $id)
             ->update([
                 'nama_pembimbing_lapangan'=> $request->nama_pembimbing_lapangan,
-                'path_revisi'=> $nama_file,
+                'path'=> $nama_file,
                 'revisi_divisi' => $request->revisi_divisi
             ]);
 
