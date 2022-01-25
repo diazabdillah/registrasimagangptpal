@@ -37,7 +37,7 @@
                     <img src="{{ public_path('img/logo_pal.png') }}" alt="image"
                         style="width: 80px;margin-left:30px;">
 
-                    <img src="{{ public_path('img/ojt.png') }}" alt="Card image cap"
+                    <img src="{{ public_path('img/penelitian.png') }}" alt="Card image cap"
                         style="width: 55px;margin-left:150px;">
                 </div>
 

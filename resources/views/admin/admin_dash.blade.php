@@ -345,18 +345,18 @@
                                 <tr style="width: 10px;font-size:15px;">
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>Legal</td>
-                                    <td>{{ $tjlmhs }}</td>
-                                    <td>{{ $tjlsmk }}</td>
-                                    <td>{{ $tjlpenelitian }}</td>
-                                    <td class="text-center"><b>{{ $tjltotal }}</b></td>
+                                    <td>{{ $legalmhs }}</td>
+                                    <td>{{ $legalsmk }}</td>
+                                    <td>{{ $legalpenelitian }}</td>
+                                    <td class="text-center"><b>{{ $legaltotal }}</b></td>
                                 </tr>
                                 <tr style="width: 10px;font-size:15px;">
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>Office of The Board</td>
-                                    <td>{{ $tjlmhs }}</td>
-                                    <td>{{ $tjlsmk }}</td>
-                                    <td>{{ $tjlpenelitian }}</td>
-                                    <td class="text-center"><b>{{ $tjltotal }}</b></td>
+                                    <td>{{ $officemhs }}</td>
+                                    <td>{{ $officesmk }}</td>
+                                    <td>{{ $officepenelitian }}</td>
+                                    <td class="text-center"><b>{{ $officetotal }}</b></td>
                                 </tr>
 
                             </tbody>

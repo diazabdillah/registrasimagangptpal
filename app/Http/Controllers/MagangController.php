@@ -892,7 +892,7 @@ class MagangController extends Controller
 
     public function proses_edit_laporan_mhs($id, Request $request)
     {
-      
+        
         $lama = Laporan::find($id);
         File::delete('file/laporan-mhs/' . $lama->path);
         $file = $request->file('path');
@@ -903,7 +903,7 @@ class MagangController extends Controller
             ->where('id', $id)
             ->update([
                 'judul' => $request->judul,
-                'path' => $nama_file
+                'path' => $nama_file,
             ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
