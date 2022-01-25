@@ -680,6 +680,11 @@
                 Praktikan
             </div>
 
+            <li class="nav-item {{ $ti === 'Magang Aktif' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/magang-aktif-divisi">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Magang Aktif</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'absen' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/absen-divisi">
                     <i class="fas fa-fingerprint"></i>
@@ -701,6 +706,11 @@
                 Penelitian
             </div>
 
+            <li class="nav-item {{ $ti === 'Penelitian Aktif' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/penelitian-aktif-divisi">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Penelitian Aktif</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/absen-penelitian-divisi">
                     <i class="fas fa-fingerprint"></i>

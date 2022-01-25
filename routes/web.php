@@ -353,6 +353,8 @@ Route::put('update-departemen-penelitian/{user_id}', [DivisiController::class, '
 Route::get('/proses-kelola-smk/{id}', [DivisiController::class, 'proses_kelola_smk']);
 Route::get('/proses-kelola-penelitian/{id}', [DivisiController::class, 'proses_kelola_penelitian']);
 
+Route::get('/magang-aktif-divisi', [DivisiController::class, 'showMagangAktifDivisi']);
+Route::get('/penelitian-aktif-divisi', [DivisiController::class, 'showPenelitianAktifDivisi']);
 Route::get('/penerimaan-penelitian', [DivisiController::class, 'penerimaan_penelitian']);
 Route::get('proses-penerimaan-penelitian/{id}', [DivisiController::class, 'proses_penerimaan_penelitian']);
 Route::get('berkas-penelitian/{id}', [DivisiController::class, 'berkas_penelitian']);

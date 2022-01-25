@@ -2934,7 +2934,6 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-
             'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -2943,7 +2942,7 @@ class MagangController extends Controller
         $tujuan_upload = 'file/interview-smk/' . $individusmk->id;
         $file->move($tujuan_upload, $nama_file);
 
-        DB::table('interview')->insert([
+        DB::table('interview_smk')->insert([
             'id_individu' => $individusmk->id,
             'fileinterview' => $nama_file,
         ]);

@@ -144,6 +144,59 @@ class DivisiController extends Controller
         }
     }
 
+    public function showMagangAktifDivisi(Request $request)
+    {
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Magang Aktif';
+            $pagination = 5;
+            $data = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.user_id', '=', 'users.id')
+                ->select('users.id', 'users.name', 'users.status_user', 'data_mhs_indivs.divisi')
+                ->where('users.role_id', '=', 3)
+                ->where('data_mhs_indivs.divisi', Auth::user()->status_user)
+                ->distinct()
+                ->get();
+
+            $dataSmk = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'data_smk_indivs.user_id', '=', 'users.id')
+                ->select('users.id', 'users.name', 'users.status_user', 'data_smk_indivs.divisi')
+                ->where('users.role_id', '=', 4)
+                ->where('data_smk_indivs.divisi', Auth::user()->status_user)
+                ->distinct()
+                ->get();
+
+            return view('divisi.magang-aktif-divisi', [
+                'ti' => $ti,
+                'data' => $data,
+                'dataSmk' => $dataSmk,
+
+            ])->with('i', ($request->input('page', 1) - 1) * $pagination);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function showPenelitianAktifDivisi()
+    {
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Penelitian Aktif';
+
+            $data = DB::table('users')
+                ->leftJoin('data_penelitian', 'data_penelitian.user_id', '=', 'users.id')
+                ->select('users.id', 'users.name', 'users.status_user', 'data_penelitian.divisi')
+                ->where('users.role_id', '=', 23)
+                ->where('data_penelitian.divisi', Auth::user()->status_user)
+                ->distinct()
+                ->get();
+            return view('divisi.penelitian-aktif-divisi', [
+                'ti' => $ti,
+                'data' => $data,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function proses_penerimaan_smk($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
@@ -413,7 +466,7 @@ class DivisiController extends Controller
 
     public function finalMhs($user_id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
             $ti = 'Diterima';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
@@ -513,7 +566,7 @@ class DivisiController extends Controller
     }
     public function magangAktMhs($user_id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
             $ti = 'Magang Aktif';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
@@ -589,7 +642,7 @@ class DivisiController extends Controller
 
     public function magangAktSmk($user_id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
             $ti = 'Magang Aktif';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
@@ -815,25 +868,6 @@ class DivisiController extends Controller
         return redirect()->back();
     }
 
-    public function rekam_jejak_magang()
-    {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Rekam Jejak Magang';
-            return view('divisi.rekam-jejak-magang', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function rekam_jejak()
-    {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Rekam Jejak Magang';
-            return view('divisi.rekam-jejak', ['ti' => $ti]);
-        } else {
-            return redirect()->back();
-        }
-    }
     public function laporan()
     {
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
@@ -2227,7 +2261,7 @@ class DivisiController extends Controller
     }
     public function proses_penelitian_aktif($user_id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
             $ti = 'Penelitian Aktif';
             $userid = DB::table('users')->where('users.id', '=', $user_id)->get()->first();
             $fileFoto = DB::table('users')
@@ -2646,29 +2680,46 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
 
-            $user = User::find($id);
+            $user = DB::table('users')->where('id', $id)->first();
 
             if ($user->status_user == "Mahasiswa") {
+                $data = DB::table('data_mhs_indivs')->where('user_id', $id)->first();
+
                 if (DB::table('file_mhs_indivs')->where('user_id', $id)->first()) {
-                    File::deleteDirectories('file/berkas-mahasiswa/' . $user->id);
+                    File::deleteDirectory('file/berkas-mahasiswa/' . $id);
+                    DB::table('file_mhs_indivs')->where('user_id', $id)->delete();
                 }
+
+                DB::table('penilaians')->where('user_id', $data->id)->delete();
+
+                DB::table('data_mhs_indivs')->where('user_id', $id)->delete();
+
+                DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->delete();
+
+                DB::table('rekapmhs')->where('user_id', $id)->delete();
+
+                DB::table('users')->where('users.id', '=', $id)->delete();
+
             } else {
+                $data = DB::table('data_mhs_indivs')->where('user_id', $id)->get();
+
                 if (DB::table('file_mhs_indivs')->where('user_id', $id)->first()) {
-                    File::deleteDirectories('file/berkas-mhs-kel/' . $user->user_id);
+                    File::deleteDirectory('file/berkas-mhs-kel/' . $id);
                 }
-            }
 
-            DB::table('file_mhs_indivs')
-                ->where('file_mhs_indivs.user_id', '=', $id)
-                ->delete();
+                DB::table('file_mhs_indivs')->where('user_id', '=', $id)->delete();
 
-            DB::table('users')
-                ->where('users.id', '=', $id)
-                ->delete();
+                DB::table('data_mhs_indivs')->where('user_id', $id)->delete();
 
-            DB::table('data_mhs_indivs')
-                ->where('user_id', $id)
-                ->delete();
+                DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->delete();
+
+                DB::table('users')->where('users.id', '=', $id)->delete();
+
+                foreach ($data as $d) {
+                    DB::table('penilaians')->where('user_id', $d->id)->delete();
+                    DB::table('rekapmhs')->where('user_id', $d->id)->delete();
+                }
+            }           
 
             session()->flash('succes', 'Akun Praktikan berhasil dihapus');
             return redirect()->back();
@@ -2711,29 +2762,47 @@ class DivisiController extends Controller
     {
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
 
-            $user = User::find($id);
+            $user = DB::table('users')->where('id', $id)->first();
 
             if ($user->status_user == "SMK") {
+                $data = DB::table('data_smk_indivs')->where('user_id', $id)->first();
+
                 if (DB::table('file_smk_indivs')->where('user_id', $id)->first()) {
-                    File::deleteDirectories('file/berkas-smk/' . $user->id);
+                    File::deleteDirectory('file/berkas-smk/' . $id);
                 }
+
+                DB::table('file_smk_indivs')->where('user_id', '=', $id)->delete();
+
+                DB::table('data_smk_indivs')->where('user_id', $id)->delete();
+
+                DB::table('penilaians_smk')->where('user_id', $user->id)->delete();
+
+                DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
+
+                DB::table('rekapsmk')->where('user_id', $id)->delete();
+
+                DB::table('users')->where('users.id', '=', $id)->delete();
+
             } else {
+                $data = DB::table('data_smk_indivs')->where('user_id', $id)->get();
+
                 if (DB::table('file_smk_indivs')->where('user_id', $id)->first()) {
-                    File::deleteDirectories('file/berkas-smk-kel/' . $user->user_id);
+                    File::deleteDirectory('file/berkas-smk-kel/' . $id);
+                }
+
+                DB::table('file_smk_indivs')->where('user_id', '=', $id)->delete();
+
+                DB::table('data_smk_indivs')->where('user_id', $id)->delete();
+
+                DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
+
+                DB::table('users')->where('users.id', '=', $id)->delete();
+
+                foreach ($data as $d) {
+                    DB::table('penilaians_smk')->where('user_id', $d->id)->delete();
+                    DB::table('rekapsmk')->where('user_id', $d->id)->delete();
                 }
             }
-
-            DB::table('file_smk_indivs')
-                ->where('file_smk_indivs.user_id', '=', $id)
-                ->delete();
-
-            DB::table('users')
-                ->where('users.id', '=', $id)
-                ->delete();
-
-            DB::table('data_smk_indivs')
-                ->where('user_id', $id)
-                ->delete();
 
             session()->flash('succes', 'Akun Praktikan berhasil dihapus');
             return redirect()->back();
@@ -2772,26 +2841,22 @@ class DivisiController extends Controller
         }
     }
 
-    public function hapus_magang_penuh_penelitian($id)
+    public function hapus_magang_penuh_penelitian($id) 
     {
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
-
-            $user = User::find($id);
             if (DB::table('file_penelitian')->where('user_id', $id)->first()) {
-                File::deleteDirectories('file/berkas-penelitian/' . $user->user_id);
+                File::deleteDirectory('file/berkas-penelitian/' . $id);
             }
 
-            DB::table('file_penelitian')
-                ->where('user_id', '=', $id)
-                ->delete();
+            DB::table('file_penelitian')->where('user_id', '=', $id)->delete();
 
-            DB::table('users')
-                ->where('id', $id)
-                ->delete();
+            DB::table('data_penelitian')->where('user_id', $id)->delete();
 
-            DB::table('data_penelitian')
-                ->where('user_id', $id)
-                ->delete();
+            DB::table('mulai_dan_selesai_penelitian')->where('user_id', $id)->delete();
+
+            DB::table('rekappenelitian')->where('user_id', $id)->delete();
+
+            DB::table('users')->where('users.id', '=', $id)->delete();
 
             session()->flash('succes', 'Akun Praktikan berhasil dihapus');
             return redirect()->back();

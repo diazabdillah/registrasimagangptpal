@@ -86,6 +86,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Proses Penerimaan</h6>
                                 </div>
                                 <div class="card-body">
+                                    @if (Auth::user()->status_user == 'Admin Pusat')
                                     <form method="POST" action="/final-penerimaan-smk/{{ $userid->id }}">
                                         @method('put')
                                         @csrf
@@ -111,6 +112,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    @endif
 
                                     <form method="POST" action="/proses-magang-aktsmk/{{ $userid->id }}">
                                         @method('put')
