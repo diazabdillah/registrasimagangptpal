@@ -669,6 +669,32 @@
                     <i class="fas fa-fw fa-bullhorn"></i>
                     <span>Kuota</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Rekap Mahasiswa' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-divisi">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap Mahasiswa</span></a>
+            </li>
+
+            <li class="nav-item {{ $ti === 'Rekap Mahasiswa Kelompok' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-mhs-kelompok-divisi">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap MHS Kelompok</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap SMK' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-Smk-divisi">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap SMK</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap SMK Kelompok' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-smk-kelompok-divisi">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap SMK Kelompok</span></a>
+            </li>
+            <li class="nav-item {{ $ti === 'Rekap Penelitian' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/Rekap-penelitian-divisi">
+                    <i class="fas fa-database"></i>
+                    <span>Rekap Penelitian</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'Chat Admin' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/forum-mhs">
                     <i class="fas fa-comments"></i>

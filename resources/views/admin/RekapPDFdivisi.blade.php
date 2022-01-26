@@ -16,10 +16,9 @@
 <body>
     <img src="{{ public_path('img/bumn.png') }}" alt="image" style="width: 130px;">
 
-    <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px">
+    <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px;">
 
-    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data Mahasiswa Kelompok PT PAL</b></h5>
-   
+    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data Mahasiswa Divisi PT PAL</b></h5>
     <div class="row">
         <table class="table table-bordered table-striped responsive" style="table-layout: fixed;width:100%;">
             <thead class="text-center">
@@ -39,7 +38,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $rekap)
-                    @if ($rekap->status_user == 'Mahasiswa Kelompok')
+                    @if ($rekap->status_user == 'Mahasiswa')
                         <tr class="text-center">
 
                             <td style="font-size: 14px">{{ $rekap->nama }}</td>

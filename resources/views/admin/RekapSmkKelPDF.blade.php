@@ -9,9 +9,11 @@
 <html>
 
 <body>
-    <!-- Begin Page Content -->
+    <img src="{{ public_path('img/bumn.png') }}" alt="image" style="width: 130px;">
 
+    <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px;">
 
+    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data SMK Kelompok PT PAL</b></h5>
     <div class="row">
 
         <table class="table table-bordered table-striped responsive"

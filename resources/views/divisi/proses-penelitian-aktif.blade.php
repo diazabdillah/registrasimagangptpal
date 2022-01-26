@@ -102,6 +102,31 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    @else
+                                    <form method="POST" action="/update-penelitian-aktif-divisi/{{ $userid->id }}">
+                                        @method('put')
+                                        @csrf
+                                        <label class="ml-2"><b>Pilih Tindakan Final</b></label>
+                                        <div class="input-group">
+
+                                            <select class="custom-select" id="inputGroupSelect04" name="role_id">
+                                                <option value="24">Surat Pengantar Penelitian</option>
+                                               
+                                            </select>
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-danger" type="submit">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+                                        <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah
+                                        pendaftar tersebut resmi diterima atau tidak
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                     @endif
 
                                     <form method="POST" action="/penelitian-aktif-waktu/{{ $userid->id }}">
@@ -135,13 +160,7 @@
                                             <div class="card">
                                                 <img src="{{ asset('file/dokumen-penelitian/' . $img->user_id . '/' . $img->foto) }}"
                                                     alt="Foto" class="img-thumbnail" width="135">
-                                                <a class="btn btn-primary"
-                                                    href="{{ asset('file/dokumen-penelitian/' . $img->user_id . '/' . $img->foto) }}">Download</a>
-                                                <a class="btn btn-danger p-0 mt-2 float-right"
-                                                    onclick="return confirm('yakin Hapus?');"
-                                                    href="/hapus-final-penerimaan-penelitian/{{ $img->id }}/{{ $img->foto }}"><i
-                                                        class="far fa-trash-alt p-1"></i></a>
-
+                                               
                                             </div>
                                         </div>
 

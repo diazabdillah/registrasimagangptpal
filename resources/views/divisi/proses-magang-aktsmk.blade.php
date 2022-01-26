@@ -112,6 +112,32 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    @else
+                                    <form method="POST" action="/final-penerimaan-smk-divisi/{{ $userid->id }}">
+                                        @method('put')
+                                        @csrf
+                                        <label class="ml-2"><b>Pilih Tindakan Final</b></label>
+                                        <div class="input-group">
+
+                                            <select class="custom-select" id="inputGroupSelect04" name="role_id">
+                                                <option value="15">Sertifikat SMK</option>
+                                               
+                                            </select>
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-danger" type="submit">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+                                        <strong>Pilih Tindakan Final</strong> berungsi untuk meneruskan proses apakah
+                                        pendaftar tersebut resmi diterima atau tidak
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
                                     @endif
 
                                     <form method="POST" action="/proses-magang-aktsmk/{{ $userid->id }}">

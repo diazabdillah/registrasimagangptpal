@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Hash;
 use Excel;
-use PDF;
 use App\Models\User;
 use App\Exports\RekapExport;
 use App\Exports\RekapKelompokExport;
 use App\Exports\RekapSmkExport;
 use App\Exports\RekapSmkKelExport;
 use App\Exports\RekapPenelitianExport;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 
@@ -521,4 +521,205 @@ class AdminController extends Controller
         session()->flash('succes', 'Akun berhasil dihapus');
         return redirect()->back();
     }
+    public function Rekapmhs_divisi(){
+        
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap Mahasiswa';
+            $users = DB::table('rekapmhs')
+            ->where('rekapmhs.divisi', Auth::user()->status_user)
+            ->get();
+
+            return view('admin.Rekap-divisi', [
+                'ti' => $ti,
+                'users' => $users
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function Rekapmhskel_divisi(){
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap Mahasiswa Kelompok';
+            $users = DB::table('rekapmhs')
+            ->where('rekapmhs.divisi', Auth::user()->status_user)
+            ->get();
+
+            return view('admin.Rekapmhskel-divisi', [
+                'ti' => $ti,
+                'users' => $users
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function Rekapsmk_divisi(){
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap SMK';
+            $users = DB::table('rekapsmk')
+            ->where('rekapsmk.divisi', Auth::user()->status_user)
+            ->get();
+
+            return view('admin.Rekapsmk-divisi', [
+                'ti' => $ti,
+                'users' => $users
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function Rekapsmkkel_divisi(){
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap SMK Kelompok';
+            $users = DB::table('rekapsmk')
+            ->where('rekapsmk.divisi', Auth::user()->status_user)
+            ->get();
+
+            return view('admin.Rekapsmkkel-divisi', [
+                'ti' => $ti,
+                'users' => $users
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function Rekappenelitian_divisi(){
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap Penelitian';
+            $users = DB::table('rekappenelitian')
+            ->where('rekappenelitian.divisi', Auth::user()->status_user)
+            ->get();
+            return view('admin.Rekappenelitian-divisi', [
+                'ti' => $ti,
+                'users' => $users
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function final_penerimaan_mhs_divisi(Request $request, $id){
+        if (auth()->user()->role_id == 18) {
+        DB::table('users')
+        ->where('id', $id)
+        ->update([
+            'role_id' => $request->role_id
+        ]);
+
+        session()->flash('succes', 'Status Mahasiswa telah selesai');
+        return redirect('/magang-aktif-divisi');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function final_penerimaan_smk_divisi(Request $request, $id){
+        if (auth()->user()->role_id == 18) {
+            DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+    
+            session()->flash('succes', 'Status SMK telah selesai');
+            return redirect('/magang-aktif-divisi');
+            } else {
+                return redirect()->back();
+            }
+    }
+    public function update_penelitian_aktif_divisi(Request $request, $id){
+        if (auth()->user()->role_id == 18) {
+            DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+    
+            session()->flash('succes', 'Status Penelitian telah selesai');
+            return redirect('/penelitian-aktif-divisi');
+            } else {
+                return redirect()->back();
+            }
+    }
+
+    public function cetak_rekapmhspdfdivisi(){
+        if (auth()->user()->role_id == 18) {
+        $ti = 'Rekap Mahasiswa Magang';
+        $users = DB::table('rekapmhs')
+        ->where('rekapmhs.divisi', Auth::user()->status_user)
+        ->get();
+
+        $pdf = PDF::loadview('admin.RekapPDFdivisi', [
+            'ti' => $ti,
+            'users' => $users
+        ]);
+
+        return $pdf->stream();
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function cetak_rekapmhskelpdfdivisi(){
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap Mahasiswa Magang';
+            $users = DB::table('rekapmhs')
+            ->where('rekapmhs.divisi', Auth::user()->status_user)
+            ->get();
+    
+            $pdf = PDF::loadview('admin.RekapMhsKelPDFdivisi', [
+                'ti' => $ti,
+                'users' => $users
+            ]);
+    
+            return $pdf->stream();
+            } else {
+                return redirect()->back();
+            }
+    }
+    public function cetak_rekapsmkpdfdivisi(){
+        if (auth()->user()->role_id == 18) {
+        $ti = 'Rekap Smk';
+        $users = DB::table('rekapsmk')
+        ->where('rekapsmk.divisi', Auth::user()->status_user)
+        ->get();
+
+        $pdf = PDF::loadview('admin.RekapSmkPDFdivisi', [
+            'ti' => $ti,
+            'users' => $users
+        ]);
+        return $pdf->stream();
+    } else {
+        return redirect()->back();
+    }
+    }
+    public function cetak_rekapsmkkelpdfdivisi(){
+        if (auth()->user()->role_id == 18) {
+        $ti = 'Rekap Smk Kelompok';
+        $users = DB::table('rekapsmk')
+        ->where('rekapsmk.divisi', Auth::user()->status_user)
+        ->get();
+
+        $pdf = PDF::loadview('admin.RekapSmkKelPDFdivisi', [
+            'ti' => $ti,
+            'users' => $users
+        ]);
+        return $pdf->stream();
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function cetak_rekappenelitianpdfdivisi(){
+        if (auth()->user()->role_id == 18) {
+            $ti = 'Rekap Penelitian';
+            $users = DB::table('rekappenelitian')
+            ->where('rekappenelitian.divisi', Auth::user()->status_user)
+            ->get();
+    
+            $pdf = PDF::loadview('admin.RekaplPenelitianPDFdivisi', [
+                'ti' => $ti,
+                'users' => $users
+            ]);
+            return $pdf->stream();
+            } else {
+                return redirect()->back();
+            }
+    }
+
 }

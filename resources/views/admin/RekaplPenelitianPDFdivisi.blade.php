@@ -12,10 +12,10 @@
     <!-- Begin Page Content -->
     <img src="{{ public_path('img/bumn.png') }}" alt="image" style="width: 130px;">
 
-    <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px;">
+    <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px">
 
-    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data Penelitian PT PAL</b></h5>
-    
+    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data Penelitian Divisi PT PAL</b></h5>
+   
     <div class="row">
 
         <table class="table table-bordered table-striped responsive"
@@ -47,8 +47,7 @@
                         <tr class="text-center">
                             <td>{{ ++$i }}</td>
                             <td>{{ $rekap->nama }}</td>
-                            <td>{{ $rekap->judul_penelitian }}</td>
-                          
+                            <td>{{ $rekap->judul_penelitian }}</td>   
                             <td>{{ $rekap->asal_instansi }}</td>
                             <td>{{ $rekap->strata }}</td>
                             <td>{{ $rekap->jurusan }}</td>

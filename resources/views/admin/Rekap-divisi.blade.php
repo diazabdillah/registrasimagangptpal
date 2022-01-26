@@ -5,7 +5,7 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    
+
     <div class="row">
         <div class="col-lg">
 
@@ -20,10 +20,10 @@
 
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapPenelitianPDFdivisi" target="_blank"
-                        role="button"><i class="fas fa-file-export"></i> Export PDF</a>
-                    <a class="btn btn-success btn-sm mb-3" href="/cetakRekapPenelitianEXCELdivisi" target="_blank"
-                        role="button"><i class="fas fa-file-export"></i> Export EXCEL</a>
+                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapMhsPDFdivisi" target="_blank" role="button"><i
+                            class="fas fa-file-export"></i> Export PDF</a>
+                    {{-- <a class="btn btn-success btn-sm mb-3" href="/cetakRekapMhsEXCELdivisi" target="_blank" role="button"><i
+                            class="fas fa-file-export"></i> Export EXCEL</a> --}}
 
                     <div class="table-responsive">
                         <div class="scroll">
@@ -32,43 +32,37 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Nama</th>
-                                        <th>Judul Penelitian</th>
-                                        <th>Asal Instansi</th>
+                                        <th>Nim</th>
+                                        <th>Universitas</th>
                                         <th>Strata</th>
                                         <th>Jurusan</th>
                                         <th>No_Hp</th>
                                         <th>Divisi</th>
                                         <th>Departemen</th>
-                                        <th>Alamat Rumah</th>
                                         <th>Tanggal Daftar</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Selesai</th>
-                                        <th>Action</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     @foreach ($users as $rekap)
-                                    @if ($rekap->status_user == 'Penelitian')
+                                    @if ($rekap->status_user == 'Mahasiswa')
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $rekap->nama }}</td>
-                                        <td>{{ $rekap->judul_penelitian }}</td>
-                                        <td>{{ $rekap->asal_instansi }}</td>
+                                        <td>{{ $rekap->nim }}</td>
+                                        <td>{{ $rekap->univ }}</td>
                                         <td>{{ $rekap->strata }}</td>
                                         <td>{{ $rekap->jurusan }}</td>
                                         <td>{{ $rekap->no_hp }}</td>
                                         <td>{{ $rekap->divisi }}</td>
                                         <td>{{ $rekap->departemen }}</td>
-                                        <td>
-                                            {{ $rekap->alamat_rumah }}
-                                        </td>
                                         <td>{{ $rekap->created_at }}</td>
                                         <td>{{ $rekap->mulai }}</td>
                                         <td>{{ $rekap->selesai }}</td>
-                                        <td><a class="btn btn-danger"
-                                                href="delete-rekap-penelitian-divisi/{{$rekap->id}}">Delete</a>
-                                        </td>
+                                        
                                     </tr>
                                     @endif
                                     @endforeach

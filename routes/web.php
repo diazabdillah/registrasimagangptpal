@@ -237,6 +237,22 @@ Route::get('/edit-akun-divisi/{id}', [AdminController::class, 'edit_akun_divisi'
 Route::put('/proses-edit-akun-divisi/{id}', [AdminController::class, 'proses_edit_akun_divisi']);
 Route::get('/delete-akun-divisi/{id}', [AdminController::class, 'delete_akun_divisi']);
 Route::get('/lihat_kuota',[AdminController::class,'kuota']);
+
+Route::get('/Rekap-divisi', [AdminController::class, 'Rekapmhs_divisi']);
+Route::get('/Rekap-mhs-kelompok-divisi', [AdminController::class, 'Rekapmhskel_divisi']);
+Route::get('/Rekap-Smk-divisi', [AdminController::class, 'Rekapsmk_divisi']);
+Route::get('/Rekap-smk-kelompok-divisi', [AdminController::class, 'Rekapsmkkel_divisi']);
+Route::get('/Rekap-penelitian-divisi', [AdminController::class, 'Rekappenelitian_divisi']);
+
+Route::get('/cetakRekapMhsPDFdivisi', [AdminController::class, 'cetak_rekapmhspdfdivisi']);
+Route::get('/cetakRekapmhskelPDFdivisi', [AdminController::class, 'cetak_rekapmhskelpdfdivisi']);
+Route::get('/cetakRekapSmkPDFdivisi', [AdminController::class, 'cetak_rekapsmkpdfdivisi']);
+Route::get('/cetakRekapSmkKelPDFdivisi', [AdminController::class, 'cetak_rekapsmkkelpdfdivisi']);
+Route::get('/cetakRekapPenelitianPDFdivisi', [AdminController::class, 'cetak_rekappenelitianpdfdivisi']);
+
+Route::put('/final-penerimaan-mhs-divisi/{id}', [AdminController::class, 'final_penerimaan_mhs_divisi']);
+Route::put('/final-penerimaan-smk-divisi/{id}',[AdminController::class, 'final_penerimaan_smk_divisi']);
+Route::put('/update-penelitian-aktif-divisi/{id}',[AdminController::class,'update_penelitian_aktif_divisi']);
 // End Halaman administrasi ========================
 
 // Halaman Divisi ========================

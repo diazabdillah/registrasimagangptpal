@@ -224,7 +224,7 @@
 				<div style="color: black" class="col-md-6">
 					<?php
 						$tgl = date('Y');
-						echo "<p>Copyright " . $tgl . " Anak PENS</p>";
+						echo "<p>Copyright  &copy; PT PAL " . $tgl . " Powered By ANAK IT PENS 19</p>";
 					?>
 					{{-- <p>© 2021 . Powerd with <i class="fa fa-heart"></i> by <a href="https://themeforest.net/user/ig_design/portfolio?ref=IG_design" target="_blank">Anak PENS</a>!</p> --}}
 				</div>

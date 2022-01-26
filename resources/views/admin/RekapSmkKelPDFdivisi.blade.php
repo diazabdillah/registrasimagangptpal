@@ -9,12 +9,11 @@
 <html>
 
 <body>
-    <!-- Begin Page Content -->
     <img src="{{ public_path('img/bumn.png') }}" alt="image" style="width: 130px;">
 
     <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px;">
 
-    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data Penelitian PT PAL</b></h5>
+    <h5 class="text-center h5 mb-2 text-gray-800"><b>Rekap Data SMk Kelompok Divisi PT PAL</b></h5>
     
     <div class="row">
 
@@ -24,9 +23,8 @@
                 <tr class="text-center">
                     <th>No.</th>
                     <th>Nama</th>
-                    <th>Judul</th>
-                    <th>Asal Instansi</th>
-                    <th>Strata</th>
+                    <th>Nis</th>
+                    <th>Sekolah</th>
                     <th>Jurusan</th>
                     <th>No Hp</th>
                     <th>Divisi</th>
@@ -43,14 +41,12 @@
                 ?>
 
                 @foreach ($users as $rekap)
-                    @if ($rekap->status_user == 'Penelitian')
+                    @if ($rekap->status_user == 'SMK Kelompok')
                         <tr class="text-center">
                             <td>{{ ++$i }}</td>
                             <td>{{ $rekap->nama }}</td>
-                            <td>{{ $rekap->judul_penelitian }}</td>
-                          
-                            <td>{{ $rekap->asal_instansi }}</td>
-                            <td>{{ $rekap->strata }}</td>
+                            <td>{{ $rekap->nis }}</td>
+                            <td>{{ $rekap->sekolah }}</td>
                             <td>{{ $rekap->jurusan }}</td>
                             <td>{{ $rekap->no_hp }}</td>
                             <td>{{ $rekap->divisi }}</td>
@@ -58,7 +54,6 @@
                             <td>{{ $rekap->created_at }}</td>
                             <td>{{ $rekap->mulai }}</td>
                             <td>{{ $rekap->selesai }}</td>
-
                         </tr>
                     @endif
                 @endforeach
