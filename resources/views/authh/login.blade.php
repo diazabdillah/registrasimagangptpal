@@ -83,6 +83,9 @@
                                     <div class="text-center">
                                         <a class="small" href="/auth">Dont have account ?</a>
                                     </div>
+                                    <div class="text-center">
+                                    <a class="small" href="{{ route('forget.password.get') }}">Reset Password</a>
+                                    </div>    
                                 </form>
                             </div>
                         </div>
