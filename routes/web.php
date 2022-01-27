@@ -13,7 +13,7 @@ use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\ForgotPasswordController;
 // Web Landing =================================
 Route::get('/', [WebController::class, 'index']);
 // Web Landing =================================
@@ -656,3 +656,8 @@ Route::get('/hapus-komentar/{id}', [ForumController::class, 'hapus_komentar']);
 // end halaman forum mahasiswa ====
 
 Route::get('/Kuota', [MagangController::class, 'Kuota']);
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
