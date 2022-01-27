@@ -15,7 +15,7 @@
                             Liat Laporan
                         </div>
                         <div class="card-body">
-                            <iframe src="{{ asset('file/laporan-smk-revisi/' . $user->path_revisi) }}" align="top" height="620"
+                            <iframe src="{{ asset('file/laporan-smk/' . $user->path) }}" align="top" height="620"
                                 width="100%" frameborder="0" scrolling="auto"></iframe>
                         </div>
                     </div>
