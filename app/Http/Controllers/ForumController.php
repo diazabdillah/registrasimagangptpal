@@ -15,7 +15,7 @@ class ForumController extends Controller
     {
 
         $ti = 'Chat Admin';
-        $forum = Forum::orderBy('created_at', 'desc')->simplePaginate(5);
+        $forum = Forum::orderBy('created_at', 'desc')->get();
         $countKomentar = DB::table('komentar')
             ->leftJoin('forum', 'forum.id', '=', 'komentar.forum_id')
             ->select('komentar.id', 'komentar.forum_id')
@@ -44,8 +44,8 @@ class ForumController extends Controller
     {
 
         $ti = 'Forum Diskusi';
-        $komentar = Komentar::orderBy('created_at', 'desc')->where('forum_id', '=', $id)->simplePaginate(5);
-        $forum = Forum::orderBy('created_at', 'desc')->where('id', '=', $id)->simplePaginate(5);
+        $komentar = Komentar::orderBy('created_at', 'desc')->where('forum_id', '=', $id)->get();
+        $forum = Forum::orderBy('created_at', 'desc')->where('id', '=', $id)->get();
 
         $countKomentar = $komentar->count();
         return view('forum.view', [
