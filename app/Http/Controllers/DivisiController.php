@@ -2697,7 +2697,9 @@ class DivisiController extends Controller
                     DB::table('file_mhs_indivs')->where('user_id', $id)->delete();
                 }
 
-                DB::table('penilaians')->where('user_id', $data->id)->delete();
+                if ($data){
+                    DB::table('penilaians')->where('user_id', $data->id)->delete();
+                }
 
                 DB::table('data_mhs_indivs')->where('user_id', $id)->delete();
 
@@ -2782,7 +2784,9 @@ class DivisiController extends Controller
 
                 DB::table('data_smk_indivs')->where('user_id', $id)->delete();
 
-                DB::table('penilaians_smk')->where('user_id', $user->id)->delete();
+                if ($data){
+                    DB::table('penilaians_smk')->where('user_id', $data->id)->delete();
+                }
 
                 DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
 
