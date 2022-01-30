@@ -84,7 +84,7 @@ class AdminController extends Controller
             $kpmhs = DB::table('data_mhs_indivs')->where('divisi', '=', 'Kapal Perang')->count();
             $kpsmk = DB::table('data_smk_indivs')->where('divisi', '=', 'Kapal Perang')->count();
             $kppenelitian = DB::table('data_penelitian')->where('divisi', '=', 'Kapal Perang')->count();
-            $kptotal = $kpmhs + $kpsmk = $kppenelitian;
+            $kptotal = $kpmhs + $kpsmk + $kppenelitian;
             $ksmhs = DB::table('data_mhs_indivs')->where('divisi', '=', 'Kapal Selam')->count();
             $kssmk = DB::table('data_smk_indivs')->where('divisi', '=', 'Kapal Selam')->count();
             $kspenelitian = DB::table('data_penelitian')->where('divisi', '=', 'Kapal Selam')->count();
