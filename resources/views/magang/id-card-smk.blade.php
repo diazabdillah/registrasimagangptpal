@@ -55,7 +55,7 @@
                                             <td class="pl-4">{{ $data->id }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b>Universitas</b></td>
+                                            <td><b>Sekolah</b></td>
                                             <td class="pl-4">{{ $data->sekolah }}</td>
                                         </tr>
                                         <tr>

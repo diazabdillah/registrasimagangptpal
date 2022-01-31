@@ -71,7 +71,7 @@
 
                         <tr>
                             <td><b>
-                                    <h6 style="font-size:15px;">Universitas</h6>
+                                    <h6 style="font-size:15px;">Sekolah</h6>
                                 </b></td>
                             <td class="pl-4" style="font-size:15px;">: <span>{{ $data->sekolah }}</span>
                             </td>

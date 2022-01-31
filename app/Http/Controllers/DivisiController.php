@@ -216,13 +216,16 @@ class DivisiController extends Controller
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_smk')
+                ->where('mulai_dan_selesai_smk.user_id', '=', $user_id)
+                ->get();
             return view('divisi.proses-penerimaan-smk', [
                 'ti' => $ti,
                 'users' => $users,
                 'filepdf' => $filepdf,
                 'divisi' => $divisi,
                 'departemen' => $departemen,
+                'tgl'=> $tgl
             ]);
         } else {
             return redirect()->back();
@@ -532,13 +535,16 @@ class DivisiController extends Controller
                 ->select('interview_smk.id_individu AS interview_individu', 'interview_smk.fileinterview', 'interview_smk.id', 'users.name', 'users.status_user', 'data_smk_indivs.nama', 'data_smk_indivs.status_penerimaan', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'users.email', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'foto_i_d_smks.fotoID', 'foto_i_d_smks.id_individu')
                 ->where('users.id', '=', $user_id)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_smk')
+                ->where('mulai_dan_selesai_smk.user_id', '=', $user_id)
+                ->get();
             return view('divisi.final-penerimaan-smk', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
-                'fileFoto' => $fileFoto
+                'fileFoto' => $fileFoto,
+                'tgl'=> $tgl
             ]);
         } else {
             return redirect()->back();
@@ -1795,12 +1801,15 @@ class DivisiController extends Controller
                 ->select('interview_smk.id_individu', 'interview_smk.id', 'interview_smk.fileinterview', 'users.name', 'data_smk_indivs.nama', 'users.email', 'users.status_user', 'data_smk_indivs.sekolah', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen', 'data_smk_indivs.status_penerimaan')
                 ->where('users.id', '=', $user_id)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_smk')
+                ->where('mulai_dan_selesai_smk.user_id', '=', $user_id)
+                ->get();
             return view('divisi.terima-interview-smk', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
-                'filepengajuan' => $filepengajuan
+                'filepengajuan' => $filepengajuan,
+                'tgl' => $tgl
             ]);
         } else {
             return redirect()->back();
@@ -1865,7 +1874,9 @@ class DivisiController extends Controller
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_mhs')
+                ->where('mulai_dan_selesai_mhs.user_id', '=', $user_id)
+                ->get();
 
             return view('divisi.proses-kelola-mhs', [
                 'ti' => $ti,
@@ -1873,6 +1884,7 @@ class DivisiController extends Controller
                 'userid' => $userid,
                 'filepdf' => $filepdf,
                 'departemen' => $departemen,
+                'tgl' => $tgl
             ]);
         } else {
             return redirect()->back();
@@ -2012,13 +2024,16 @@ class DivisiController extends Controller
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_smk')
+                ->where('mulai_dan_selesai_smk.user_id', '=', $user_id)
+                ->get();
             return view('divisi.proses-kelola-smk', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
-                'departemen' => $departemen
+                'departemen' => $departemen,
+                'tgl' => $tgl
             ]);
         } else {
             return redirect()->back();

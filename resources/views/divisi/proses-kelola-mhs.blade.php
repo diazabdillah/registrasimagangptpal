@@ -50,6 +50,15 @@
                                             <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                                 {{ $user->status_penerimaan }}
                                             </li>
+                                            @foreach ($tgl as $data)
+
+                                            <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                                Tgl Mulai <span class="badge badge-success p-2">
+                                                    {{ date('d-F-Y', strtotime($data->mulai)) }}</span>
+                                                Tgl Selesai <span class="badge badge-danger p-2">
+                                                    {{ date('d-F-Y', strtotime($data->selesai)) }}</span>
+                                            </li>
+                                        @endforeach
                                         </ul>
                                     @endforeach
 
@@ -83,6 +92,15 @@
                                             <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                                 {{ $user->status_penerimaan }}
                                             </li>
+                                            @foreach ($tgl as $data)
+
+                                            <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                                Tgl Mulai <span class="badge badge-success p-2">
+                                                    {{ date('d-F-Y', strtotime($data->mulai)) }}</span>
+                                                Tgl Selesai <span class="badge badge-danger p-2">
+                                                    {{ date('d-F-Y', strtotime($data->selesai)) }}</span>
+                                            </li>
+                                        @endforeach
                                         </ul>
                                     @endforeach
 

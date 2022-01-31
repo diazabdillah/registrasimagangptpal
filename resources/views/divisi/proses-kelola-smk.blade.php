@@ -30,10 +30,10 @@
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item"><i class="far fa-fw fa-building mr-3"></i>
-                                                {{ $user->univ }}
+                                                {{ $user->sekolah }}
                                             </li>
                                             <li class="list-group-item"><i class="fas fa-fw fa-graduation-cap mr-3"></i>
-                                                {{ $user->strata }} {{ $user->jurusan }}
+                                             {{ $user->jurusan }}
                                             </li>
                                             <li class="list-group-item"><i class="fas fa-fw fa-home mr-3"></i>
                                                 {{ $user->alamat_rumah }}
@@ -47,6 +47,15 @@
                                             <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                                 {{ $user->departemen }}
                                             </li>
+                                            @foreach ($tgl as $data)
+
+                                            <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                                Tgl Mulai <span class="badge badge-success p-2">
+                                                    {{ date('d-F-Y', strtotime($data->mulai)) }}</span>
+                                                Tgl Selesai <span class="badge badge-danger p-2">
+                                                    {{ date('d-F-Y', strtotime($data->selesai)) }}</span>
+                                            </li>
+                                        @endforeach
                                         </ul>
                                     @endforeach
 
@@ -77,6 +86,15 @@
                                             <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                                 {{ $user->departemen }}
                                             </li>
+                                            @foreach ($tgl as $data)
+
+                                            <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                                Tgl Mulai <span class="badge badge-success p-2">
+                                                    {{ date('d-F-Y', strtotime($data->mulai)) }}</span>
+                                                Tgl Selesai <span class="badge badge-danger p-2">
+                                                    {{ date('d-F-Y', strtotime($data->selesai)) }}</span>
+                                            </li>
+                                        @endforeach
                                         </ul>
                                     @endforeach
 
@@ -102,7 +120,7 @@
 
                                             <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                                 {{ $file->path }}
-                                                <a href="{{ url('pdf-mhs/' . $file->id) }}"
+                                                <a href="{{ url('pdf-smk/' . $file->id) }}"
                                                     class="badge badge-success float-right p-2">Open <i
                                                         class="fas fa-eye ml-1"></i></a>
                                             </li>
@@ -111,7 +129,7 @@
 
                                             <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                                 {{ $file->path }}
-                                                <a href="{{ url('pdf-mhs-kel/' . $file->id) }}"
+                                                <a href="{{ url('pdf-smk-kel/' . $file->id) }}"
                                                     class="badge badge-success float-right p-2">Open <i
                                                         class="fas fa-eye ml-1"></i></a>
                                             </li>
