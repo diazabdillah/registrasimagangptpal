@@ -21,7 +21,7 @@
                     </span>
                     <br>
                     <br>
-                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan" role="button"><i class="fas fa-plus"></i>
+                    <a class="btn btn-primary btn-sm mb-3" href="/upload-laporan-penelitian" role="button"><i class="fas fa-plus"></i>
                         upload laporan</a>
                 </div>
               

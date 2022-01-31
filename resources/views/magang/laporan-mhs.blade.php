@@ -95,7 +95,7 @@
                                 </div>
                         
                         </div>
-                        <div class="container">
+                        {{-- <div class="container">
                             <div class="row">
 
                                 <form method="GET" action="/mhs/cari">
@@ -199,7 +199,7 @@
                                 </form>
 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="row mt-4">
                             @foreach ($user as $laporan)

@@ -744,7 +744,6 @@ class PenelitianController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'tanggal_kumpul' => 'required',
             'path' => 'required|mimes:pdf',
             'jurusan' => 'required'
         ]);
@@ -755,9 +754,7 @@ class PenelitianController extends Controller
         $file1->move($tujuan_upload, $namafile);
         LaporanPenelitian::create([
             'nama' => Auth::user()->name,
-            'sinopsis' => $request->sinopsis,
             'judul' => $request->judul,
-            'tanggal_kumpul' => $request->tanggal_kumpul,
             'jurusan' => $request->jurusan,
             'divisi' => $request->divisi,
             'path' => $namafile

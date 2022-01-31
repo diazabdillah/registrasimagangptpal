@@ -94,7 +94,7 @@
                         
                             </div>
                         </div>
-                        <div class="container">
+                        {{-- <div class="container">
                             <div class="row">
 
                                 <form method="GET" action="/smk/cari">
@@ -104,92 +104,61 @@
                                     <div class="input-group" style="width:200px;">
                                         <select class="custom-select" name="kategori" required>
 
-                                            <option value="Informatika">
-                                                Informatika
+                                            <option value="Teknik pengelasan">
+                                                Teknik pengelasan
                                             </option>
-                                            <option value="Elektro">
-                                                Elektro
+                                            <option value="Teknik Konstruksi kapal baja">
+                                                Teknik Konstruksi kapal baja
                                             </option>
-                                            <option value="Komputer">
-                                                Komputer
+                                            <option value="Teknik listrik">
+                                                Teknik listrik
                                             </option>
-                                            <option value="Industri">
-                                                Industri
+                                            <option value="Teknik multimedia">
+                                                Teknik multimedia
                                             </option>
-                                            <option value="Mesin">
-                                                Mesin
+                                            <option value="Teknik komputer jaringan">
+                                                Teknik komputer jaringan
                                             </option>
-                                            <option value="Arsitek">
-                                                Arsitek
+                                            <option value="Teknik interior kapal">
+                                                Teknik interior kapal
                                             </option>
-                                            <option value="Matematika">
-                                                Matematika
+                                            <option value="Teknik permesinan kapal">
+                                                Teknik permesinan kapal
                                             </option>
-                                            <option value="ManajemenBisnis">
-                                                Manajemen Bisnis
+                                            <option value="Teknik Otomasi industri">
+                                                Teknik Otomasi industri
                                             </option>
-                                            <option value="Manajemen">
-                                                Manajemen
+                                            <option value="Teknik elektronika">
+                                                Teknik elektronika
                                             </option>
-                                            <option value="Ekonomi">
-                                                Ekonomi
+                                            <option value="Teknik instrumentasi Industri">
+                                                Teknik instrumentasi Industri
                                             </option>
-                                            <option value="Akutansi">
-                                                Akutansi
+                                            <option value="Administrasi Perkantoran">
+                                                Administrasi Perkantoran
                                             </option>
-                                            <option value="Hukum">
-                                                Hukum
+                                            <option value="Sekretaris ">
+                                                Sekretaris 
                                             </option>
-                                            <option value="SistemInformasi">
-                                                Sistem Informasi
+                                            <option value="Akuntansi">
+                                                Akuntansi     
+                                             </option>
+                                            <option value="Perbankan">
+                                                Perbankan
                                             </option>
-                                            <option value="Sipil">
-                                                Sipil
-                                            </option>
-                                            <option value="Lingkungan">
-                                                Lingkungan
+                                            <option value="Marketing pemasaran">
+                                                Marketing pemasaran
                                             </option>
                                             <option value="Perkapalan">
                                                 Perkapalan
                                             </option>
-                                            <option value="Hubungan Internasional">
-                                                Hubungan Internasional
+                                            <option value="Animasi">
+                                                Animasi
                                             </option>
-                                            <option value="Adminstrasi Perkantoran">
-                                                Adminstrasi Perkantoran
+                                            <option value="Bisnis dan manajemen">
+                                                Bisnis dan manajemen
                                             </option>
                                           
-                                            <option value="Listrik">
-                                            Listrik
-                                            </option>
-                                            <option value="Bahasa Inggris">
-                                                Bahasa Inggris
-                                            </option>
-                                            <option value="Psikologi">
-                                                Psikologi
-                                            </option>
-                                            <option value="Bisnis dan Manajemen">
-                                                Bisnis dan Manajemen
-                                            </option>
-                                            <option value="Bisnis dan Manajemen">
-                                                Bisnis dan Manajemen
-                                            </option>
-                                            <option value="Ilmu Komputer">
-                                                Ilmu Komputer
-                                            </option>
-                                            <option value="Kimia">
-                                                Kimia
-                                            </option>
-                                            <option value="Fisika">
-                                                Fisika
-                                            </option>
-                                            <option value="Statistik">
-                                                Statistik
-                                            </option>
-                                            <option value="Kelautan">
-                                                Kelautan
-                                            </option>
- 
                                         </select>
 
                                         <button class="btn btn-primary" type="submit">Cari</button>
@@ -199,10 +168,11 @@
                                 </form>
 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="row mt-4">
                             @foreach ($user as $laporan)
+                            
                                 @if ($status_user == 'SMK' || $status_user == 'SMK Kelompok')
 
                                     <div class="card ml-2" style="width: 500px;">
@@ -234,6 +204,7 @@
 
                                         </div>
                                     </div>
+           
                                 @endif
                             @endforeach
 

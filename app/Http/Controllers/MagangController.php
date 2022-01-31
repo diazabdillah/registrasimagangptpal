@@ -791,10 +791,10 @@ class MagangController extends Controller
                 ->where('laporans.nama', '=', $nama)
                 ->get();
             $cari = $request->cari;
-            $kategori = $request->kategori;
             $user = DB::table('laporans')
                 ->where('judul', 'like', "%" . $cari . "%")
-                ->where('jurusan', 'like', "%" . $kategori . "%")
+                ->orWhere('jurusan', 'like', "%" . $cari . "%")
+                ->orWhere('divisi', 'like', "%" . $cari . "%")
                 ->get();
 
             $ti = 'Laporan Akhir';
@@ -1966,8 +1966,10 @@ class MagangController extends Controller
             $kategori = $request->kategori;
             $user = DB::table('laporans_smk')
                 ->where('judul', 'like', "%" . $cari . "%")
-                ->orWhere('jurusan', 'like', "%" . $kategori . "%")
+                ->orWhere('jurusan', 'like', "%" . $cari . "%")
+                ->orWhere('divisi', 'like', "%" . $cari . "%")
                 ->get();
+         
 
             $ti = 'Laporan Akhir SMK';
             return view('magang.laporan-smk', [
