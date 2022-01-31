@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
-use DB; 
+ 
 use Carbon\Carbon; 
 use App\Models\User; 
 use Mail; 
 use Hash;
 use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\DB;
 
 class ForgotPasswordController extends Controller
 {
@@ -43,7 +45,7 @@ class ForgotPasswordController extends Controller
               $message->subject('Reset Password');
           });
   
-          return back()->with('message', 'We have e-mailed your password reset link!');
+          return back()->with('message', 'Silahkan check email Anda untuk mereset password akun Anda');
       }
       /**
        * Write code on Method
