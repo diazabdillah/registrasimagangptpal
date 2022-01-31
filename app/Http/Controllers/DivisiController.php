@@ -347,7 +347,7 @@ class DivisiController extends Controller
 
     public function showPdfMhs($id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
+        if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
             $ti = 'Penerimaan';
             $users = DB::table('users')
                 ->where('id', '=', $id)
@@ -366,7 +366,7 @@ class DivisiController extends Controller
 
     public function showPdfMhsKel($id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
             $ti = 'Penerimaan';
             $users = DB::table('users')
                 ->where('id', '=', $id)
@@ -385,7 +385,7 @@ class DivisiController extends Controller
 
     public function showPdfSmk($id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
             $ti = 'Penerimaan';
             $users = DB::table('users')
                 ->where('id', '=', $id)
@@ -407,7 +407,7 @@ class DivisiController extends Controller
 
     public function showPdfSmkKel($id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
             $ti = 'Penerimaan';
             $users = DB::table('users')
                 ->where('id', '=', $id)
@@ -425,7 +425,7 @@ class DivisiController extends Controller
     }
     public function showPdfPenelitian($id)
     {
-        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+        if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
             $ti = 'Penerimaan';
             $users = DB::table('users')
                 ->where('id', '=', $id)

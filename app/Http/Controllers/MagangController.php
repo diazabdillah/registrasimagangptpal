@@ -189,6 +189,8 @@ class MagangController extends Controller
     public function proses_berkas_mhs(Request $request)
     {
         $request->validate([
+            'mulai' => 'required',
+            'selesai' => 'required',
             'berkas' => 'required',
             'berkas.*' => 'mimes:pdf|max:2048'
         ]);
@@ -1109,6 +1111,8 @@ class MagangController extends Controller
     public function proses_berkas_mhs_kelompok(Request $request)
     {
         $request->validate([
+            'mulai' => 'required',
+            'selesai' => 'required',
             'berkas' => 'required',
             'berkas.*' => 'mimes:pdf|max:2048'
         ]);
@@ -2280,6 +2284,8 @@ class MagangController extends Controller
     public function proses_berkas_smk_kelompok(Request $request)
     {
         $request->validate([
+            'mulai' => 'required',
+            'selesai' => 'required',
             'berkas' => 'required',
             'berkas.*' => 'mimes:pdf|max:2048'
         ]);
@@ -2810,6 +2816,8 @@ class MagangController extends Controller
     public function proses_berkas_smk(Request $request)
     {
         $request->validate([
+            'mulai' => 'required',
+            'selesai' => 'required',
             'berkas' => 'required',
             'berkas.*' => 'mimes:pdf|max:2048'
         ]);

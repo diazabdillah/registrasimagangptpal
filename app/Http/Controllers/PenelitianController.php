@@ -112,6 +112,8 @@ class PenelitianController extends Controller
     public function proses_berkas_penelitian(Request $request)
     {
         $request->validate([
+            'mulai' => 'required',
+            'selesai' => 'required',
             'berkas' => 'required',
             'berkas.*' => 'mimes:pdf|max:2048'
         ]);
