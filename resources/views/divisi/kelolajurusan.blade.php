@@ -627,7 +627,7 @@
                                             @endif
                                             @if (Auth::user()->name == 'Admin Kapal Perang')
                                             @foreach ($usersSmk as $dsmk)
-                                            @if ($dsmk->divisi == 'Admin Kapal Perang')
+                                            @if ($dsmk->divisi == 'Kapal Perang')
                                             <tr>
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $dsmk->name }}</td>
@@ -645,7 +645,7 @@
                                             @endif
                                             @if (Auth::user()->name == 'Admin Kapal Selam')
                                             @foreach ($usersSmk as $dsmk)
-                                            @if ($dsmk->divisi == 'Admin Kapal Selam')
+                                            @if ($dsmk->divisi == 'Kapal Selam')
                                             <tr>
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $dsmk->name }}</td>
