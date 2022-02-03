@@ -3,7 +3,7 @@
 @section('kontenAuth')
 
 <div class="container">
-    <a href="/" class="btn btn-dark mt-5"><i class="fas fa-chevron-left"></i> Home</a>
+    <a href="/login" class="btn btn-dark mt-5"><i class="fas fa-chevron-left"></i> Back</a>
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
