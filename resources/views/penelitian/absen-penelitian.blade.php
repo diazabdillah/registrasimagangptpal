@@ -97,13 +97,18 @@
                                                         @csrf
                                                         <div class="form-group">
                                                             <small class="ml-2">Keterangan Izin</small>
-                                                            <textarea class="form-control" name="keterangan"></textarea>
+                                                            <textarea class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" required></textarea>
+                                                            @error('keterangan')
+                                                            <div class="invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                         </div>
                                                         <div class="form-group">
                                                             <small class="ml-2">Bukti Izin<small style="color: red">*Max
                                                                     2MB</small></small>
                                                             <input type="file" name="file_absen"
-                                                                class="form-control @error('file_absen') is-invalid @enderror">
+                                                                class="form-control @error('file_absen') is-invalid @enderror" required>
 
                                                             @error('file_absen')
                                                             <div class="invalid-feedback mt-2">
@@ -161,6 +166,7 @@
                                     <th>Waktu Absen</th>
                                     <th>Absen</th>
                                     <th>Keterangan</th>
+                                    <th>Bukti Izin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -170,6 +176,14 @@
                                     <th>{{ date('H:i, d F Y', strtotime($aps->waktu_absen)) }}</th>
                                     <th>{{ $aps->jenis_absen }}</th>
                                     <th>{{ $aps->keterangan }}</th>
+                                    
+                                    <th>
+                                        @if($aps->file_absen != null)
+                                        <img src="{{ asset('file/absen/'. $aps->file_absen) }}" alt="Foto" class="img-thumbnail"
+                                        width="135">
+                                        @endif
+                                    </th>
+                                  
                                 </tr>
                                 @endforeach
                             </tbody>

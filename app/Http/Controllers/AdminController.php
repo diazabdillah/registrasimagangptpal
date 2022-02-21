@@ -376,7 +376,7 @@ class AdminController extends Controller
             'users' => $users
         ]);
 
-        return $pdf->stream();
+        return  $pdf->download('Rekap Absen Magang Mhs.pdf');
     }
 
     public function cetak_rekapmhsexcel()
@@ -404,7 +404,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Magang SMK.pdf');
     }
     public function cetak_rekapmhskelpdf()
     {
@@ -416,7 +416,7 @@ class AdminController extends Controller
             'users' => $users
         ]);
 
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Magang Mhs Kelompok.pdf');
     }
     public function cetak_rekapsmkkelpdf()
     {
@@ -427,7 +427,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Magang SMK Kel.pdf');
     }
     public function cetak_rekappenelitianpdf()
     {
@@ -438,7 +438,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Penelitian.pdf');
     }
     public function cetak_rekapmhskelexcel()
     {
@@ -651,7 +651,7 @@ class AdminController extends Controller
             'users' => $users
         ]);
 
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Magang Mhs.pdf');
         } else {
             return redirect()->back();
         }
@@ -668,7 +668,7 @@ class AdminController extends Controller
                 'users' => $users
             ]);
     
-            return $pdf->stream();
+            return $pdf->download('Rekap Absen Magang Mhs Kel.pdf');
             } else {
                 return redirect()->back();
             }
@@ -684,7 +684,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Magang SMK.pdf');
     } else {
         return redirect()->back();
     }
@@ -700,8 +700,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->stream();
-        } else {
+        return $pdf->download('Rekap Absen Magang SMK Kel.pdf');
             return redirect()->back();
         }
     }
@@ -716,7 +715,7 @@ class AdminController extends Controller
                 'ti' => $ti,
                 'users' => $users
             ]);
-            return $pdf->stream();
+            return $pdf->download('Rekap Absen Penelitian.pdf');
             } else {
                 return redirect()->back();
             }

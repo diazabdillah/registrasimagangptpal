@@ -44,8 +44,9 @@
                                     <th>{{ $am->nama }}</th>
                                     <th>Datang</th>
 
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
-                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '08:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday') <th>
+                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->mulai), Carbon\Carbon::parse($am->selesai)))
+                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now()))
+                                    <= '18:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday') <th>
                                                 <a class="btn btn-primary p-1"
                                                     href="/proses-absen-masuk-mhs/{{ $am->id }}"
                                                     role="button">Presensi</a>
@@ -87,7 +88,7 @@
                                     <th>{{ $am->nama }}</th>
                                     <th>Izin</th>
                                     @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
-                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '07:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
+                                    @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '17:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
                                             <th>
                                                 <div>
                                                     <form enctype="multipart/form-data"
@@ -174,6 +175,7 @@
                                     <th>Waktu Absen</th>
                                     <th>Absen</th>
                                     <th>Keterangan</th>
+                                    <th>Bukti Izin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,6 +185,14 @@
                                     <th>{{ date('H:i, d F Y', strtotime($ams->waktu_absen)) }}</th>
                                     <th>{{ $ams->jenis_absen }}</th>
                                     <th>{{ $ams->keterangan }}</th>
+                                  
+                                    <th>
+                                        @if($ams->file_absen != null)
+                                        <img src="{{ asset('file/absen/'. $ams->file_absen) }}" alt="Foto" class="img-thumbnail"
+                                        width="135">
+                                        @endif
+                                    </th>
+                                       
                                 </tr>
                                 @endforeach
                             </tbody>

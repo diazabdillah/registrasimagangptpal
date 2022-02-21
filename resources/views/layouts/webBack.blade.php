@@ -365,6 +365,11 @@
                     <i class="fas fa-file-contract"></i>
                     <span>Surat Penerimaan</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Surat Memo Divisi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-memo-divisi">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Surat Memo Divisi</span></a>
+            </li>
 
             <li class="nav-item {{ $ti === 'ID Card Mahasiswa' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/id-card-mhs">
@@ -474,6 +479,11 @@
                     <i class="fas fa-file-contract"></i>
                     <span>Surat Penerimaan</span></a>
             </li>
+            <li class="nav-item {{ $ti === 'Surat Memo Divisi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-memo-divisi-smk">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Surat Memo Divisi</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'ID Card SMK' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/id-card-smk">
                     <i class="fas fa-id-card"></i>
@@ -556,8 +566,11 @@
                     <i class="fas fa-file-contract"></i>
                     <span>Surat Penerimaan</span></a>
             </li>
-
-
+            <li class="nav-item {{ $ti === 'Surat Memo Divisi' ? 'active' : '' }}">
+                <a class="nav-link pb-0" href="/surat-memo-divisi-penelitian">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Surat Memo Divisi</span></a>
+            </li>
             <li class="nav-item {{ $ti === 'ID Card Penelitian' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/id-card-penelitian">
                     <i class="fas fa-id-card"></i>
@@ -737,6 +750,7 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Penelitian Aktif</span></a>
             </li>
+           
             <li class="nav-item {{ $ti === 'Absen Penelitian' ? 'active' : '' }}">
                 <a class="nav-link pb-0" href="/absen-penelitian-divisi">
                     <i class="fas fa-fingerprint"></i>
@@ -945,7 +959,7 @@
             });
         });
     </script>
-    @yield('footer');
+    @yield('footer')
 </body>
 
 </html>

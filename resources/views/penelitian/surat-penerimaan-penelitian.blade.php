@@ -82,9 +82,7 @@
                                         s.d {{ date('d F Y', strtotime($datas[0]->selesai)) }} pada dasarnya PT PAL
                                         Indonesia (Persero) dapat
                                         menerima
-                                        Praktikan OJT/PKL dari {{ $datas[0]->asal_instansi }} untuk melaksanakan praktek
-                                        kerja
-                                        lapangan, berikut data Praktikan
+                                        Penelitian dari {{ $datas[0]->asal_instansi }} untuk melaksanakan Penelitian, berikut data Penelitian
                                         di bawah ini &nbsp; : </p>
                                     <table class="table">
                                         <thead>
@@ -116,13 +114,8 @@
                                         </tbody>
                                     </table>
                                     <p class="ml-2">2. Surat balasan ini sebagai dasar bahwa para
-                                        Praktikan
-                                        telah resmi <b><u>Diterima</u></b> Praktikan PKL/OJT di PT PAL Indonesia (Persero)
-                                        dan
-                                        surat ini
-                                        mohon
-                                        agar
-                                        dibawa oleh para Praktikan OJT/PKL untuk ditandatangani.</p>
+                                        Penelitian
+                                        telah resmi <b><u>Diterima</u></b> Penelitian di PT PAL Indonesia (Persero).Demikian disampaikan dan atas perhatiannya diucapkan terima kasih</p>
                                 </div>
 
                                 <div class="d-flex justify-content-end mr-4" style="margin-top:40px;">

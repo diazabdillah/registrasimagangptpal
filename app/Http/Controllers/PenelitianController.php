@@ -332,15 +332,20 @@ class PenelitianController extends Controller
     public function upload_penelitian_foto($id, Request $request)
     {
         $request->validate([
-            'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'fotoid' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'fotoid.required' => 'Mohon Maaf Foto 3x4 Anda Harus Di Isi',
+            'fotoid.max' => 'Mohon Maaf Foto 3x4 Anda Lebih dari 2 MB',
+            'fotoid.mimes' => 'Mohon Maaf Foto 3x4 Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
+
 
         if ($request->hasFile('fotoid')) {
 
-            $files = $request->file('fotoid');
+            $file = $request->file('fotoid');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -351,7 +356,7 @@ class PenelitianController extends Controller
                     'user_id' => Auth::user()->id,
                     'fotoID' => $Namafoto,
                 ]);
-            }
+            // }
             session()->flash('succes', 'Terimakasih telah mengirimkan foto anda, selanjutnya mohon klik Berkas Lainnya');
             return redirect('dokumen-penelitian');
         }
@@ -506,7 +511,7 @@ class PenelitianController extends Controller
 
             $absenpenelitians = DB::table('absenpenelitian')
                 ->leftJoin('data_penelitian', 'data_penelitian.id', '=', 'absenpenelitian.id_individu')
-                ->select('data_penelitian.nama', 'absenpenelitian.waktu_absen', 'absenpenelitian.id', 'absenpenelitian.jenis_absen', 'absenpenelitian.keterangan')
+                ->select('data_penelitian.nama', 'absenpenelitian.waktu_absen', 'absenpenelitian.id','absenpenelitian.file_absen', 'absenpenelitian.jenis_absen', 'absenpenelitian.keterangan')
                 ->where('data_penelitian.user_id', '=', Auth::user()->id)
                 ->get();
 
@@ -575,7 +580,12 @@ class PenelitianController extends Controller
     {
         $request->validate([
             'keterangan' => 'required',
-            'file_absen' => 'required|mimes:jpg,bmp,png|max:2048',
+            'file_absen' => 'required|mimes:jpg|file|max:2048',
+        ],
+        [
+            'file_absen.mimes' => 'Mohon Maaf File Bukti Izin Harus Berupa JPG',
+            'file_absen.max' => 'Mohon Maaf File Bukti Izin Maksimal 2MB',
+
         ]);
         $file = $request->file('file_absen');
         $nama_file = $file->getClientOriginalName();
@@ -604,9 +614,9 @@ class PenelitianController extends Controller
             $absenpenelitian = DB::table('absenpenelitian')
                 ->leftJoin('data_penelitian', 'data_penelitian.id', '=', 'absenpenelitian.id_individu')
                 ->leftJoin('mulai_dan_selesai_penelitian', 'mulai_dan_selesai_penelitian.user_id', '=', 'data_penelitian.user_id')
-                ->select('data_penelitian.nama', 'absenpenelitian.waktu_absen', 'absenpenelitian.jenis_absen', 'absenpenelitian.keterangan', 'data_penelitian.jurusan', 'data_penelitian.divisi', 'data_penelitian.asal_instansi', 'mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai')
+                ->select('data_penelitian.nama', 'absenpenelitian.waktu_absen','absenpenelitian.file_absen', 'absenpenelitian.jenis_absen', 'absenpenelitian.keterangan', 'data_penelitian.jurusan', 'data_penelitian.divisi', 'data_penelitian.asal_instansi', 'mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai')
                 ->where('data_penelitian.user_id', '=', Auth::user()->id)
-                ->simplePaginate(4);
+                ->get();
 
 
             $i = 1;
@@ -840,5 +850,61 @@ class PenelitianController extends Controller
     {
         $ti = 'Penelitian Kuota Penuh';
         return view('penelitian.penelitian_kuota_penuh', ['ti' => $ti]);
+    }
+    public function surat_memo_divisi_penelitian(){
+        if (auth()->user()->role_id == 23) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
+                ->leftJoin('file_penelitian', 'data_penelitian.user_id', '=', 'file_penelitian.user_id')
+                ->leftJoin('mulai_dan_selesai_penelitian', 'users.id', '=', 'mulai_dan_selesai_penelitian.user_id')
+                ->select('users.id', 'file_penelitian.nomorsurat', 'file_penelitian.jabatan', 'mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai', 'mulai_dan_selesai_penelitian.created_at', 'data_penelitian.judul_penelitian', 'data_penelitian.departemen', 'data_penelitian.jurusan',  'data_penelitian.divisi',  'data_penelitian.nama', 'data_penelitian.asal_instansi')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            $mahasiswas = DB::table('users')
+            ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
+            ->leftJoin('mulai_dan_selesai_penelitian', 'users.id', '=', 'mulai_dan_selesai_penelitian.user_id')
+                ->select('mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai', 'mulai_dan_selesai_penelitian.created_at', 'data_penelitian.judul_penelitian', 'data_penelitian.departemen', 'data_penelitian.jurusan',  'data_penelitian.divisi',  'data_penelitian.nama', 'data_penelitian.asal_instansi')
+                ->where('users.id', '=', $id)
+                ->get();
+            $ti = 'Surat Memo Divisi';
+            return view('penelitian.surat-memo-divisi-penelitian', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'mahasiswas' => $mahasiswas
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function cetak_surat_memo_divisi_penelitian(){
+        if (auth()->user()->role_id == 23) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+            ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
+            ->leftJoin('file_penelitian', 'data_penelitian.user_id', '=', 'file_penelitian.user_id')
+            ->leftJoin('mulai_dan_selesai_penelitian', 'users.id', '=', 'mulai_dan_selesai_penelitian.user_id')
+            ->select('users.id', 'file_penelitian.nomorsurat', 'file_penelitian.jabatan', 'mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai', 'mulai_dan_selesai_penelitian.created_at', 'data_penelitian.nim', 'data_penelitian.departemen', 'data_penelitian.jurusan',  'data_penelitian.divisi',  'data_penelitian.nama', 'data_penelitian.asal_instansi')
+            ->where('users.id', '=', $id)
+            ->get();
+
+        $mahasiswas = DB::table('users')
+        ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
+        ->leftJoin('mulai_dan_selesai_penelitian', 'users.id', '=', 'mulai_dan_selesai_penelitian.user_id')
+            ->select('mulai_dan_selesai_penelitian.mulai', 'mulai_dan_selesai_penelitian.selesai', 'mulai_dan_selesai_penelitian.created_at', 'data_penelitian.nim', 'data_penelitian.departemen', 'data_penelitian.jurusan',  'data_penelitian.divisi',  'data_penelitian.nama', 'data_penelitian.asal_instansi')
+            ->where('users.id', '=', $id)
+            ->get();
+            $ti = 'Surat Memo Divisi';
+            $pdf = PDF::loadview('penelitian.cetak-surat-memo-divisi-penelitian', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'mahasiswas' => $mahasiswas
+            ]);
+
+            return $pdf->download('surat-memorandum-divisi-penelitian.pdf');
+        } else {
+            return redirect()->back();
+        }
     }
 }

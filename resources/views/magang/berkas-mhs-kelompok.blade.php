@@ -86,7 +86,7 @@
                                             <small class="ml-2">Proposal <small style="color: red">*Max
                                                     2MB</small></small>
                                             <input type="file" name="berkas[]"
-                                                class="form-control @error('berkas') is-invalid @enderror">
+                                                class="form-control @error('berkas') is-invalid @enderror" required>
 
                                             @error('berkas')
                                                 <div class="invalid-feedback mt-2">
@@ -99,7 +99,7 @@
                                                     style="color: red">*Max
                                                     2MB</small></small>
                                             <input type="file" name="berkas[]"
-                                                class="form-control @error('berkas') is-invalid @enderror">
+                                                class="form-control @error('berkas') is-invalid @enderror" required>
 
                                             @error('berkas')
                                                 <div class="invalid-feedback mt-2">

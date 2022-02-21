@@ -10,7 +10,7 @@
 
                 <div class="panel">
 
-                    <div class="d-flex justify-content-between" style="height:40px ;">
+                    <div class="d-flex justify-content-between">
                         @foreach ($forum as $kontenforum)
                             <h1 class="h3 mb-2 text-gray-800 mb-3"><b>{{ $kontenforum->judul }}</b></h1>
 
@@ -18,17 +18,17 @@
 
                                 @if (Auth::user()->id == $kontenforum->user_id)
 
-                                    <div class="d-flex justify-content-end " style="margin-right: 40px">
+                                    <div class="d-flex justify-content-end" style="margin-right: 40px">
                                         <a href="/edit-forum/{{ $kontenforum->id }}" class="btn btn-warning mr-2"><i
                                                 class="fas fa-edit"></i> Edit</a>
-                                        <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger "><i
+                                        <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger"><i
                                                 class="far fa-trash-alt"></i> Hapus</a>
                                     </div>
 
                                 @else
 
                                     <div class="d-flex justify-content-end">
-                                        <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger "><i
+                                        <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger"><i
                                                 class="far fa-trash-alt"></i> Hapus</a>
 
                                     </div>
@@ -40,10 +40,10 @@
 
                                 @if (Auth::user()->id == $kontenforum->user_id)
 
-                                    <div class="d-flex justify-content-end " style="margin-right: 40px">
-                                        <a href="/edit-forum/{{ $kontenforum->id }}" class="btn btn-warning mr-2"><i
+                                    <div class="d-flex justify-content-end ">
+                                        <a href="/edit-forum/{{ $kontenforum->id }}" class="btn btn-warning mr-2 mt-2"><i
                                                 class="fas fa-edit"></i> Edit</a>
-                                        <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger "><i
+                                        <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger mt-2"><i
                                                 class="far fa-trash-alt"></i> Hapus</a>
                                     </div>
 
@@ -65,15 +65,15 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-3">
-                                        <div style="width:200px;" class="card mt-4 ml-4">
+                                    <div style="width:100%;" class="col-md-3">
+                                        <div  class="card mt-4 ml-4">
                                             <center> <img width="100px" src="{{ asset('img/undraw_profile.svg') }}"
                                                     class="center img-profile rounded-circle mt-4 mb-2" alt="..."></center>
                                             <h6 class="text-center">{{ $kontenforum->name }}</h6>
                                             <h6 class="text-center text-primary">{{ $kontenforum->status_user }}</h6>
                                         </div>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div style="width:100%;" class="col-md-9">
 
                                         <div class="card-body">
 
@@ -103,7 +103,7 @@
 
                                 <div class="col-md-6 mt-4" style="display: none" id="komentar-utama">
 
-                                    <div class="form-group" style="margin-left:10px;width:950px;">
+                                    <div class="form-group" style="margin-left:10px;width:100%;">
                                         <label><b> Komentar Anda</b></label>
                                         <form method="POST" action="/tambah-komentar">
                                             @csrf
@@ -129,8 +129,8 @@
 
                             <div class="row">
 
-                                <div class="col-md-3">
-                                    <div style="width:200px;" class="card mt-4 ml-4">
+                                <div style="100%" class="col-md-3">
+                                    <div  class="card mt-4 ml-4">
                                         <center> <img width="100px" src="{{ asset('img/undraw_profile.svg') }}"
                                                 class="center img-profile rounded-circle mt-4 mb-2" alt="..."></center>
                                         <h6 class="text-center">{{ $komenforum->name }}</h6>

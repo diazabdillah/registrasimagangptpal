@@ -64,7 +64,7 @@
                                 <tr>
                                     <th>{{ $as->nama }}</th>
                                     <th>Pulang</th>
-                                    @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($as->selesai), Carbon\Carbon::parse($as->mulai)))
+                                    @if (\Carbon\Carbon::now()->between(\Carbon\Carbon::parse($as->mulai), \Carbon\Carbon::parse($as->selesai)))
                                     @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:00' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
                                             <th>
                                                 <a class="btn btn-primary p-1"
@@ -173,6 +173,7 @@
                                     <th>Waktu Absen</th>
                                     <th>Absen</th>
                                     <th>Keterangan</th>
+                                    <th>Bukti izin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -182,6 +183,14 @@
                                     <th>{{ date('H:i, d F Y', strtotime($ass->waktu_absen)) }}</th>
                                     <th>{{ $ass->jenis_absen }}</th>
                                     <th>{{ $ass->keterangan }}</th>
+                                 
+                                    <th>
+                                        @if($ass->file_absen != null)
+                                        <img src="{{ asset('file/absen/'. $ass->file_absen) }}" alt="Foto" class="img-thumbnail"
+                                        width="135">
+                                        @endif
+                                    </th>
+                                       
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -2,8 +2,8 @@
 
 @section('kontenWebBack')
 
-    <!-- Main Content -->
-    <div id="content">
+<div class="main">    
+    <div class="main-content">
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -20,11 +20,11 @@
 
 
                 <!-- Area Chart -->
-                <div class="col col-lg">
-                    <div class="card shadow mb-4">
+               
+                    <div style="width: 100%" class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Surat Keterangan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Surat Penerimaan Praktek Kerja Lapangan Di PT PAL</h6>
                             <div class="dropdown no-arrow">
 
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -40,12 +40,11 @@
                             </div>
                         </div>
                         <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="chart-area" style="width:100%;height:100%;">
+                      
                                 <div class="d-flex justify-content-between pl-4 pr-4 pt-3 pb-4 mt-3"
                                     style="margin-bottom:50px ">
-                                    <img src="{{ asset('img/bumn.png') }}" alt="image" style="width: 130px;">
-                                    <img src="{{ asset('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;">
+                                    <img src="{{ asset('img/bumn.png') }}" alt="image" style="width: 115px;">
+                                    <img src="{{ asset('img/logo_pal.png') }}" alt="Card image cap" style="width: 115px;">
                                 </div>
 
                                 <div>
@@ -85,7 +84,7 @@
                                         Praktikan OJT/PKL dari {{ $datas[0]->univ }} untuk melaksanakan praktek kerja
                                         lapangan, berikut data Praktikan
                                         di bawah ini &nbsp; : </p>
-                                    <table class="table">
+                                    <table class="table table-responsive">
                                         <thead>
                                             <tr>
 
@@ -116,12 +115,8 @@
                                     </table>
                                     <p class="ml-2">2. Surat balasan ini sebagai dasar bahwa para
                                         Praktikan
-                                        telah resmi <b><u>Diterima</u></b> Praktikan PKL/OJT di PT PAL Indonesia (Persero)
-                                        dan
-                                        surat ini
-                                        mohon
-                                        agar
-                                        dibawa oleh para Praktikan OJT/PKL untuk ditandatangani.</p>
+                                        telah resmi <b><u>Diterima</u></b> Praktikan PKL/OJT di PT PAL Indonesia (Persero).
+                                        Demikian disampaikan dan atas perhatiannya diucapkan terima kasih.</p>
                                 </div>
 
                                 <div class="d-flex justify-content-end mr-4" style="margin-top:40px;">
@@ -135,11 +130,10 @@
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
-                </div>
+                       
+              
 
             </div>
         </div>
-
+    </div>
     @endsection

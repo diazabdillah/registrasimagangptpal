@@ -17,7 +17,18 @@
                 {{ session()->get('succes') }}
             </div>
             @endif
+            <div class="d-flex justify-content-start">
+                <form action="/cari-penerimaan" method="GET">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="cari"
+                            placeholder="Cari Nama Magang ..">
 
+                        <button class="btn btn-primary" type="submit">cari</button>
+
+                    </div>
+                </form>
+            </div> <br>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card shadow mb-4">
@@ -39,6 +50,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($users as $u)
+                                                @if($u->role_id == 8 || $u->role_id == 6)
                                             <tr>
                                                 <td class="text-center">{{ ++$i }}.</td>
                                                 <td class="text-center">{{ $u->name }}</td>
@@ -50,6 +62,7 @@
                                                             class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -81,7 +94,9 @@
                                             <?php
                                                 $no = 0;
                                             ?>
-                                            @foreach ($usersSmk as $us)
+                                            @foreach ($usersSmk as $us)  
+                                            @if($us->role_id == 7 || $us->role_id == 9)
+
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
                                                 <td class="text-center">{{ $us->name }}</td>
@@ -93,6 +108,7 @@
                                                             class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>

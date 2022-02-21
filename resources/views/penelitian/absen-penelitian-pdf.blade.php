@@ -22,7 +22,7 @@
 
 
     <h6 class="text-center h6 mb-2 text-gray-800"><b>{{ $ti }}</b></h6>
-    <h6 class="text-center h6 mb-2 text-gray-800">MAHASISWA PRAKTEK KERJA LAPANGAN / OJT</h6><br>
+    <h6 class="text-center h6 mb-2 text-gray-800">PENELITIAN</h6><br>
 
 
     <div>
@@ -49,8 +49,7 @@
                     <th style="font-size: 14px">Waktu Absen</th>
                     <th style="font-size: 14px">Jenis Absen</th>
                     <th style="font-size: 14px">Keterangan</th>
-
-
+                    <th style="font-size: 14px">Bukti Izin</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,8 +61,11 @@
                     <td style="font-size: 14px">{{ date('H:i, d F Y', strtotime($rekap->waktu_absen)) }}</td>
                     <td style="font-size: 14px">{{ $rekap->jenis_absen }}</td>
                     <td style="font-size: 14px">{{ $rekap->keterangan }}</td>
-
-
+                    <td> 
+                        @if($rekap->file_absen != null)
+                        <img src="{{ public_path("file/absen/". $rekap->file_absen) }}" alt="image" style="width: 130px;">
+                         @endif
+                    </td>
                 </tr>
 
                 @endforeach
@@ -73,8 +75,7 @@
     <div style="font-size: 17px;">
         <p style="margin-left:580px;">Surabaya,
             {{ date('d-F-Y', strtotime($absenpenelitian[0]->selesai)) }} </p>
-        <p class="text-center" style="margin-top: -20px;margin-left:580px;"> PEMBIMBING <br> PRAKTEK KERJA LAPANGAN /
-            OJT </p>
+        <p class="text-center" style="margin-top: -20px;margin-left:580px;"> PEMBIMBING PENELITIAN</p>
 
         <hr style="margin-left:580px;width:260px;weight:200px;margin-top: 150px;border:1px solid;">
 

@@ -50,8 +50,7 @@
                     <th style="font-size: 14px">Waktu Absen</th>
                     <th style="font-size: 14px">Jenis Absen</th>
                     <th style="font-size: 14px">Keterangan</th>
-
-
+                    <th style="font-size: 14px">Bukti Izin</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,7 +63,11 @@
                     <td style="font-size: 14px">{{ date('H:i, d F Y', strtotime($rekap->waktu_absen)) }}</td>
                     <td style="font-size: 14px">{{ $rekap->jenis_absen }}</td>
                     <td style="font-size: 14px">{{ $rekap->keterangan }}</td>
-
+                    <td> 
+                        @if($rekap->file_absen != null)
+                        <img src="{{ public_path("file/absen/". $rekap->file_absen) }}" alt="image" style="width: 130px;">
+                         @endif
+                    </td>
 
                 </tr>
 

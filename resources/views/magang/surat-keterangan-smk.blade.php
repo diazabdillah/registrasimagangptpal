@@ -49,7 +49,7 @@
                                 <h5 style="font-family:Lucida Sans;"><u> SURAT KETERANGAN</u></h5>
 
                                 <p>Nomor :
-                                    PKL/01/44200/{{ date('F', strtotime($sertif->selesai)) }}/{{ date('Y', strtotime($sertif->selesai)) }}
+                                    PKL/{{$sertif->id}}/44200/{{ date('F', strtotime($sertif->selesai)) }}/{{ date('Y', strtotime($sertif->selesai)) }}
                                 </p>
 
                             </div>
@@ -88,7 +88,7 @@
                                     <p> Kadep Human Capital Development</p>
                                 </div>
                                 <div>
-                                    <hr style="width:280px;weight:200px;margin-top: 140px;margin-bottom: 5px;border:1px solid;">
+                                    <img  src="{{asset('frontend/img/TTD-KADEP-HCD.png')}}" style="margin-left: 30px">
                                 </div>
                             </div>
 

@@ -46,6 +46,15 @@
                                         <li class="list-group-item"><i class="fas fa-fw fa-briefcase mr-3"></i>
                                             {{ $user->departemen }}
                                         </li>
+                                        @foreach ($tgl as $data)
+
+                                        <li class="list-group-item"><i class="fas fa-fw fa-calendar-alt mr-3"></i></i>
+                                            Tgl Mulai <span class="badge badge-success p-2">
+                                                {{ date('d-F-Y', strtotime($data->mulai)) }}</span>
+                                            Tgl Selesai <span class="badge badge-danger p-2">
+                                                {{ date('d-F-Y', strtotime($data->selesai)) }}</span>
+                                        </li>
+                                    @endforeach
                                     </ul>
                                 @endforeach
 
@@ -70,7 +79,7 @@
 
                                         <li class="list-group-item"><i class="fas fa-fw fa-file-pdf mr-3"></i>
                                             {{ $file->path }}
-                                            <a href="{{ url('pdf-mhs-kel/' . $file->id) }}"
+                                            <a href="{{ url('pdf-penelitian/' . $file->id) }}"
                                                 class="badge badge-success float-right p-2">Open <i
                                                     class="fas fa-eye ml-1"></i></a>
                                         </li>

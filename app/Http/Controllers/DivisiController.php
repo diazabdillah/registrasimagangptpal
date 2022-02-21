@@ -46,17 +46,24 @@ class DivisiController extends Controller
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Penerimaan';
             $pagination = 5;
-
+            $cari = $request->cari;
+          
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
-                ->where('users.role_id', '=', 6)
-                ->orWhere('users.role_id', '=', 8)
+                ->orWhere('users.name', 'like', "%" . $cari . "%")
+                // ->where('users.role_id', '=', 6)
+                // ->orWhere('users.role_id', '=', 8)
+                // ->orWhere('users.role_id','!=', 18)
+                // ->orWhere('users.role_id','!=', 1)
                 ->get();
 
             $usersSmk = DB::table('users')
                 ->select('users.id',  'users.name', 'users.email', 'users.role_id', 'users.status_user')
-                ->where('users.role_id', '=', 7)
-                ->orWhere('users.role_id', '=', 9)
+                // ->where('users.role_id', '=', 7)
+                // ->orWhere('users.role_id', '=', 9)
+                // ->orWhere('users.role_id','!=', 18)
+                // ->orWhere('users.role_id','!=', 1)
+                ->orWhere('name', 'like', "%" . $cari . "%")
                 ->get();
 
             return view('divisi.Penerimaan', [
@@ -2069,13 +2076,17 @@ class DivisiController extends Controller
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
                 ->get();
+                $tgl = DB::table('mulai_dan_selesai_penelitian')
+                ->where('mulai_dan_selesai_penelitian.user_id', '=', $user_id)
+                ->get();
             return view('divisi.proses-kelola-penelitian', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
                 'fileFoto' => $fileFoto,
-                'departemen' => $departemen
+                'departemen' => $departemen,
+                'tgl' => $tgl
             ]);
         } else {
             return redirect()->back();
@@ -2099,13 +2110,14 @@ class DivisiController extends Controller
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect('/kuota');
     }
-    public function penerimaan_penelitian()
+    public function penerimaan_penelitian(Request $request)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
             $ti = 'Penerimaan Penelitian';
+            $cari = $request->cari;
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
-                ->where('users.role_id', '=', 21)
+                ->orWhere('users.name', 'like', "%" . $cari . "%")
                 ->get();
             return view('divisi.penerimaan_penelitian', [
                 'ti' => $ti,
@@ -2132,13 +2144,16 @@ class DivisiController extends Controller
                 ->leftJoin('divisi', 'departemen.id_divisi', '=', 'divisi.id')
                 ->where('divisi.nama_divisi', '=', $users[0]->divisi)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_penelitian')
+                ->where('mulai_dan_selesai_penelitian.user_id', '=', $user_id)
+                ->get();
             return view('divisi.proses_penerimaan_penelitian', [
                 'ti' => $ti,
                 'users' => $users,
                 'filepdf' => $filepdf,
                 'divisi' => $divisi,
-                'departemen' => $departemen
+                'departemen' => $departemen,
+                'tgl' => $tgl
             ]);
         } else {
             return redirect()->back();
@@ -2220,20 +2235,23 @@ class DivisiController extends Controller
             $filepdf = DB::table('file_penelitian')
                 ->where('file_penelitian.user_id', '=', $user_id)
                 ->get();
-
+               
             $users = DB::table('users')
                 ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
                 ->leftJoin('foto_i_d_penelitian', 'data_penelitian.user_id', '=', 'foto_i_d_penelitian.user_id')
                 ->select('users.id AS user_id', 'users.name', 'users.status_user', 'data_penelitian.nama', 'data_penelitian.jurusan', 'data_penelitian.alamat_rumah', 'users.email', 'data_penelitian.asal_instansi', 'data_penelitian.jurusan', 'data_penelitian.judul_penelitian',  'data_penelitian.divisi', 'data_penelitian.departemen', 'data_penelitian.strata', 'data_penelitian.no_hp', 'data_penelitian.user_id', 'foto_i_d_penelitian.fotoID')
                 ->where('users.id', '=', $user_id)
                 ->get();
-
+                $tgl = DB::table('mulai_dan_selesai_penelitian')
+                ->where('mulai_dan_selesai_penelitian.user_id', '=', $user_id)
+                ->get();
             return view('divisi.final-penerimaan-penelitian', [
                 'ti' => $ti,
                 'users' => $users,
                 'userid' => $userid,
                 'filepdf' => $filepdf,
-                'fileFoto' => $fileFoto
+                'fileFoto' => $fileFoto,
+                'tgl'=> $tgl
             ]);
         } else {
             return redirect()->back();

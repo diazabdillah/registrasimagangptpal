@@ -87,9 +87,7 @@
             </table>
             <p style="font-size: 14px;">2. Surat balasan ini sebagai dasar bahwa para
                 Praktikan
-                telah resmi <b><u>Diterima</u></b> PKL/OJT di PT PAL Indonesia (Persero) dan surat ini mohon
-                agar
-                dibawa oleh para Praktikan OJT/PKL untuk ditandatangani.</p>
+                telah resmi <b><u>Diterima</u></b> PKL/OJT di PT PAL Indonesia (Persero).Demikian disampaikan dan atas perhatiannya diucapkan terima kasih.</p>
         </div>
 
 

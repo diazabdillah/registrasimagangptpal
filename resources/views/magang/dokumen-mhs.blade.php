@@ -62,7 +62,8 @@
                                             <th>Nama</th>
                                             <th>Nim</th>
                                             <th>Universitas</th>
-                                            <th>Action</th>
+                                            <th>Foto</th>
+                                            <th>Berkas Lainnya</th>
                                         </tr>
                                         </tr>
                                     </thead>
@@ -93,9 +94,18 @@
                                                             href="/dokumen-mhs-kel-upload-foto/{{ $absen->id }}"
                                                             role="button">Foto 3x4</a>
 
+                                                      
+                                                    </td>
+                                                    <td>
                                                         <a class="btn btn-primary p-1"
-                                                            href="/dokumen-mhs-kel-upload/{{ $absen->id }}"
-                                                            role="button">Berkas Lainnya</a>
+                                                        href="/dokumen-mhs-kel-upload-ktp/{{ $absen->id }}"
+                                                        role="button">KTP</a>
+                                                        <a class="btn btn-primary p-1"
+                                                        href="/dokumen-mhs-kel-upload-ktm/{{ $absen->id }}"
+                                                        role="button">KTM</a>
+                                                        <a class="btn btn-primary p-1"
+                                                        href="/dokumen-mhs-kel-upload-bpjs/{{ $absen->id }}"
+                                                        role="button">BPJS</a>
                                                     </td>
 
                                                 @endif

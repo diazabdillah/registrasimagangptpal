@@ -316,7 +316,12 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'fileinterview' => 'required|mimes:jpg,bmp,png|max:2048',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+        ],
+        [
+            'fileinterview.required' => 'Mohon Maaf File Tes Kepribadian Anda Harus Di Isi',
+            'fileinterview.max' => 'Mohon Maaf File Tes Kepribadian Anda Lebih dari 2MB',
+            'fileinterview.mimes' => 'Mohon Maaf File Tes Kepribadian Anda Harus JPG ,PNG, Dan JPEG',
         ]);
 
         $file = $request->file('fileinterview');
@@ -418,15 +423,19 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'fotoid' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'fotoid.required' => 'Mohon Maaf Foto 3x4 Anda Harus Di Isi',
+            'fotoid.max' => 'Mohon Maaf Foto 3x4 Anda Lebih dari 2 MB',
+            'fotoid.mimes' => 'Mohon Maaf Foto 3x4 Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
 
         if ($request->hasFile('fotoid')) {
 
-            $files = $request->file('fotoid');
+            $file = $request->file('fotoid');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -437,7 +446,7 @@ class MagangController extends Controller
                     'id_individu' => $individu->id,
                     'fotoID' => $Namafoto,
                 ]);
-            }
+            //}
             session()->flash('succes', 'Terimakasih telah mengirimkan foto anda, selanjutnya mohon klik Berkas Lainnya');
             return redirect('dokumen-mhs');
         }
@@ -535,7 +544,7 @@ class MagangController extends Controller
 
             $absenmhss = DB::table('absenmhs')
                 ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'absenmhs.id_individu')
-                ->select('data_mhs_indivs.nama', 'absenmhs.waktu_absen', 'absenmhs.id', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
+                ->select('data_mhs_indivs.nama', 'absenmhs.waktu_absen', 'absenmhs.file_absen','absenmhs.id', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
                 ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
                 ->get();
 
@@ -634,7 +643,12 @@ class MagangController extends Controller
     {
         $request->validate([
             'keterangan' => 'required',
-            'file_absen' => 'required|mimes:jpg,bmp,png|max:2048',
+            'file_absen' => 'required|mimes:jpg|file|max:2048',
+        ],
+        [
+            'file_absen.mimes' => 'Mohon Maaf File Bukti Izin Harus Berupa JPG',
+            'file_absen.max' => 'Mohon Maaf File Bukti Izin Maksimal 2MB',
+
         ]);
         $file = $request->file('file_absen');
         $nama_file = $file->getClientOriginalName();
@@ -687,7 +701,7 @@ class MagangController extends Controller
             $absenmhss = DB::table('absenmhs')
                 ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'absenmhs.id_individu')
                 ->leftJoin('mulai_dan_selesai_mhs', 'mulai_dan_selesai_mhs.user_id', '=', 'data_mhs_indivs.user_id')
-                ->select('data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'absenmhs.waktu_absen', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
+                ->select('data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.jurusan', 'absenmhs.file_absen', 'data_mhs_indivs.univ', 'data_mhs_indivs.divisi', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'absenmhs.waktu_absen', 'absenmhs.jenis_absen', 'absenmhs.keterangan')
                 ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
                 ->get();
             $i = 1;
@@ -792,11 +806,11 @@ class MagangController extends Controller
             $users = DB::table('laporans')
                 ->where('laporans.nama', '=', $nama)
                 ->get();
-            $cari = $request->cari;
+            
             $user = DB::table('laporans')
-                ->where('judul', 'like', "%" . $cari . "%")
-                ->orWhere('jurusan', 'like', "%" . $cari . "%")
-                ->orWhere('divisi', 'like', "%" . $cari . "%")
+                ->where('judul', 'like', '%'.$request->cari.'%')
+                ->orWhere('jurusan', 'like','%'.$request->cari.'%')
+                ->orWhere('divisi', 'like','%'.$request->cari.'%')
                 ->get();
 
             $ti = 'Laporan Akhir';
@@ -832,7 +846,7 @@ class MagangController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'path' => 'required|mimes:pdf',
+            'path' => 'required|mimes:pdf|file|max:5024',
             'jurusan' => 'required'
         ]);
 
@@ -1111,10 +1125,16 @@ class MagangController extends Controller
     public function proses_berkas_mhs_kelompok(Request $request)
     {
         $request->validate([
+            'nomorsurat' => 'required',
+            'nama' => 'required',
+            'jabatan' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
-            'berkas' => 'required',
-            'berkas.*' => 'mimes:pdf|max:2048'
+        ],
+        [
+            'nomorsurat.required' => 'Mohon Di isi Nomor Surat',
+            'nama.required' => 'Mohon Di isi Nama Pengesah',
+            
         ]);
 
         if ($request->hasFile('berkas')) {
@@ -1235,7 +1255,12 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+        ],
+        [
+            'fileinterview.required' => 'Mohon Maaf File Tes Kepribadian Anda Harus Di Isi',
+            'fileinterview.max' => 'Mohon Maaf File Tes Kepribadian Anda Lebih dari 2MB',
+            'fileinterview.mimes' => 'Mohon Maaf File Tes Kepribadian Anda Harus JPG ,PNG, Dan JPEG',
         ]);
 
         $file = $request->file('fileinterview');
@@ -1274,7 +1299,7 @@ class MagangController extends Controller
         }
     }
 
-    public function show_mhs_kel_dokumen($id)
+    public function show_mhs_kel_dokumen_ktp($id)
     {
         $user = DataMhsIndiv::find($id);
 
@@ -1286,7 +1311,49 @@ class MagangController extends Controller
                 ->where('id_individu', '=', $id)
                 ->get();
 
-            return view('magang.dokumen-mhs-kel-upload', [
+            return view('magang.dokumen-mhs-kel-upload-ktp', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function show_mhs_kel_dokumen_ktm($id)
+    {
+        $user = DataMhsIndiv::find($id);
+
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_mhs_models')
+                ->where('id_individu', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs-kel-upload-ktm', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function show_mhs_kel_dokumen_bpjs($id)
+    {
+        $user = DataMhsIndiv::find($id);
+
+        if (auth()->user()->role_id == 11) {
+            $ti = 'Dokumen Mahasiswa';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_mhs_models')
+                ->where('id_individu', '=', $id)
+                ->get();
+
+            return view('magang.dokumen-mhs-kel-upload-bpjs', [
                 'ti' => $ti,
                 'showImage' => $showImage,
                 'user' => $user
@@ -1300,15 +1367,19 @@ class MagangController extends Controller
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'fotoid' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'fotoid.required' => 'Mohon Maaf Foto 3x4 Anda Harus Di Isi',
+            'fotoid.max' => 'Mohon Maaf Foto 3x4 Anda Lebih dari 2 MB',
+            'fotoid.mimes' => 'Mohon Maaf Foto 3x4 Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
 
         if ($request->hasFile('fotoid')) {
 
-            $files = $request->file('fotoid');
+            $file = $request->file('fotoid');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -1319,26 +1390,30 @@ class MagangController extends Controller
                     'id_individu' => $individu->id,
                     'fotoID' => $Namafoto,
                 ]);
-            }
+            //}
             session()->flash('succes', 'Terimakasih telah mengupload foto anda, selanjutnya mohon klik berkas lainnya');
             return redirect('dokumen-mhs');
         }
         return redirect()->back();
     }
 
-    public function upload_mhs_kel($id, Request $request)
+    public function upload_mhs_kel_ktp($id, Request $request)
     {
         $individu = DataMhsIndiv::find($id);
         $request->validate([
-            'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'foto' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'foto.required' => 'Mohon Maaf KTP Anda Harus Di Isi',
+            'foto.max' => 'Mohon Maaf KTP Anda Lebih dari 2 MB',
+            'foto.mimes' => 'Mohon Maaf KTP Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
 
         if ($request->hasFile('foto')) {
 
-            $files = $request->file('foto');
+            $file = $request->file('foto');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -1349,7 +1424,73 @@ class MagangController extends Controller
                     'id_individu' => $individu->id,
                     'foto' => $Namafoto,
                 ]);
-            }
+            // }
+            session()->flash('succes', 'Terimakasih telah mengirimkan Dokumen Magang. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi Dokumen Magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+            return redirect('dokumen-mhs');
+        }
+        return redirect()->back();
+    }
+    public function upload_mhs_kel_ktm($id, Request $request)
+    {
+        $individu = DataMhsIndiv::find($id);
+        $request->validate([
+            'foto' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'foto.required' => 'Mohon Maaf KTM Anda Harus Di Isi',
+            'foto.max' => 'Mohon Maaf KTM Anda Lebih dari 2 MB',
+            'foto.mimes' => 'Mohon Maaf KTM Anda Harus Berupa JPG, PNG, Dan JPEG'
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            $file = $request->file('foto');
+
+            // foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/dokumen-mhs-kel/' . $individu->id;
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoMhsModels::create([
+                    'id_individu' => $individu->id,
+                    'foto' => $Namafoto,
+                ]);
+            // }
+            session()->flash('succes', 'Terimakasih telah mengirimkan Dokumen Magang. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi Dokumen Magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+            return redirect('dokumen-mhs');
+        }
+        return redirect()->back();
+    }
+    public function upload_mhs_kel_bpjs($id, Request $request)
+    {
+        $individu = DataMhsIndiv::find($id);
+        $request->validate([
+            'foto' => 'mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+           
+            'foto.max' => 'Mohon Maaf BPJS Anda Lebih dari 2 MB',
+            'foto.mimes' => 'Mohon Maaf BPJS Anda Harus Berupa JPG, PNG, Dan JPEG'
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            $file = $request->file('foto');
+
+            // foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $Namafoto = $file->getClientOriginalName();
+                // Upload ke public/fotoMhs
+                $tujuan_upload = 'file/dokumen-mhs-kel/' . $individu->id;
+                $size = $file->getSize();
+                $file->move($tujuan_upload, $Namafoto);
+                FotoMhsModels::create([
+                    'id_individu' => $individu->id,
+                    'foto' => $Namafoto,
+                ]);
+            // }
             session()->flash('succes', 'Terimakasih telah mengirimkan Dokumen Magang. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi Dokumen Magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
             return redirect('dokumen-mhs');
         }
@@ -1565,15 +1706,19 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-            'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'fotoid' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'fotoid.required' => 'Mohon Maaf Foto 3x4 Anda Harus Di Isi',
+            'fotoid.max' => 'Mohon Maaf Foto 3x4 Anda Lebih dari 2 MB',
+            'fotoid.mimes' => 'Mohon Maaf Foto 3x4 Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
 
         if ($request->hasFile('fotoid')) {
 
-            $files = $request->file('fotoid');
+            $file = $request->file('fotoid');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -1584,7 +1729,7 @@ class MagangController extends Controller
                     'id_individu' => $individusmk->id,
                     'fotoID' => $Namafoto,
                 ]);
-            }
+            // }
             session()->flash('succes', 'Terimakasih telah mengirimkan foto anda, selanjutnya mohon klik berkas lainnya');
             return redirect('dokumen-smk');
         }
@@ -1684,7 +1829,7 @@ class MagangController extends Controller
 
             $absensmkk = DB::table('absensmk')
                 ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absensmk.id_individu')
-                ->select('data_smk_indivs.nama', 'absensmk.waktu_absen', 'absensmk.id', 'absensmk.jenis_absen', 'absensmk.keterangan')
+                ->select('data_smk_indivs.nama', 'absensmk.waktu_absen', 'absensmk.id','absensmk.file_absen', 'absensmk.jenis_absen', 'absensmk.keterangan')
                 ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
                 ->get();
 
@@ -1782,7 +1927,7 @@ class MagangController extends Controller
             $absensmk = DB::table('absensmk')
                 ->leftJoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'absensmk.id_individu')
                 ->leftJoin('mulai_dan_selesai_smk', 'mulai_dan_selesai_smk.user_id', '=', 'data_smk_indivs.user_id')
-                ->select('data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'absensmk.waktu_absen', 'absensmk.jenis_absen', 'absensmk.keterangan')
+                ->select('data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.jurusan', 'absensmk.file_absen','data_smk_indivs.sekolah', 'data_smk_indivs.divisi', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'absensmk.waktu_absen', 'absensmk.jenis_absen', 'absensmk.keterangan')
                 ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
                 ->get();
             $i = 1;
@@ -2009,7 +2154,7 @@ class MagangController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'path' => 'required|mimes:pdf',
+            'path' => 'required|mimes:pdffile|max:5024',
             'jurusan' => 'required'
         ]);
 
@@ -2408,8 +2553,12 @@ class MagangController extends Controller
     {
         $interviewsmk = DataSmkIndivs::find($id);
         $request->validate([
-
-            'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+        ],
+        [
+            'fileinterview.required' => 'Mohon Maaf File Tes Kepribadian Anda Harus Di Isi',
+            'fileinterview.max' => 'Mohon Maaf File Tes Kepribadian Anda Lebih dari 2MB',
+            'fileinterview.mimes' => 'Mohon Maaf File Tes Kepribadian Anda Harus JPG ,PNG, Dan JPEG',
         ]);
 
         $file = $request->file('fileinterview');
@@ -2474,15 +2623,19 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-            'fotoid' => 'required',
-            'fotoid.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'fotoid' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'fotoid.required' => 'Mohon Maaf Foto 3x4 Anda Harus Di Isi',
+            'fotoid.max' => 'Mohon Maaf Foto 3x4 Anda Lebih dari 2 MB',
+            'fotoid.mimes' => 'Mohon Maaf Foto 3x4 Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
 
         if ($request->hasFile('fotoid')) {
 
-            $files = $request->file('fotoid');
+            $file = $request->file('fotoid');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -2493,7 +2646,7 @@ class MagangController extends Controller
                     'id_individu' => $individusmk->id,
                     'fotoID' => $Namafoto,
                 ]);
-            }
+            // }
             session()->flash('succes', 'Terimakasih telah mengirimkan foto anda, selanjutnya mohon klik berkas lainnya');
             return redirect('dokumen-smk');
         }
@@ -2652,7 +2805,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.jurusan')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
 
@@ -2684,7 +2837,7 @@ class MagangController extends Controller
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('penilaians', 'data_mhs_indivs.id', '=', 'penilaians.user_id')
                 ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
-                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->select('penilaians.nilai_huruf', 'penilaians.keterangan', 'penilaians.laporankerja', 'penilaians.kehadiran', 'penilaians.keterangan', 'penilaians.pembimbing', 'penilaians.nilai_huruf', 'penilaians.average', 'penilaians.kerjasama', 'penilaians.InisiatifTanggungJawabKerja', 'penilaians.Loyalitas', 'penilaians.MotivasiPercayaDiri', 'penilaians.EtikaSopanSantun', 'penilaians.KesehatanKeselamatanKerja', 'penilaians.disiplin',  'penilaians.PemahamanKemampuan', 'users.name', 'users.id', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'users.role_id', 'data_mhs_indivs.divisi', 'data_mhs_indivs.nama','data_mhs_indivs.jurusan', 'data_mhs_indivs.univ')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             // $users = DB::table('users')
@@ -2944,7 +3097,12 @@ class MagangController extends Controller
     {
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
-            'fileinterview' => 'required|mimes:jpg,jpeg,png|max:2048',
+            'fileinterview' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+        ],
+        [
+            'fileinterview.required' => 'Mohon Maaf File Tes Kepribadian Anda Harus Di Isi',
+            'fileinterview.max' => 'Mohon Maaf File Tes Kepribadian Anda Lebih dari 2MB',
+            'fileinterview.mimes' => 'Mohon Maaf File Tes Kepribadian Anda Harus JPG ,PNG, Dan JPEG',
         ]);
 
         $file = $request->file('fileinterview');
@@ -3248,5 +3406,118 @@ class MagangController extends Controller
     {
         $ti = 'Selesai';
         return view('magang.selesai', ['ti' => $ti]);
+    }
+    public function surat_memo_divisi(){
+        if (auth()->user()->role_id == 3) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('file_mhs_indivs', 'data_mhs_indivs.user_id', '=', 'file_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('users.id', 'file_mhs_indivs.nomorsurat', 'file_mhs_indivs.jabatan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.jurusan',  'data_mhs_indivs.divisi',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            $mahasiswas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.jurusan',  'data_mhs_indivs.divisi',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->where('users.id', '=', $id)
+                ->get();
+            $ti = 'Surat Memo Divisi';
+            return view('magang.surat-memo-divisi', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'mahasiswas' => $mahasiswas
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function cetak_surat_memo_divisi(){
+        if (auth()->user()->role_id == 3) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('file_mhs_indivs', 'data_mhs_indivs.user_id', '=', 'file_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('users.id', 'file_mhs_indivs.nomorsurat', 'file_mhs_indivs.jabatan', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.jurusan',  'data_mhs_indivs.divisi',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            $mahasiswas = DB::table('users')
+                ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
+                ->select('mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at', 'data_mhs_indivs.nim', 'data_mhs_indivs.departemen', 'data_mhs_indivs.jurusan',  'data_mhs_indivs.divisi',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ')
+                ->where('users.id', '=', $id)
+                ->get();
+            $ti = 'Surat Memo Divisi';
+            $pdf = PDF::loadview('magang.cetak-surat-memo-divisi-mhs', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'mahasiswas' => $mahasiswas
+            ]);
+
+            return $pdf->download('surat-memorandum-divisi-mhs.pdf');
+        } else {
+            return redirect()->back();
+        }
+        
+    }
+    public function surat_memo_divisi_smk(){
+        if (auth()->user()->role_id == 4) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('file_smk_indivs', 'data_smk_indivs.user_id', '=', 'file_smk_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('users.id', 'file_smk_indivs.nomorsurat', 'file_smk_indivs.jabatan', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan',  'data_smk_indivs.divisi',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            $mahasiswas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan',  'data_smk_indivs.divisi',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
+                ->where('users.id', '=', $id)
+                ->get();
+            $ti = 'Surat Memo Divisi';
+            return view('magang.surat-memo-divisi-smk', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'mahasiswas' => $mahasiswas
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function cetak_surat_memo_divisi_smk(){
+        if (auth()->user()->role_id == 4) {
+            $id = Auth::user()->id;
+            $datas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('file_smk_indivs', 'data_smk_indivs.user_id', '=', 'file_smk_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('users.id', 'file_smk_indivs.nomorsurat', 'file_smk_indivs.jabatan', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan',  'data_smk_indivs.divisi',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
+                ->where('users.id', '=', $id)
+                ->get();
+
+            $mahasiswas = DB::table('users')
+                ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
+                ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
+                ->select('mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at', 'data_smk_indivs.nis', 'data_smk_indivs.departemen', 'data_smk_indivs.jurusan',  'data_smk_indivs.divisi',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah')
+                ->where('users.id', '=', $id)
+                ->get();
+            $ti = 'Surat Memo Divisi';
+            $pdf = PDF::loadview('magang.cetak-surat-memo-divisi-smk', [
+                'ti' => $ti,
+                'datas' => $datas,
+                'mahasiswas' => $mahasiswas
+            ]);
+
+            return $pdf->download('surat-memorandum-divisi-smk.pdf');
+        } else {
+            return redirect()->back();
+        }
     }
 }

@@ -49,7 +49,7 @@
                 <p>Nim : <b>{{ $sertif->nim }}</b> </p>
 
                 <h5 style="font-family:Comic Sans MS;font-weight: bold;">
-                    {{ strtoupper($sertif->strata) }} {{ strtoupper($sertif->univ) }}
+                    {{ strtoupper($sertif->strata) }} {{strtoupper($sertif->jurusan)}} {{ strtoupper($sertif->univ) }}
                 </h5>
 
 

@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <form method="POST" action="/upload-mhs-kel/{{ $user->id }}"
+                                        <form method="POST" action="/upload-mhs-kel-ktp/{{ $user->id }}"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="alert alert-danger" role="alert">
@@ -36,22 +36,27 @@
                                                         2MB</small></label>
                                                 <br><small style="color: blue">Contoh :</small>
                                                 <br> <img width="30%" src="{{ asset('img/contoh-ktp.png') }}" alt="">
-                                                <input type="file" class="form-control" id="ktp" name="foto[]">
+                                                <input type="file" class="form-control @error('foto') is-invalid @enderror" id="ktp" name="foto">
+                                                @error('foto')
+                                            <div class="invalid-feedback mt-2">
+                                                {{ $message }}
                                             </div>
-                                            <div class="form-group mt-4">
+                                        @enderror
+                                            </div>
+                                            {{-- <div class="form-group mt-4">
                                                 <label>KTM <small style="color: red">*Max
                                                         2MB</small></label>
                                                 <br><small style="color: blue">Contoh :</small>
                                                 <br><img width="20%" src="{{ asset('img/student-card.png') }}" alt="">
-                                                <input type="file" class="form-control" id="ktm" name="foto[]">
+                                                <input type="file" class="form-control" id="ktm" name="foto">
                                             </div>
                                             <div class="form-group mt-4">
                                                 <label>Kartu BPJS Ketenagakerjaan <small style="color: red">*Max
                                                         2MB</small></label>
                                                 <br><small style="color: blue">Contoh :</small>
                                                 <br><img width="20%" src="{{ asset('img/contoh-bpjs.png') }}" alt="">
-                                                <input type="file" class="form-control" id="asuransi" name="foto[]">
-                                            </div>
+                                                <input type="file" class="form-control" id="asuransi" name="foto">
+                                            </div> --}}
                                             <button type="submit" class="btn btn-primary mt-5">Upload Foto <i
                                                     class="fas fa-upload"></i></button>
                                         </form>

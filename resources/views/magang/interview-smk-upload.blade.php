@@ -38,7 +38,12 @@
                                             <small style="color: blue">Contoh :</small>
                                             <br><img style="margin-bottom: 10px" width="100%"
                                                 src="{{ asset('img/mbti.png') }}" alt="">
-                                            <input type="file" name="fileinterview">
+                                            <input type="file" name="fileinterview" class="form-control @error('fileinterview') is-invalid @enderror">
+                                            @error('fileinterview')
+                                            <div class="invalid-feedback mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
                                                 class="fas fa-paper-plane"></i></button>

@@ -22,11 +22,21 @@
                                 @csrf
                                 <div class="form-group">
                                     <small class="ml-2">Judul</small>
-                                    <input type="text" class="form-control" id="judul" name="judul">
+                                    <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul">
+                                    @error('judul')
+                                    <div class="invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                                 <div class="form-group">
                                     <small class="ml-2">Jurusan</small>
-                                    <input type="text" class="form-control" id="jurusan" name="jurusan">
+                                    <input type="text" class="form-control @error('jurusan') is-invalid @enderror" id="jurusan" name="jurusan">
+                                    @error('jurusan')
+                                    <div class="invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
 
                                 <div class="form-group">
@@ -35,13 +45,19 @@
                                         <select class="custom-select" name="divisi">
                                             <option value="{{ $user->divisi }}" selected>{{ $user->divisi }}</option>
                                         </select>
+                                   
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
                                     <small class="ml-2">Upload Laporan</small>
-                                    <input type="file" class="form-control" id="path" name="path">
+                                    <input type="file" class="form-control @error('file') is-invalid @enderror" id="path" name="path">
+                                    @error('file')
+                                    <div class="invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mt-4">Upload Laporan</button>

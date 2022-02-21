@@ -24,7 +24,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Surat Keterangan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Surat Penerimaan Praktek Kerja Lapangan Di PT PAL</h6>
                             <div class="dropdown no-arrow">
 
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -90,7 +90,7 @@
                                             <tr>
 
                                                 <th>Nama</th>
-                                                <th>Nim</th>
+                                                <th>Nis</th>
                                                 <th>Sekolah</th>
                                                 <th>Unit Kerja</th>
                                                 <th>Departemen</th>
@@ -116,12 +116,8 @@
                                     </table>
                                     <p class="ml-2">2. Surat balasan ini sebagai dasar bahwa para
                                         Praktikan
-                                        telah resmi <b><u>Diterima</u></b> Praktikan PKL/OJT di PT PAL Indonesia (Persero)
-                                        dan
-                                        surat ini
-                                        mohon
-                                        agar
-                                        dibawa oleh para Praktikan OJT/PKL untuk ditandatangani.</p>
+                                        telah resmi <b><u>Diterima</u></b> Praktikan PKL/OJT di PT PAL Indonesia (Persero).
+                                        Demikian disampaikan dan atas perhatiannya diucapkan terima kasih.</p>
                                 </div>
 
                                 <div class="d-flex justify-content-end mr-4" style="margin-top:40px;">

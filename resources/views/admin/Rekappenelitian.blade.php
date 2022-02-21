@@ -67,7 +67,7 @@
                                         <td>{{ $rekap->mulai }}</td>
                                         <td>{{ $rekap->selesai }}</td>
                                         <td><a class="btn btn-danger"
-                                                href="delete-rekap-penelitian-divisi/{{$rekap->id}}">Delete</a>
+                                                href="delete-rekap-penelitian/{{$rekap->id}}">Delete</a>
                                         </td>
                                     </tr>
                                     @endif

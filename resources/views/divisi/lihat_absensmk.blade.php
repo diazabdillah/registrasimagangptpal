@@ -37,8 +37,12 @@
                     <td>
                         {{ $rekapabsen->keterangan }}
                     </td>
-                    <td><img src="{{ asset('file/absen/'. $rekapabsen->file_absen) }}" alt="Foto" class="img-thumbnail"
-                            width="135"></td>
+                    <td>
+                        @if($rekapabsen->file_absen != null)
+                        <img src="{{ asset('file/absen/'. $rekapabsen->file_absen) }}" alt="Foto" class="img-thumbnail"
+                            width="135">
+                        @endif
+                        </td>
                     <td><a class="btn btn-danger"
                             href="/lihat-absensmk/{{$rekapabsen->id_individu}}/delete-lihatabsen-smk/{{$rekapabsen->id}}">Delete</a>
                     </td>

@@ -32,7 +32,7 @@
 
                 <hr style="width:240px;weight:200px;margin-top: 5px;margin-bottom: 5px;border:1px solid;">
                 <p>Nomor :
-                    01/44200/{{ date('F', strtotime($sertif->selesai)) }}/{{ date('Y', strtotime($sertif->selesai)) }}
+                    PKL/{{$sertif->id}}/44200/{{ date('F', strtotime($sertif->selesai)) }}/{{ date('Y', strtotime($sertif->selesai)) }}
                 </p>
 
             </div>
@@ -63,7 +63,7 @@
                 </p>
                 <p style="margin-top: -20px;margin-left:500px;"> PT PAL Indonesia (Persero)</p>
 
-                <hr style="margin-left:500px;width:280px;weight:200px;margin-top: 150px;border:1px solid;">
+                <img  src="{{public_path('frontend/img/TTD-KADEP-HCD.png')}}" style="margin-left:490px;width:280px;margin-top:15px;">
 
             </div>
 

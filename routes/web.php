@@ -420,6 +420,10 @@ Route::get('hapus-magang-penuh-smk/{id}', [DivisiController::class, 'hapus_magan
 
 Route::get('ubah-magang-penuh-penelitian/{id}', [DivisiController::class, 'ubah_magang_penuh_penelitian']);
 Route::get('hapus-magang-penuh-penelitian/{id}', [DivisiController::class, 'hapus_magang_penuh_penelitian']);
+
+Route::get('/cari-penerimaan', [DivisiController::class, 'index']);
+
+Route::get('/cari-penerimaan-penelitian', [DivisiController::class, 'penerimaan_penelitian']);
 // End Halaman Divisi ========================
 
 
@@ -453,7 +457,7 @@ Route::post('/upload-mhs/{id}', [MagangController::class, 'upload_mhs']);
 Route::get('/profil-mhs', [MagangController::class, 'profil_mhs']);
 
 Route::get('/absen-mhs', [MagangController::class, 'absen_mhs']);
-Route::get('/proses-absen-masuk-mhs/{individ}', [MagangController::class, 'proses_absen_masuk_mhs']);
+Route::post('/proses-absen-masuk-mhs/{individ}', [MagangController::class, 'proses_absen_masuk_mhs']);
 Route::get('/proses-absen-pulang-mhs/{individ}', [MagangController::class, 'proses_absen_pulang_mhs']);
 Route::post('/proses-absen-izin-mhs/{individ}', [MagangController::class, 'proses_absen_izin_mhs']);
 Route::get('/cetak-absen-mhs-pdf', [MagangController::class, 'cetak_absenmhs_pdf']);
@@ -470,12 +474,16 @@ Route::get('/lihat-laporan-mhs/{id}', [MagangController::class, 'lihat_laporan_m
 Route::get('/lihat-laporan-mhs-revisi/{id}', [MagangController::class, 'lihat_laporan_mhs_revisi']);
 Route::get('/edit-laporan-mhs/{id}', [MagangController::class, 'edit_laporan_mhs']);
 Route::put('/proses-edit-laporan-mhs/{id}', [MagangController::class, 'proses_edit_laporan_mhs']);
+
 Route::get('/mhs/cari', [MagangController::class, 'laporan_mhs']);
 Route::get('/smk/cari', [MagangController::class, 'laporan_smk']);
 
 Route::get('penilaian-mhs', [MagangController::class, 'penilaian_mhs']);
 Route::get('surat-penerimaan-mhs', [MagangController::class, 'surat_penerimaan_mhs']);
 Route::get('/balasan-mhs-cetak', [MagangController::class, 'balasan_mhs_cetak']);
+
+Route::get('surat-memo-divisi',[MagangController::class,'surat_memo_divisi']);
+Route::get('cetak-surat-memo-divisi',[MagangController::class,'cetak_surat_memo_divisi']);
 // Halaman Magang Mahasiswa Individu ==================
 
 
@@ -498,13 +506,17 @@ Route::get('/interview-mhs-kel/{id}', [MagangController::class, 'interview_mhs_k
 Route::post('/interview-mhs-kel/{id}', [MagangController::class, 'proses_interview_mhs_kel_upload']);
 
 Route::get('/dokumen-mhs-kel-upload-foto/{id}', [MagangController::class, 'show_mhs_kel_foto']);
-Route::get('/dokumen-mhs-kel-upload/{id}', [MagangController::class, 'show_mhs_kel_dokumen']);
+Route::get('/dokumen-mhs-kel-upload-ktp/{id}', [MagangController::class, 'show_mhs_kel_dokumen_ktp']);
+Route::get('/dokumen-mhs-kel-upload-ktm/{id}', [MagangController::class, 'show_mhs_kel_dokumen_ktm']);
+Route::get('/dokumen-mhs-kel-upload-bpjs/{id}', [MagangController::class, 'show_mhs_kel_dokumen_bpjs']);
 
 Route::get('/dokumen-mhs-kel/{id}/{foto}', [MagangController::class, 'hapus_mhs_kel_dokumen']);
 Route::get('/dokumen-mhs-kel-foto/{id}/{fotoID}', [MagangController::class, 'hapus_mhs_kel_foto']);
 
 Route::post('/upload-mhs-kel-foto/{id}', [MagangController::class, 'upload_mhs_kel_foto']);
-Route::post('/upload-mhs-kel/{id}', [MagangController::class, 'upload_mhs_kel']);
+Route::post('/upload-mhs-kel-ktp/{id}', [MagangController::class, 'upload_mhs_kel_ktp']);
+Route::post('/upload-mhs-kel-ktm/{id}',[MagangController::class,'upload_mhs_kel_ktm']);
+Route::post('/upload-mhs-kel-bpjs/{id}',[MagangController::class,'upload_mhs_kel_bpjs']);
 
 Route::get('/sertifikat_mhs', [MagangController::class, 'sertifikat_mhs']);
 Route::get('/sertifikat_smk', [MagangController::class, 'sertifikat_smk']);
@@ -570,6 +582,9 @@ Route::get('/surat-penerimaan-smk', [MagangController::class, 'surat_penerimaan_
 Route::get('/balasan-smk-cetak', [MagangController::class, 'balasan_smk_cetak']);
 
 Route::get('penilaian-smk', [MagangController::class, 'penilaian_smk']);
+
+Route::get('surat-memo-divisi-smk',[MagangController::class,'surat_memo_divisi_smk']);
+Route::get('cetak-surat-memo-divisi-smk',[MagangController::class,'cetak_surat_memo_divisi_smk']);
 // Halaman Magang SMK Individu ==================
 
 
@@ -641,6 +656,9 @@ Route::get('/surat_penelitian', [PenelitianController::class, 'surat_penelitian'
 Route::get('/sertif-penelitian-cetak', [PenelitianController::class, 'sertif_penelitian_cetak']);
 Route::get('penelitian-selesai', [PenelitianController::class, 'penelitian_selesai']);
 Route::get('penelitian-kuota-penuh', [PenelitianController::class, 'penelitian_kuota_penuh']);
+
+Route::get('surat-memo-divisi-penelitian',[PenelitianController::class,'surat_memo_divisi_penelitian']);
+Route::get('cetak-surat-memo-divisi-penelitian',[PenelitianController::class,'cetak_surat_memo_divisi_penelitian']);
 // end halaman penelitian ========
 // Halaman Forum Mahasiswa ============================
 Route::get('/forum-mhs', [ForumController::class, 'index']);

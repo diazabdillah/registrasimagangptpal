@@ -33,9 +33,13 @@
                                                     2MB</small></label>
                                             <br><small style="color: blue">Contoh :</small>
                                             <br><img width="15%" src="{{ asset('img/contoh-foto.png') }}" alt="">
-                                            <input type="file" class="form-control" id="foto" name="fotoid[]">
-                                            <button type="submit" class="btn btn-primary mt-3">Upload Foto <i
-                                                    class="fas fa-upload"></i></button>
+                                            <input type="file" class="form-control @error('fotoid') is-invalid @enderror" id="foto" name="fotoid">
+                                            @error('fotoid')
+                                            <div class="invalid-feedback mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                            <button type="submit" class="btn btn-primary mt-3">Upload Foto <i class="fas fa-upload"></i></button>
                                         </form>
                                     </div>
                                 </div>
