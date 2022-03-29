@@ -34,7 +34,7 @@
                                         </p>
                                         <p><b>Langkah 2:</b></p>
                                         <p class="card-text"><b>Klik Button "Berkas Lainnya"</b>
-                                            <br>Silahkan upload file magang (KTP, Kartu Pelajar, dan BPJS Ketenagakerjaan) di button "Berkas Lainnya" dengan ketentuan yang
+                                            <br>Silahkan upload file magang (KTP, Kartu Pelajar, dan BPJS Ketenagakerjaan) di kolom "Berkas Lainnya" dengan ketentuan yang
                                             sudah diberikan.
                                         </p>
                                         <b>Kirim data tersebut dengan ketentuan :</b>
@@ -42,6 +42,7 @@
                                             <li>Ukuran file KTP, Kartu Pelajar, dan BPJS Ketenagakerjaan dan foto 3x4 max 2 MB</li>
                                             <li>Format file KTP, Kartu Pelajar, dan BPJS Ketenagakerjaan berupa JPG / JPEG / PNG</li>
                                             <li>Format foto 3x4 bisa berupa JPG / JPEG / PNG</li>
+                                            <li>Background foto 3x4 boleh biru atau merah</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -62,7 +63,8 @@
                                             <th>Nama</th>
                                             <th>Nis</th>
                                             <th>Sekolah</th>
-                                            <th>Action</th>
+                                            <th>Foto</th>
+                                            <th>Berkas Lainnya</th>
                                         </tr>
                                         </tr>
                                     </thead>
@@ -81,10 +83,22 @@
                                                             href="/dokumen-smk-upload-foto/{{ $absen->id }}"
                                                             role="button">Foto 3x4</a>
 
-                                                        <a class="btn btn-primary p-1"
-                                                            href="/dokumen-smk-upload/{{ $absen->id }}"
-                                                            role="button">Berkas Lainnya</a>
+                                        
                                                     </td>
+                                            
+                                                        <td>
+                                                            <a class="btn btn-primary p-1"
+                                                            href="/dokumen-smk-upload-ktp/{{ $absen->id }}"
+                                                            role="button">KTP</a>
+                                                            <a class="btn btn-primary p-1"
+                                                            href="/dokumen-smk-upload-ktm/{{ $absen->id }}"
+                                                            role="button">KTM</a>
+                                                            <a class="btn btn-primary p-1"
+                                                            href="/dokumen-smk-upload-bpjs/{{ $absen->id }}"
+                                                            role="button">BPJS</a>
+                                                        </td>
+
+                                             
 
                                                 @else
 
@@ -93,9 +107,17 @@
                                                             href="/dokumen-smk-kel-upload-foto/{{ $absen->id }}"
                                                             role="button">Foto 3x4</a>
 
+                                                    </td>
+                                                    <td>
                                                         <a class="btn btn-primary p-1"
-                                                            href="/dokumen-smk-kel-upload/{{ $absen->id }}"
-                                                            role="button">Berkas Lainnya</a>
+                                                            href="/dokumen-smk-kel-upload-ktp/{{ $absen->id }}"
+                                                            role="button">KTP</a>
+                                                            <a class="btn btn-primary p-1"
+                                                            href="/dokumen-smk-kel-upload-ktm/{{ $absen->id }}"
+                                                            role="button">KTM</a>
+                                                            <a class="btn btn-primary p-1"
+                                                            href="/dokumen-smk-kel-upload-bpjs/{{ $absen->id }}"
+                                                            role="button">BPJS</a>
                                                     </td>
 
                                                 @endif

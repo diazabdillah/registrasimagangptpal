@@ -17,7 +17,6 @@
 
 <body>
 
-
     @foreach ($datas as $sertif)
     <div class="row">
         <div class="card-body">
@@ -39,18 +38,19 @@
             </div>
             <div class="justify-content-center" style="margin-left:130px;margin-top:20px;">
                 <span>Surat keterangan ini diberikan kepada para praktikan yang telah
-                    menyelesaikan magang, berikut data Praktikan magang:</span>
+                    menyelesaikan
+                    Magang, berikut data Praktikan Magang:</span>
             </div>
             <div style="margin-left:300px;margin-top:20px">
 
                 <h6>Nama: <b>{{ $sertif->nama }}</b></h6>
-                <h6>Universitas: {{ $sertif->univ }}</h6>
+                <h6>Sekolah: {{ $sertif->sekolah }}</h6>
                 <h6>Jurusan: {{ $sertif->jurusan }}</h6>
                 <h6>Nilai: {{ $sertif->nilai_huruf }} ({{$sertif->keterangan}})</h6>
             </div>
 
             <div class="justify-content-center" style="margin-left:130px;margin-top: 20px">
-                <p>Yang bersangkutan ini telah melaksanakan magang di <b>PT PAL INDONESIA
+                <p>Yang bersangkutan ini telah melaksanakan Magang di <b>PT PAL INDONESIA
                         (PERSERO)</b>. Pada Tanggal
                     <b>{{ date('d-m-Y', strtotime($sertif->mulai)) }}</b> s/d
                     <b>{{ date('d-m-Y', strtotime($sertif->selesai)) }}</b>
@@ -64,10 +64,10 @@
                 <p style="margin-top: -20px;margin-left:500px;"> PT PAL Indonesia (Persero)</p>
 
                 <img  src="{{public_path('frontend/img/TTD-KADEP-HCD.png')}}" style="margin-left:490px;width:280px;margin-top:15px;">
+
             </div>
 
         </div>
-
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     @endforeach

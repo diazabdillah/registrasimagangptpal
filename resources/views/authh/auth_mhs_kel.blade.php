@@ -27,7 +27,7 @@
                             <h1 class="h4 text-gray-900 font-weight-bold">Registrasi Secara Kelompok</h1>
                         </div>
 
-                        <form method="POST" action="{{ route('RegMhsKel') }}">
+                        <form  id="formregis" method="POST" action="{{ route('RegMhsKel') }}">
                             @csrf
                             <!-- Input Email -->
                             <div class="form-group">
@@ -68,8 +68,10 @@
                             </div>
                             <!-- End Input untuk Password -->
 
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Selanjutnya
+                            <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                <div class="text">Registrasi</div>
                             </button>
                             <hr>
                             <div class="text-center">

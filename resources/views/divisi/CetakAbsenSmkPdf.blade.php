@@ -15,7 +15,12 @@
 
 <body>
 
-    <h5 class="text-center h5 mb-2 text-gray-800"><b>{{ $ti }}</b></h5>
+    <img src="{{ public_path('img/bumn.png') }}" alt="image" style="width: 130px;">
+
+    <img src="{{ public_path('img/logo_pal.png') }}" alt="Card image cap" style="width: 130px;margin-left:600px">
+
+    <h6 class="text-center h6 mb-2 text-gray-800"><b>{{ $ti }}</b></h6>
+    <h6 class="text-center h6 mb-2 text-gray-800">SMK PRAKTEK KERJA LAPANGAN / OJT</h6><br>
     <div class="row">
         <table class="table table-bordered table-striped responsive" style="table-layout: fixed;width:100%;">
             <thead class="text-center">
@@ -25,6 +30,7 @@
                     <th style="font-size: 14px">Waktu Absen</th>
                     <th style="font-size: 14px">Jenis Absen</th>
                     <th style="font-size: 14px">Keterangan</th>
+                    <th style="font-size: 14px">Bukti Izin</th>
 
 
                 </tr>
@@ -38,7 +44,11 @@
                         <td style="font-size: 14px">{{ date('H:i, d F Y', strtotime($rekap->waktu_absen)) }}</td>
                         <td style="font-size: 14px">{{ $rekap->jenis_absen }}</td>
                         <td style="font-size: 14px">{{ $rekap->keterangan }}</td>
-
+                        <td>
+                            @if($rekap->file_absen != null)
+                            <img src="{{ public_path("file/absen/". $rekap->file_absen) }}" alt="image" style="width: 130px;">
+                             @endif
+                        </td>
 
                     </tr>
 

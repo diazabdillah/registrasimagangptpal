@@ -24,7 +24,7 @@
                                 <h5 class="card-title mt-2">Data</h5>
                                 <p class="card-text"><small>Setelah membuat akun mohon lengkapi data berikut dengan benar untuk pemrosesan seleksi berkas</small></p>
 
-                                <form method="POST" action="/input-data-mhs">
+                                <form id="formregis" method="POST" action="/input-data-mhs">
                                     @csrf
                                     <!-- Input Univ -->
                                     <div class="form-group">
@@ -54,8 +54,12 @@
                                         <small class="ml-2">Nomer Hp</small>
                                         <input type="text" class="form-control" id="no_hp" name="no_hp">
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i class="fas fa-paper-plane"></i></button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                        <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                        <div class="text">Kirim <i
+                                            class="fas fa-paper-plane"></i></div>
+                                    </button>
                                 </form>
                             </div>
                         </div>

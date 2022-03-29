@@ -24,7 +24,7 @@
                                     <h5 class="card-title mt-2">File</h5>
                                     <p class="card-text">Kirim file dalam bentuk PDF.</p>
 
-                                    <form method="POST" action="/berkas-smk" enctype="multipart/form-data">
+                                    <form id="formregis" method="POST" action="/berkas-smk" enctype="multipart/form-data">
                                         @csrf
                                         <!-- Upload Proposal dan surat pengajuan -->
                                         <div class="form-group">
@@ -120,8 +120,14 @@
                                         </div>
                                         <!-- End upload Proposal dan surat pengajuan -->
 
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
-                                                class="fas fa-paper-plane"></i></button>
+                                  
+                                        <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                            <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                            <div class="text">Kirim <i
+                                                class="fas fa-paper-plane"></i></div>
+                                        </button>
+
                                     </form>
                                 </div>
                             </div>

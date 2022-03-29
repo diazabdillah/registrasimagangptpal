@@ -34,14 +34,15 @@
                                         </p>
                                         <p><b>Langkah 2:</b></p>
                                         <p class="card-text"><b>Klik Button "Berkas Lainnya"</b>
-                                            <br>Silahkan upload file magang (KTP, Kartu Mahasiswa, dan BPJS Ketenagakerjaan) di button "Berkas Lainnya" dengan ketentuan yang
+                                            <br>Silahkan upload file magang (KTP, Kartu Mahasiswa, dan BPJS Ketenagakerjaan) di kolom "Berkas Lainnya" dengan ketentuan yang
                                             sudah diberikan.
                                         </p>
                                         <b>Kirim data tersebut dengan ketentuan :</b>
                                         <ol>
                                             <li>Ukuran file KTP, Kartu Mahasiswa, dan BPJS dan foto 3x4 max 2 MB</li>
                                             <li>Format file KTP, Kartu Mahasiswa, dan BPJS berupa JPG / JPEG / PNG</li>
-                                            <li>Format foto 3x4 bisa berupa JPG / JPEG / PNG</li>
+                                            <li>Format foto 3x4 boleh berupa JPG / JPEG / PNG</li>
+                                            <li>Background foto 3x4 boleh biru atau merah</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -82,11 +83,18 @@
                                                             href="/dokumen-mhs-upload-foto/{{ $absen->id }}"
                                                             role="button">Foto 3x4</a>
 
-                                                        <a class="btn btn-primary p-1"
-                                                            href="/dokumen-mhs-upload/{{ $absen->id }}"
-                                                            role="button">Berkas Lainnya</a>
                                                     </td>
-
+                                                    <td>
+                                                        <a class="btn btn-primary p-1"
+                                                        href="/dokumen-mhs-upload-ktp/{{ $absen->id }}"
+                                                        role="button">KTP</a>
+                                                        <a class="btn btn-primary p-1"
+                                                        href="/dokumen-mhs-upload-ktm/{{ $absen->id }}"
+                                                        role="button">KTM</a>
+                                                        <a class="btn btn-primary p-1"
+                                                        href="/dokumen-mhs-upload-bpjs/{{ $absen->id }}"
+                                                        role="button">BPJS</a>
+                                                    </td>
                                                 @else
 
                                                     <td>

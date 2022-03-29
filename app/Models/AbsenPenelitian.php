@@ -14,6 +14,9 @@ class AbsenPenelitian extends Model
         'waktu_absen',
         'jenis_absen',
         'keterangan',
-        'file_absen'
+        'file_absen',
+        'longitude',
+        'latitude',
+        'status_absen'
     ];
 }

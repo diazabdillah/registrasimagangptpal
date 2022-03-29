@@ -16,21 +16,6 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Rekap Absensi <span
                                 class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
-
-
-                        <div class="dropdown no-arrow">
-
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="/cetak-absen-pdf" target="_blank">Cetak Rekap Absen
-                                    PDF</a>
-
-                            </div>
-                        </div>
                     </div>
 
 
@@ -41,7 +26,8 @@
                                 <th>Waktu</th>
                                 <th>Jenis Absen</th>
                                 <th>Keterangan</th>
-                                <th>Bukti Izin</th>
+                                <th>Bukti Absen</th>
+                                <th>Lokasi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -62,10 +48,19 @@
                                 <td>
                                     {{ $rekapabsen->keterangan }}
                                 </td>
-                                <td><img src="{{ asset('file/absen/'. $rekapabsen->file_absen) }}" alt="Foto"
-                                        class="img-thumbnail" width="135"></td>
+                                <td>
+                                    
+                                    @if($rekapabsen->file_absen != null)
+                                    <img src="{{ asset('file/absen/'. $rekapabsen->file_absen) }}" alt="Foto" class="img-thumbnail"
+                                        width="135">
+                                        @endif    
+                                </td>
+                                <td>
+                                    {{ $rekapabsen->latitude }},{{$rekapabsen->longitude}}
+                                </td>
                                 <td><a class="btn btn-danger"
                                         href="delete-rekapabsen-mhs/{{$rekapabsen->id}}">Delete</a></td>
+                                       
                             </tr>
 
                             @endforeach

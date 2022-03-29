@@ -258,7 +258,13 @@ class AdminController extends Controller
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Rekap Mahasiswa';
-            $users = DB::table('rekapmhs')->get();
+            $users = DB::table('rekapmhs')
+            ->leftJoin('users','users.id','=','rekapmhs.user_id')
+        ->select('users.role_id','rekapmhs.nama','rekapmhs.status_user','rekapmhs.strata','rekapmhs.created_at','rekapmhs.mulai','rekapmhs.selesai','rekapmhs.id','rekapmhs.nim','rekapmhs.univ','rekapmhs.jurusan','rekapmhs.no_hp','rekapmhs.divisi','rekapmhs.departemen')
+        ->where('users.role_id','=', 3)
+        ->orWhere('users.role_id','=', 14)
+        ->orWhere('users.role_id','=', 19)
+            ->get();
 
             return view('admin.Rekap', [
                 'ti' => $ti,
@@ -281,7 +287,13 @@ class AdminController extends Controller
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Rekap Mahasiswa Kelompok';
-            $users = DB::table('rekapmhs')->get();
+            $users = DB::table('rekapmhs')
+            ->leftJoin('users','users.id','=','rekapmhs.user_id')
+            ->select('users.role_id','rekapmhs.nama','rekapmhs.status_user','rekapmhs.strata','rekapmhs.created_at','rekapmhs.mulai','rekapmhs.selesai','rekapmhs.id','rekapmhs.nim','rekapmhs.univ','rekapmhs.jurusan','rekapmhs.no_hp','rekapmhs.divisi','rekapmhs.departemen')
+            ->where('users.role_id','=', 3)
+            ->orWhere('users.role_id','=', 14)
+            ->orWhere('users.role_id','=', 19)
+            ->get();
 
             return view('admin.Rekapmhskel', [
                 'ti' => $ti,
@@ -304,7 +316,13 @@ class AdminController extends Controller
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Rekap SMK';
-            $users = DB::table('rekapsmk')->get();
+            $users = DB::table('rekapsmk')
+            ->leftJoin('users','users.id','=','rekapsmk.user_id')
+            ->select('users.role_id','rekapsmk.nama','rekapsmk.alamat_rumah','rekapsmk.status_user','rekapsmk.created_at','rekapsmk.mulai','rekapsmk.selesai','rekapsmk.id','rekapsmk.nis','rekapsmk.sekolah','rekapsmk.jurusan','rekapsmk.no_hp','rekapsmk.divisi','rekapsmk.departemen')
+            ->where('users.role_id','=', 4)
+            ->orWhere('users.role_id','=', 15)
+            ->orWhere('users.role_id','=', 20)
+            ->get();
             return view('admin.Rekapsmk', [
                 'ti' => $ti,
                 'users' => $users
@@ -326,7 +344,13 @@ class AdminController extends Controller
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Rekap SMK Kelompok';
-            $users = DB::table('rekapsmk')->get();
+            $users = DB::table('rekapsmk')
+            ->leftJoin('users','users.id','=','rekapsmk.user_id')
+            ->select('users.role_id','rekapsmk.nama','rekapsmk.alamat_rumah','rekapsmk.status_user','rekapsmk.created_at','rekapsmk.mulai','rekapsmk.selesai','rekapsmk.id','rekapsmk.nis','rekapsmk.sekolah','rekapsmk.jurusan','rekapsmk.no_hp','rekapsmk.divisi','rekapsmk.departemen')
+            ->where('users.role_id','=', 4)
+            ->orWhere('users.role_id','=', 15)
+            ->orWhere('users.role_id','=', 20)
+            ->get();
             return view('admin.Rekapsmkkel', [
                 'ti' => $ti,
                 'users' => $users
@@ -348,7 +372,13 @@ class AdminController extends Controller
     {
         if (auth()->user()->role_id == 1) {
             $ti = 'Rekap Penelitian';
-            $users = DB::table('rekappenelitian')->get();
+            $users = DB::table('rekappenelitian')
+            ->leftJoin('users','users.id','=','rekappenelitian.user_id')
+            ->select('users.role_id','rekappenelitian.nama','rekappenelitian.status_user','rekappenelitian.strata','rekappenelitian.alamat_rumah','rekappenelitian.asal_instansi','rekappenelitian.created_at','rekappenelitian.mulai','rekappenelitian.selesai','rekappenelitian.id','rekappenelitian.judul_penelitian','rekappenelitian.jurusan','rekappenelitian.no_hp','rekappenelitian.divisi','rekappenelitian.departemen')
+            ->where('users.role_id','=', 23)
+            ->orWhere('users.role_id','=', 24)
+            ->orWhere('users.role_id','=', 25)
+            ->get();
             return view('admin.Rekappenelitian', [
                 'ti' => $ti,
                 'users' => $users
@@ -369,14 +399,20 @@ class AdminController extends Controller
     public function cetak_rekapmhspdf()
     {
         $ti = 'Rekap Mahasiswa Magang';
-        $users = DB::table('rekapmhs')->get();
+        $users = DB::table('rekapmhs')
+        ->leftJoin('users','users.id','=','rekapmhs.user_id')
+        ->select('users.role_id','rekapmhs.nama','rekapmhs.status_user','rekapmhs.strata','rekapmhs.created_at','rekapmhs.mulai','rekapmhs.selesai','rekapmhs.id','rekapmhs.nim','rekapmhs.univ','rekapmhs.jurusan','rekapmhs.no_hp','rekapmhs.divisi','rekapmhs.departemen')
+        ->where('users.role_id','=', 3)
+        ->orWhere('users.role_id','=', 14)
+        ->orWhere('users.role_id','=', 19)
+        ->get();
 
         $pdf = PDF::loadview('admin.RekapPDF', [
             'ti' => $ti,
             'users' => $users
         ]);
 
-        return  $pdf->download('Rekap Absen Magang Mhs.pdf');
+        return  $pdf->download('Rekap Magang Mhs.pdf');
     }
 
     public function cetak_rekapmhsexcel()
@@ -398,47 +434,71 @@ class AdminController extends Controller
     public function cetak_rekapsmkpdf()
     {
         $ti = 'Rekap Smk';
-        $users = DB::table('rekapsmk')->get();
+        $users = DB::table('rekapsmk')
+        ->leftJoin('users','users.id','=','rekapsmk.user_id')
+        ->select('users.role_id','rekapsmk.nama','rekapsmk.alamat_rumah','rekapsmk.status_user','rekapsmk.created_at','rekapsmk.mulai','rekapsmk.selesai','rekapsmk.id','rekapsmk.nis','rekapsmk.sekolah','rekapsmk.jurusan','rekapsmk.no_hp','rekapsmk.divisi','rekapsmk.departemen')
+        ->where('users.role_id','=', 4)
+        ->orWhere('users.role_id','=', 15)
+        ->orWhere('users.role_id','=', 20)
+        ->get();
 
         $pdf = PDF::loadview('admin.RekapSmkPDF', [
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->download('Rekap Absen Magang SMK.pdf');
+        return $pdf->download('Rekap Magang SMK.pdf');
     }
     public function cetak_rekapmhskelpdf()
     {
         $ti = 'Rekap Mahasiswa Kelompok';
-        $users = DB::table('rekapmhs')->get();
+        $users = DB::table('rekapmhs')
+        ->leftJoin('users','users.id','=','rekapmhs.user_id')
+        ->select('users.role_id','rekapmhs.nama','rekapmhs.status_user','rekapmhs.strata','rekapmhs.created_at','rekapmhs.mulai','rekapmhs.selesai','rekapmhs.id','rekapmhs.nim','rekapmhs.univ','rekapmhs.jurusan','rekapmhs.no_hp','rekapmhs.divisi','rekapmhs.departemen')
+        ->where('users.role_id','=', 3)
+        ->orWhere('users.role_id','=', 14)
+        ->orWhere('users.role_id','=', 19)
+        ->get();
 
         $pdf = PDF::loadview('admin.RekapMhsKelPDF', [
             'ti' => $ti,
             'users' => $users
         ]);
 
-        return $pdf->download('Rekap Absen Magang Mhs Kelompok.pdf');
+        return $pdf->download('Rekap Magang Mhs Kelompok.pdf');
     }
     public function cetak_rekapsmkkelpdf()
     {
         $ti = 'Rekap Smk';
-        $users = DB::table('rekapsmk')->get();
+        $users = DB::table('rekapsmk')
+        ->leftJoin('users','users.id','=','rekapsmk.user_id')
+        ->select('users.role_id','rekapsmk.nama','rekapsmk.status_user','rekapsmk.alamat_rumah','rekapsmk.created_at','rekapsmk.mulai','rekapsmk.selesai','rekapsmk.id','rekapsmk.nis','rekapsmk.sekolah','rekapsmk.jurusan','rekapsmk.no_hp','rekapsmk.divisi','rekapsmk.departemen')
+        ->where('users.role_id','=', 4)
+        ->orWhere('users.role_id','=', 15)
+        ->orWhere('users.role_id','=', 20)
+        ->get();
 
         $pdf = PDF::loadview('admin.RekapSmkKelPDF', [
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->download('Rekap Absen Magang SMK Kel.pdf');
+        return $pdf->download('Rekap Magang SMK Kel.pdf');
     }
     public function cetak_rekappenelitianpdf()
     {
-        $ti = 'Rekap Smk';
-        $users = DB::table('rekappenelitian')->get();
+        $ti = 'Rekap Penelitian';
+        $users = DB::table('rekappenelitian')
+        ->leftJoin('users','users.id','=','rekappenelitian.user_id')
+        ->select('users.role_id','rekappenelitian.nama','rekappenelitian.status_user','rekappenelitian.strata','rekappenelitian.alamat_rumah','rekappenelitian.asal_instansi','rekappenelitian.created_at','rekappenelitian.mulai','rekappenelitian.selesai','rekappenelitian.id','rekappenelitian.judul_penelitian','rekappenelitian.jurusan','rekappenelitian.no_hp','rekappenelitian.divisi','rekappenelitian.departemen')
+        ->where('users.role_id','=', 23)
+        ->orWhere('users.role_id','=', 24)
+        ->orWhere('users.role_id','=', 25)
+        ->get();
 
         $pdf = PDF::loadview('admin.RekapPenelitianPDF', [
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->download('Rekap Absen Penelitian.pdf');
+        return $pdf->download('Rekap Penelitian.pdf');
     }
     public function cetak_rekapmhskelexcel()
     {
@@ -643,6 +703,7 @@ class AdminController extends Controller
         if (auth()->user()->role_id == 18) {
         $ti = 'Rekap Mahasiswa Magang';
         $users = DB::table('rekapmhs')
+        
         ->where('rekapmhs.divisi', Auth::user()->status_user)
         ->get();
 
@@ -651,7 +712,7 @@ class AdminController extends Controller
             'users' => $users
         ]);
 
-        return $pdf->download('Rekap Absen Magang Mhs.pdf');
+        return $pdf->download('Rekap Magang Mhs.pdf');
         } else {
             return redirect()->back();
         }
@@ -668,7 +729,7 @@ class AdminController extends Controller
                 'users' => $users
             ]);
     
-            return $pdf->download('Rekap Absen Magang Mhs Kel.pdf');
+            return $pdf->download('Rekap Magang Mhs Kel.pdf');
             } else {
                 return redirect()->back();
             }
@@ -684,7 +745,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->download('Rekap Absen Magang SMK.pdf');
+        return $pdf->download('Rekap Magang SMK.pdf');
     } else {
         return redirect()->back();
     }
@@ -700,7 +761,7 @@ class AdminController extends Controller
             'ti' => $ti,
             'users' => $users
         ]);
-        return $pdf->download('Rekap Absen Magang SMK Kel.pdf');
+        return $pdf->download('Rekap Magang SMK Kel.pdf');
             return redirect()->back();
         }
     }
@@ -715,10 +776,16 @@ class AdminController extends Controller
                 'ti' => $ti,
                 'users' => $users
             ]);
-            return $pdf->download('Rekap Absen Penelitian.pdf');
+            return $pdf->download('Rekap Penelitian.pdf');
             } else {
                 return redirect()->back();
             }
     }
 
+    public function konfirmasi_akun(){
+        if (auth()->user()->role_id == 30) {
+        $ti = 'Konfirmasi Akun';
+        return view('admin.konfirmasi-akun', ['ti' => $ti]);
+        }
+    }
 }

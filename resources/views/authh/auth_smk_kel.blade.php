@@ -28,7 +28,7 @@
                             <p><small>Note : Semua File di Upload Max 1MB</small></p>
                         </div>
 
-                        <form method="POST" action="{{ route('RegSmkKel') }}">
+                        <form id="formregis" method="POST" action="{{ route('RegSmkKel') }}">
                             @csrf
                             <!-- Input Email -->
                             <div class="form-group">
@@ -67,8 +67,10 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Selanjutnya
+                            <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                <div class="text">Registrasi</div>
                             </button>
                             <hr>
                             <div class="text-center">

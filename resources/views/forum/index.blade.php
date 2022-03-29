@@ -19,7 +19,9 @@
                             pertanyaan kepada Admin dan tidak boleh berkata kasar atau mengandung unsur SARA. <br>
                             - Jika hendak komen pertanyaan Praktikan lain silahkan tekan tombol "Jawaban", mohon tidak
                             boleh spam komentar kepada Praktikan lain dan tidak boleh
-                            berkata kasar atau mengandung unsur SARA.
+                            berkata kasar atau mengandung unsur SARA. <br>
+                            - Mohon para Praktikan <b>Wajib</b> untuk menghapus pertanyaan anda apabila sudah di jawab oleh admin.
+
                         </p>
 
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"

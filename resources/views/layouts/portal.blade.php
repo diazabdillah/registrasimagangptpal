@@ -30,6 +30,9 @@
             height: 400px;
             overflow: scroll;
         }
+        .spinner {
+            display: none;
+        }
     </style>
 
 </head>
@@ -54,7 +57,16 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    <script>
+        // jika form-prevent disubmit maka disable button-prevent dan tampilkan spinner
+              (function () {
+                  $('#formregis').on('submit', function () {
+                      $('.buttonregis').attr('disabled', 'true');
+                      $('.spinner').show();
+                      $('.text').hide();
+                  })
+              })();
+        </script>
 </body>
 
 </html>

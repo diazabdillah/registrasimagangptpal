@@ -26,7 +26,7 @@
                                         sesuai dengan hasil tes kepribadian dimasing-masing peserta.</p>
 
 
-                                    <form method="POST" action="/interview-mhs-kel/{{ $user->id }}"
+                                    <form id="formregis" method="POST" action="/interview-mhs-kel/{{ $user->id }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="alert alert-danger" role="alert">
@@ -46,8 +46,12 @@
                                             </div>
                                         @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-5 p-1">Kirim <i
-                                                class="fas fa-paper-plane"></i></button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                            <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                            <div class="text">Kirim <i
+                                                class="fas fa-paper-plane"></i></div>
+                                        </button>
                                     </form>
                                 </div>
                             </div>

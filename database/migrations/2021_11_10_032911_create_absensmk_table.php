@@ -20,6 +20,8 @@ class CreateAbsensmkTable extends Migration
             $table->string('jenis_absen');
             $table->string('keterangan');
             $table->string('file_absen')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }

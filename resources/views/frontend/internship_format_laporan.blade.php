@@ -71,9 +71,14 @@
         </div>
     </div>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
-            <img src="{{URL::asset('frontend')}}/img/Alur-Magang.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block">
+        <div class="tab-pane fade show active" id="prosedure" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+            <img src="{{URL::asset('frontend')}}/img/Alur-Magang.jpg" class="rounded float-left mb-2" alt="..." style="width: 100%; display:inline-block ">
+     
+            <iframe width="500px" height="300px"  src="https://www.youtube.com/embed/4Ez8reOlatw">
+            </iframe>
         </div>
+    </div>
         <div class="tab-pane fade show active" id="laporan" role="tabpanel" aria-labelledby="profile-tab">
             <h4>Materi Pendukung Internship</h4>
             <p>Hai sobat Praktikan PT PAL...</p>

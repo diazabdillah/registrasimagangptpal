@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Forum;
 use App\Models\Komentar;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
@@ -20,7 +21,7 @@ class ForumController extends Controller
             ->leftJoin('forum', 'forum.id', '=', 'komentar.forum_id')
             ->select('komentar.id', 'komentar.forum_id')
             ->get();
-
+        
         return view('forum.index', [
             'ti' => $ti,
             'forum' => $forum,

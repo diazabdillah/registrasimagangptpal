@@ -28,9 +28,9 @@
                                 <h6 class="mb-3">Pilih salah satu yang sesuai!</h6>
                             </div>
 
-                            <a href="/auth_mhs" class="btn btn-outline-primary btn-lg btn-block">Mahasiswa</a>
+                            <a href="/auth_mhs" class="btn btn-outline-primary btn-lg btn-block">Magang Mahasiswa</a>
 
-                            <a href="/auth_smk" class="btn btn-outline-primary btn-lg btn-block">SMK</a>
+                            <a href="/auth_smk" class="btn btn-outline-primary btn-lg btn-block">Magang SMK</a>
 
                             <hr>
                             <a href="/auth-penelitian" class="btn btn-outline-primary btn-lg btn-block">Penelitian</a>

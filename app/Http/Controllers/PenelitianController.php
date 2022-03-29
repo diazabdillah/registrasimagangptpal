@@ -307,7 +307,28 @@ class PenelitianController extends Controller
         }
     }
 
-    public function dokumen_penelitian_upload($id)
+    public function dokumen_penelitian_ktp($id)
+    {
+        $user = DataPenelitian::find($id);
+
+        if (auth()->user()->role_id == 22) {
+            $ti = 'Dokumen Penelitian';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_penelitian_models')
+                ->where('user_id', '=', $id)
+                ->get();
+                
+            return view('penelitian.dokumen-penelitian-upload-ktp', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function dokumen_penelitian_ktm($id)
     {
         $user = DataPenelitian::find($id);
 
@@ -319,7 +340,27 @@ class PenelitianController extends Controller
                 ->where('user_id', '=', $id)
                 ->get();
 
-            return view('penelitian.dokumen_penelitian_upload', [
+            return view('penelitian.dokumen-penelitian-upload-ktm', [
+                'ti' => $ti,
+                'showImage' => $showImage,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function dokumen_penelitian_bpjs($id){
+        $user = DataPenelitian::find($id);
+
+        if (auth()->user()->role_id == 22) {
+            $ti = 'Dokumen Penelitian';
+
+            $id = Auth::user()->id;
+            $showImage = DB::table('foto_penelitian_models')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('penelitian.dokumen-penelitian-upload-bpjs', [
                 'ti' => $ti,
                 'showImage' => $showImage,
                 'user' => $user
@@ -363,18 +404,50 @@ class PenelitianController extends Controller
         return redirect()->back();
     }
 
-    public function upload_penelitian($id, Request $request)
+    // public function upload_penelitian($id, Request $request)
+    // {
+    //     $request->validate([
+    //         'foto' => 'required',
+    //         'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+    //     ]);
+
+    //     if ($request->hasFile('foto')) {
+
+    //         $files = $request->file('foto');
+
+    //         foreach ($files as $file) {
+    //             $extension = $file->getClientOriginalExtension();
+    //             $Namafoto = $file->getClientOriginalName();
+    //             // Upload ke public/fotoMhs
+    //             $tujuan_upload = 'file/dokumen-penelitian/' . Auth::user()->id;
+    //             $size = $file->getSize();
+    //             $file->move($tujuan_upload, $Namafoto);
+    //             FotoPenelitianModels::create([
+    //                 'user_id' => Auth::user()->id,
+    //                 'foto' => $Namafoto,
+    //             ]);
+    //         }
+    //         session()->flash('succes', 'Terimakasih telah mengirimkan dokumen penelitian Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi dokumen penelitian. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+    //         return redirect('dokumen-penelitian');
+    //     }
+    //     return redirect()->back();
+    // }
+    public function upload_penelitian_ktp($id, Request $request)
     {
         $request->validate([
-            'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'foto' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+        ],
+        [
+            'foto.required' => 'Mohon Maaf KTP Anda Harus Di Isi',
+            'foto.max' => 'Mohon Maaf KTP Anda Lebih dari 2 MB',
+            'foto.mimes' => 'Mohon Maaf KTP Anda Harus Berupa JPG, PNG, Dan JPEG'
         ]);
 
         if ($request->hasFile('foto')) {
 
-            $files = $request->file('foto');
+            $file = $request->file('foto');
 
-            foreach ($files as $file) {
+            // foreach ($files as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $Namafoto = $file->getClientOriginalName();
                 // Upload ke public/fotoMhs
@@ -385,13 +458,76 @@ class PenelitianController extends Controller
                     'user_id' => Auth::user()->id,
                     'foto' => $Namafoto,
                 ]);
-            }
-            session()->flash('succes', 'Terimakasih telah mengirimkan dokumen penelitian Anda. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi dokumen penelitian. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+            // }
+            session()->flash('succes', 'Terimakasih telah mengirimkan Dokumen Magang. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi Dokumen Magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
             return redirect('dokumen-penelitian');
         }
         return redirect()->back();
     }
+public function upload_penelitian_ktm($id, Request $request){
+ 
+    $request->validate([
+        'foto' => 'required|mimes:jpeg,jpg,png|file|max:2048',
+    ],
+    [
+        'foto.required' => 'Mohon Maaf KTM Anda Harus Di Isi',
+        'foto.max' => 'Mohon Maaf KTM Anda Lebih dari 2 MB',
+        'foto.mimes' => 'Mohon Maaf KTM Anda Harus Berupa JPG, PNG, Dan JPEG'
+    ]);
 
+    if ($request->hasFile('foto')) {
+
+        $file = $request->file('foto');
+
+        // foreach ($files as $file) {
+            $extension = $file->getClientOriginalExtension();
+            $Namafoto = $file->getClientOriginalName();
+            // Upload ke public/fotoMhs
+            $tujuan_upload = 'file/dokumen-penelitian/' .  Auth::user()->id;
+            $size = $file->getSize();
+            $file->move($tujuan_upload, $Namafoto);
+            FotoPenelitianModels::create([
+                'user_id' => Auth::user()->id,
+                'foto' => $Namafoto,
+            ]);
+        // }
+        session()->flash('succes', 'Terimakasih telah mengirimkan Dokumen Magang. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi Dokumen Magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+        return redirect('dokumen-penelitian');
+    }
+    return redirect()->back();
+}
+public function upload_penelitian_bpjs($id, Request $request){
+
+    $request->validate([
+        'foto' => 'mimes:jpeg,jpg,png|file|max:2048',
+    ],
+    [
+       
+        'foto.max' => 'Mohon Maaf BPJS Anda Lebih dari 2 MB',
+        'foto.mimes' => 'Mohon Maaf BPJS Anda Harus Berupa JPG, PNG, Dan JPEG'
+    ]);
+
+    if ($request->hasFile('foto')) {
+
+        $file = $request->file('foto');
+
+        // foreach ($files as $file) {
+            $extension = $file->getClientOriginalExtension();
+            $Namafoto = $file->getClientOriginalName();
+            // Upload ke public/fotoMhs
+            $tujuan_upload = 'file/dokumen-penelitian/' .  Auth::user()->id;
+            $size = $file->getSize();
+            $file->move($tujuan_upload, $Namafoto);
+            FotoPenelitianModels::create([
+                'user_id' =>  Auth::user()->id,
+                'foto' => $Namafoto,
+            ]);
+        // }
+        session()->flash('succes', 'Terimakasih telah mengirimkan Dokumen Magang. Selanjutnya akan kami proses terlebih dahulu, mohon tunggu selama 5 hari kerja. Anda akan dipindahkan ke halaman selanjutnya secara otomatis apabila telah lolos verifikasi Dokumen Magang. Jika dalam 5 hari kerja belum di proses mohon konfirmasi kepada Admin divisi HCM Pak Iwan (088226199728)');
+        return redirect('dokumen-penelitian');
+    }
+    return redirect()->back();
+}
     public function hapus_penelitian_foto($id, $foto)
     {
         // Hapus di local storage

@@ -28,7 +28,7 @@
                             <p><small>Buat aku untuk login kemudian lengapi data-data di halaman selanjutnya</small></p>
                         </div>
 
-                        <form method="POST" action="{{ route('RegSmkIndiv') }}">
+                        <form id="formregis" method="POST" action="{{ route('RegSmkIndiv') }}">
                             @csrf
                             @if (Session::has('succes'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -76,8 +76,10 @@
                             </div>
                             <!-- End Input untuk Password -->
 
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Selanjutnya
+                            <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                <div class="text">Registrasi</div>
                             </button>
                             <hr>
                             <div class="text-center">

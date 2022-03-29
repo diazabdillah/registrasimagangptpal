@@ -5,9 +5,13 @@
 <h1 class="h3 mb-2 text-gray-800 mb-3"><b>{{ $ti }}</b></h1> <br>
 <div class="card shadow mb-3">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Rekap Absensi <span
-                    class="badge badge-danger ml-2 p-1">Penelitian</span></h6>
+                    class="badge badge-danger ml-2 p-1">Penelitian</span></h6>\
+                    <a class="btn btn-primary" href="/lihat-absenpenelitian/{{$user[0]->id_individu}}/cetak-absen-penelitian-admin-pdf/{{$user[0]->id}}" target="_blank">Cetak
+                        Rekap
+                        Absen
+                        PDF</a>
         </div>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>

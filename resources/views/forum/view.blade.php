@@ -20,9 +20,9 @@
 
                                     <div class="d-flex justify-content-end" style="margin-right: 40px">
                                         <a href="/edit-forum/{{ $kontenforum->id }}" class="btn btn-warning mr-2"><i
-                                                class="fas fa-edit"></i> Edit</a>
+                                                class="fas fa-edit"></i> Edit Pertanyaan</a>
                                         <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger"><i
-                                                class="far fa-trash-alt"></i> Hapus</a>
+                                                class="far fa-trash-alt"></i> Hapus Pertanyaan</a>
                                     </div>
 
                                 @else
@@ -42,9 +42,9 @@
 
                                     <div class="d-flex justify-content-end ">
                                         <a href="/edit-forum/{{ $kontenforum->id }}" class="btn btn-warning mr-2 mt-2"><i
-                                                class="fas fa-edit"></i> Edit</a>
+                                                class="fas fa-edit"></i> Edit Pertanyaan</a>
                                         <a href="/hapus-forum/{{ $kontenforum->id }}" class="btn btn-danger mt-2"><i
-                                                class="far fa-trash-alt"></i> Hapus</a>
+                                                class="far fa-trash-alt"></i> Hapus Pertanyaan</a>
                                     </div>
 
                                 @endif

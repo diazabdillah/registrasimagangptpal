@@ -46,6 +46,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -67,6 +69,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -88,6 +92,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -109,6 +115,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -131,6 +139,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -154,6 +164,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -177,6 +189,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -200,6 +214,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -223,6 +239,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -246,6 +264,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -271,6 +291,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -296,6 +318,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -321,6 +345,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -346,6 +372,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -371,6 +399,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -396,6 +426,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -421,6 +453,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -446,6 +480,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -471,6 +507,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -496,6 +534,8 @@
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="badge badge-primary p-2"
+                                                        href="{{ url('isi_penilaian_divisi/' . $u->id) }}">Edit Nilai</a>
                                                     @endif
                                                 </td>
                                             </tr>

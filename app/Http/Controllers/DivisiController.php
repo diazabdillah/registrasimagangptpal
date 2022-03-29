@@ -30,6 +30,9 @@ use App\Models\LaporanSmk;
 use App\Models\RekapAbsenmhs;
 use App\Models\RekapAbsenpenelitian;
 use App\Models\RekapAbsensmk;
+use App\Models\RekapKegiatanMhs;
+use App\Models\Tugasmhs;
+use App\Models\Tugassmk;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -1214,8 +1217,8 @@ class DivisiController extends Controller
     {
         $user = DB::table('rekapabsenmhs')
             ->leftjoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'rekapabsenmhs.id_individu')
-            ->select('data_mhs_indivs.nama', 'rekapabsenmhs.id_individu', 'rekapabsenmhs.id', 'rekapabsenmhs.waktu_absen', 'rekapabsenmhs.jenis_absen', 'rekapabsenmhs.keterangan', 'rekapabsenmhs.file_absen')
-            ->where('data_mhs_indivs.id', '=', $id)
+            ->select('data_mhs_indivs.nama','rekapabsenmhs.id', 'rekapabsenmhs.id_individu', 'rekapabsenmhs.id', 'rekapabsenmhs.waktu_absen', 'rekapabsenmhs.latitude','rekapabsenmhs.longitude','rekapabsenmhs.jenis_absen', 'rekapabsenmhs.keterangan', 'rekapabsenmhs.file_absen')
+            ->where('rekapabsenmhs.id_individu', '=', $id)
             ->get();
         $ti = 'Lihat Absensi';
         return view('divisi.lihat_absenmhs', [
@@ -1227,7 +1230,7 @@ class DivisiController extends Controller
     {
         $user = DB::table('rekapabsenmhs')
             ->leftjoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'rekapabsenmhs.id_individu')
-            ->select('data_mhs_indivs.nama', 'rekapabsenmhs.file_absen', 'rekapabsenmhs.id', 'rekapabsenmhs.waktu_absen', 'rekapabsenmhs.jenis_absen', 'rekapabsenmhs.keterangan')
+            ->select('data_mhs_indivs.nama', 'rekapabsenmhs.file_absen', 'rekapabsenmhs.id', 'rekapabsenmhs.waktu_absen','rekapabsenmhs.latitude','rekapabsenmhs.longitude', 'rekapabsenmhs.jenis_absen', 'rekapabsenmhs.keterangan')
             ->get();
         $ti = 'Rekap Absensi Mahasiswa';
         return view('divisi.rekap_absenmhs', [
@@ -1302,7 +1305,7 @@ class DivisiController extends Controller
     {
         $user = DB::table('rekapabsensmk')
             ->leftjoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'rekapabsensmk.id_individu')
-            ->select('data_smk_indivs.nama', 'rekapabsensmk.waktu_absen', 'rekapabsensmk.id_individu', 'rekapabsensmk.id', 'rekapabsensmk.file_absen', 'rekapabsensmk.jenis_absen', 'rekapabsensmk.keterangan')
+            ->select('data_smk_indivs.nama', 'rekapabsensmk.waktu_absen', 'rekapabsensmk.id_individu', 'rekapabsensmk.id', 'rekapabsensmk.file_absen','rekapabsensmk.longitude','rekapabsensmk.latitude', 'rekapabsensmk.jenis_absen', 'rekapabsensmk.keterangan')
             ->where('data_smk_indivs.id', '=', $id)
             ->get();
         $ti = 'Lihat Absensi SMK';
@@ -1347,13 +1350,14 @@ class DivisiController extends Controller
         session()->flash('succes', 'Dat a berhasil dihapus');
         return redirect()->back();
     }
-    public function cetak_absen_pdf()
+    public function cetak_absen_pdf($id)
     {
         $i = 1;
         $ti = 'Form Absen Praktikan';
         $users = DB::table('rekapabsenmhs')
             ->leftjoin('data_mhs_indivs', 'data_mhs_indivs.id', '=', 'rekapabsenmhs.id_individu')
-            ->select('data_mhs_indivs.nama', 'rekapabsenmhs.waktu_absen', 'rekapabsenmhs.jenis_absen', 'rekapabsenmhs.keterangan')
+            ->select('data_mhs_indivs.nama','rekapabsenmhs.id_individu','rekapabsenmhs.file_absen','rekapabsenmhs.latitude','rekapabsenmhs.longitude', 'rekapabsenmhs.waktu_absen', 'rekapabsenmhs.jenis_absen', 'rekapabsenmhs.keterangan')
+            ->where('rekapabsenmhs.id_individu','=',$id)
             ->get();
 
         $pdf = PDF::loadview('divisi.CetakAbsenPdf', [
@@ -1363,13 +1367,14 @@ class DivisiController extends Controller
 
         ]);
 
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen MHS.pdf');
     }
-    public function cetak_absen_smk_pdf()
+    public function cetak_absen_smk_pdf($id)
     {
         $users = DB::table('rekapabsensmk')
             ->leftjoin('data_smk_indivs', 'data_smk_indivs.id', '=', 'rekapabsensmk.id_individu')
-            ->select('data_smk_indivs.nama', 'rekapabsensmk.waktu_absen', 'rekapabsensmk.jenis_absen', 'rekapabsensmk.keterangan')
+            ->select('data_smk_indivs.nama', 'rekapabsensmk.waktu_absen','rekapabsensmk.id_individu','rekapabsensmk.file_absen', 'rekapabsensmk.jenis_absen', 'rekapabsensmk.keterangan')
+           ->where('rekapabsensmk.id_individu',$id)
             ->get();
         $ti = 'Form Absensi SMK';
         $i = 1;
@@ -1380,7 +1385,7 @@ class DivisiController extends Controller
 
         ]);
 
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen SMK.pdf');
     }
     public function rekap_absenpenelitian()
     {
@@ -1410,11 +1415,12 @@ class DivisiController extends Controller
         session()->flash('succes', 'Data berhasil dihapus');
         return redirect()->back();
     }
-    public function cetak_absen_penelitian_pdf()
+    public function cetak_absen_penelitian_pdf($id)
     {
         $users = DB::table('rekapabsenpenelitian')
             ->leftjoin('data_penelitian', 'data_penelitian.id', '=', 'rekapabsenpenelitian.id_individu')
-            ->select('data_penelitian.nama', 'rekapabsenpenelitian.waktu_absen', 'rekapabsenpenelitian.jenis_absen', 'rekapabsenpenelitian.keterangan')
+            ->select('data_penelitian.nama', 'rekapabsenpenelitian.waktu_absen','rekapabsenpenelitian.id_individu', 'rekapabsenpenelitian.file_absen', 'rekapabsenpenelitian.jenis_absen', 'rekapabsenpenelitian.keterangan')
+            ->where('rekapabsenpenelitian.id_individu','=',$id)
             ->get();
         $ti = 'Form Absensi Penelitian';
         $i = 1;
@@ -1425,7 +1431,7 @@ class DivisiController extends Controller
 
         ]);
 
-        return $pdf->stream();
+        return $pdf->download('Rekap Absen Penelitian.pdf');
     }
     // public function proses_absenmhs($id, Request $request)
     // {
@@ -1560,9 +1566,18 @@ class DivisiController extends Controller
         DB::table('foto_mhs_models')->where('id_individu', $data->id)->delete();
         File::deleteDirectory('file/dokumen-mhs/' . $data->id);
         //absen mhs
+        DB::table('tugasmhs')->where('user_id', $data->id)->delete();
+        File::deleteDirectory('file/kegiatan-mhs/' . $data->user_id);
+
+        DB::table('rekap_kegiatan_mhs')->where('user_id', $data->id)->delete();
+        File::deleteDirectory('file/kegiatan-mhs/' . $data->user_id);
+        File::deleteDirectory('file/foto-kegiatan-mhs/' . $data->user_id);
+
         DB::table('absenmhs')->where('id_individu', $data->id)->delete();
+        File::deleteDirectory('file/absen/' . $data->user_id);
         //penilaian mhs
         DB::table('penilaians')->where('user_id', $data->id)->delete();
+        DB::table('barangmhs')->where('user_id', $data->id)->delete();
         //mulai dan selesai
         DB::table('mulai_dan_selesai_mhs')->where('user_id', $id)->delete();
         //delete individu
@@ -1590,6 +1605,13 @@ class DivisiController extends Controller
             File::deleteDirectory('file/dokumen-mhs-kel/' . $d->id);
             DB::table('absenmhs')->where('id_individu', $d->id)->delete();
             DB::table('penilaians')->where('user_id', $d->id)->delete();
+            DB::table('barangmhs')->where('user_id', $d->id)->delete();
+            DB::table('tugasmhs')->where('user_id', $d->id)->delete();
+            File::deleteDirectory('file/kegiatan-mhs/' . $d->user_id);
+    
+            DB::table('rekap_kegiatan_mhs')->where('user_id', $d->id)->delete();
+            File::deleteDirectory('file/kegiatan-mhs/' . $d->user_id);
+            File::deleteDirectory('file/foto-kegiatan-mhs/' . $d->user_id);
         }
 
         DB::table('data_mhs_indivs')->where('user_id', $id)->delete();
@@ -1617,11 +1639,21 @@ class DivisiController extends Controller
         File::deleteDirectory('file/dokumen-smk/' . $data->id);
         //delete absen
         DB::table('absensmk')->where('id_individu', $data->id)->delete();
+        File::deleteDirectory('file/absen/' . $data->user_id);
         //penilaian
         DB::table('penilaians_smk')->where('user_id', $data->id)->delete();
         //mulai dan selesai
         DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
         //delete individu
+        DB::table('tugassmk')->where('user_id', $data->id)->delete();
+        File::deleteDirectory('file/kegiatan-smk/' . $data->user_id);
+
+        DB::table('rekap_kegiatan_smk')->where('user_id', $data->id)->delete();
+        File::deleteDirectory('file/kegiatan-smk/' . $data->user_id);
+        File::deleteDirectory('file/foto-kegiatan-smk/' . $data->user_id);
+
+        DB::table('barangsmk')->where('user_id', $data->id)->delete();
+        
         DB::table('data_smk_indivs')->where('user_id', $id)->delete();
         session()->flash('succes', 'Data berhasil dihapus');
         return redirect()->back();
@@ -1637,6 +1669,11 @@ class DivisiController extends Controller
         //mulai dan selesai
         DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
         foreach ($data as $d) {
+            DB::table('tugassmk')->where('user_id', $d->id)->delete();
+            File::deleteDirectory('file/kegiatan-smk/' . $d->user_id);
+            DB::table('rekap_kegiatan_smk')->where('user_id', $d->id)->delete();
+            File::deleteDirectory('file/kegiatan-smk/' . $d->user_id);
+            File::deleteDirectory('file/foto-kegiatan-smk/' . $d->user_id);
             File::deleteDirectory('file/berkas-smk-kel/' . $d->user_id);
             DB::table('interview_smk')->where('id_individu', $d->id)->delete();
             DB::table('interview_smk')->where('id_individu', $d->id)->delete();
@@ -1645,7 +1682,10 @@ class DivisiController extends Controller
             DB::table('foto_smk_models')->where('id_individu', $d->id)->delete();
             File::deleteDirectory('file/dokumen-smk-kel/' . $d->id);
             DB::table('absensmk')->where('id_individu', $d->id)->delete();
+            File::deleteDirectory('file/absen/' . $d->user_id);
             DB::table('penilaians_smk')->where('user_id', $d->id)->delete();
+            DB::table('barangsmk')->where('user_id', $d->id)->delete();
+
         }
         DB::table('data_smk_indivs')->where('user_id', $id)->delete();
 
@@ -2934,6 +2974,173 @@ class DivisiController extends Controller
             return redirect()->back();
         }
     }
+    public function kegiatan_magang(){
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
+            $id = Auth::user()->id;
+            $users = DB::table('users')
+            ->leftJoin('data_mhs_indivs', 'data_mhs_indivs.user_id', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.status_user', 'data_mhs_indivs.divisi')
+            ->where('users.role_id', '=', 3)
+            ->where('data_mhs_indivs.divisi', Auth::user()->status_user)
+            ->distinct()
+            ->get();
+
+        $usersSmk = DB::table('users')
+            ->leftJoin('data_smk_indivs', 'data_smk_indivs.user_id', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.status_user', 'data_smk_indivs.divisi')
+            ->where('users.role_id', '=', 4)
+            ->where('data_smk_indivs.divisi', Auth::user()->status_user)
+            ->distinct()
+            ->get();
+
+            $i= 1;
+            $ti = 'Kegiatan Magang';
+            return view('divisi.kegiatan-magang-divisi', [
+                'ti' => $ti,
+                'i' => $i,
+                'users' => $users,
+                'usersSmk' => $usersSmk,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function kegiatan_magang_mhs($id){
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
+            $users = DB::table('tugasmhs')->get();
+            $mahasiswa = DB::table('rekap_kegiatan_mhs')
+            ->where('rekap_kegiatan_mhs.user_id','=', $id)
+            ->get();
+            $user = User::find($id);
+            $ti = 'Kegiatan Magang Mahasiswa';
+            $i = 0;
+            return view('divisi.kegiatan-magang-divisi-mhs', [
+                'ti' => $ti,
+                'user'=> $user,
+                'users'=> $users,
+                'mahasiswa'=> $mahasiswa,
+                'i'=> $i
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function kegiatan_magang_smk($id){
+        if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
+            $users = DB::table('tugassmk')->get();
+            $mahasiswa = DB::table('rekap_kegiatan_smk')
+            ->where('rekap_kegiatan_smk.user_id','=', $id)
+            ->get();
+            $user = User::find($id);
+            $ti = 'Kegiatan Magang SMK';
+            $i = 0;
+            return view('divisi.kegiatan-magang-divisi-smk', [
+                'ti' => $ti,
+                'user'=> $user,
+                'users'=> $users,
+                'mahasiswa' => $mahasiswa,
+                'i'=> $i
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_kegiatan_magang_mhs($id, Request $request){
+       
+        if($request->file('file_tugas') != null){
+        $file = $request->file('file_tugas');
+        $namafile = $file->getClientOriginalName();
+        $tujuan_upload = 'file/kegiatan-mhs/';
+        $file->move($tujuan_upload, $namafile);
+        Tugasmhs::create([
+           'user_id' => $id,
+           'nama_pembimbing'=> $request->nama_pembimbing,
+           'judul'=> $request->judul,
+           'deskripsi_tugas'=> $request->deskripsi_tugas,
+           'jenis_tugas'=> $request->jenis_tugas,
+           'tanggal_mulai'=> $request->tanggal_mulai,
+           'tanggal_selesai'=> $request->tanggal_selesai,
+           'status_kegiatan' => 'Belum Selesai',
+           'file_tugas'=> $namafile,
+        ]);
+       
+    }
+    else{
+        Tugasmhs::create([
+            'user_id' => $id,
+            'nama_pembimbing'=> $request->nama_pembimbing,
+            'judul'=> $request->judul,
+            'deskripsi_tugas'=> $request->deskripsi_tugas,
+            'jenis_tugas'=> $request->jenis_tugas,
+           'tanggal_mulai'=> $request->tanggal_mulai,
+           'tanggal_selesai'=> $request->tanggal_selesai,
+           'status_kegiatan' => 'Belum Selesai',
+        ]);
+       
+    }
+        return redirect()->back();
+    }
+    public function delete_kegiatan_magang_mhs($id){
+        $kegiatanmagang = DB::table('tugasmhs')->find($id);
+        // Hapus di file storage
+        File::delete('file/kegiatan-mhs/' . $kegiatanmagang->file_tugas);
+        // Hapus di database
+        DB::table('tugasmhs')
+            ->where('id', $kegiatanmagang->id)
+            ->delete();
+
+        session()->flash('succes', 'Data berhasil dihapus');
+        return redirect()->back();
+    }
+
+    public function proses_kegiatan_magang_smk($id, Request $request){
+       
+        if($request->file('file_tugas') != null){
+        $file = $request->file('file_tugas');
+        $namafile = $file->getClientOriginalName();
+        $tujuan_upload = 'file/kegiatan-smk/';
+        $file->move($tujuan_upload, $namafile);
+        Tugassmk::create([
+           'user_id' => $id,
+           'nama_pembimbing'=> $request->nama_pembimbing,
+           'judul'=> $request->judul,
+           'deskripsi_tugas'=> $request->deskripsi_tugas,
+           'jenis_tugas'=> $request->jenis_tugas,
+           'tanggal_mulai'=> $request->tanggal_mulai,
+           'tanggal_selesai'=> $request->tanggal_selesai,
+           'status_kegiatan' => 'Belum Selesai',
+           'file_tugas'=> $namafile,
+        ]);
+       
+    }
+    else{
+        Tugassmk::create([
+            'user_id' => $id,
+            'nama_pembimbing'=> $request->nama_pembimbing,
+            'judul'=> $request->judul,
+            'deskripsi_tugas'=> $request->deskripsi_tugas,
+            'jenis_tugas'=> $request->jenis_tugas,
+           'tanggal_mulai'=> $request->tanggal_mulai,
+           'tanggal_selesai'=> $request->tanggal_selesai,
+           'status_kegiatan' => 'Belum Selesai',
+        ]);
+       
+    }
+        return redirect()->back();
+    }
+    public function delete_kegiatan_magang_smk($id){
+        $kegiatanmagang = DB::table('tugassmk')->find($id);
+        // Hapus di file storage
+        File::delete('file/kegiatan-smk/' . $kegiatanmagang->file_tugas);
+        // Hapus di database
+        DB::table('tugassmk')
+            ->where('id', $kegiatanmagang->id)
+            ->delete();
+
+        session()->flash('succes', 'Data berhasil dihapus');
+        return redirect()->back();
+    }
+
     public function laporan_divisi()
     {
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
@@ -3208,5 +3415,33 @@ class DivisiController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+    public function konfirmasi_akun_admin(Request $request){
+        if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
+            $ti = 'Konfirmasi Akun Pendaftar';
+          
+            $users = DB::table('users')
+                ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->get();
+
+
+            return view('divisi.konfirmasi-akun-admin', [
+                'ti' => $ti,
+                'users' => $users,
+           
+
+            ])->with('i');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function proses_konfirmasi_akun_admin($id,Request $request){
+        DB::table('users')->where('id', $id)
+            ->update([
+                'role_id' => $request->role_id
+            ]);
+
+        session()->flash('succes', 'Konfirmasi Akun berhasil di proses');
+        return redirect()->back();
     }
 }

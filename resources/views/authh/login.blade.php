@@ -47,7 +47,7 @@
                                 @endif
 
                                 <!-- form input login -->
-                                <form method="POST" action="{{ route('loginpost') }}">
+                                <form id="formregis" method="POST" action="{{ route('loginpost') }}">
                                     @csrf
 
                                     <!--- Email --->
@@ -75,9 +75,12 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block ">
-                                        Login
-                                    </button>
+                                    
+                                <button type="submit" class="btn btn-primary btn-user btn-block buttonregis">
+                            
+                                    <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                    <div class="text">Login</div>
+                                </button>
                                     <hr>
 
                                     <div class="text-center">

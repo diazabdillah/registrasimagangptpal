@@ -22,7 +22,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <form method="POST" action="/upload-smk-kel-foto/{{ $user->id }}"
+                                    <form id="formregis" method="POST" action="/upload-smk-kel-foto/{{ $user->id }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="alert alert-danger" role="alert">
@@ -38,8 +38,12 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
-                                        <button type="submit" class="btn btn-primary mt-3">Upload Foto <i
-                                                class="fas fa-upload"></i></button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block mt-3 buttonregis">
+                            
+                                            <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
+                                            <div class="text">Upload Foto <i
+                                                class="fas fa-upload"></i></div>
+                                        </button>
                                     </form>
                                 </div>
                             </div>

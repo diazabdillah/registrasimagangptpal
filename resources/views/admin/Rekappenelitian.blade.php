@@ -20,9 +20,9 @@
 
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapPenelitianPDFdivisi" target="_blank"
+                    <a class="btn btn-primary btn-sm mb-3" href="/cetakRekapPenelitianPDF" target="_blank"
                         role="button"><i class="fas fa-file-export"></i> Export PDF</a>
-                    <a class="btn btn-success btn-sm mb-3" href="/cetakRekapPenelitianEXCELdivisi" target="_blank"
+                    <a class="btn btn-success btn-sm mb-3" href="/cetakRekapPenelitianEXCEL" target="_blank"
                         role="button"><i class="fas fa-file-export"></i> Export EXCEL</a>
 
                     <div class="table-responsive">

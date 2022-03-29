@@ -85,6 +85,8 @@ class AuthhController extends Controller
                 return redirect('/penelitian-selesai')->with('succes', 'you are now logged in');
             } elseif (auth()->user()->role_id == 26) {
                 return redirect('/penelitian-kuota-penuh')->with('succes', 'you are now logged in');
+            }elseif (auth()->user()->role_id == 30) {
+                return redirect('konfirmasi-akun')->with('succes', 'you are now logged in');
             }
         }
 
@@ -129,7 +131,7 @@ class AuthhController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 6,
+            'role_id' => 30,
             'status_user' => 'Mahasiswa Kelompok',
             'rememberToken' => str::random(60)
         ]);
@@ -159,7 +161,7 @@ class AuthhController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 8,
+            'role_id' => 30,
             'status_user' => 'Mahasiswa',
             'rememberToken' => str::random(60)
         ]);
@@ -189,7 +191,7 @@ class AuthhController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 7,
+            'role_id' => 30,
             'status_user' => 'SMK Kelompok',
             'rememberToken' => str::random(60)
         ]);
@@ -226,7 +228,7 @@ class AuthhController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 9,
+            'role_id' => 30,
             'status_user' => 'SMK',
             'rememberToken' => str::random(60)
         ]);
@@ -256,7 +258,7 @@ class AuthhController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 21,
+            'role_id' => 30,
             'status_user' => 'Penelitian',
             'rememberToken' => str::random(60)
         ]);
@@ -266,4 +268,6 @@ class AuthhController extends Controller
     }
 
     // Registrasi Penelitian Mahasiswa ====== |||
+
+   
 }

@@ -5,9 +5,12 @@
 <h1 class="h3 mb-2 text-gray-800 mb-3"><b>{{ $ti }}</b></h1> <br>
 <div class="card shadow mb-3">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Rekap Absensi <span
                     class="badge badge-primary ml-2 p-1">Mahasiswa</span></h6>
+                    <a class="btn btn-primary" href="/lihat-absenmhs/{{$user[0]->id_individu}}/cetak-absen-pdf/{{$user[0]->id}}" target="_blank">Cetak Rekap Absen
+                        PDF</a>
+
         </div>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -16,7 +19,8 @@
                     <th>Waktu Absen</th>
                     <th>Jenis Absen</th>
                     <th>Keterangan</th>
-                    <th>Bukti Izin</th>
+                    <th>Bukti Absen</th>
+                    <th>Lokasi</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -43,7 +47,11 @@
                             width="135">
                             @endif
                         </td>
-                    <td><a class="btn btn-danger"
+                        <td>
+                            {{ $rekapabsen->latitude }},{{$rekapabsen->longitude}}
+                        </td>
+                    <td>
+                        <a class="btn btn-danger"
                             href="/lihat-absenmhs/{{$rekapabsen->id_individu}}/delete-lihatabsen-mhs/{{$rekapabsen->id}}">Delete</a>
                     </td>
                 </tr>

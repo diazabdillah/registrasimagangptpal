@@ -39,14 +39,19 @@
                                                 <td class="text-center">{{ $u->nama }}</td>
                                                 <td class="text-center">
                                                     @if ($u->status_penilaian == null)
-                                                    <a class="badge badge-danger p-2"
+                                                    <a class="btn btn-danger p-2"
                                                         href="{{ url('isi-penilaian-magang/' . $u->id) }}">Belum
                                                         dinilai
                                                         <i class="fas fa-info-circle ml-1"></i></a>
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="btn btn-primary p-2"
+                                                        href="{{ url('isi-penilaian-magang/' . $u->id) }}">Edit
+                                                        Nilai
+                                                       </a>
                                                     @endif
+                                                
                                                 </td>
                                             </tr>
                                             @endif
@@ -86,13 +91,16 @@
 
                                                 <td class="text-center">
                                                     @if ($us->status_penilaian == null)
-                                                    <a class="badge badge-danger p-2"
+                                                    <a class="btn btn-danger"
                                                         href="{{ url('isi-penilaian-magang-smk/' . $us->id) }}">Belum
                                                         dinilai
                                                         <i class="fas fa-info-circle ml-1"></i></a>
                                                     @else
                                                     <button class="btn btn-success" disabled>Sudah
                                                         dinilai</button>
+                                                        <a class="btn btn-primary"
+                                                        href="{{ url('isi-penilaian-magang-smk/' . $us->id) }}">Edit Nilai
+                                                        </a>
                                                     @endif
                                                 </td>
                                             </tr>
