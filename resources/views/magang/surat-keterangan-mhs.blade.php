@@ -49,7 +49,7 @@
                                 <h5 style="font-family:Lucida Sans;"><u> SURAT KETERANGAN</u></h5>
 
                                 <p>Nomor :
-                                    PKL/{{$sertif->id}}/44200/{{ date('F', strtotime($sertif->selesai)) }}/{{ date('Y', strtotime($sertif->selesai)) }}
+                                    PKL/{{$sertif->id}}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
                                 </p>
 
                             </div>

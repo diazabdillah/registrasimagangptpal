@@ -84,6 +84,7 @@
                                 <th>Judul Kegiatan</th>
                                 <th>Deskripsi kegiatan</th>
                                 <th>Dokumentasi Kegiatan</th>
+                                <th>Action</th>
                         
                             </tr>
                         </thead>
@@ -101,7 +102,11 @@
                                                 src="{{ asset('file/foto-kegiatan-mhs/' . $ams->foto_kegiatan) }}">
                                         @endif
                                     </th>
-                              
+                                    <th><a class="btn btn-danger" href="{{ url('delete-tugas-mhs/' . $ams->id, $ams->foto_kegiatan) }}">Delete</a></th>
+                                    {{-- <a class="btn btn-danger p-1 float-right"
+                                    onclick="return confirm('yakin Hapus?');"
+                                    href="{{ url('hapus-interview-mhs/' . $img->id, $img->fileinterview) }}"><i
+                                        class="far fa-trash-alt p-1"></i></a> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -143,10 +148,7 @@
                                 <label for="recipient-name" class="col-form-label">Foto Kegiatan:</label>
                                 <input type="file" class="form-control" id="recipient-name" name="foto_kegiatan">
                             </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">File Kegiatan:</label>
-                                <input type="file" class="form-control" id="recipient-name" name="file_kegiatan">
-                            </div>
+                         
 
 
                     </div>

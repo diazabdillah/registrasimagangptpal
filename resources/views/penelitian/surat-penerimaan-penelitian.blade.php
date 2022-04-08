@@ -62,7 +62,7 @@
                                                 PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
                                             </p>
                                             <p> <b> Perihal :</b>
-                                                Praktek Kerja Lapangan </p>
+                                                Penelitian </p>
                                         </div>
                                         <div class="mr-4">
                                             <p><b>Kepada Yth: </b> <br>

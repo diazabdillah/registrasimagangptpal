@@ -32,7 +32,7 @@
                                             <tr class="text-center">
                                                 <th>No.</th>
                                                 <th>Nama</th>
-                                                <th>status</th>
+                                                <th>Status Magang Aktif</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -40,10 +40,18 @@
                                             @foreach ($data as $d)
                                             <tr>
                                                 <td class="text-center">{{ ++$i }}.</td>
-                                                <td class="text-center">{{ $d->name }}</td>
-                                                <td class="text-center"><span class="badge badge-primary p-2">{{ $d->status_user }}</span></td>
+                                                <td class="text-center">{{ $d->name }} <br> <span class="badge badge-primary p-2">{{ $d->status_user }}</span></td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses-magang-aktmhs/' . $d->id) }}">Detail
+                                                    @if(date('Y-m-d', strtotime(now())) >= date('Y-m-d', strtotime($d->mulai)) && date('Y-m-d', strtotime(now())) <= date('Y-m-d', strtotime($d->selesai)))
+                                                    <span class="badge badge-warning p-2">Mulai Magang</span>
+                                                    @elseif(date('Y-m-d', strtotime(now())) >= date('Y-m-d', strtotime($d->selesai)))
+                                                    <span class="badge badge-success p-2">Selesai Magang</span>
+                                                    @elseif(date('Y-m-d', strtotime(now())) <= date('Y-m-d', strtotime($d->mulai)))
+                                                    <span class="badge badge-danger p-2">Belum Mulai Magang</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-info p-2" href="{{ url('proses-magang-aktmhs/' . $d->id) }}">Detail
                                                         <i class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>
@@ -69,7 +77,7 @@
                                             <tr class="text-center">
                                                 <th>No.</th>
                                                 <th>Nama</th>
-                                                <th>Status</th>
+                                                <th>Status Magang Aktif</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -78,10 +86,19 @@
                                             @foreach ($dataSmk as $dsmk)
                                             <tr>
                                                 <td class="text-center">{{ $no++ }}.</td>
-                                                <td class="text-center">{{ $dsmk->name }}</td>
-                                                <td class="text-center"><span class="badge badge-warning p-2">{{ $dsmk->status_user }}</span></td>
+                                                <td class="text-center">{{ $dsmk->name }} <br> <span class="badge badge-primary p-2">{{ $dsmk->status_user }}</span> </td>
                                                 <td class="text-center">
-                                                    <a class="badge badge-success p-2" href="{{ url('proses-magang-aktsmk/' . $dsmk->id) }}">Detail
+                                                    @if(date('Y-m-d', strtotime(now())) >= date('Y-m-d', strtotime($dsmk->mulai)) && date('Y-m-d', strtotime(now())) <= date('Y-m-d', strtotime($dsmk->selesai)))
+                                                    <span class="badge badge-warning p-2">Mulai Magang</span>
+                                                    @elseif(date('Y-m-d', strtotime(now())) >= date('Y-m-d', strtotime($dsmk->selesai)))
+                                                    <span class="badge badge-success p-2">Selesai Magang</span>
+                                                    @elseif(date('Y-m-d', strtotime(now())) <= date('Y-m-d', strtotime($dsmk->mulai)))
+                                                    <span class="badge badge-danger p-2">Belum Mulai Magang</span>
+                                                    @endif
+                                                    
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="badge badge-info p-2" href="{{ url('proses-magang-aktsmk/' . $dsmk->id) }}">Detail
                                                         <i class="fas fa-info-circle ml-1"></i></a>
                                                 </td>
                                             </tr>

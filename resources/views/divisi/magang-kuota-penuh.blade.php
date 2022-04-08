@@ -19,14 +19,10 @@
             @endif
 
             <div class="row">
-                <div class="col-sm-6">
+         
                     <div class="card shadow mb-4">
-                        <div class="card">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Magang <span class="badge badge-primary ml-2 p-1">Praktikan</span></h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
+                      
+                                <div class="table-responsive mt-4">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr class="text-center">
@@ -75,13 +71,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+               
             <!-- /.container-fluid -->
         </div>
 
 
-    </div>
+ 
     <!-- End of Main Content -->
 
     @endsection

@@ -32,7 +32,7 @@
                 <h4 style="font-family:Lucida Sans;"><b><u>SURAT PERIZINAN BARANG </u></b></h4>
 
                 <h6 style="font-family:Lucida Sans;">Nomor :
-                    PKL/{{ $mahasiswa[0]->id }}/44200/{{ date('F', strtotime($mahasiswa[0]->selesai)) }}/{{ date('Y', strtotime($mahasiswa[0]->selesai)) }}
+                    PKL/{{ $mahasiswa[0]->id }}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
                 </h6>
                 </b>
 

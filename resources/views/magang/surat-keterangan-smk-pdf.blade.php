@@ -32,7 +32,7 @@
 
                 <hr style="width:240px;weight:200px;margin-top: 5px;margin-bottom: 5px;border:1px solid;">
                 <p>Nomor :
-                    PKL/{{$sertif->id}}/44200/{{ date('F', strtotime($sertif->selesai)) }}/{{ date('Y', strtotime($sertif->selesai)) }}
+                    PKL/{{$sertif->id}}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
                 </p>
 
             </div>

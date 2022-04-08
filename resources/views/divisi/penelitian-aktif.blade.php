@@ -19,7 +19,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-sm-6">
+    
                         <div class="card shadow mb-4">
                             <div class="card">
                                 <div class="card-header py-3">
@@ -33,7 +33,7 @@
                                                 <tr class="text-center">
 
                                                     <th>Nama</th>
-                                                    <th>status</th>
+                                                    <th>Status Penelitian Aktif</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -41,9 +41,17 @@
                                                 @foreach ($data as $d)
                                                     <tr>
 
-                                                        <td class="text-center">{{ $d->name }}</td>
-                                                        <td class="text-center"><span
-                                                                class="badge badge-danger p-2">{{ $d->status_user }}</span>
+                                                        <td class="text-center">{{ $d->name }} <br><span
+                                                            class="badge badge-danger p-2">{{ $d->status_user }}</span> </td>
+                                                      
+                                                        <td class="text-center">
+                                                            @if(date('Y-m-d', strtotime(now())) >= date('Y-m-d', strtotime($d->mulai)) && date('Y-m-d', strtotime(now())) <= date('Y-m-d', strtotime($d->selesai)))
+                                                            <span class="badge badge-warning p-2">Mulai Magang</span>
+                                                            @elseif(date('Y-m-d', strtotime(now())) >= date('Y-m-d', strtotime($d->selesai)))
+                                                            <span class="badge badge-success p-2">Selesai Magang</span>
+                                                            @elseif(date('Y-m-d', strtotime(now())) <= date('Y-m-d', strtotime($d->mulai)))
+                                                            <span class="badge badge-danger p-2">Belum Mulai Magang</span>
+                                                            @endif
                                                         </td>
                                                         <td class="text-center">
                                                             <a class="badge badge-success p-2"
@@ -58,7 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+              
 
 
 

@@ -47,19 +47,20 @@ class DivisiController extends Controller
     public function index(Request $request)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $pagination = 5;
             $cari = $request->cari;
           
             $users = DB::table('users')
-                ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user','users.status_penerimaan')
                 ->orWhere('users.name', 'like', "%" . $cari . "%")
                 // ->where('users.role_id', '=', 6)
                 // ->orWhere('users.role_id', '=', 8)
                 // ->orWhere('users.role_id','!=', 18)
                 // ->orWhere('users.role_id','!=', 1)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
-
+        
             $usersSmk = DB::table('users')
                 ->select('users.id',  'users.name', 'users.email', 'users.role_id', 'users.status_user')
                 // ->where('users.role_id', '=', 7)
@@ -67,6 +68,7 @@ class DivisiController extends Controller
                 // ->orWhere('users.role_id','!=', 18)
                 // ->orWhere('users.role_id','!=', 1)
                 ->orWhere('name', 'like', "%" . $cari . "%")
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.Penerimaan', [
@@ -83,7 +85,7 @@ class DivisiController extends Controller
     public function proses_penerimaan($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $filepdf = DB::table('file_mhs_indivs')
                 ->where('file_mhs_indivs.user_id', '=', $user_id)
                 ->get();
@@ -132,15 +134,17 @@ class DivisiController extends Controller
             $ti = 'Magang Aktif';
             $pagination = 5;
             $data = DB::table('users')
-                ->select('users.id', 'users.name', 'users.status_user')
+            ->leftJoin('mulai_dan_selesai_mhs','mulai_dan_selesai_mhs.user_id','=','users.id')
+                ->select('users.id', 'users.name', 'users.status_user','mulai_dan_selesai_mhs.selesai','mulai_dan_selesai_mhs.mulai')
                 ->where('users.role_id', '=', 3)
-                ->orderBy('users.created_at', 'asc')
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             $dataSmk = DB::table('users')
-                ->select('users.id', 'users.name', 'users.status_user')
+            ->leftJoin('mulai_dan_selesai_smk','mulai_dan_selesai_smk.user_id','=','users.id')
+                ->select('users.id', 'users.name', 'users.status_user','mulai_dan_selesai_smk.selesai','mulai_dan_selesai_smk.mulai')
                 ->where('users.role_id', '=', 4)
-                ->orderBy('users.created_at', 'asc')
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.magang-aktif', [
@@ -210,7 +214,7 @@ class DivisiController extends Controller
     public function proses_penerimaan_smk($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $filepdf = DB::table('file_smk_indivs')
                 ->where('file_smk_indivs.user_id', '=', $user_id)
                 ->get();
@@ -358,7 +362,7 @@ class DivisiController extends Controller
     public function showPdfMhs($id)
     {
         if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $users = DB::table('users')
                 ->where('id', '=', $id)
                 ->get();
@@ -377,7 +381,7 @@ class DivisiController extends Controller
     public function showPdfMhsKel($id)
     {
         if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $users = DB::table('users')
                 ->where('id', '=', $id)
                 ->get();
@@ -396,7 +400,7 @@ class DivisiController extends Controller
     public function showPdfSmk($id)
     {
         if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $users = DB::table('users')
                 ->where('id', '=', $id)
                 ->get();
@@ -418,7 +422,7 @@ class DivisiController extends Controller
     public function showPdfSmkKel($id)
     {
         if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $users = DB::table('users')
                 ->where('id', '=', $id)
                 ->get();
@@ -436,7 +440,7 @@ class DivisiController extends Controller
     public function showPdfPenelitian($id)
     {
         if (auth()->user()->role_id == 1 or auth()->user()->role_id == 18) {
-            $ti = 'Penerimaan';
+            $ti = 'Penerimaan Magang';
             $users = DB::table('users')
                 ->where('id', '=', $id)
                 ->get();
@@ -454,16 +458,18 @@ class DivisiController extends Controller
     public function showDiterima()
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Diterima';
+            $ti = 'Magang Dokumen';
 
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 11)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             $usersSmk = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 12)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.diterima', [
@@ -480,7 +486,7 @@ class DivisiController extends Controller
     public function finalMhs($user_id)
     {
         if (auth()->user()->role_id == 18 or auth()->user()->role_id == 1) {
-            $ti = 'Diterima';
+            $ti = 'Magang Dokumen';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
                 ->first();
@@ -522,7 +528,7 @@ class DivisiController extends Controller
     public function finalSmk($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Diterima';
+            $ti = 'Magang Dokumen';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
                 ->first();
@@ -1488,6 +1494,7 @@ class DivisiController extends Controller
                 ->orWhere('users.role_id', '=', 15)
                 ->orWhere('users.role_id', '=', 19)
                 ->orWhere('users.role_id', '=', 20)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.selesai', [
@@ -1567,10 +1574,9 @@ class DivisiController extends Controller
         File::deleteDirectory('file/dokumen-mhs/' . $data->id);
         //absen mhs
         DB::table('tugasmhs')->where('user_id', $data->id)->delete();
-        File::deleteDirectory('file/kegiatan-mhs/' . $data->user_id);
+
 
         DB::table('rekap_kegiatan_mhs')->where('user_id', $data->id)->delete();
-        File::deleteDirectory('file/kegiatan-mhs/' . $data->user_id);
         File::deleteDirectory('file/foto-kegiatan-mhs/' . $data->user_id);
 
         DB::table('absenmhs')->where('id_individu', $data->id)->delete();
@@ -1607,10 +1613,9 @@ class DivisiController extends Controller
             DB::table('penilaians')->where('user_id', $d->id)->delete();
             DB::table('barangmhs')->where('user_id', $d->id)->delete();
             DB::table('tugasmhs')->where('user_id', $d->id)->delete();
-            File::deleteDirectory('file/kegiatan-mhs/' . $d->user_id);
     
             DB::table('rekap_kegiatan_mhs')->where('user_id', $d->id)->delete();
-            File::deleteDirectory('file/kegiatan-mhs/' . $d->user_id);
+ 
             File::deleteDirectory('file/foto-kegiatan-mhs/' . $d->user_id);
         }
 
@@ -1646,10 +1651,8 @@ class DivisiController extends Controller
         DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
         //delete individu
         DB::table('tugassmk')->where('user_id', $data->id)->delete();
-        File::deleteDirectory('file/kegiatan-smk/' . $data->user_id);
 
         DB::table('rekap_kegiatan_smk')->where('user_id', $data->id)->delete();
-        File::deleteDirectory('file/kegiatan-smk/' . $data->user_id);
         File::deleteDirectory('file/foto-kegiatan-smk/' . $data->user_id);
 
         DB::table('barangsmk')->where('user_id', $data->id)->delete();
@@ -1670,9 +1673,7 @@ class DivisiController extends Controller
         DB::table('mulai_dan_selesai_smk')->where('user_id', $id)->delete();
         foreach ($data as $d) {
             DB::table('tugassmk')->where('user_id', $d->id)->delete();
-            File::deleteDirectory('file/kegiatan-smk/' . $d->user_id);
             DB::table('rekap_kegiatan_smk')->where('user_id', $d->id)->delete();
-            File::deleteDirectory('file/kegiatan-smk/' . $d->user_id);
             File::deleteDirectory('file/foto-kegiatan-smk/' . $d->user_id);
             File::deleteDirectory('file/berkas-smk-kel/' . $d->user_id);
             DB::table('interview_smk')->where('id_individu', $d->id)->delete();
@@ -1777,11 +1778,13 @@ class DivisiController extends Controller
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.status_user',)
                 ->where('users.role_id', '=', 16)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             $usersSmk = DB::table('users')
                 ->select('users.id', 'users.name', 'users.status_user')
                 ->where('users.role_id', '=', 17)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.magang_interview', [
@@ -1798,7 +1801,7 @@ class DivisiController extends Controller
     {
 
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Hasil Interview';
+            $ti = 'Magang Interview';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
                 ->first();
@@ -1943,6 +1946,12 @@ class DivisiController extends Controller
             ->where('user_id', $user_id)
             ->update([
                 'departemen' => $request->departemen,
+        
+            ]);
+            DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+         
                 'status_penerimaan' => $request->status_penerimaan
             ]);
         DB::table('rekapmhs')
@@ -1958,17 +1967,23 @@ class DivisiController extends Controller
     public function update_departemen_mhs($user_id, Request $request)
     {
         DB::table('data_mhs_indivs')
-            ->where('user_id', $user_id)
-            ->update([
-                'departemen' => $request->departemen,
-                'status_penerimaan' => $request->status_penerimaan
-            ]);
-        DB::table('rekapmhs')
-            ->where('user_id', $user_id)
-            ->update([
-                'departemen' => $request->departemen,
-                'status_penerimaan' => $request->status_penerimaan
-            ]);
+        ->where('user_id', $user_id)
+        ->update([
+            'departemen' => $request->departemen,
+    
+        ]);
+        DB::table('users')
+        ->where('id', $user_id)
+        ->update([
+     
+            'status_penerimaan' => $request->status_penerimaan
+        ]);
+    DB::table('rekapmhs')
+        ->where('user_id', $user_id)
+        ->update([
+            'departemen' => $request->departemen,
+            'status_penerimaan' => $request->status_penerimaan
+        ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect()->back();
@@ -1979,6 +1994,12 @@ class DivisiController extends Controller
             ->where('user_id', $user_id)
             ->update([
                 'departemen' => $request->departemen,
+
+            ]);
+            DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+         
                 'status_penerimaan' => $request->status_penerimaan
             ]);
         DB::table('rekapsmk')
@@ -1994,18 +2015,25 @@ class DivisiController extends Controller
     public function update_departemen_penelitian($user_id, Request $request)
     {
         DB::table('data_penelitian')
-            ->where('user_id', $user_id)
-            ->update([
-                'departemen' => $request->departemen,
-                'status_penerimaan' => $request->status_penerimaan
-            ]);
+        ->where('user_id', $user_id)
+        ->update([
+            'departemen' => $request->departemen,
 
-        DB::table('rekappenelitian')
-            ->where('user_id', $user_id)
-            ->update([
-                'departemen' => "Halo",
-                'status_penerimaan' => $request->status_penerimaan
-            ]);
+        ]);
+        DB::table('users')
+        ->where('id', $user_id)
+        ->update([
+     
+            'status_penerimaan' => $request->status_penerimaan
+        ]);
+    DB::table('rekappenelitian')
+        ->where('user_id', $user_id)
+        ->update([
+            'departemen' => $request->departemen,
+            'status_penerimaan' => $request->status_penerimaan
+        ]);
+
+
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect()->back();
@@ -2014,17 +2042,23 @@ class DivisiController extends Controller
     public function update_departemen_smk($user_id, Request $request)
     {
         DB::table('data_smk_indivs')
-            ->where('user_id', $user_id)
-            ->update([
-                'departemen' => $request->departemen,
-                'status_penerimaan' => $request->status_penerimaan
-            ]);
-        DB::table('rekapsmk')
-            ->where('user_id', $user_id)
-            ->update([
-                'departemen' => $request->departemen,
-                'status_penerimaan' => $request->status_penerimaan
-            ]);
+        ->where('user_id', $user_id)
+        ->update([
+            'departemen' => $request->departemen,
+
+        ]);
+        DB::table('users')
+        ->where('id', $user_id)
+        ->update([
+     
+            'status_penerimaan' => $request->status_penerimaan
+        ]);
+    DB::table('rekapsmk')
+        ->where('user_id', $user_id)
+        ->update([
+            'departemen' => $request->departemen,
+            'status_penerimaan' => $request->status_penerimaan
+        ]);
 
         session()->flash('succes', 'Data anda berhasil di update');
         return redirect()->back();
@@ -2036,6 +2070,12 @@ class DivisiController extends Controller
             ->where('user_id', $user_id)
             ->update([
                 'departemen' => $request->departemen,
+
+            ]);
+            DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+         
                 'status_penerimaan' => $request->status_penerimaan
             ]);
         DB::table('rekappenelitian')
@@ -2156,7 +2196,8 @@ class DivisiController extends Controller
             $ti = 'Penerimaan Penelitian';
             $cari = $request->cari;
             $users = DB::table('users')
-                ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user','users.status_penerimaan')
+                ->orderBy('users.created_at', 'desc')
                 ->orWhere('users.name', 'like', "%" . $cari . "%")
                 ->get();
             return view('divisi.penerimaan_penelitian', [
@@ -2170,7 +2211,7 @@ class DivisiController extends Controller
     public function proses_penerimaan_penelitian($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Penerimaa Penelitian';
+            $ti = 'Penerimaan Penelitian';
             $filepdf = DB::table('file_penelitian')
                 ->where('file_penelitian.user_id', '=', $user_id)
                 ->get();
@@ -2243,10 +2284,11 @@ class DivisiController extends Controller
     public function diterima_penelitian()
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Diterima penelitian';
+            $ti = 'Penelitian Dokumen';
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
                 ->where('users.role_id', '=', 22)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.diterima-penelitian', [
@@ -2260,7 +2302,7 @@ class DivisiController extends Controller
     public function final_penerimaan_penelitian($user_id)
     {
         if (auth()->user()->role_id == 2 or auth()->user()->role_id == 1) {
-            $ti = 'Diterima Penelitian';
+            $ti = 'Peneletian Dokumen';
             $userid = DB::table('users')
                 ->where('users.id', '=', $user_id)
                 ->first();
@@ -2327,7 +2369,8 @@ class DivisiController extends Controller
             $ti = 'Penelitian Aktif';
 
             $data = DB::table('users')
-                ->select('users.id', 'users.name', 'users.status_user')
+            ->leftJoin('mulai_dan_selesai_penelitian','mulai_dan_selesai_penelitian.user_id','=','users.id')
+                ->select('users.id', 'users.name', 'users.status_user','mulai_dan_selesai_penelitian.mulai','mulai_dan_selesai_penelitian.selesai')
                 ->where('users.role_id', '=', 23)
                 ->orderBy('users.created_at', 'asc')
                 ->get();
@@ -2697,6 +2740,7 @@ class DivisiController extends Controller
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.status_user', 'users.role_id')
                 ->where('users.role_id', '=', 0)
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
             return view('divisi.magang-kuota-penuh', [
@@ -3422,6 +3466,7 @@ class DivisiController extends Controller
           
             $users = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->orderBy('users.created_at', 'desc')
                 ->get();
 
 

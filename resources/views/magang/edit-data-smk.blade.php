@@ -28,6 +28,11 @@
                                         @method('put')
                                         @csrf
                                         <div class="form-group">
+                                            <small class="ml-2">Nama</small>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                value="{{ $data->nama }}">
+                                        </div>
+                                        <div class="form-group">
                                             <small class="ml-2">Sekolah</small>
                                             <input type="text" class="form-control" id="sekolah" name="sekolah"
                                                 value="{{ $data->sekolah }}">

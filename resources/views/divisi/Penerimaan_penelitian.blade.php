@@ -30,7 +30,7 @@
                     </form>
                 </div> <br>
                 <div class="row">
-                    <div class="col-sm-6">
+
                         <div class="card shadow mb-4">
                             <div class="card">
                                 <div class="card-header py-3">
@@ -44,7 +44,7 @@
                                                 <tr class="text-center">
                                                     <th>No.</th>
                                                     <th>Nama</th>
-                                                    <th>Status</th>
+                                                    <th>Status Magang Aktif</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -53,9 +53,17 @@
                                                 @if($u->role_id == 21)
                                                     <tr>
                                                         <td class="text-center">{{ ++$i }}.</td>
-                                                        <td class="text-center">{{ $u->name }}</td>
-                                                        <td class="text-center"><span
-                                                                class="badge badge-danger p-2">{{ $u->status_user }}</span>
+                                                        <td class="text-center">{{ $u->name }} <br> <span
+                                                            class="badge badge-danger p-2">{{ $u->status_user }}</span></td>
+                                                       
+                                                        <td  class="text-center">
+                                                            @if($u->status_penerimaan == 'Diterima')
+                                                            <span class="badge badge-info p-2">Diterima</span>
+                                                            @elseif($u->status_penerimaan == 'Ditolak')
+                                                            <span class="badge badge-danger p-2">Ditolak</span>
+                                                            
+                                                            @endif
+
                                                         </td>
                                                         <td class="text-center">
                                                             <a class="badge badge-success p-2"
@@ -74,7 +82,7 @@
                     </div>
 
 
-                </div>
+        
 
             </div>
             <!-- /.container-fluid -->

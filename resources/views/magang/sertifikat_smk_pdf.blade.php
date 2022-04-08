@@ -32,7 +32,7 @@
                     <h1 style="font-family:Lucida Sans;">SERTIFIKAT</h1>
                 </u>
                 <p>Nomor :
-                    <b> PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
+                    <b> PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
                     </b>
                 </p>
 

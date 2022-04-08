@@ -61,6 +61,10 @@
                                                         href="{{ url('edit-data-mhs/' . $d->id . '/' . $d->id_rekap) }}"
                                                         onclick="return confirm('Yakin Edit?');"><i
                                                             class="far fa-edit"></i> Edit</a>
+                                                            <a class="btn btn-danger p-1"
+                                                            href="/delete-data-mhs/{{ $d->id }}/{{ $d->id_rekap }}"
+                                                            onclick="return confirm('yakin Hapus?');"><i
+                                                                class="far fa-trash-alt"></i> Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -37,7 +37,7 @@
 
         <div>
             <p style="font-size:14px;" class="ml-4"> <b> Nomor :</b>
-                PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
+                PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
             </p>
             <p style="margin-top: -20px;font-size:14px;" class="ml-4"> <b> Perihal :</b>
                 Praktek Kerja Lapangan </p>
@@ -96,12 +96,12 @@
         </div>
 
 
-        <div style="font-size: 14px;">
-            <p style="margin-left:500px;">Surabaya,
+        <div style="font-size: 16px;">
+            <p style="margin-left:600px;">Surabaya,
                 {{ date('d-F-Y', strtotime(now())) }} </p>
-            <p style="margin-top: -20px;margin-left:500px;"> PT PAL Indonesia (Persero)</p>
+            <p style="margin-top: -20px;margin-left:600px;"> PT PAL Indonesia (Persero)</p>
 
-            <img style="margin-left:500px; width:20%;" src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
+            <img style="margin-left:600px; width:20%;"  src="{{ public_path('frontend/img/TTD-KADEP-HCD.png')}}">
                                         
         </div>
 

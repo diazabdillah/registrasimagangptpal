@@ -60,7 +60,7 @@
                                                 Kadep. HC. Development
                                             </p>
                                             <p><b>Perihal &nbsp;&nbsp; :</b>
-                                                Permohonan Praktek Kerja Lapangan </p>
+                                                Penelitian </p>
                                         </div>
                                         <div>
                                             <p><b>Nomor :</b> 

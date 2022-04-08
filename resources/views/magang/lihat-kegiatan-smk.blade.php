@@ -93,10 +93,7 @@
                             <small class="ml-2">Upload Dokumentasi Kegiatan Anda</small>
                             <input type="file" class="form-control" name="foto_kegiatan">
                         </div>
-                        <div class="form-group">
-                            <small class="ml-2">Upload File Hasil Kegiatan Anda</small>
-                            <input type="file" class="form-control" name="file_kegiatan">
-                        </div>
+                    
                         <input type="submit" class="btn btn-primary mt-2" value="Kirim">
                     </form>
                 </div>

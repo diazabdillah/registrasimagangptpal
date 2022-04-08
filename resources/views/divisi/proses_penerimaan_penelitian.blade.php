@@ -194,7 +194,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Tanggal Mulai dan Selesai</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" action="/proses-magang-aktmhs/{{ $user->id }}">
+                                    <form method="POST" action="/penelitian-aktif-waktu/{{ $user->id }}">
                                         @method('put')
                                         @csrf
                                         <label class="ml-2"><b>Tanggal Mulai</b></label>
@@ -227,6 +227,7 @@
 
                                             <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
                                                 <option value="22">Dokumen penelitian Aktif</option>
+                                                <option value="30">Konfirmasi Akun</option>
                                                 <option value="26">Judul Ditolak</option>
                                             </select>
 

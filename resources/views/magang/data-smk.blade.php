@@ -57,6 +57,10 @@
                                                         href="/edit-data-smk/{{ $d->id }}/{{ $d->id_rekap }}"
                                                         onclick="return confirm('Yakin Edit?');"><i
                                                             class="far fa-edit"></i> Edit</a>
+                                                            <a class="btn btn-danger p-1"
+                                                            href="/delete-data-smk/{{ $d->id }}/{{ $d->id_rekap }}"
+                                                            onclick="return confirm('Yakin Hapus?');"><i
+                                                                class="far fa-trash-alt"></i> Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach

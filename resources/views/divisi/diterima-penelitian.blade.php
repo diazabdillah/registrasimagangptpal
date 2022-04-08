@@ -19,7 +19,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-sm-6">
+                   
                         <div class="card shadow mb-4">
                             <div class="card">
                                 <div class="card-header py-3">
@@ -60,8 +60,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
+   
 
 
             </div>

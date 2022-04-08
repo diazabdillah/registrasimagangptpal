@@ -44,7 +44,8 @@
                                             <tr class="text-center">
                                                 <th>No.</th>
                                                 <th>Nama</th>
-                                                <th>Status</th>
+                                       
+                                                <th>Status Penerimaan</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -53,9 +54,18 @@
                                                 @if($u->role_id == 8 || $u->role_id == 6)
                                             <tr>
                                                 <td class="text-center">{{ ++$i }}.</td>
-                                                <td class="text-center">{{ $u->name }}</td>
-                                                <td class="text-center"><span class="badge badge-primary p-2">{{
-                                                        $u->status_user }}</span></td>
+                                                <td class="text-center">{{ $u->name }} <br> <span class="badge badge-primary p-2">{{
+                                                    $u->status_user }}</span></td>
+                                                    
+                                                        <td  class="text-center">
+                                                            @if($u->status_penerimaan == 'Diterima')
+                                                            <span class="badge badge-info p-2">Diterima</span>
+                                                            @elseif($u->status_penerimaan == 'Ditolak')
+                                                            <span class="badge badge-danger p-2">Ditolak</span>
+                                                            
+                                                            @endif
+
+                                                        </td>
                                                 <td class="text-center">
                                                     <a class="badge badge-success p-2"
                                                         href="{{ url('proses_penerimaan/' . $u->id) }}">Detail <i
@@ -99,7 +109,7 @@
 
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $us->name }}</td>
+                                                <td class="text-center">{{ $us->name }}</td>    
                                                 <td class="text-center"><span class="badge badge-warning p-2">{{
                                                         $us->status_user }}</span></td>
                                                 <td class="text-center">

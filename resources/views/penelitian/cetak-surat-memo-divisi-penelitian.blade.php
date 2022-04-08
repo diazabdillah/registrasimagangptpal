@@ -42,7 +42,7 @@
                 strtotime($datas[0]->selesai)) }}
             </p>
             <p style="margin-top: -20px;font-size:14px;" class="ml-4"> <b> Perihal :</b>
-                Permohonan Praktek Kerja Lapangan </p>
+              Penelitian</p>
 
             <p style="font-size:14px;" class="ml-4"><b>Kepada Yth: </b>
                 Kadep. {{$datas[0]->departemen}}

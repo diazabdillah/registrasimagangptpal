@@ -44,6 +44,34 @@
 	<link rel="apple-touch-icon" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="72x72" href="{{URL::asset('frontend')}}/img/pal.jpg">
 	<link rel="apple-touch-icon" sizes="114x114" href="{{URL::asset('frontend')}}/img/pal.jpg">
+
+	<style>
+		.dropdown-submenu{
+    position: relative;
+}
+.dropdown-submenu a::after{
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 3px;
+    top: 40%;
+}
+.dropdown-submenu:hover .dropdown-menu, .dropdown-submenu:focus .dropdown-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute !important;
+    margin-top: -30px;
+    left: 100%;
+}
+@media (max-width: 992px) {
+    .dropdown-menu{
+        width: 50%;
+    }
+    .dropdown-menu .dropdown-submenu{
+        width: auto;
+    }
+}
+
+	</style>
 </head>
 
 <body class="royal_preloader">
@@ -67,7 +95,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse bg-faded nav-line-top">
-						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavMenuMain" aria-controls="navbarNavMenuMain" aria-expanded="false" aria-label="Toggle navigation">
+						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  data-target="#navbarNavMenuMain" aria-controls="navbarNavMenuMain" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse justify-content-center" id="navbarNavMenuMain">
@@ -96,7 +124,24 @@
 									<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										Services
 									</a>
-
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+										<li><a class="dropdown-item" href="#">Human Capital Services</a></li>
+										<li><a class="dropdown-item" href="#">Organization Development</a></li>
+										<li><a class="dropdown-item" href="#">Organization LSP</a></li>
+										<li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" data-toggle="dropdown" href="#">Human Capital Development</a>
+										  <ul class="dropdown-menu">
+											<a class="dropdown-item" href="{{('info_beasiswa')}}">Info Beasiswa</a>
+											<a class="dropdown-item" href="{{('training')}}">Training</a>
+											<a class="dropdown-item" href="{{('peminjaman_ruangan')}}">Peminjaman Ruangan</a>
+											<a class="dropdown-item" href="{{('mekanisme_layanan')}}">Mekanisme Layanan</a>
+											<a class="dropdown-item" href="{{('unit_kerja')}}">Informasi Unit Kerja</a>
+											<a class="dropdown-item" href="{{('informasi_lsp')}}">Informasi LSP PAL</a>
+										  </ul>
+										</li>
+									  </ul>
+								
+								
+{{-- 
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 										<a class="dropdown-item" href="{{('info_beasiswa')}}">Info Beasiswa</a>
 										<a class="dropdown-item" href="{{('training')}}">Training</a>
@@ -104,7 +149,7 @@
 										<a class="dropdown-item" href="{{('mekanisme_layanan')}}">Mekanisme Layanan</a>
 										<a class="dropdown-item" href="{{('unit_kerja')}}">Informasi Unit Kerja</a>
 										<a class="dropdown-item" href="{{('informasi_lsp')}}">Informasi LSP PAL</a>
-									</div>
+									</div> --}}
 								</li>
 								<li class="nav-item dropdown {{ Request::is('contact')? "active":"" }}">
 									<a class="nav-link" href="{{URL('contact')}}">

@@ -158,6 +158,7 @@ class MagangController extends Controller
         DB::table('data_mhs_indivs')
             ->where('id', $id)
             ->update([
+                'nama' => $request->nama,
                 'univ' => $request->univ,
                 'strata' => $request->strata,
                 'jurusan' => $request->jurusan,
@@ -169,6 +170,7 @@ class MagangController extends Controller
         DB::table('rekapmhs')
             ->where('id', $id_rekap)
             ->update([
+                'nama' => $request->nama,
                 'univ' => $request->univ,
                 'strata' => $request->strata,
                 'jurusan' => $request->jurusan,
@@ -1326,7 +1328,22 @@ public function absen_izin_mhs($id){
         session()->flash('succes', 'Data Mahasiswa berhasil diperbarui');
         return redirect('/data-mhs-kelompok');
     }
+public function proses_hapus_mhs($id, $id_rekap){
+    DB::table('data_mhs_indivs')
+            ->where('id', $id)
+            ->delete();
 
+        DB::table('rekapmhs')
+            ->where('id', $id_rekap)
+            ->delete();
+
+        DB::table('penilaians')
+            ->where('user_id', $id)
+            ->delete();
+
+        return redirect('/data-mhs')
+            ->with('succes', 'Data Mahasiswa Berhasil Dihapus');
+}
     public function proses_hapus_mhs_kelompok($id, $id_rekap)
     {
         DB::table('data_mhs_indivs')
@@ -2867,7 +2884,22 @@ public function absen_izin_mhs($id){
         session()->flash('succes', 'Data SMK berhasil diperbarui');
         return redirect('/data-smk-kelompok');
     }
+public function proses_hapus_smk($id, $id_rekap){
+    DB::table('data_smk_indivs')
+    ->where('id', $id)
+    ->delete();
 
+DB::table('rekapsmk')
+    ->where('id', $id_rekap)
+    ->delete();
+
+DB::table('penilaians_smk')
+    ->where('user_id', $id)
+    ->delete();
+
+return redirect('/data-smk')
+    ->with('succes', 'Data SMK Berhasil Dihapus');
+}
     public function proses_hapus_smk_kelompok($id, $id_rekap)
     {
         DB::table('data_smk_indivs')
@@ -3509,7 +3541,7 @@ public function absen_izin_mhs($id){
         DB::table('data_smk_indivs')
             ->where('id', $id)
             ->update([
-                'user_id' => Auth::user()->id,
+                'nama' => $request->nama,
                 'sekolah' => $request->sekolah,
                 'jurusan' => $request->jurusan,
                 'alamat_rumah' => $request->alamat_rumah,
@@ -3519,6 +3551,7 @@ public function absen_izin_mhs($id){
         DB::table('rekapsmk')
             ->where('id', $id_rekap)
             ->update([
+                'nama' => $request->nama,
                 'sekolah' => $request->sekolah,
                 'alamat_rumah' => $request->alamat_rumah,
                 'no_hp' => $request->no_hp,
@@ -4118,6 +4151,38 @@ public function absen_izin_mhs($id){
             return redirect()->back();
         }
     }
+    public function delete_tugas_mhs($id,$foto){
+
+        // Hapus di local storage
+        File::delete('file/foto-kegiatan-mhs/'. $foto);
+        DB::table('tugasmhs')->where('id', '=', $id)
+        ->update([
+            'status_kegiatan' => 'Belum Mengerjakan',
+        ]);
+        // Hapus di database
+        DB::table('rekap_kegiatan_mhs') 
+            ->where('id', $id)
+            ->delete();
+         
+        session()->flash('succes', 'Berkas berhasil dihapus');
+        return redirect('tugas-mhs');
+    }
+    public function delete_tugas_smk($id,$foto){
+
+        // Hapus di local storage
+        File::delete('file/foto-kegiatan-smk/'. $foto);
+
+        // Hapus di database
+        DB::table('rekap_kegiatan_smk') 
+            ->where('id', $id)
+            ->delete();
+            DB::table('tugassmk')->where('id', '=', $id)
+            ->update([
+                'status_kegiatan' => 'Belum Mengerjakan',
+            ]);
+        session()->flash('succes', 'Berkas berhasil dihapus');
+        return redirect('tugas-smk');
+    }
     public function tugas_smk(){
         if (auth()->user()->role_id == 4) {
             $id = Auth::user()->id;
@@ -4176,30 +4241,7 @@ public function absen_izin_mhs($id){
     public function proses_kegiatan_mhs($id,$user_id, Request $request){
         if (auth()->user()->role_id == 3) {
         
-            if($request->file('file_kegiatan') != null){
-          
-            $file = $request->file('foto_kegiatan');
-            $namafile = $file->getClientOriginalName();
-            $tujuan_upload = 'file/foto-kegiatan-mhs/';
-            $file->move($tujuan_upload, $namafile);
-            $file1 = $request->file('file_kegiatan');
-            $namafile1 = $file1->getClientOriginalName();
-            $tujuan_upload1 = 'file/kegiatan-mhs/';
-            $file1->move($tujuan_upload1, $namafile1);
-            RekapKegiatanMhs::create([
-                'user_id'=> $user_id,
-                'nama_kegiatan' => $request->nama_kegiatan,
-                'deskripsi_kegiatan' => $request->deskripsi_kegiatan,
-                'foto_kegiatan'=> $namafile,
-                'file_kegiatan'=> $namafile1,
-                'nama_anggota' => $request->nama_anggota,
-                'tanggal_kumpul' => Carbon::now(),
-            ]); 
-            DB::table('tugasmhs')->where('id', '=', $id)
-            ->update([
-                'status_kegiatan' => 'Selesai Mengerjakan',
-            ]);
-        }else{
+
             $file = $request->file('foto_kegiatan');
             $namafile = $file->getClientOriginalName();
             $tujuan_upload = 'file/foto-kegiatan-mhs/';
@@ -4220,37 +4262,12 @@ public function absen_izin_mhs($id){
         } 
             return redirect('tugas-mhs');
 
-        } else {
-            return redirect()->back();
-        }
+       
     }
     public function proses_kegiatan_smk($id,$user_id, Request $request){
         if (auth()->user()->role_id == 4) {
         
-            if($request->file('file_kegiatan') != null){
-          
-            $file = $request->file('foto_kegiatan');
-            $namafile = $file->getClientOriginalName();
-            $tujuan_upload = 'file/foto-kegiatan-smk/';
-            $file->move($tujuan_upload, $namafile);
-            $file1 = $request->file('file_kegiatan');
-            $namafile1 = $file1->getClientOriginalName();
-            $tujuan_upload1 = 'file/kegiatan-smk/';
-            $file1->move($tujuan_upload1, $namafile1);
-    RekapKegiatanSmk::create([
-                'user_id'=> $user_id,
-                'nama_kegiatan' => $request->nama_kegiatan,
-                'deskripsi_kegiatan' => $request->deskripsi_kegiatan,
-                'foto_kegiatan'=> $namafile,
-                'file_kegiatan'=> $namafile1,
-                'nama_anggota' => $request->nama_anggota,
-                'tanggal_kumpul' => Carbon::now(),
-            ]); 
-            DB::table('tugassmk')->where('id', '=', $id)
-            ->update([
-                'status_kegiatan' => 'Selesai Mengerjakan',
-            ]);
-        }else{
+
             $file = $request->file('foto_kegiatan');
             $namafile = $file->getClientOriginalName();
             $tujuan_upload = 'file/foto-kegiatan-smk/';
@@ -4271,35 +4288,12 @@ public function absen_izin_mhs($id){
         } 
             return redirect('tugas-smk');
 
-        } else {
-            return redirect()->back();
-        }
+      
     }
     public function tambah_kegiatan_mhs(Request $request){
         if (auth()->user()->role_id == 3) {
       
-            if($request->file('file_kegiatan') != null){
-          
-                $file = $request->file('foto_kegiatan');
-                $namafile = $file->getClientOriginalName();
-                $tujuan_upload = 'file/foto-kegiatan-mhs/';
-                $file->move($tujuan_upload, $namafile);
-            $file1 = $request->file('file_kegiatan');
-            $namafile1 = $file1->getClientOriginalName();
-            $tujuan_upload1 = 'file/kegiatan-mhs/';
-            $file1->move($tujuan_upload1, $namafile1);
-            DB::table('rekap_kegiatan_mhs')
-            ->insert([
-                'user_id'=> Auth::user()->id,
-                'nama_kegiatan' => $request->nama_kegiatan,
-                'deskripsi_kegiatan' => $request->deskripsi_kegiatan,
-                'foto_kegiatan'=> $namafile,
-                'file_kegiatan'=> $namafile1,
-                'nama_anggota' => $request->nama_anggota,
-                'tanggal_kumpul' => Carbon::now(),
-            ]); 
-          
-        }else{
+      
             $file = $request->file('foto_kegiatan');
             $namafile = $file->getClientOriginalName();
             $tujuan_upload = 'file/foto-kegiatan-mhs/';
@@ -4318,36 +4312,13 @@ public function absen_izin_mhs($id){
         } 
             return redirect('tugas-mhs');
 
-        } else {
-            return redirect('tugas-mhs');
-        }
+      
     }
 
     public function tambah_kegiatan_smk(Request $request){
         if (auth()->user()->role_id == 4) {
       
-            if($request->file('file_kegiatan') != null){
-          
-                $file = $request->file('foto_kegiatan');
-                $namafile = $file->getClientOriginalName();
-                $tujuan_upload = 'file/foto-kegiatan-smk/';
-                $file->move($tujuan_upload, $namafile);
-            $file1 = $request->file('file_kegiatan');
-            $namafile1 = $file1->getClientOriginalName();
-            $tujuan_upload1 = 'file/kegiatan-smk/';
-            $file1->move($tujuan_upload1, $namafile1);
-            DB::table('rekap_kegiatan_smk')
-            ->insert([
-                'user_id'=> Auth::user()->id,
-                'nama_kegiatan' => $request->nama_kegiatan,
-                'deskripsi_kegiatan' => $request->deskripsi_kegiatan,
-                'foto_kegiatan'=> $namafile,
-                'file_kegiatan'=> $namafile1,
-                'nama_anggota' => $request->nama_anggota,
-                'tanggal_kumpul' => Carbon::now(),
-            ]); 
-          
-        }else{
+         
             $file = $request->file('foto_kegiatan');
             $namafile = $file->getClientOriginalName();
             $tujuan_upload = 'file/foto-kegiatan-smk/';
@@ -4366,16 +4337,15 @@ public function absen_izin_mhs($id){
         } 
             return redirect('tugas-smk');
 
-        } else {
-            return redirect('tugas-smk');
-        }
+       
     }
     public function cetak_kegiatan_mhs_pdf(){
         if (auth()->user()->role_id == 3) {
-            $mahasiswarekap = DB::table('users')
-            ->leftJoin('data_mhs_indivs','data_mhs_indivs.user_id','=','users.id')
+            $mahasiswarekap = DB::table('rekap_kegiatan_mhs')
+            ->leftJoin('data_mhs_indivs','data_mhs_indivs.user_id','=','rekap_kegiatan_mhs.user_id')
             ->leftJoin('mulai_dan_selesai_mhs', 'data_mhs_indivs.user_id', '=', 'mulai_dan_selesai_mhs.user_id')
             ->select('mulai_dan_selesai_mhs.mulai','mulai_dan_selesai_mhs.selesai','data_mhs_indivs.univ','data_mhs_indivs.jurusan','data_mhs_indivs.divisi')
+            ->where('data_mhs_indivs.user_id', '=', Auth::user()->id)
             ->get();
             $mahasiswa = DB::table('rekap_kegiatan_mhs')
             ->where('rekap_kegiatan_mhs.user_id','=',Auth::user()->id)
@@ -4394,10 +4364,11 @@ public function absen_izin_mhs($id){
     }
     public function cetak_kegiatan_smk_pdf(){
         if (auth()->user()->role_id == 4) {
-            $mahasiswarekap = DB::table('users')
-            ->leftJoin('data_smk_indivs','data_smk_indivs.user_id','=','users.id')
+            $mahasiswarekap = DB::table('rekap_kegiatan_smk')
+            ->leftJoin('data_smk_indivs','data_smk_indivs.user_id','=','rekap_kegiatan_smk.user_id')
             ->leftJoin('mulai_dan_selesai_smk', 'data_smk_indivs.user_id', '=', 'mulai_dan_selesai_smk.user_id')
             ->select('mulai_dan_selesai_smk.mulai','mulai_dan_selesai_smk.selesai','data_smk_indivs.sekolah','data_smk_indivs.jurusan','data_smk_indivs.divisi')
+            ->where('data_smk_indivs.user_id', '=', Auth::user()->id)
             ->get();
             $mahasiswa = DB::table('rekap_kegiatan_smk')
             ->where('rekap_kegiatan_smk.user_id','=',Auth::user()->id)
@@ -4421,7 +4392,7 @@ public function absen_izin_mhs($id){
             ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
             ->leftJoin('barangmhs', 'data_mhs_indivs.id', '=', 'barangmhs.user_id')
             ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('data_mhs_indivs.id', 'barangmhs.nama_barang', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.divisi')
+            ->select('users.id', 'barangmhs.nama_barang', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.divisi')
             ->where('users.id', '=', $id)
             ->get();
        
@@ -4444,7 +4415,7 @@ public function absen_izin_mhs($id){
             ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
             ->leftJoin('barangmhs', 'data_mhs_indivs.id', '=', 'barangmhs.user_id')
             ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('data_mhs_indivs.id', 'barangmhs.nama_barang', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at',  'data_mhs_indivs.nama','data_mhs_indivs.univ','data_mhs_indivs.divisi')
+            ->select('users.id', 'barangmhs.nama_barang', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at',  'data_mhs_indivs.nama','data_mhs_indivs.univ','data_mhs_indivs.divisi')
             ->where('users.id', '=', $id)
             ->get();
             $i=1;
@@ -4487,7 +4458,7 @@ public function absen_izin_mhs($id){
             ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
             ->leftJoin('barangsmk', 'data_smk_indivs.id', '=', 'barangsmk.user_id')
             ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-            ->select('data_smk_indivs.id', 'barangsmk.nama_barang', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah','data_smk_indivs.divisi')
+            ->select('users.id', 'barangsmk.nama_barang', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah','data_smk_indivs.divisi')
             ->where('users.id', '=', $id)
             ->get();
        
@@ -4529,7 +4500,7 @@ public function absen_izin_mhs($id){
             ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
             ->leftJoin('barangsmk', 'data_smk_indivs.id', '=', 'barangsmk.user_id')
             ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-            ->select('data_smk_indivs.id', 'barangsmk.nama_barang', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at',  'data_smk_indivs.nama','data_smk_indivs.jurusan', 'data_smk_indivs.sekolah','data_smk_indivs.divisi')
+            ->select('users.id', 'barangsmk.nama_barang', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at',  'data_smk_indivs.nama','data_smk_indivs.jurusan', 'data_smk_indivs.sekolah','data_smk_indivs.divisi')
             ->where('users.id', '=', $id)
             ->get();
        

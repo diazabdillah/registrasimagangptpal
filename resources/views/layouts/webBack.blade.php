@@ -40,9 +40,11 @@
             height: 400px;
             overflow: scroll;
         }
+
         .spinner {
             display: none;
         }
+
     </style>
 
 </head>
@@ -80,11 +82,11 @@
 
 
                 <!-- Nav Item -->
-                 <li class="nav-item {{ $ti === 'Konfirmasi Akun Pendaftar' ? 'active' : '' }}">
-                <a class="nav-link pb-0" href="/konfirmasi-akun-admin">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Konfirmasi Akun Pendaftar</span></a>
-            </li> 
+                <li class="nav-item {{ $ti === 'Konfirmasi Akun Pendaftar' ? 'active' : '' }}">
+                    <a class="nav-link pb-0" href="/konfirmasi-akun-admin">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Konfirmasi Akun Pendaftar</span></a>
+                </li>
                 <li class="nav-item {{ $ti === 'Divisi' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/divisi">
                         <i class="fas fa-building"></i>
@@ -98,7 +100,7 @@
                 <li class="nav-item {{ $ti === 'Rekap Mahasiswa' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/Rekap">
                         <i class="fas fa-database"></i>
-                        <span>Rekap Mahasiswa</span></a>
+                        <span>Rekap MHS Individu</span></a>
                 </li>
 
                 <li class="nav-item {{ $ti === 'Rekap Mahasiswa Kelompok' ? 'active' : '' }}">
@@ -109,7 +111,7 @@
                 <li class="nav-item {{ $ti === 'Rekap SMK' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/Rekap-Smk">
                         <i class="fas fa-database"></i>
-                        <span>Rekap SMK</span></a>
+                        <span>Rekap SMK Individu</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Rekap SMK Kelompok' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/Rekap-smk-kelompok">
@@ -192,7 +194,7 @@
                 </div>
 
                 <!-- Nav Item -->
-                <li class="nav-item {{ $ti === 'Penerimaan' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Penerimaan Magang' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/Penerimaan">
                         <i class="fas fa-user-plus"></i>
                         <span>Penerimaan Magang</span></a>
@@ -202,10 +204,10 @@
                         <i class="fas fa-user-friends"></i>
                         <span>Magang Interview</span></a>
                 </li>
-                <li class="nav-item {{ $ti === 'Diterima' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Magang Dokumen' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/diterima">
                         <i class="fas fa-paste"></i>
-                        <span>Dokumen Magang Aktif</span></a>
+                        <span>Magang Dokumen</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Magang Aktif' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/magang-aktif">
@@ -216,22 +218,22 @@
                 <li class="nav-item {{ $ti === 'Absensi' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/absen">
                         <i class="fas fa-fingerprint"></i>
-                        <span>Absen</span></a>
+                        <span>Absen Magang Aktif</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Laporan Akhir' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/laporan">
                         <i class="fas fa-book"></i>
-                        <span>Laporan Akhir</span></a>
+                        <span>Laporan Akhir Magang Aktif</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Laporan Akhir Revisi' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/laporan-revisi">
                         <i class="fas fa-journal-whills"></i>
-                        <span>Laporan Akhir Revisi</span></a>
+                        <span>Laporan Akhir Revisi Magang Aktif</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Penilaian' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/penilaian-magang">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Form Penilaian</span></a>
+                        <span>Penilaian Magang Aktif</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Magang Selesai' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/magang-selesai-mhs">
@@ -259,10 +261,10 @@
                         <span>Penerimaan Penelitian</span></a>
                 </li>
 
-                <li class="nav-item {{ $ti === 'Diterima penelitian' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Penelitian Dokumen' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/diterima-penelitian">
                         <i class="fas fa-paste"></i>
-                        <span>Dokumen Penelitian Aktif</span></a>
+                        <span>Penelitian Dokumen</span></a>
                 </li>
                 <li class="nav-item {{ $ti === 'Penelitian Aktif' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/penelitian-aktif">
@@ -507,7 +509,7 @@
                         <i class="fas fa-id-card"></i>
                         <span>ID Card</span></a>
                 </li>
-                     <li class="nav-item {{ $ti === 'Kegiatan Magang SMK' ? 'active' : '' }}">
+                <li class="nav-item {{ $ti === 'Kegiatan Magang SMK' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/tugas-smk">
                         <i class="fas fa-fingerprint"></i>
                         <span>Kegiatan Magang</span></a>
@@ -632,8 +634,8 @@
                 <!-- penelitian penuh -->
             @endif
             @if (auth()->user()->role_id == 30)
-            <!-- penelitian penuh -->
-        @endif
+                <!-- penelitian penuh -->
+            @endif
             @if (auth()->user()->role_id == 14)
                 <li class="nav-item {{ $ti === 'Sertifikat Mahasiswa' ? 'active' : '' }}">
                     <a class="nav-link pb-0" href="/sertifikat_mhs">
@@ -872,6 +874,35 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
+
+                                @if (Auth::user()->status_user == 'Mahasiswa')
+                                    <a class="dropdown-item"
+                                        href="{{ url('delete-selesai-mhs/' . Auth::user()->id) }}">
+                                        <i class='fas fa-trash-alt'></i>
+                                        Hapus Akun
+                                    </a>
+                                @endif
+                                @if (Auth::user()->status_user == 'Mahasiswa Kelompok')
+                                    <a class="dropdown-item"
+                                        href="{{ url('delete-selesai-mhs-kel/' . Auth::user()->id) }}">
+                                        <i class='fas fa-trash'></i>
+                                        Hapus Akun
+                                    </a>
+                                @endif
+                                @if (Auth::user()->status_user == 'SMK')
+                                    <a class="dropdown-item"
+                                        href="{{ url('delete-selesai-smk/' . Auth::user()->id) }}">
+                                        <i class='fas fa-trash-alt'></i>
+                                        Hapus Akun
+                                    </a>
+                                @endif
+                                @if (Auth::user()->status_user == 'SMK Kelompok')
+                                    <a class="dropdown-item"
+                                        href="{{ url('delete-selesai-smk-kel/' . Auth::user()->id) }}">
+                                        <i class='fas fa-trash-alt'></i>
+                                        Hapus Akun
+                                    </a>
+                                @endif
                                 @if (Auth::user()->role_id == 3)
                                     <a class="dropdown-item" href="/profil-mhs">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -1080,14 +1111,14 @@
 
     <script>
         // jika form-prevent disubmit maka disable button-prevent dan tampilkan spinner
-              (function () {
-                  $('#formregis').on('submit', function () {
-                      $('.buttonregis').attr('disabled', 'true');
-                      $('.spinner').show();
-                      $('.text').hide();
-                  })
-              })();
-        </script>
+        (function() {
+            $('#formregis').on('submit', function() {
+                $('.buttonregis').attr('disabled', 'true');
+                $('.spinner').show();
+                $('.text').hide();
+            })
+        })();
+    </script>
     @yield('footer')
 
 </body>

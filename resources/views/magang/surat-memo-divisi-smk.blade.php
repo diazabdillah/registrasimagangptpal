@@ -60,11 +60,11 @@
                                                 Kadep. HC. Development
                                             </p>
                                             <p><b>Perihal &nbsp;&nbsp; :</b>
-                                                Permohonan Praktek Kerja Lapangan </p>
+                                                Praktek Kerja Lapangan </p>
                                         </div>
                                         <div>
                                             <p><b>Nomor :</b> 
-                                                PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime($datas[0]->selesai)) }}/{{ date('Y', strtotime($datas[0]->selesai)) }}
+                                                PKL/{{ $datas[0]->id }}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
                                             </p>
                                             <p> <b>Tanggal :</b> 
                                                 {{ date('d-F-Y', strtotime(now())) }}

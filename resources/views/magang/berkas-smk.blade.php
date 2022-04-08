@@ -60,7 +60,7 @@
                                                 </div>
                                             @enderror
                                         </div><div class="form-group">
-                                            <small class="ml-2">Tanggal Mulai</small>
+                                            <small class="ml-2">Tanggal Mulai Magang</small>
                                             <input type="date" name="mulai"
                                                 class="form-control @error('mulai') is-invalid @enderror">
 
@@ -71,7 +71,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <small class="ml-2">Tanggal Selesai</small>
+                                            <small class="ml-2">Tanggal Selesai Magang</small>
                                             <input type="date" name="selesai"
                                                 class="form-control @error('selesai') is-invalid @enderror">
 
