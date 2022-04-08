@@ -963,9 +963,9 @@
                                                                                 @enderror
                                                                             </div> --}}
                                                                             <div class="form-group">
-                                                                   
-                                                                            <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
-                                                                            <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
+                                                                      
+                                                                                <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
+                                                                                <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>
                                                                         </div>
                                                                             <button class="btn btn-primary button-prevent"  type="submit">
                                                                                 
