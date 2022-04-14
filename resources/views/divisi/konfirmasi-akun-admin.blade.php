@@ -65,8 +65,8 @@
                                                                 <select class="custom-select" id="inputGroupSelect04" name="role_id" required>
                                                                     <option value="8">Mahasiswa Individu</option>
                                                                     <option value="6">Mahasiswa Kelompok</option>
-                                                                    <option value="7">Smk Individu</option>
-                                                                    <option value="9">Smk Kelompok</option>
+                                                                    <option value="9">Smk Individu</option>
+                                                                    <option value="7">Smk Kelompok</option>
                                                                     <option value="21">Penelitian</option>
                                                                     <option value="0">Kuota Penuh Magang</option>
                                                                     <option value="26">Kuota Penuh Penelitian</option>

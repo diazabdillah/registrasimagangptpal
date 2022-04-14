@@ -62,7 +62,7 @@ class DivisiController extends Controller
                 ->get();
         
             $usersSmk = DB::table('users')
-                ->select('users.id',  'users.name', 'users.email', 'users.role_id', 'users.status_user')
+                ->select('users.id',  'users.name', 'users.email', 'users.role_id', 'users.status_user','users.status_penerimaan')
                 // ->where('users.role_id', '=', 7)
                 // ->orWhere('users.role_id', '=', 9)
                 // ->orWhere('users.role_id','!=', 18)

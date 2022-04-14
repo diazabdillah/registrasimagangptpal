@@ -109,9 +109,17 @@
 
                                             <tr>
                                                 <td class="text-center">{{ ++$no }}.</td>
-                                                <td class="text-center">{{ $us->name }}</td>    
-                                                <td class="text-center"><span class="badge badge-warning p-2">{{
-                                                        $us->status_user }}</span></td>
+                                                <td class="text-center">{{ $us->name }} <br> <span class="badge badge-warning p-2">{{
+                                                    $us->status_user }}</span></td>    
+                                                <td class="text-center">
+
+                                                    @if($us->status_penerimaan == 'Diterima')
+                                                    <span class="badge badge-info p-2">Diterima</span>
+                                                    @elseif($us->status_penerimaan == 'Ditolak')
+                                                    <span class="badge badge-danger p-2">Ditolak</span>
+                                                    
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     <a class="badge badge-success p-2"
                                                         href="{{ url('proses-penerimaan-smk/' . $us->id) }}">Detail <i
