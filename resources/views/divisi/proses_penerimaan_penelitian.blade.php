@@ -173,7 +173,6 @@
                                                 <small class="ml-2">Pilih Status</small>
                                                 <div class="input-group mb-3">
                                                     <select class="custom-select" name="status_penerimaan">
-                                                        <option selected>Pilih status</option>
                                                         <option value="Diterima">Diterima</option>
                                                         <option value="Ditolak">Ditolak</option>
                                                     </select>

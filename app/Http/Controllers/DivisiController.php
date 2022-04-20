@@ -92,7 +92,7 @@ class DivisiController extends Controller
             $divisi = Divisi::all();
             $users = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
-                ->select('users.id', 'users.name', 'users.email', 'users.status_user', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'data_mhs_indivs.status_penerimaan', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.nim')
+                ->select('users.id', 'users.name', 'users.email', 'users.status_user', 'data_mhs_indivs.divisi', 'data_mhs_indivs.departemen', 'users.status_penerimaan', 'data_mhs_indivs.nama', 'data_mhs_indivs.univ', 'data_mhs_indivs.strata', 'data_mhs_indivs.departemen', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.nim')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -222,7 +222,7 @@ class DivisiController extends Controller
 
             $users = DB::table('users')
                 ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
-                ->select('users.id', 'users.status_user',  'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'data_smk_indivs.status_penerimaan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
+                ->select('users.id', 'users.status_user',  'users.email', 'data_smk_indivs.nama', 'data_smk_indivs.nis', 'data_smk_indivs.sekolah', 'data_smk_indivs.jurusan', 'data_smk_indivs.alamat_rumah', 'users.status_penerimaan', 'data_smk_indivs.no_hp', 'data_smk_indivs.user_id', 'data_smk_indivs.divisi', 'data_smk_indivs.departemen')
                 ->where('users.id', '=', $user_id)
                 ->get();
 
@@ -2218,7 +2218,7 @@ class DivisiController extends Controller
             $divisi = Divisi::all();
             $users = DB::table('users')
                 ->leftJoin('data_penelitian', 'users.id', '=', 'data_penelitian.user_id')
-                ->select('users.id', 'users.name', 'users.email', 'users.status_user', 'data_penelitian.divisi', 'data_penelitian.status_penerimaan', 'data_penelitian.nama', 'data_penelitian.asal_instansi', 'data_penelitian.strata', 'data_penelitian.departemen', 'data_penelitian.jurusan', 'data_penelitian.alamat_rumah', 'data_penelitian.no_hp', 'data_penelitian.judul_penelitian')
+                ->select('users.id', 'users.name', 'users.email', 'users.status_user', 'data_penelitian.divisi', 'users.status_penerimaan', 'data_penelitian.nama', 'data_penelitian.asal_instansi', 'data_penelitian.strata', 'data_penelitian.departemen', 'data_penelitian.jurusan', 'data_penelitian.alamat_rumah', 'data_penelitian.no_hp', 'data_penelitian.judul_penelitian')
                 ->where('users.id', '=', $user_id)
                 ->get();
             $departemen = DB::table('departemen')

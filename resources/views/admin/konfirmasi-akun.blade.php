@@ -17,7 +17,7 @@
                     src="{{ asset('img/konfirmasi_akun.png') }}" alt="">
                 <h2 class="text-center mt-2" style="color: blue"><b> Konfirmasi Akun Anda</b></h2>
                 <p class="text-center">Hi {{ Auth::user()->name }},</p>
-                <p class="text-center">Anda Telah Melakukan Pendaftaran di Registrasi Magang Online PT PAL(PERSERO). <br> Untuk Melanjutkan proses ke tahap pengumpulan berkas magang atau penelitian (proposal dan surat pengantar), Mohon  Anda konfirmasi akun anda ke admin terlebih dahulu untuk keperluan Magang atau Penelitian di PT PAL(PERSERO).Mohon ditunggu konfirmasi akun anda akan di proses selama 5 hari kerja. <br> Konfirmasi Akun Anda bisa menghubungi koordinator internship : <br> <b>Iwan Miharja (CP: 088226199728)</b></p>
+                <p class="text-center">Anda Telah Melakukan Pendaftaran di Registrasi Magang Online PT PAL(PERSERO). <br> Untuk Melanjutkan proses ke tahap pengumpulan berkas magang atau penelitian (proposal dan surat pengantar), Mohon  Anda konfirmasi akun anda ke chat admin terlebih dahulu untuk keperluan pengumpulan berkas Magang atau Penelitian di PT PAL(PERSERO).Mohon ditunggu konfirmasi akun anda akan di proses selama 5 hari kerja. <br> Konfirmasi Akun Anda bisa menghubungi koordinator internship : <br> <b>Iwan Miharja (CP: 088226199728)</b></p>
 
             </div>
 

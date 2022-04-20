@@ -223,7 +223,7 @@
                                                 <small class="ml-2">Pilih Status</small>
                                                 <div class="input-group mb-3">
                                                     <select class="custom-select" name="status_penerimaan">
-                                                        <option selected>Pilih status</option>
+                                                    
                                                         <option value="Diterima">Diterima</option>
                                                         <option value="Ditolak">Ditolak</option>
                                                     </select>
@@ -244,7 +244,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Tanggal Mulai dan Selesai</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" action="/proses-magang-aktmhs/{{ $user->id }}">
+                                    <form method="POST" action="/proses-magang-aktsmk/{{ $user->id }}">
                                         @method('put')
                                         @csrf
                                         <label class="ml-2"><b>Tanggal Mulai</b></label>
