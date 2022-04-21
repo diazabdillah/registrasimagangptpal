@@ -28,7 +28,7 @@
                                         @method('put')
                                         @csrf
                                         <div class="form-group">
-                                            <small class="ml-2">Nama</small>
+                                            <small class="ml-2">Nama Anda</small>
                                             <input type="text" class="form-control" id="nama" name="nama"
                                                 value="{{ $data->nama }}">
                                         </div>

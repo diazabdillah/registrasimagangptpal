@@ -31,6 +31,11 @@
                                         @csrf
 
                                         <div class="form-group">
+                                            <small class="ml-2">Nama Anda</small>
+                                            <input type="text" class="form-control" id="nama"
+                                                name="nama" value="{{ $data->nama }}">
+                                        </div>
+                                        <div class="form-group">
                                             <small class="ml-2">Univ / Instansi</small>
                                             <input type="text" class="form-control" id="asal_instansi"
                                                 name="asal_instansi" value="{{ $data->asal_instansi }}">

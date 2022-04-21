@@ -902,7 +902,15 @@
                                         <i class='fas fa-trash-alt'></i>
                                         Hapus Akun
                                     </a>
+                             
                                 @endif
+                                @if (Auth::user()->status_user == 'Penelitian')
+                                <a class="dropdown-item"
+                                    href="{{ url('hapus-penelitian-selesai/' . Auth::user()->id) }}">
+                                    <i class='fas fa-trash-alt'></i>
+                                    Hapus Akun
+                                </a>
+                            @endif
                                 @if (Auth::user()->role_id == 3)
                                     <a class="dropdown-item" href="/profil-mhs">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>

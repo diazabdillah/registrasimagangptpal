@@ -676,6 +676,7 @@ Route::get('berkas-penelitian/{id}/{path}', [PenelitianController::class, 'prose
 
 Route::get('/berkas-penelitian', [PenelitianController::class, 'berkas_penelitian']);
 Route::get('/edit-data-penelitian/{id}/{id_rekap}', [PenelitianController::class, 'edit_data_penelitian']);
+Route::get('/delete-data-penelitian/{id}/{id_rekap}', [PenelitianController::class, 'delete_data_penelitian']);
 Route::post('/proses-berkas-penelitian', [PenelitianController::class, 'proses_berkas_penelitian']);
 
 

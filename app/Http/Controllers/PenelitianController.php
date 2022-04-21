@@ -186,12 +186,27 @@ class PenelitianController extends Controller
             return redirect()->back();
         }
     }
+    public function delete_data_penelitian($id, $id_rekap){
+        DB::table('data_penelitian')
+            ->where('id', $id)
+            ->delete();
+
+        DB::table('rekappenelitian')
+            ->where('id', $id_rekap)
+            ->delete();
+
+   
+
+        return redirect('/data-penelitian')
+            ->with('succes', 'Data penelitian Berhasil Dihapus');
+    }
 
     public function update_data_penelitian($id, $id_rekap, Request $request)
     {
         DB::table('data_penelitian')
             ->where('id', $id)
             ->update([
+                'nama' => $request->nama,
                 'asal_instansi' => $request->asal_instansi,
                 'strata' => $request->strata,
                 'jurusan' => $request->jurusan,
@@ -202,6 +217,7 @@ class PenelitianController extends Controller
         DB::table('rekappenelitian')
             ->where('id', $id_rekap)
             ->update([
+                'nama' => $request->nama,
                 'asal_instansi' => $request->asal_instansi,
                 'strata' => $request->strata,
                 'jurusan' => $request->jurusan,
