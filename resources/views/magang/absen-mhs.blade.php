@@ -896,6 +896,7 @@
                             <div class="alert alert-info" role="alert">
                                 <p class="card-text">
                                     <b>Peraturan Absensi:</b><br>
+                                    - <b> Mohon Para Praktikan hendak absen memberikan izin ke Kamera dan GPS di web browser terlebih dahulu.</b> <br>
                                     - Absen Datang dibuka pukul 06.00 - 12.00 (<b> Absen Datang diperbolehkan ketika para praktikan
                                         sudah di dalam area PT PAL </b>)</b> <br>
                                     - Absen Pulang dibuka pukul 16:30 - 19.00 <br>
@@ -903,7 +904,9 @@
                                     Itu,
                                     <b>Harus Konfirmasi terlebih dahulu ke Pembimbing Magang Melalui Whatsapp Apabila Hendak Izin Ada
                                         Keperluan
-                                        Lain</b>).
+                                        Lain</b>). <br><br>
+                                        <img src="{{ asset('img/error.png') }}" alt=""> <br> 
+                                        - <b>Apabila terdapat gambar seperti di atas mohon para praktikan untuk tekan tombol ok sampai gambar itu tidak ada</b>
                                 </p>
                             </div>
                             <!-- DataTales Example -->
@@ -1021,8 +1024,8 @@
                                                                             </div> --}}
                                                                             <div class="form-group">
                                                                    
-                                                                            <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
-                                                                            <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>
+                                                                            <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
+                                                                            <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
                                                                         </div>
                                                                             <button class="btn btn-primary button-prevent"  type="submit">
                                                                                 
@@ -1094,8 +1097,8 @@
                                                                             </div> --}}
                                                                             <div class="form-group">
                                                                       
-                                                                                <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
-                                                                                <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>
+                                                                                <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
+                                                                                <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
                                                                         </div>
                                                                             <button class="btn btn-danger buttonprevent" type="submit">
                                                                                 <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>
@@ -1167,7 +1170,7 @@
                                                         <th>{{ $am->nama }}</th>
                                                         <th>Izin</th>
                                                         @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($am->selesai), Carbon\Carbon::parse($am->mulai)))
-                                                            @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
+                                                            @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '16:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
                                                                 <th>
                                                                     <a class="btn btn-primary p-1"
                                                                         href="/absen-izin-mhs/{{ $am->id }}"
@@ -1261,7 +1264,6 @@
                                 <p class="card-text">
                                     <b> Note :</b> <br>
                                     - Mohon Para Praktikan hendak absen silahkan tunggu tombol "presensi" berubah menjadi tombol biru sesuai jam yang ada di peraturan absensi tersebut. <br>
-                                    - Mohon Para Praktikan hendak absen menyalakan Kamera dan GPS terlebih dahulu. <br>
                                     - Mohon para Praktikan Absen setiap hari ketika magang anda berlangsung jika para Praktikan tidak
                                     hadir magang karena sakit silahkan absen izin. <br>
                                     - Mohon para Praktikan Kelompok tidak boleh tekan button "prensensi" punya nama temannya hanya

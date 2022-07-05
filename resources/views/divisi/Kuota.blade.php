@@ -31,7 +31,7 @@
                                     <th>Tanggal Tutup</th>
                                     <th>Divisi</th>
                                     <th>Jenis Kuota</th>
-                                  
+                                    <th>Deskripsi Lowongan Magang & Penelitian</th>
                                     <th>Kuota TW 1</th>
                                     <th>Kuota TW 2</th>
                                     <th>Kuota TW 3</th>
@@ -48,6 +48,7 @@
                                     <td>{{ $kuota->tanggal_tutup }}</td>
                                     <td>{{ $kuota->divisi }}</td>
                                     <td>{{$kuota->jenis_kuota}}</td>
+                                    <td>{{$kuota->rekrutmen}}</td>
                                     <td>{{$kuota->tw1}}</td>
                                     <td>{{$kuota->tw2}}</td>
                                     <td>{{$kuota->tw3}}</td>

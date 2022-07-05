@@ -13,6 +13,7 @@ use App\Models\JumlahAsesor;
 use App\Models\Kuota;
 use App\Models\ContactUs;
 use App\Models\JadwalSertifikasi;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,8 @@ class WebController extends Controller
 {
     public function index(){
         $getNews = News::orderBy('id','DESC')->paginate(3);
-        $getGalleries = Gallery::orderBy('id','DESC')->paginate(9);
+        $getrating = Rating::orderBy('id','DESC')->paginate(3);
+        $getGalleries = Gallery::orderBy('id','DESC')->paginate(10);
 
         $training = DB::table('training')->get();
 
@@ -44,7 +46,7 @@ class WebController extends Controller
             }
         }
         
-        return view('frontend.home', ['news' => $getNews, 'gallery' => $getGalleries]);
+        return view('frontend.home', ['rating' => $getrating,'news' => $getNews, 'gallery' => $getGalleries]);
     }
 
     public function toShipBuilding(){

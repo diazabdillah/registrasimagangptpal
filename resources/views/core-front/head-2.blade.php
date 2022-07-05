@@ -35,6 +35,7 @@
 	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/owl.carousel.css"/>
 	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/owl.transitions.css"/>
 	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/colors/color-green.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- Favicons
 	================================================== -->
@@ -73,6 +74,9 @@ left: 100%;
 .dropdown-menu .dropdown-submenu{
 	width: auto;
 }
+}
+.checked {
+	color: #ffd900;
 }
 
 </style>

@@ -986,7 +986,7 @@
                                                             <th>{{ $as->nama }}</th>
                                                             <th>Izin</th>
                                                             @if (Carbon\Carbon::now()->between(Carbon\Carbon::parse($as->selesai), Carbon\Carbon::parse($as->mulai)))
-                                                                @if (date('H:i', strtotime(now())) >= '16:30' && date('H:i', strtotime(now())) <= '19:300' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
+                                                                @if (date('H:i', strtotime(now())) >= '06:00' && date('H:i', strtotime(now())) <= '16:30' && date('l', strtotime(now())) != 'Sunday' && date('l', strtotime(now())) != 'Saturday')
                                                                     <th>
                                                                         <a class="btn btn-primary p-1"
                                                                             href="/absen-izin-smk/{{ $as->id }}"
@@ -1056,8 +1056,8 @@
                                                                                 <div class="form-group">
 
                                                                                     
-                                                                            <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
-                                                                            <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>
+                                                                            <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
+                                                                            <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
                                                                                 </div>
                                                                                 <button
                                                                                     class="btn btn-primary button-prevent"
@@ -1138,8 +1138,8 @@
                                                                                 <div class="form-group">
 
                                                                                 
-                                                                            <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
-                                                                            <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>
+                                                                            <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
+                                                                            <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
                                                                                 </div>
                                                                                 <button
                                                                                     class="btn btn-primary button-prevent"
@@ -1240,8 +1240,8 @@
                                                                                 <div class="form-group">
 
                                                                              
-                                                                                    <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
-                                                                                    <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>
+                                                                                    <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
+                                                                                    <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
                                                                                 </div>
                                                                                 <button
                                                                                     class="btn btn-danger buttonprevent"

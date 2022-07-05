@@ -48,6 +48,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label>Deskripsi Lowongan Magang & Penelitian</label>
+                                <textarea class="form-control" name="rekrutmen" id="rekrutmen" placeholder="- Mengerjakan Website Registrasi Magang" cols="30"
+                                    rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <small class="ml-2">Tw 1 Kuota</small>
                                 <input type="text" class="form-control" id="kuota" name="tw1">
                             </div>

@@ -95,7 +95,7 @@ The   Best   Maritime   Industry</p>
 					<a href="formatLaporan" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Split-FourSquareWindow"></i></div>
-							<h5 class="mt-4">Materi Pendukun Internship</h5>
+							<h5 class="mt-4">Materi Pendukung Internship</h5>
 						</div>
 					</a>
 				</div>
@@ -103,7 +103,7 @@ The   Best   Maritime   Industry</p>
 					<a href="kuotas" class="btn-link btn-primary">
 						<div class="services-box-1 border-on-light text-center">
 							<div class="icon-in-box rounded-circle mg-auto"><i class="funky-ui-icon icon-Monitor-phone"></i></div>
-							<h5 class="mt-4">Kuota</h5>
+							<h5 class="mt-4">Kuota Magang & Penelitian</h5>
 						</div>
 					</a>
 				</div>
@@ -360,6 +360,125 @@ The   Best   Maritime   Industry</p>
 	</div>
 </div>
 
+<div class="container-lg" style="background-color: #000B31;">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>See What <b>Our Customers</b> Say About Us</h2>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Carousel indicators -->
+			 
+				<!-- Wrapper for carousel items -->
+				<div class="carousel-inner">
+					
+					<div class="carousel-item active">
+						
+						<div class="row">
+							@foreach ($rating as $r)
+							<div class="col-sm-4">
+							
+								<div class="testimonial-wrapper">
+									<div class="testimonial">
+										<p>{{$r->pesan}}</p>
+										<small>Pelayanan Terhadap Anak Magang: </small> <span class="badge badge-success bg-success text-white"> {{$r->pelayanan}}</span> <br>
+										<small>Fasilitas Tempat Magang: </small> <span class="badge badge-success bg-success text-white"> {{$r->fasilitas}}</span> <br>
+									</div>
+									<div class="media">
+										<img src="https://source.unsplash.com/300x300/?businessman" class="mr-3" alt="">
+										<div class="media-body">
+											<div class="overview">
+												<div class="name"><b>{{$r->nama_rating}}</b></div>
+												<div class="details">{{$r->status}}</div>
+												<div class="star-rating">
+									
+														@for($i = 1; $i <= $r->star_rating; $i++)
+			<span class="fa fa-star checked mb-3"></span>
+			@endfor
+			
+			@for($j = $r->star_rating + 1; $j <= 5; $j++)
+			<span class="fa fa-star"></span>
+			@endfor		
+											
+												</div>
+											</div>										
+										</div>
+									</div>
+								</div>
+													
+							</div>
+							@endforeach		
+						</div>			
+					</div>
+					
+						</div>			
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{{-- <section class="client pt-3 pb-5">
+	<div class="container">
+	  <div class="row text-center">
+		<div class="col-12">
+		  <h1 class="display-4 fw-bold text-white">Testimonials</h1>
+		  <hr class="bg-white mb-4 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
+		  <p class="p-text text-white">What our clients are saying</p> 
+		</div>
+	  </div>
+	  <div class="row align-items-md-center text-white">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+	   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+				<!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+		<div class="carousel-item active">
+			@foreach ($rating as $r)
+			<div class="row p-4">
+			<div class="t-card">
+				  <i class="fa fa-quote-left" aria-hidden="true"></i>
+				  <p style="margin-bottom: -4px">Rating Produk :</p>
+			@for($i = 1; $i <= $r->star_rating; $i++)
+			<span class="fa fa-star checked mb-3"></span>
+			@endfor
+			
+			@for($j = $r->star_rating + 1; $j <= 5; $j++)
+			<span class="fa fa-star"></span>
+			@endfor					 
+	
+				  <p>{{$r->pesan}}</p>
+				  <small>Pelayanan Terhadap Anak Magang: </small> <span class="badge badge-success bg-success text-white"> {{$r->pelayanan}}</span> <br>
+				  <small>Fasilitas Tempat Magang: </small> <span class="badge badge-success bg-success text-white"> {{$r->fasilitas}}</span> <br>
+						<i class="fa fa-quote-right" aria-hidden="true"></i><br>
+					  </div>
+			<div class="row">                    
+			 <div class="col-sm-2 pt-3">
+			   <img src="https://source.unsplash.com/300x300/?girl" class="rounded-circle img-responsive img-fluid">
+						  </div>                    
+				<div class="col-sm-10">
+			  <div class="arrow-down d-none d-lg-block"></div>
+			   <h4><strong>{{$r->nama_rating}}</strong></h4>
+		  <p class="testimonial_subtitle"><span>{{$r->status}}</span><br>
+					  </div>
+					  </div>
+					</div>
+					@endforeach
+				  </div>
+				</div>
+			  </div>
+			  <div class="controls push-right">
+				  <a class="text-white btn btn btn-outline-light" href="#carouselExampleCaptions"
+					data-bs-slide="prev"><i class="fa fa-chevron-left" style="font-size:15px"></i></a>
+				  <a class="text-white btn btn btn-outline-light" href="#carouselExampleCaptions"
+					data-bs-slide="next"><i class="fa fa-chevron-right" style="font-size:15px"></i></a>
+				</div>
+		  </div>
+	  </div>
+	</div>
+	</section> --}}
+
+	
 <!-- Separator Line
 	================================================== -->
 

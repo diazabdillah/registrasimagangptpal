@@ -51,7 +51,7 @@
                                             <h4 style="font-family:Lucida Sans;"><b><u>SURAT PERIZINAN BARANG  </u></b></h4>
                             
                                         <h6 style="font-family:Lucida Sans;">Nomor :
-                                            PKL/{{ $mahasiswa[0]->id }}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
+                                            PKL/{{ Auth::user()->id }}/44200/{{ date('F', strtotime(now())) }}/{{ date('Y', strtotime(now())) }}
                                         </h6>
                                     </b>
 
@@ -83,7 +83,7 @@
                                             <th>Nama</th>
                                             <th>Asal Kampus</th>
                                             <th>Nama Barang</th>
-
+<th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,11 +93,14 @@
                                                 <td>{{ $surat->nama }}</td>
                                                 <td>{{ $surat->univ }}</td>
                                                 <td>
-                                                    @if($surat->nama_barang !=null)
                                                     {{$surat->nama_barang}}
-                                                        @else
+                                                </td>
+                                                <td>  
+                                                    @if($surat->nama_barang ==null)
                                                     <a href="tambah-barang-mhs/{{$surat->id}}" class="btn btn-primary">Tambah Barang</a>
-                                                    @endif
+                                                    @else
+                                                <a href="delete-barang-mhs/{{$surat->id}}" class="btn btn-danger">Hapus Barang</a>
+                                                @endif
                                                 </td>
                                             </tr>
                                         @endforeach

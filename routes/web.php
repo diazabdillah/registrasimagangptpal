@@ -441,6 +441,7 @@ Route::get('/data-mhs', [MagangController::class, 'data_mhs']);
 Route::get('/input-data-mhs', [MagangController::class, 'input_data_mhs']);
 Route::post('/input-data-mhs', [MagangController::class, 'proses_data_mhs']);
 Route::get('/selesai', [MagangController::class, 'selesai_mhs']);
+Route::post('/tambah-testimoni-mhs',[MagangController::class,'tambah_testimoni_mhs']);
 
 Route::get('/edit-data-mhs/{id}/{id_rekap}', [MagangController::class, 'edit_data_mhs']);
 Route::put('/edit-data-mhs/{id}/{id_rekap}', [MagangController::class, 'update_data_mhs']);
@@ -552,6 +553,7 @@ Route::get('delete-tugas-mhs/{id}/{foto}',[MagangController::class,'delete_tugas
 Route::get('surat-perizinan-barang-mhs',[MagangController::class,'surat_perizinan_barang_mhs']);
 Route::get('surat-perizinan-barang-mhs-pdf',[MagangController::class,'surat_perizinan_barang_mhs_pdf']);
 Route::get('tambah-barang-mhs/{id}',[MagangController::class,'tambah_barang_mhs']);
+Route::get('delete-barang-mhs/{id}',[MagangController::class,'delete_barang_mhs']);
 Route::post('proses-tambah-barang-mhs/{id}',[MagangController::class,'proses_tambah_barang_mhs']);
 // Halaman Magang Mahasiswa Kelompok ==================
 

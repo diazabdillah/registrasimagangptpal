@@ -97,7 +97,7 @@
                 <div class="card-1 Menu mb-4">
                     <div class="card-1 shadow">
                         <div class="card-header-1 py-3">
-                            <h6 class="m-0 font-weight-bold text-primary-1">Daftar Kuota</h6>
+                            <h6 class="m-0 font-weight-bold text-primary-1">Daftar Kuota Magang & Penelitian</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -114,7 +114,7 @@
                                                     Divisi
                                                 </div>
                                             </th>
-                                           
+                                        
                                             <th>
                                                 <div class="d-flex justify-content-center">
                                                     Jenis Kuota
@@ -122,7 +122,7 @@
                                             </th>
                                             <th>
                                                 <div class="d-flex justify-content-center">
-                                                    Status Kuota
+                                                    Deskripsi Lowongan Magang & Penelitian
                                                 </div>
                                             </th>
                                             <th>
@@ -164,7 +164,7 @@
                                             <td>{{ $kuota->firstItem() + ++$i - 1 }}.</td>
                                             <td>{{ $k->divisi }}</td>
                                             <td>{{ $k->jenis_kuota }}</td>
-                                            <td>{{ $k->status_kuota }}</td>
+                                            <td>{{$k->rekrutmen}}</td>
                                             <td>{{ $k->tanggal_buka }}</td>
                                             <td>{{ $k->tanggal_tutup }}</td>
                                             <td>{{ $k->tw1 }}</td>

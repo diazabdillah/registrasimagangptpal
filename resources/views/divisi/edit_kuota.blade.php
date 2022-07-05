@@ -41,6 +41,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label>Deskripsi Lowongan Magang & Penelitian</label>
+                                <textarea class="form-control" name="rekrutmen" id="konten" placeholder="- Mengerjakan Website Registrasi Magang" cols="30"
+                                    rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <small class="ml-2">Jenis Kuota</small>
                                 <div class="input-group mb-3">
                                     <select class="custom-select" name="jenis_kuota">

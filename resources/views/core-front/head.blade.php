@@ -22,7 +22,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet" />
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- CSS
 	================================================== -->
 	<link rel="stylesheet" href="{{URL::asset('frontend')}}/css/bootstrap.min.css" />
@@ -70,7 +70,140 @@
         width: auto;
     }
 }
+.client {
+    width: 100%;
+    height: 100%;
+    background: #7F00FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E100FF, #7F00FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
+.carousel-icon i {
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-item i {
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.t-card {
+  padding: 1.8125rem 1.125rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 1.25rem;
+  color: #fff;
+  height: auto;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 1.5625rem solid transparent;
+  border-right: 1.5625rem solid transparent;
+  border-top: 1.25rem solid rgba(0, 0, 0, 0.5);
+}
+.checked {
+	color: orange;
+}
+h2 {
+	color: rgb(255, 255, 255);
+	font-size: 26px;
+	font-weight: 300;
+	text-align: center;
+	position: relative;
+	margin: 30px 0 60px;
+}
+h2::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 4px;
+	border-radius: 1px;
+	background: #1abc9c;
+	left: 0;
+	right: 0;
+	bottom: -20px;
+}
+.carousel .carousel-item {
+	color: #999;
+	overflow: hidden;
+	min-height: 120px;
+	font-size: 13px;
+}
+.carousel .media {
+	position: relative;
+	padding: 0 0 0 20px;
+}
+.carousel .media img {
+	width: 75px;
+	height: 75px;
+	display: block;
+	border-radius: 50%;
+}
+.carousel .testimonial-wrapper {
+	padding: 0 10px;
+
+}
+.carousel .testimonial {
+	color: #808080;
+	position: relative;
+	padding: 15px;
+	background: #f1f1f1;
+	border: 1px solid #efefef;
+	border-radius: 3px;
+	margin-bottom: 15px;
+}
+.carousel .testimonial::after {
+	content: "";
+	width: 15px;
+	height: 15px;
+	display: block;
+	background: #f1f1f1;
+	border: 1px solid #efefef;
+	border-width: 0 0 1px 1px;
+	position: absolute;
+	bottom: -8px;
+	left: 46px;
+	transform: rotateZ(-46deg);
+}
+.carousel .star-rating li {
+	padding: 0 2px;
+}
+.carousel .star-rating i {
+	font-size: 16px;
+	color: #ffdc12;
+}
+.carousel .overview {
+	padding: 3px 0 0 15px;
+}
+.carousel .overview .details {
+	padding: 5px 0 8px;
+}
+.carousel .overview b {
+	text-transform: uppercase;
+	color: #1abc9c;
+}
+.carousel .carousel-indicators {
+	bottom: -70px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	margin: 1px 2px;
+	box-sizing: border-box;
+}
+.carousel-indicators li {	
+	background: #e2e2e2;
+	border: 4px solid #fff;
+}
+.carousel-indicators li.active {
+	color: #fff;
+	background: #1abc9c;
+	border: 5px double;    
+}
 	</style>
 </head>
 
@@ -300,5 +433,6 @@
 	<script type="text/javascript" src="{{URL::asset('frontend')}}/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{{URL::asset('frontend')}}/js/plugins.js"></script>
 	<script type="text/javascript" src="{{URL::asset('frontend')}}/js/custom/custom-company.js"></script>
-
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </html>

@@ -976,8 +976,8 @@
                                                         <div class="form-group">
                                                
                                                         
-                                                            <input type="text" id="inputTopic"  class="form-control"  name="latitude" disabled>
-                                                            <input type="text" name="longitude"  id="inputTopic"  class="form-control" disabled>>
+                                                            <input type="hidden" id="inputTopic"  class="form-control"  name="latitude">
+                                                            <input type="hidden" name="longitude"  id="inputTopic"  class="form-control">
                                                     </div>
                                                         <button class="btn btn-danger buttonprevent" type="submit">
                                                             <div class="spinner"><i role="status" class="spinner-border spinner-border-sm"></i> Loading </div>

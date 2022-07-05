@@ -85,6 +85,15 @@
                                             <input type="text" class="form-control" id="status" name="status"
                                                 value="{{ $profile->departemen }}" disabled>
                                         </div>
+                                        <div class="form-group">
+                                            <small class="ml-2">Waktu Magang</small><br>
+                                            <li class="list-group-item">
+                                                Tgl Mulai <span class="badge badge-success p-2">
+                                                    {{ date('d-F-Y', strtotime($profile->mulai)) }}</span>
+                                                Tgl Selesai <span class="badge badge-danger p-2">
+                                                    {{ date('d-F-Y', strtotime($profile->selesai)) }}</span>
+                                            </li>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

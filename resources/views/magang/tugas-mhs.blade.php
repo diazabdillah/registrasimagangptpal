@@ -146,7 +146,12 @@
                             
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Foto Kegiatan:</label>
-                                <input type="file" class="form-control" id="recipient-name" name="foto_kegiatan">
+                                <input type="file" class="form-control  @error('foto_kegiatan') is-invalid @enderror" id="recipient-name"   name="foto_kegiatan" required>
+                                @error('foto_kegiatan')
+                                <div class="invalid-feedback mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             </div>
                          
 

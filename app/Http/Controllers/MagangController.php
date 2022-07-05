@@ -25,6 +25,7 @@ use App\Models\AbsenSmk;
 use App\Models\BarangMhs;
 use App\Models\BarangSmk;
 use App\Models\LaporanSmk;
+use App\Models\Rating;
 use App\Models\RekapAbsensmk;
 use App\Models\RekapKegiatanSmk;
 use App\Models\Rekapsmk;
@@ -635,7 +636,8 @@ public function upload_mhs_bpjs($id, Request $request){
             $data = DB::table('users')
                 ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
                 ->leftJoin('foto_i_d_mhs', 'data_mhs_indivs.id', '=', 'foto_i_d_mhs.id_individu')
-                ->select('foto_i_d_mhs.id_individu', 'foto_i_d_mhs.fotoID', 'users.id', 'users.status_user', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.univ', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.divisi', 'data_mhs_indivs.user_id', 'data_mhs_indivs.departemen')
+                ->leftJoin('mulai_dan_selesai_mhs', 'mulai_dan_selesai_mhs.user_id', '=', 'data_mhs_indivs.user_id')
+                ->select('mulai_dan_selesai_mhs.mulai','mulai_dan_selesai_mhs.selesai','foto_i_d_mhs.id_individu', 'foto_i_d_mhs.fotoID', 'users.id', 'users.status_user', 'users.role_id', 'data_mhs_indivs.nama', 'data_mhs_indivs.nim', 'data_mhs_indivs.strata', 'data_mhs_indivs.jurusan', 'data_mhs_indivs.alamat_rumah', 'data_mhs_indivs.univ', 'data_mhs_indivs.no_hp', 'data_mhs_indivs.divisi', 'data_mhs_indivs.user_id', 'data_mhs_indivs.departemen')
                 ->where('data_mhs_indivs.user_id', '=', $id)
                 ->get();
             return view('magang.profil-mhs', [
@@ -3268,7 +3270,7 @@ return redirect('/data-smk')
         $individusmk = DataSmkIndivs::find($id);
         $request->validate([
             'foto' => 'required',
-            'foto.*' => 'mimes:jpeg,jpg,png|max:2048'
+            'foto.*' => 'mimes:jpeg,jpg,png|file|max:2048'
         ]);
 
         if ($request->hasFile('foto')) {
@@ -3583,7 +3585,7 @@ return redirect('/data-smk')
             'mulai' => 'required',
             'selesai' => 'required',
             'berkas' => 'required',
-            'berkas.*' => 'mimes:pdf|max:2048'
+            'berkas.*' => 'mimes:pdf|file|max:2048'
         ]);
 
         if ($request->hasFile('berkas')) {
@@ -4164,7 +4166,7 @@ return redirect('/data-smk')
             ->where('id', $id)
             ->delete();
          
-        session()->flash('succes', 'Berkas berhasil dihapus');
+        session()->flash('succes', 'Tugas berhasil dihapus');
         return redirect('tugas-mhs');
     }
     public function delete_tugas_smk($id,$foto){
@@ -4180,7 +4182,7 @@ return redirect('/data-smk')
             ->update([
                 'status_kegiatan' => 'Belum Mengerjakan',
             ]);
-        session()->flash('succes', 'Berkas berhasil dihapus');
+        session()->flash('succes', 'Tugas berhasil dihapus');
         return redirect('tugas-smk');
     }
     public function tugas_smk(){
@@ -4240,7 +4242,16 @@ return redirect('/data-smk')
     }
     public function proses_kegiatan_mhs($id,$user_id, Request $request){
         if (auth()->user()->role_id == 3) {
-        
+     
+            $request->validate([
+            'foto_kegiatan' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+             ],
+             [
+                'foto_kegiatan.required' => 'Mohon Maaf File Tes Kepribadian Anda Harus Di Isi',
+                'foto_kegiatan.max' => 'Mohon Maaf File Tes Kepribadian Anda Lebih dari 2MB',
+                'foto_kegiatan.mimes' => 'Mohon Maaf File Tes Kepribadian Anda Harus JPG ,PNG, Dan JPEG',
+            ]
+            );
 
             $file = $request->file('foto_kegiatan');
             $namafile = $file->getClientOriginalName();
@@ -4267,7 +4278,16 @@ return redirect('/data-smk')
     public function proses_kegiatan_smk($id,$user_id, Request $request){
         if (auth()->user()->role_id == 4) {
         
-
+            $request->validate([
+                'foto_kegiatan' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+                 ],
+                 [
+                    'foto_kegiatan.required' => 'Mohon Maaf File Tes Kepribadian Anda Harus Di Isi',
+                    'foto_kegiatan.max' => 'Mohon Maaf File Tes Kepribadian Anda Lebih dari 2MB',
+                    'foto_kegiatan.mimes' => 'Mohon Maaf File Tes Kepribadian Anda Harus JPG ,PNG, Dan JPEG',
+                ]
+                ); 
+                
             $file = $request->file('foto_kegiatan');
             $namafile = $file->getClientOriginalName();
             $tujuan_upload = 'file/foto-kegiatan-smk/';
@@ -4392,7 +4412,7 @@ return redirect('/data-smk')
             ->leftJoin('data_mhs_indivs', 'users.id', '=', 'data_mhs_indivs.user_id')
             ->leftJoin('barangmhs', 'data_mhs_indivs.id', '=', 'barangmhs.user_id')
             ->leftJoin('mulai_dan_selesai_mhs', 'users.id', '=', 'mulai_dan_selesai_mhs.user_id')
-            ->select('users.id', 'barangmhs.nama_barang', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.divisi')
+            ->select('data_mhs_indivs.id', 'barangmhs.nama_barang', 'mulai_dan_selesai_mhs.mulai', 'mulai_dan_selesai_mhs.selesai', 'mulai_dan_selesai_mhs.created_at',  'data_mhs_indivs.nama', 'data_mhs_indivs.univ','data_mhs_indivs.divisi')
             ->where('users.id', '=', $id)
             ->get();
        
@@ -4443,6 +4463,14 @@ return redirect('/data-smk')
           return redirect()->back();
       }
     }
+    public function delete_barang_mhs($id){
+        DB::table('barangmhs') 
+        ->where('user_id', $id)
+        ->delete();
+   
+    session()->flash('succes', 'nama barang berhasil dihapus');
+    return redirect('surat-perizinan-barang-mhs');
+    }
     public function proses_tambah_barang_mhs($id,Request $request){
         BarangMhs::create([
             'user_id' => $id,
@@ -4458,7 +4486,7 @@ return redirect('/data-smk')
             ->leftJoin('data_smk_indivs', 'users.id', '=', 'data_smk_indivs.user_id')
             ->leftJoin('barangsmk', 'data_smk_indivs.id', '=', 'barangsmk.user_id')
             ->leftJoin('mulai_dan_selesai_smk', 'users.id', '=', 'mulai_dan_selesai_smk.user_id')
-            ->select('users.id', 'barangsmk.nama_barang', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah','data_smk_indivs.divisi')
+            ->select('data_smk_indivs.id', 'barangsmk.nama_barang', 'mulai_dan_selesai_smk.mulai', 'mulai_dan_selesai_smk.selesai', 'mulai_dan_selesai_smk.created_at',  'data_smk_indivs.nama', 'data_smk_indivs.sekolah','data_smk_indivs.divisi')
             ->where('users.id', '=', $id)
             ->get();
        
@@ -4516,5 +4544,17 @@ return redirect('/data-smk')
         } else {
             return redirect()->back();
         }
+    }
+    public function tambah_testimoni_mhs(Request $request){
+        DB::table('rating')
+            ->insert([
+            'star_rating' => $request->star_rating,
+            'pesan' => $request->pesan,
+            'nama_rating' => Auth::user()->name,
+            'pelayanan' => $request->pelayanan,
+            'fasilitas' => $request->fasilitas,
+            'status' => Auth::user()->status_user,
+        ]);
+        return redirect('selesai');
     }
 }

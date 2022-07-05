@@ -859,6 +859,7 @@ class DivisiController extends Controller
             'user_id' => $id,
             'tanggal_buka' => $request->tanggal_buka,
             'tanggal_tutup' => $request->tanggal_tutup,
+            'rekrutmen' => $request->rekrutmen,
             'divisi' => $request->divisi,
             'jenis_kuota'=>$request->jenis_kuota,
             'tw1'=>$request->tw1,
